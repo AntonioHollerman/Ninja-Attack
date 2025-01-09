@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Accessibility;
 
 namespace BaseClasses
 {
@@ -28,6 +29,11 @@ namespace BaseClasses
             _aliveTime = duration;
         }
 
+        public void Deactivate()
+        {
+            _aliveTime = 0;
+        }
+
         IEnumerator AliveChecker()
         {
             while (true)
@@ -38,18 +44,17 @@ namespace BaseClasses
                 gameObject.SetActive(false);
             }
         }
-        
+
+        private void Start()
+        {
+            StartCoroutine(AliveChecker());
+        }
+
         /// <summary>
         /// Unity's Update method. Calls the UpdateWrapper to handle frame updates.
         /// </summary>
         private void Update()
         {
-            // Destroy the game object if the hitbox is no longer alive
-            if (!IsAlive)
-            {
-                Destroy(gameObject); 
-            }
-
             // Decrease the alive time every frame
             _aliveTime -= Time.deltaTime;
         }
