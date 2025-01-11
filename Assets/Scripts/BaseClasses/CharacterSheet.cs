@@ -11,11 +11,11 @@ namespace BaseClasses
     /// </summary>
     public class CharacterSheet : MonoBehaviour
     {
-        public bool IsALive => _hp > 0; // True if the character is alive, false otherwise
+        public bool IsALive => Hp > 0; // True if the character is alive, false otherwise
 
         // Current stats for the character
-        private int _hp;    // Current health points
-        private int _mana;  // Current mana points
+        protected int Hp;    // Current health points
+        protected int Mana;  // Current mana points
 
         // Durations for various temporary statuses
         private float _stunDuration; // Duration of stun
@@ -242,7 +242,7 @@ namespace BaseClasses
         public void DealDamage(int dmg)
         {
             // Apply damage, reducing health based on vulnerability and defense
-            _hp -= dmg;
+            Hp -= dmg;
         }
 
         /// <summary>
@@ -291,7 +291,7 @@ namespace BaseClasses
             // Ensure the technique exists, there's enough mana, and animations aren't blocked
             bool CanCast()
             {
-                return _techniques[position] != null && _mana > _techniques[position].ManaCost && !AnimationBlocked;
+                return _techniques[position] != null && Mana > _techniques[position].ManaCost && !AnimationBlocked;
             }
 
             if (!CanCast())
@@ -302,7 +302,7 @@ namespace BaseClasses
             bool successful = _techniques[position].ActivateTechnique(); // Try to cast the technique
             if (successful)
             {
-                _mana -= _techniques[position].ManaCost; // Deduct mana
+                Mana -= _techniques[position].ManaCost; // Deduct mana
                 _animationBlockedDuration = _techniques[position].AnimationDuration; //
                 // Set animation blocked duration based on the technique's animation duration
             }
