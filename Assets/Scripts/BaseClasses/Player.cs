@@ -18,7 +18,6 @@ namespace BaseClasses
             base.UpdateWrapper();
             HandleMovement();
             HandleDirection();
-            _lastPos = transform.position;
         }
 
         protected override void StartWrapper()
@@ -34,7 +33,7 @@ namespace BaseClasses
             
 
             // Calculate the direction vector
-            Vector3 direction = lastVec - curVec;
+            Vector3 direction = curVec - lastVec;
 
             // Ensure the direction vector is not zero
             if (direction != Vector3.zero)
@@ -45,29 +44,29 @@ namespace BaseClasses
                 // Apply the rotation globally
                 transform.rotation = targetRotation;
             }
-            
+            _lastPos = transform.position;
         }
 
         private void HandleMovement()
         {
             if (Input.GetKey(UpCode))
             {
-                transform.Translate(Time.deltaTime * speed * Vector3.up);
+                transform.position += Time.deltaTime * speed * Vector3.up;
             }
 
             if (Input.GetKey(DownCode))
             {
-                transform.Translate(Time.deltaTime * speed * Vector3.down);
+                transform.position += Time.deltaTime * speed * Vector3.down;
             }
 
             if (Input.GetKey(LeftCode))
             {
-                transform.Translate(Time.deltaTime * speed * Vector3.left);
+                transform.position += Time.deltaTime * speed * Vector3.left;
             }
 
             if (Input.GetKey(RightCode))
             {
-                transform.Translate(Time.deltaTime * speed * Vector3.right);
+                transform.position += Time.deltaTime * speed * Vector3.right;
             }
         }
     }
