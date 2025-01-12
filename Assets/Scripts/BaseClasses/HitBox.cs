@@ -21,9 +21,9 @@ namespace BaseClasses
         /// </summary>
         protected abstract void Effect(CharacterSheet cs);
 
-        public void Activate(float duration)
+        public void Activate(float duration, List<CharacterSheet> ignore)
         {
-            _ignore = new List<CharacterSheet>();
+            _ignore = new List<CharacterSheet>(ignore);
             _aliveTime = duration;
         }
 
