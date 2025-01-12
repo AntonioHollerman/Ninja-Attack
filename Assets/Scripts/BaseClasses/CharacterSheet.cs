@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BaseClasses
@@ -9,7 +10,7 @@ namespace BaseClasses
     /// <summary>
     /// Represents a character's core attributes and behaviors in the game.
     /// </summary>
-    public class CharacterSheet : MonoBehaviour
+    public abstract class CharacterSheet : MonoBehaviour
     {
         public bool IsALive => Hp > 0; // True if the character is alive, false otherwise
 
@@ -26,11 +27,15 @@ namespace BaseClasses
         protected bool AnimationBlocked => _animationBlockedDuration > 0;
 
         // Dictionary to store equipped items, and a list to store techniques
+        private List<Weapon> _weapons;
         private List<EquippedTechnique> _techniques;
         private List<Effect> _effects;
 
         // Property to manage the length of the techniques list
         private int _techLen;
+
+        public abstract void Defeated();
+        
         public int TechniquesLength
         {
             get => _techLen;
@@ -96,7 +101,7 @@ namespace BaseClasses
                 }
 
                 _cooldown = _tech.CoolDown; // Reset the cooldown to the technique's cooldown time
-                _tech.Cast(_master); // Cast the technique on the owning character
+                _tech.Execute(); // Cast the technique on the owning character
                 return true; // Technique was successfully activated
             }
 
@@ -213,6 +218,8 @@ namespace BaseClasses
 
             // Initialize techniques with null values
             _techniques = new List<EquippedTechnique>();
+            _weapons = new List<Weapon>();
+            _effects = new List<Effect>();
             for (int i = 0; i < _techLen; i++)
             {
                 _techniques.Add(null); // Fill the list with null values
@@ -232,6 +239,11 @@ namespace BaseClasses
             foreach (var tech in _techniques)
             {
                 tech?.DecrementCount(); // Decrease cooldown if the technique exists
+            }
+
+            if (!IsALive)
+            {
+                Defeated();
             }
         }
 
@@ -255,6 +267,16 @@ namespace BaseClasses
             new Effect(se, duration, this);
         }
 
+        public void AddWeapon(Weapon w)
+        {
+            _weapons.Add(w);
+        }
+
+        public void RemoveWeapon(Weapon w)
+        {
+            _weapons.Remove(w);
+        }
+        
         /// <summary>
         /// Loads a technique into a specific slot if not already present.
         /// </summary>
@@ -317,6 +339,11 @@ namespace BaseClasses
         {
             // Update stun duration to the maximum of the current or new duration
             _stunDuration = duration > _stunDuration ? duration : _stunDuration;
+            
+            foreach (var w in _weapons)
+            {
+                w.Deactivate();
+            }
         }
     }
 }

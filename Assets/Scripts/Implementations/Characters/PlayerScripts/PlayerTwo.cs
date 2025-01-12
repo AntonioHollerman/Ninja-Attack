@@ -1,7 +1,7 @@
 ﻿using BaseClasses;
 using UnityEngine;
 
-namespace Implementation
+namespace Implementations.Characters.PlayerScripts
 {
     public class PlayerTwo : Player
     {
@@ -14,6 +14,11 @@ namespace Implementation
             DownCode = KeyCode.DownArrow;
             LeftCode = KeyCode.LeftArrow;
             RightCode = KeyCode.RightArrow;
+        }
+
+        public override void Defeated()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
