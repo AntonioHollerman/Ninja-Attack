@@ -21,9 +21,9 @@ namespace BaseClasses
         /// </summary>
         protected abstract void Effect(CharacterSheet cs);
 
-        public void Activate(float duration)
+        public void Activate(float duration, List<CharacterSheet> ignore)
         {
-            _ignore = new List<CharacterSheet>();
+            _ignore = new List<CharacterSheet>(ignore);
             _aliveTime = duration;
         }
 
@@ -50,21 +50,6 @@ namespace BaseClasses
             }
         }
 
-        private void Start()
-        {
-            StartCoroutine(AliveChecker());
-            StartCoroutine(DeadChecker());
-        }
-
-        /// <summary>
-        /// Unity's Update method. Calls the UpdateWrapper to handle frame updates.
-        /// </summary>
-        private void Update()
-        {
-            // Decrease the alive time every frame
-            _aliveTime -= Time.deltaTime;
-        }
-
         /// <summary>
         /// Unity's OnTriggerEnter method. Called when another collider enters the trigger collider.
         /// </summary>
@@ -82,6 +67,31 @@ namespace BaseClasses
             // Apply the effect to the character and add them to the ignore list
             Effect(cs);
             _ignore.Add(cs);
+        }
+        
+        protected virtual void StartWrapper()
+        {
+            StartCoroutine(AliveChecker());
+            StartCoroutine(DeadChecker());
+        }
+
+        protected virtual void UpdateWrapper()
+        {
+            // Decrease the alive time every frame
+            _aliveTime -= Time.deltaTime;
+        }
+        
+        private void Start()
+        {
+            StartWrapper();
+        }
+
+        /// <summary>
+        /// Unity's Update method. Calls the UpdateWrapper to handle frame updates.
+        /// </summary>
+        private void Update()
+        {
+            UpdateWrapper();
         }
     }
 }
