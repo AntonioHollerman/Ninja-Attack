@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using BaseClasses;
 using UnityEngine;
 
 namespace Implementations.Weapons
@@ -32,9 +34,9 @@ namespace Implementations.Weapons
             while (Vector2.Distance(startPosition, transform.position) < maxTravelDistance)
             {
                 // Move the arrow downward based on speed
-                transform.Translate(Vector2.down * speed * Time.deltaTime);
+                transform.Translate( speed * Time.deltaTime * Vector2.up);
 
-                yield return new WaitForSeconds(0.2f); // Wait for the next frame
+                yield return null; // Wait for the next frame
             }
 
             // Deactivate the arrow after it has traveled the maximum distance
