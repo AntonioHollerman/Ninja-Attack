@@ -7,8 +7,10 @@ namespace Implementations.Characters.PlayerScripts
     {
         protected override void StartWrapper()
         {
-            base.StartWrapper();
             speed = 5;
+            Hp = 20;
+            Mana = 150;
+            base.StartWrapper();
         
             UpCode = KeyCode.UpArrow;
             DownCode = KeyCode.DownArrow;

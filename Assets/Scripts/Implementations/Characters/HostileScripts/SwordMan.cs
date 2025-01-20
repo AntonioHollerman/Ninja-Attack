@@ -19,6 +19,7 @@ namespace Implementations.Characters.HostileScripts
         private BasicMelee _meleeScript;
         protected override void StartWrapper()
         {
+            Hp = 12;
             base.StartWrapper();
             _meleeScript = meleeGo.GetComponent<BasicMelee>();
         }
