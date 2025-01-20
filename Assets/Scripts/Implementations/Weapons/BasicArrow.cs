@@ -12,8 +12,6 @@ namespace Implementations.Weapons
         public float maxTravelDistance = 20f; // Maximum distance the arrow can travel before deactivating
         public List<GameObject> ignore;
 
-        private Vector2 startPosition;
-
         protected override void StartWrapper()
         {
             base.StartWrapper();
