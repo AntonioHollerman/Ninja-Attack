@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using BaseClasses;
 using Implementations.Weapons;
 using UnityEngine;
@@ -9,7 +8,6 @@ namespace Implementations.Characters.HostileScripts
     public class SwordMan : TrackingBehavior
     {
         public GameObject meleeGo;
-        public float speed = 2f;
         public float attackDelay;
         public float attackRange;
         

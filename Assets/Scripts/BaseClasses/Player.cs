@@ -4,7 +4,6 @@ namespace BaseClasses
 {
     public abstract class Player : CharacterSheet
     {
-        public float speed;
         public GameObject body;
 
         protected KeyCode UpCode;
