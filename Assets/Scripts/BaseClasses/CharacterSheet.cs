@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BaseClasses
@@ -12,11 +10,16 @@ namespace BaseClasses
     /// </summary>
     public abstract class CharacterSheet : MonoBehaviour
     {
-        public bool IsALive => Hp > 0; // True if the character is alive, false otherwise
+        public float speed;
+        public bool IsALive => _currentHp > 0; // True if the character is alive, false otherwise
 
         // Current stats for the character
-        protected int Hp;    // Current health points
-        protected int Mana;  // Current mana points
+        protected int MaxHp;
+        private int _currentHp;    // Current health points
+        protected int MaxMana;
+        private int _currentMana;  // Current mana points
+        
+        
 
         // Durations for various temporary statuses
         private float _stunDuration; // Duration of stun
@@ -67,7 +70,7 @@ namespace BaseClasses
            
             private bool OnCooldown => _cooldown > 0; // True if the technique is on cooldown
             public float AnimationDuration => _tech.AnimationDuration; // Duration of the technique's animation
-            public int ManaCost => _tech.ManaCost; // Mana cost of the technique
+            public int ManaCost => _tech.ManaCost; // _currentMana cost of the technique
 
             /// <summary>
             /// Constructor to initialize the equipped technique.
@@ -217,6 +220,8 @@ namespace BaseClasses
         {
 
             // Initialize techniques with null values
+            _currentHp = MaxHp;
+            _currentMana = MaxMana;
             _techniques = new List<EquippedTechnique>();
             _weapons = new List<Weapon>();
             _effects = new List<Effect>();
@@ -254,7 +259,7 @@ namespace BaseClasses
         public void DealDamage(int dmg)
         {
             // Apply damage, reducing health based on vulnerability and defense
-            Hp -= dmg;
+            _currentHp -= dmg;
         }
 
         /// <summary>
@@ -313,7 +318,7 @@ namespace BaseClasses
             // Ensure the technique exists, there's enough mana, and animations aren't blocked
             bool CanCast()
             {
-                return _techniques[position] != null && Mana > _techniques[position].ManaCost && !AnimationBlocked;
+                return _techniques[position] != null && _currentMana > _techniques[position].ManaCost && !AnimationBlocked;
             }
 
             if (!CanCast())
@@ -324,7 +329,7 @@ namespace BaseClasses
             bool successful = _techniques[position].ActivateTechnique(); // Try to cast the technique
             if (successful)
             {
-                Mana -= _techniques[position].ManaCost; // Deduct mana
+                _currentMana -= _techniques[position].ManaCost; // Deduct mana
                 _animationBlockedDuration = _techniques[position].AnimationDuration; //
                 // Set animation blocked duration based on the technique's animation duration
             }
