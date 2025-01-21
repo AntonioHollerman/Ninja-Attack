@@ -11,6 +11,7 @@ namespace BaseClasses
         public GameObject parent;
         protected CharacterSheet ParentCs;
         public float AnimationDuration { get; protected set;}
+        public bool deactivateOnStun;
         protected List<CharacterSheet> Ignore;
         private Coroutine _animation;
         
@@ -20,7 +21,7 @@ namespace BaseClasses
         {
             base.StartWrapper();
             ParentCs = parent.GetComponent<CharacterSheet>();
-            ParentCs.AddWeapon(this);
+            ParentCs.EquipWeapon(this);
         }
         
         public void Execute()

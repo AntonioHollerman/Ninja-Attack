@@ -6,6 +6,7 @@ namespace BaseClasses
 {
     public abstract class HitBox : MonoBehaviour
     {
+        public bool destroyOnFinish;
         // List of characters to ignore for the hit detection
         private List<CharacterSheet> _ignore;
         
@@ -38,14 +39,12 @@ namespace BaseClasses
             {
                 yield return new WaitUntil(() => IsAlive);
                 gameObject.SetActive(true);
-            }
-        }
-
-        IEnumerator DeadChecker()
-        {
-            while (true)
-            {
-                yield return new WaitUntil(() => !IsAlive);
+                yield return new WaitUntil((() => !IsAlive));
+                if (destroyOnFinish)
+                {
+                    Destroy(gameObject);
+                    break;
+                }
                 gameObject.SetActive(false);
             }
         }
@@ -72,7 +71,6 @@ namespace BaseClasses
         protected virtual void StartWrapper()
         {
             StartCoroutine(AliveChecker());
-            StartCoroutine(DeadChecker());
         }
 
         protected virtual void UpdateWrapper()

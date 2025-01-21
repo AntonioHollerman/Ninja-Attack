@@ -8,39 +8,40 @@ namespace Implementations.Weapons
     public class BasicArrow : Weapon
     {
         public int damage;
-        public float speed = 10f; // Speed of the arrow
-        public float maxTravelDistance = 20f; // Maximum distance the arrow can travel before deactivating
-
-        private Vector2 startPosition;
+        public float speed = 5f; // Speed of the arrow
+        public float maxTravelDistance = 15f; // Maximum distance the arrow can travel before deactivating
+        public List<GameObject> ignore;
 
         protected override void StartWrapper()
         {
             base.StartWrapper();
-            AnimationDuration = maxTravelDistance / speed; // Calculate duration based on speed and distance
+            
+            AnimationDuration = speed != 0 ? maxTravelDistance / speed : 3; // Calculate duration based on speed and distance
             Ignore = new List<CharacterSheet> { ParentCs }; // Exclude the parent character
+            foreach (var go in ignore)
+            {
+                CharacterSheet cs = go.GetComponent<CharacterSheet>();
+                if (cs != null)
+                {
+                    Ignore.Add(cs);
+                }
+            }
+            Execute();
         }
 
         protected override void Effect(CharacterSheet cs)
         {
             cs.DealDamage(damage); // Apply damage to the target
-            gameObject.SetActive(false); // Deactivate the arrow after hitting a target
+            Deactivate();
         }
 
         protected override IEnumerator PlayAnimation()
         {
-            startPosition = transform.position; // Record the starting position of the arrow
-
-            // Move the arrow downward in a straight line
-            while (Vector2.Distance(startPosition, transform.position) < maxTravelDistance)
+            while (true)
             {
-                // Move the arrow downward based on speed
-                transform.Translate( speed * Time.deltaTime * Vector2.up);
-
-                yield return null; // Wait for the next frame
+                transform.Translate(speed * Time.deltaTime * Vector3.forward);
+                yield return null;
             }
-
-            // Deactivate the arrow after it has traveled the maximum distance
-            gameObject.SetActive(false);
         }
     }
 }
