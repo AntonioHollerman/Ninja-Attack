@@ -30,7 +30,7 @@ namespace BaseClasses
         protected bool AnimationBlocked => _animationBlockedDuration > 0;
 
         // Dictionary to store equipped items, and a list to store techniques
-        private List<Weapon> _weapons;
+        private Weapon _weapon;
         private List<EquippedTechnique> _techniques;
         private List<Effect> _effects;
 
@@ -223,7 +223,6 @@ namespace BaseClasses
             _currentHp = MaxHp;
             _currentMana = MaxMana;
             _techniques = new List<EquippedTechnique>();
-            _weapons = new List<Weapon>();
             _effects = new List<Effect>();
             for (int i = 0; i < _techLen; i++)
             {
@@ -272,14 +271,9 @@ namespace BaseClasses
             new Effect(se, duration, this);
         }
 
-        public void AddWeapon(Weapon w)
+        public void EquipWeapon(Weapon w)
         {
-            _weapons.Add(w);
-        }
-
-        public void RemoveWeapon(Weapon w)
-        {
-            _weapons.Remove(w);
+            _weapon = w;
         }
         
         /// <summary>
@@ -344,10 +338,10 @@ namespace BaseClasses
         {
             // Update stun duration to the maximum of the current or new duration
             _stunDuration = duration > _stunDuration ? duration : _stunDuration;
-            
-            foreach (var w in _weapons)
+
+            if (_weapon.deactivateOnStun)
             {
-                w.Deactivate();
+                _weapon.Deactivate();
             }
         }
     }
