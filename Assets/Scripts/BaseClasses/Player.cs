@@ -2,11 +2,11 @@
 
 namespace BaseClasses
 {
-    public abstract class Player: CharacterSheet
+    public abstract class Player : CharacterSheet
     {
         public float speed;
         public GameObject body;
-        
+
         protected KeyCode UpCode;
         protected KeyCode DownCode;
         protected KeyCode LeftCode;
@@ -31,7 +31,7 @@ namespace BaseClasses
         {
             Vector3 lastVec = _lastPos;
             Vector3 curVec = transform.position;
-            
+
 
             // Calculate the direction vector
             Vector3 direction = curVec - lastVec;
@@ -46,13 +46,13 @@ namespace BaseClasses
                 transform.rotation = targetRotation;
             }
             _lastPos = transform.position;
-            
+
             if (Input.GetKey(LeftCode) || Input.GetKey(RightCode))
             {
                 body.transform.localRotation = Quaternion.Euler(0, -90, -90);
                 return;
             }
-            
+
             if (Input.GetKey(UpCode) || Input.GetKey(DownCode))
             {
                 body.transform.localRotation = Quaternion.Euler(90, -90, -90);
