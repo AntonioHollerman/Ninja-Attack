@@ -20,6 +20,7 @@ namespace BaseClasses
         protected KeyCode RightCode;
 
         private Vector3 _lastPos;
+        private Rigidbody _rb;
 
         private Image _hpSlider;
         private TextMeshProUGUI _hpText;
@@ -44,6 +45,8 @@ namespace BaseClasses
 
             _manaSlider = manaSliderGo.GetComponent<Image>();
             _manaText = manaTextGo.GetComponent<TextMeshProUGUI>();
+
+            _rb = GetComponent<Rigidbody>();
             
             UpdateHp();
             UpdateMana();
@@ -51,24 +54,14 @@ namespace BaseClasses
 
         private void HandleDirection()
         {
-            Vector3 lastVec = _lastPos;
-            Vector3 curVec = transform.position;
-
-
-            // Calculate the direction vector
-            Vector3 direction = curVec - lastVec;
-
-            // Ensure the direction vector is not zero
-            if (direction != Vector3.zero)
+            Vector3 dir = GetDirection();
+            if (dir == Vector3.zero)
             {
-                // Calculate the rotation to face the target
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-                // Apply the rotation globally
-                transform.rotation = targetRotation;
+                return;
             }
-            _lastPos = transform.position;
-
+            
+            transform.localRotation = Quaternion.LookRotation(GetDirection());
+            
             if (Input.GetKey(LeftCode) || Input.GetKey(RightCode))
             {
                 body.transform.localRotation = Quaternion.Euler(0, -90, -90);
@@ -83,25 +76,34 @@ namespace BaseClasses
 
         private void HandleMovement()
         {
+
+            _rb.velocity = GetDirection() * speed;
+        }
+
+        private Vector3 GetDirection()
+        {
+            Vector3 direction = Vector3.zero;
             if (Input.GetKey(UpCode))
             {
-                transform.position += Time.deltaTime * speed * Vector3.up;
+                direction += Vector3.up;
             }
 
             if (Input.GetKey(DownCode))
             {
-                transform.position += Time.deltaTime * speed * Vector3.down;
+                direction += Vector3.down;
             }
 
             if (Input.GetKey(LeftCode))
             {
-                transform.position += Time.deltaTime * speed * Vector3.left;
+                direction += Vector3.left;
             }
 
             if (Input.GetKey(RightCode))
             {
-                transform.position += Time.deltaTime * speed * Vector3.right;
+                direction += Vector3.right;
             }
+
+            return direction.normalized;
         }
 
         public void UpdateHp()
