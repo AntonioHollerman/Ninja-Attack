@@ -8,8 +8,8 @@ namespace Implementations.Characters.PlayerScripts
         protected override void StartWrapper()
         {
             speed = 5;
-            MaxHp = 20;
-            MaxMana = 150;
+            maxHp = 20;
+            maxMana = 150;
             base.StartWrapper();
         
             UpCode = KeyCode.UpArrow;

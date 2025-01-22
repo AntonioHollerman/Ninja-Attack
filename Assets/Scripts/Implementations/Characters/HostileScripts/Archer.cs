@@ -7,7 +7,7 @@ namespace Implementations.Characters.HostileScripts
     {
         protected override void StartWrapper()
         {
-            MaxHp = 10;
+            maxHp = 10;
             base.StartWrapper();
         }
 

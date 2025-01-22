@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BaseClasses
 {
@@ -11,13 +12,13 @@ namespace BaseClasses
     public abstract class CharacterSheet : MonoBehaviour
     {
         public float speed;
-        public bool IsALive => _currentHp > 0; // True if the character is alive, false otherwise
+        public bool IsALive => CurrentHp > 0; // True if the character is alive, false otherwise
 
         // Current stats for the character
-        protected int MaxHp;
-        private int _currentHp;    // Current health points
-        protected int MaxMana;
-        private int _currentMana;  // Current mana points
+        public int maxHp;
+        public int CurrentHp { get; private set; }    // Current health points
+        public int maxMana;
+        public int CurrentMana{ get; private set; }  // Current mana points
         
         
 
@@ -70,7 +71,7 @@ namespace BaseClasses
            
             private bool OnCooldown => _cooldown > 0; // True if the technique is on cooldown
             public float AnimationDuration => _tech.AnimationDuration; // Duration of the technique's animation
-            public int ManaCost => _tech.ManaCost; // _currentMana cost of the technique
+            public int ManaCost => _tech.ManaCost; // CurrentMana cost of the technique
 
             /// <summary>
             /// Constructor to initialize the equipped technique.
@@ -220,8 +221,8 @@ namespace BaseClasses
         {
 
             // Initialize techniques with null values
-            _currentHp = MaxHp;
-            _currentMana = MaxMana;
+            CurrentHp = maxHp;
+            CurrentMana = maxMana;
             _techniques = new List<EquippedTechnique>();
             _effects = new List<Effect>();
             for (int i = 0; i < _techLen; i++)
@@ -258,7 +259,21 @@ namespace BaseClasses
         public void DealDamage(int dmg)
         {
             // Apply damage, reducing health based on vulnerability and defense
-            _currentHp -= dmg;
+            CurrentHp -= dmg;
+            if (this is Player player)
+            {
+                player.UpdateHp();
+            }
+        }
+
+        public void RestoreHp(int hp)
+        {
+            CurrentHp += hp;
+            CurrentHp = CurrentHp > maxHp ? maxHp : CurrentHp;
+            if (this is Player player)
+            {
+                player.UpdateHp();
+            }
         }
 
         /// <summary>
@@ -312,7 +327,7 @@ namespace BaseClasses
             // Ensure the technique exists, there's enough mana, and animations aren't blocked
             bool CanCast()
             {
-                return _techniques[position] != null && _currentMana > _techniques[position].ManaCost && !AnimationBlocked;
+                return _techniques[position] != null && CurrentMana > _techniques[position].ManaCost && !AnimationBlocked;
             }
 
             if (!CanCast())
@@ -323,11 +338,24 @@ namespace BaseClasses
             bool successful = _techniques[position].ActivateTechnique(); // Try to cast the technique
             if (successful)
             {
-                _currentMana -= _techniques[position].ManaCost; // Deduct mana
-                _animationBlockedDuration = _techniques[position].AnimationDuration; //
-                // Set animation blocked duration based on the technique's animation duration
+                CurrentMana -= _techniques[position].ManaCost; // Deduct mana
+                _animationBlockedDuration = _techniques[position].AnimationDuration; // Set animation blocked duration based on the technique's animation duration
+                if (this is Player player)
+                {
+                    player.UpdateMana();
+                }
             }
             return successful; // Return whether the technique was successfully cast
+        }
+
+        public void RestoreMana(int mana)
+        {
+            CurrentMana += mana;
+            CurrentMana = CurrentMana > maxMana ? maxHp : CurrentMana;
+            if (this is Player player)
+            {
+                player.UpdateMana();
+            }
         }
 
         /// <summary>

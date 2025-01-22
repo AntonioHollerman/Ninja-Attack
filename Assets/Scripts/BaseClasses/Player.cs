@@ -1,10 +1,18 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace BaseClasses
 {
     public abstract class Player : CharacterSheet
     {
         public GameObject body;
+        
+        public GameObject hpSliderGo;
+        public GameObject hpTextGo;
+        
+        public GameObject manaSliderGo;
+        public GameObject manaTextGo;
 
         protected KeyCode UpCode;
         protected KeyCode DownCode;
@@ -12,6 +20,12 @@ namespace BaseClasses
         protected KeyCode RightCode;
 
         private Vector3 _lastPos;
+
+        private Image _hpSlider;
+        private TextMeshProUGUI _hpText;
+
+        private Image _manaSlider;
+        private TextMeshProUGUI _manaText;
 
         protected override void UpdateWrapper()
         {
@@ -24,6 +38,15 @@ namespace BaseClasses
         {
             base.StartWrapper();
             _lastPos = transform.position;
+            
+            _hpSlider = hpSliderGo.GetComponent<Image>();
+            _hpText = hpTextGo.GetComponent<TextMeshProUGUI>();
+
+            _manaSlider = manaSliderGo.GetComponent<Image>();
+            _manaText = manaTextGo.GetComponent<TextMeshProUGUI>();
+            
+            UpdateHp();
+            UpdateMana();
         }
 
         private void HandleDirection()
@@ -79,6 +102,18 @@ namespace BaseClasses
             {
                 transform.position += Time.deltaTime * speed * Vector3.right;
             }
+        }
+
+        public void UpdateHp()
+        {
+            _hpSlider.fillAmount = (float) CurrentHp /  maxHp;
+            _hpText.text = $"{CurrentHp} / {maxHp}";
+        }
+
+        public void UpdateMana()
+        {
+            _manaSlider.fillAmount = (float)CurrentMana / maxMana;
+            _manaText.text = $"{CurrentMana} / {maxMana}";
         }
     }
 }

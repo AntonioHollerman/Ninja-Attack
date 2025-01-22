@@ -7,8 +7,8 @@ namespace Implementations.Characters.PlayerScripts
     {
         protected override void StartWrapper()
         {
-            MaxHp = 20;
-            MaxMana = 150;
+            maxHp = 20;
+            maxMana = 150;
             base.StartWrapper();
         
             UpCode = KeyCode.W;
