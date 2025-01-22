@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BaseClasses
 {
@@ -8,7 +9,7 @@ namespace BaseClasses
     {
         public bool destroyOnFinish;
         // List of characters to ignore for the hit detection
-        private List<CharacterSheet> _ignore;
+        public List<CharacterSheet> ignore;
         
         // Time remaining before the hitbox is destroyed
         private float _aliveTime;
@@ -22,9 +23,8 @@ namespace BaseClasses
         /// </summary>
         protected abstract void Effect(CharacterSheet cs);
 
-        public void Activate(float duration, List<CharacterSheet> ignore)
+        public void Activate(float duration)
         {
-            _ignore = new List<CharacterSheet>(ignore);
             _aliveTime = duration;
         }
 
@@ -57,20 +57,22 @@ namespace BaseClasses
             // Attempt to get the CharacterSheet component from the collided object
             CharacterSheet cs = other.gameObject.GetComponent<CharacterSheet>();
 
+            Debug.Log(ignore);
             // If no CharacterSheet component is found, or if the character is in the ignore list, exit the method
-            if (cs == null || _ignore.Contains(cs))
+            if (cs == null || ignore.Contains(cs))
             {
                 return;
             }
 
             // Apply the effect to the character and add them to the ignore list
             Effect(cs);
-            _ignore.Add(cs);
+            ignore.Add(cs);
         }
         
         protected virtual void StartWrapper()
         {
             StartCoroutine(AliveChecker());
+            ignore = new List<CharacterSheet>();
         }
 
         protected virtual void UpdateWrapper()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Implementations.Characters.HostileScripts
 {
-    public class SwordMan : TrackingBehavior
+    public class SwordMan : Hostile
     {
         public GameObject meleeGo;
         public float attackDelay;

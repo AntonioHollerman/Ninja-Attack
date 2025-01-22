@@ -8,21 +8,12 @@ namespace BaseClasses
 {
     public abstract class Weapon : HitBox
     {
-        public GameObject parent;
-        protected CharacterSheet ParentCs;
         public float AnimationDuration { get; protected set;}
         public bool deactivateOnStun;
-        protected List<CharacterSheet> Ignore;
         private Coroutine _animation;
         
         protected abstract IEnumerator PlayAnimation();
-
-        protected override void StartWrapper()
-        {
-            base.StartWrapper();
-            ParentCs = parent.GetComponent<CharacterSheet>();
-            ParentCs.EquipWeapon(this);
-        }
+        
         
         public void Execute()
         {
@@ -30,7 +21,7 @@ namespace BaseClasses
             {
                 StopCoroutine(_animation);
             }
-            Activate(AnimationDuration, Ignore);
+            Activate(AnimationDuration);
             _animation = StartCoroutine(PlayAnimation());
         }
     }

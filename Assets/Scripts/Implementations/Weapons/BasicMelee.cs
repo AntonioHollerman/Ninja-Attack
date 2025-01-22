@@ -17,7 +17,6 @@ namespace Implementations.Weapons
         {
             base.StartWrapper();
             AnimationDuration = attackDelay; // Set animation duration to the attack delay
-            Ignore = new List<CharacterSheet> { ParentCs }; // Exclude the parent character
         }
 
         protected override void Effect(CharacterSheet cs)
@@ -38,7 +37,7 @@ namespace Implementations.Weapons
             foreach (var hitCollider in hitColliders)
             {
                 CharacterSheet cs = hitCollider.GetComponent<CharacterSheet>();
-                if (cs != null && !Ignore.Contains(cs))
+                if (cs != null && !ignore.Contains(cs))
                 {
                     Effect(cs); // Apply the effect (damage) to the character
                 }

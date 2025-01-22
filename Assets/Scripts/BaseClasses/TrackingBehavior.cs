@@ -6,7 +6,7 @@ namespace BaseClasses
 {
     public abstract class TrackingBehavior : CharacterSheet
     {
-        public List<GameObject> targets;
+        private List<GameObject> _targets;
         protected GameObject Target { get; private set;}
         protected float TargetDistance { get; private set;}
         public float detectRange;
@@ -18,21 +18,27 @@ namespace BaseClasses
             LookAtTarget();
         }
 
+        protected override void StartWrapper()
+        {
+            base.StartWrapper();
+            _targets = new List<GameObject> {GameObject.Find("PlayerOne"), GameObject.Find("PlayerTwo") };
+        }
+
         public void AddTarget(GameObject t)
         {
-            targets.Add(t);
+            _targets.Add(t);
         }
 
         public void RemoveTarget(GameObject t)
         {
-            targets.Remove(t);
+            _targets.Remove(t);
         }
 
         private void SetClosestTarget()
         {
-            GameObject newTarget = targets[0];
+            GameObject newTarget = _targets[0];
             float smallestDistance = detectRange;
-            foreach (var t in targets)
+            foreach (var t in _targets)
             {
                 float distance = Mathf.Abs((transform.position - t.transform.position).magnitude);
                 if (distance <= smallestDistance)
@@ -64,15 +70,6 @@ namespace BaseClasses
                 // Apply the rotation globally
                 transform.rotation = targetRotation;
             }
-        }
-        private void Start()
-        {
-            StartWrapper();
-        }
-
-        private void Update()
-        {
-            UpdateWrapper();
         }
     }
 }
