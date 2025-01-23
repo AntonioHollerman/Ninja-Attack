@@ -9,6 +9,7 @@ namespace Implementations.Characters.HostileScripts
     {
         public GameObject arrowPrefab;
         public float atkSpeed;
+        public float arrowDisplacement;
 
         protected override void StartWrapper()
         {
@@ -23,9 +24,10 @@ namespace Implementations.Characters.HostileScripts
 
         private void Attack()
         {
-            GameObject arrow = Instantiate(arrowPrefab);
-            arrow.transform.position = transform.position;
-            arrow.transform.rotation = transform.rotation;
+            Vector3 pos = transform.position + arrowDisplacement * transform.forward;
+            GameObject arrow = Instantiate(arrowPrefab, 
+                pos, 
+                transform.rotation);
 
             BasicArrow script = arrow.GetComponent<BasicArrow>();
             script.ignore = GetAllies();

@@ -47,12 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnFinish: 0
-  parent: {fileID: 0}
+  ignore: []
   deactivateOnStun: 0
   damage: 4
-  speed: 5
+  speed: 4
   maxTravelDistance: 15
-  ignore: []
 --- !u!65 &3351705455445770897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100,13 +99,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4470475512459140220}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8164235493757400709}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!212 &8463768219760389364
 SpriteRenderer:
   m_ObjectHideFlags: 0

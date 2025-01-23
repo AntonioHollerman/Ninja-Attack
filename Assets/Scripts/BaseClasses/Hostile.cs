@@ -13,11 +13,9 @@ namespace BaseClasses
             
             foreach (Transform trans in hostileSpawner.transform)
             {
-                Debug.Log(trans.gameObject.name);
                 CharacterSheet ally = trans.GetComponent<CharacterSheet>();
                 if (ally != null)
                 {
-                    Debug.Log($"{trans.gameObject.name}: Made it");
                     allies.Add(ally);
                 }
             }

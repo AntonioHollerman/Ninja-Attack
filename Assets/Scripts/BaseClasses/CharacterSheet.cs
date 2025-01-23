@@ -372,5 +372,25 @@ namespace BaseClasses
                 _weapon.Deactivate();
             }
         }
+
+        public override int GetHashCode()
+        {
+            return gameObject.name.GetHashCode();
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other is CharacterSheet cs)
+            {
+                return gameObject.name == cs.gameObject.name;
+            }
+
+            return false;
+        }
+
+        public override string ToString()
+        {
+            return gameObject.name;
+        }
     }
 }

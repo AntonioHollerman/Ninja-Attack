@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -56,8 +57,7 @@ namespace BaseClasses
         {
             // Attempt to get the CharacterSheet component from the collided object
             CharacterSheet cs = other.gameObject.GetComponent<CharacterSheet>();
-
-            Debug.Log(ignore);
+            
             // If no CharacterSheet component is found, or if the character is in the ignore list, exit the method
             if (cs == null || ignore.Contains(cs))
             {
