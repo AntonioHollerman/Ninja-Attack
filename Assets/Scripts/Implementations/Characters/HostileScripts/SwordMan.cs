@@ -34,7 +34,7 @@ namespace Implementations.Characters.HostileScripts
             while (true)
             {
                 yield return new WaitUntil(() => InAttackRange && AttackReady);
-                _meleeScript.Execute();
+                _meleeScript.Attack();
                 _attackTimer = attackDelay;
             }
         }

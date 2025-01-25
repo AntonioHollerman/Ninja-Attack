@@ -8,6 +8,7 @@ namespace BaseClasses
 {
     public abstract class HitBox : MonoBehaviour
     {
+        public bool blocksAnimation;
         public bool destroyOnFinish;
         // List of characters to ignore for the hit detection
         public List<CharacterSheet> ignore;

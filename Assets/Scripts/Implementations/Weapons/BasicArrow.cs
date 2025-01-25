@@ -16,7 +16,7 @@ namespace Implementations.Weapons
             base.StartWrapper();
             
             AnimationDuration = speed != 0 ? maxTravelDistance / speed : 3; // Calculate duration based on speed and distance
-            Execute();
+            Attack();
         }
 
         protected override void Effect(CharacterSheet cs)
@@ -25,7 +25,7 @@ namespace Implementations.Weapons
             Deactivate();
         }
 
-        protected override IEnumerator PlayAnimation()
+        protected override IEnumerator Execute()
         {
             while (true)
             {

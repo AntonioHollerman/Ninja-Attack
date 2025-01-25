@@ -105,7 +105,7 @@ namespace BaseClasses
                 }
 
                 _cooldown = _tech.CoolDown; // Reset the cooldown to the technique's cooldown time
-                _tech.Execute(); // Cast the technique on the owning character
+                _tech.Attack(); // Cast the technique on the owning character
                 return true; // Technique was successfully activated
             }
 

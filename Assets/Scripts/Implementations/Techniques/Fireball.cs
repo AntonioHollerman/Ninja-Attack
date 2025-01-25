@@ -15,7 +15,7 @@ namespace Implementations.Techniques
             base.StartWrapper();
         }
         
-        protected override IEnumerator PlayAnimation()
+        protected override IEnumerator Execute()
         {
             throw new System.NotImplementedException();
         }
