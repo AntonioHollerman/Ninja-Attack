@@ -15,10 +15,10 @@ namespace Implementations.Characters.HostileScripts
         private bool InAttackRange => TargetDistance <= attackRange;
         private bool AttackReady => _attackTimer <= 0;
         private BasicMelee _meleeScript;
-        protected override void StartWrapper()
+        protected override void AwakeWrapper()
         {
             maxHp = 12;
-            base.StartWrapper();
+            base.AwakeWrapper();
             _meleeScript = meleeGo.GetComponent<BasicMelee>();
         }
 

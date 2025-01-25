@@ -18,9 +18,9 @@ namespace BaseClasses
             LookAtTarget();
         }
 
-        protected override void StartWrapper()
+        protected override void AwakeWrapper()
         {
-            base.StartWrapper();
+            base.AwakeWrapper();
             _targets = new List<GameObject> {GameObject.Find("PlayerOne"), GameObject.Find("PlayerTwo") };
         }
 

@@ -201,9 +201,9 @@ namespace BaseClasses
         /// <summary>
         /// Unity's Start method. Calls the StartWrapper to initialize the character.
         /// </summary>
-        void Start()
+        void Awake()
         {
-            StartWrapper(); // Calls a custom initialization method
+            AwakeWrapper(); // Calls a custom initialization method
         }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace BaseClasses
         /// <summary>
         /// Initializes the character's attributes and equipment at the start of the game.
         /// </summary>
-        protected virtual void StartWrapper()
+        protected virtual void AwakeWrapper()
         {
 
             // Initialize techniques with null values
@@ -289,6 +289,29 @@ namespace BaseClasses
         public void EquipWeapon(Weapon w)
         {
             _weapon = w;
+        }
+
+        public void AttackWeapon()
+        {
+            if (IsStunned || AnimationBlocked)
+            {
+                return;
+            }
+
+            if (_weapon.blocksAnimation)
+            {
+                BlockAnimation(_weapon.GetAnimationBlockDuration());
+            }
+
+            IEnumerator PlayAnimation()
+            {
+                _weapon.gameObject.SetActive(true);
+                _weapon.Attack();
+                yield return new WaitForSeconds(_weapon.AnimationDuration);
+                _weapon.gameObject.SetActive(false);
+            }
+
+            StartCoroutine(PlayAnimation());
         }
         
         /// <summary>
@@ -371,6 +394,11 @@ namespace BaseClasses
             {
                 _weapon.Deactivate();
             }
+        }
+
+        public void BlockAnimation(float duration)
+        {
+            _animationBlockedDuration = _animationBlockedDuration > duration ? _animationBlockedDuration : duration;
         }
 
         public override int GetHashCode()

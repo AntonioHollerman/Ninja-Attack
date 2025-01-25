@@ -5,14 +5,18 @@ namespace Implementations.Characters.PlayerScripts
 {
     public class PlayerTwo : Player
     {
-        protected override void StartWrapper()
+        protected override void AwakeWrapper()
         {
-            base.StartWrapper();
+            base.AwakeWrapper();
         
             UpCode = KeyCode.UpArrow;
             DownCode = KeyCode.DownArrow;
             LeftCode = KeyCode.LeftArrow;
             RightCode = KeyCode.RightArrow;
+
+            AttackCode = KeyCode.Comma;
+            FirstTechnique = KeyCode.N;
+            SecondTechnique = KeyCode.M;
         }
 
         public override void Defeated()

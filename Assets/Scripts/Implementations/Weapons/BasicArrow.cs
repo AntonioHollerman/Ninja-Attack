@@ -11,9 +11,9 @@ namespace Implementations.Weapons
         public float speed = 5f; // Speed of the arrow
         public float maxTravelDistance = 15f; // Maximum distance the arrow can travel before deactivating
 
-        protected override void StartWrapper()
+        protected override void AwakeWrapper()
         {
-            base.StartWrapper();
+            base.AwakeWrapper();
             
             AnimationDuration = speed != 0 ? maxTravelDistance / speed : 3; // Calculate duration based on speed and distance
             Attack();

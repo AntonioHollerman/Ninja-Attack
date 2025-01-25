@@ -13,13 +13,18 @@ namespace BaseClasses
         public bool deactivateOnStun;
         public float secondsBetweenFrame;
         public GameObject sprite;
+        public bool blocksAnimation;
 
         private SpriteRenderer _sr;
         private Coroutine _animation;
         private Coroutine _execution;
         
         protected abstract IEnumerator Execute();
-        
+
+        public virtual float GetAnimationBlockDuration()
+        {
+            return frames.Count * secondsBetweenFrame;
+        }
         
         public void Attack()
         {
@@ -54,9 +59,9 @@ namespace BaseClasses
             }
         }
 
-        protected override void StartWrapper()
+        protected override void AwakeWrapper()
         {
-            base.StartWrapper();
+            base.AwakeWrapper();
             _sr = sprite.GetComponent<SpriteRenderer>();
         }
     }

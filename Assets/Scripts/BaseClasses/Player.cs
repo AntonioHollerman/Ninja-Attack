@@ -7,6 +7,7 @@ namespace BaseClasses
     public abstract class Player : CharacterSheet
     {
         public GameObject body;
+        public GameObject weaponGo;
         
         public GameObject hpSliderGo;
         public GameObject hpTextGo;
@@ -14,12 +15,16 @@ namespace BaseClasses
         public GameObject manaSliderGo;
         public GameObject manaTextGo;
 
+        protected KeyCode AttackCode;
+        
         protected KeyCode UpCode;
         protected KeyCode DownCode;
         protected KeyCode LeftCode;
         protected KeyCode RightCode;
 
-        private Vector3 _lastPos;
+        protected KeyCode FirstTechnique;
+        protected KeyCode SecondTechnique;
+        
         private Rigidbody _rb;
 
         private Image _hpSlider;
@@ -33,12 +38,12 @@ namespace BaseClasses
             base.UpdateWrapper();
             HandleMovement();
             HandleDirection();
+            AttackHandler();
         }
 
-        protected override void StartWrapper()
+        protected override void AwakeWrapper()
         {
-            base.StartWrapper();
-            _lastPos = transform.position;
+            base.AwakeWrapper();
             
             _hpSlider = hpSliderGo.GetComponent<Image>();
             _hpText = hpTextGo.GetComponent<TextMeshProUGUI>();
@@ -47,6 +52,7 @@ namespace BaseClasses
             _manaText = manaTextGo.GetComponent<TextMeshProUGUI>();
 
             _rb = GetComponent<Rigidbody>();
+            EquipWeapon(weaponGo.GetComponent<Weapon>());
             
             UpdateHp();
             UpdateMana();
@@ -104,6 +110,24 @@ namespace BaseClasses
             }
 
             return direction.normalized;
+        }
+
+        private void AttackHandler()
+        {
+            if (Input.GetKey(AttackCode))
+            {
+                AttackWeapon();
+            }
+
+            if (Input.GetKey(FirstTechnique))
+            {
+                CastAbility(0);
+            }
+
+            if (Input.GetKey(SecondTechnique))
+            {
+                CastAbility(1);
+            }
         }
 
         public void UpdateHp()

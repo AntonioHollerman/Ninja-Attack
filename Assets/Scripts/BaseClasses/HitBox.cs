@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,6 @@ namespace BaseClasses
 {
     public abstract class HitBox : MonoBehaviour
     {
-        public bool blocksAnimation;
         public bool destroyOnFinish;
         // List of characters to ignore for the hit detection
         public List<CharacterSheet> ignore;
@@ -40,14 +40,12 @@ namespace BaseClasses
             while (true)
             {
                 yield return new WaitUntil(() => IsAlive);
-                gameObject.SetActive(true);
-                yield return new WaitUntil((() => !IsAlive));
+                yield return new WaitUntil(() => !IsAlive);
                 if (destroyOnFinish)
                 {
                     Destroy(gameObject);
                     break;
                 }
-                gameObject.SetActive(false);
             }
         }
 
@@ -56,6 +54,7 @@ namespace BaseClasses
         /// </summary>
         private void OnTriggerEnter(Collider other)
         {
+            TriggerEnterWrapper(other);
             // Attempt to get the CharacterSheet component from the collided object
             CharacterSheet cs = other.gameObject.GetComponent<CharacterSheet>();
             
@@ -69,11 +68,11 @@ namespace BaseClasses
             Effect(cs);
             ignore.Add(cs);
         }
-        
-        protected virtual void StartWrapper()
+
+        protected virtual void TriggerEnterWrapper(Collider other){}
+        protected virtual void AwakeWrapper()
         {
             StartCoroutine(AliveChecker());
-            ignore = new List<CharacterSheet>();
         }
 
         protected virtual void UpdateWrapper()
@@ -82,9 +81,9 @@ namespace BaseClasses
             _aliveTime -= Time.deltaTime;
         }
         
-        private void Start()
+        private void Awake()
         {
-            StartWrapper();
+            AwakeWrapper();
         }
 
         /// <summary>

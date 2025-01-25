@@ -11,9 +11,9 @@ namespace Implementations.Characters.HostileScripts
         public float atkSpeed;
         public float arrowDisplacement;
 
-        protected override void StartWrapper()
+        protected override void AwakeWrapper()
         {
-            base.StartWrapper();
+            base.AwakeWrapper();
             StartCoroutine(StartAttacking());
         }
 

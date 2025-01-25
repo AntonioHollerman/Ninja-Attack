@@ -10,9 +10,9 @@ namespace Implementations.Techniques
             base.UpdateWrapper();
         }
         
-        protected override void StartWrapper()
+        protected override void AwakeWrapper()
         {
-            base.StartWrapper();
+            base.AwakeWrapper();
         }
         
         protected override IEnumerator Execute()
