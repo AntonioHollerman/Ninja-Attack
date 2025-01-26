@@ -9,9 +9,9 @@ namespace BaseClasses
 {
     public abstract class HitBox : MonoBehaviour
     {
+        public CharacterSheet parent;
         public bool destroyOnFinish;
         // List of characters to ignore for the hit detection
-        public List<CharacterSheet> ignore;
         private List<CharacterSheet> _activeIgnore;
         
         // Time remaining before the hitbox is destroyed
@@ -29,7 +29,7 @@ namespace BaseClasses
         public void Activate(float duration)
         {
             _aliveTime = duration;
-            _activeIgnore = new List<CharacterSheet>(ignore);
+            _activeIgnore = new List<CharacterSheet>(parent.allies);
         }
 
         public void Deactivate()

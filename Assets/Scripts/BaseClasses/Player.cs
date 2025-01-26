@@ -25,8 +25,6 @@ namespace BaseClasses
         protected KeyCode FirstTechnique;
         protected KeyCode SecondTechnique;
         
-        private Rigidbody _rb;
-
         private Image _hpSlider;
         private TextMeshProUGUI _hpText;
 
@@ -50,8 +48,7 @@ namespace BaseClasses
 
             _manaSlider = manaSliderGo.GetComponent<Image>();
             _manaText = manaTextGo.GetComponent<TextMeshProUGUI>();
-
-            _rb = GetComponent<Rigidbody>();
+            
             EquipWeapon(weaponGo.GetComponent<Weapon>());
             
             UpdateHp();
@@ -84,8 +81,7 @@ namespace BaseClasses
 
         private void HandleMovement()
         {
-
-            _rb.velocity = GetDirection() * speed;
+            Rb.velocity = GetDirection() * speed;
         }
 
         private Vector3 GetDirection()

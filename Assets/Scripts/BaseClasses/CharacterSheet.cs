@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace BaseClasses
     /// </summary>
     public abstract class CharacterSheet : MonoBehaviour
     {
+        public List<CharacterSheet> allies;
         public float speed;
         public bool IsALive => CurrentHp > 0; // True if the character is alive, false otherwise
 
@@ -29,6 +31,7 @@ namespace BaseClasses
         // Properties to check if the character is vulnerable, stunned, or has animation blocked
         protected bool IsStunned => _stunDuration > 0;
         protected bool AnimationBlocked => _animationBlockedDuration > 0;
+        protected Rigidbody Rb;
 
         // Dictionary to store equipped items, and a list to store techniques
         private Weapon _weapon;
@@ -197,61 +200,6 @@ namespace BaseClasses
             }
         }
 
-
-        /// <summary>
-        /// Unity's Start method. Calls the StartWrapper to initialize the character.
-        /// </summary>
-        void Awake()
-        {
-            AwakeWrapper(); // Calls a custom initialization method
-        }
-
-        /// <summary>
-        /// Unity's Update method. Calls the UpdateWrapper to handle frame updates.
-        /// </summary>
-        private void Update()
-        {
-            UpdateWrapper(); // Calls a custom update method each frame
-        }
-
-        /// <summary>
-        /// Initializes the character's attributes and equipment at the start of the game.
-        /// </summary>
-        protected virtual void AwakeWrapper()
-        {
-
-            // Initialize techniques with null values
-            CurrentHp = maxHp;
-            CurrentMana = maxMana;
-            _techniques = new List<EquippedTechnique>();
-            _effects = new List<Effect>();
-            for (int i = 0; i < _techLen; i++)
-            {
-                _techniques.Add(null); // Fill the list with null values
-            }
-        }
-
-        /// <summary>
-        /// Updates the character's state each frame, applying effects and managing durations.
-        /// </summary>
-        protected virtual void UpdateWrapper()
-        {
-            // Reduce the duration of vulnerability, stun, and animation block
-            _stunDuration -= IsStunned ? Time.deltaTime : 0f;
-            _animationBlockedDuration -= AnimationBlocked ? Time.deltaTime : 0f;
-
-            // Decrement the cooldown of all techniques
-            foreach (var tech in _techniques)
-            {
-                tech?.DecrementCount(); // Decrease cooldown if the technique exists
-            }
-
-            if (!IsALive)
-            {
-                Defeated();
-            }
-        }
-
         /// <summary>
         /// Deals damage to the character, considering vulnerabilities and defense.
         /// </summary>
@@ -387,6 +335,89 @@ namespace BaseClasses
         public void BlockAnimation(float duration)
         {
             _animationBlockedDuration = _animationBlockedDuration > duration ? _animationBlockedDuration : duration;
+        }
+
+        /// <summary>
+        /// Unity's Start method. Calls the StartWrapper to initialize the character.
+        /// </summary>
+        void Awake()
+        {
+            AwakeWrapper(); // Calls a custom initialization method
+        }
+
+        /// <summary>
+        /// Unity's Update method. Calls the UpdateWrapper to handle frame updates.
+        /// </summary>
+        private void Update()
+        {
+            UpdateWrapper(); // Calls a custom update method each frame
+        }
+
+        /// <summary>
+        /// Initializes the character's attributes and equipment at the start of the game.
+        /// </summary>
+        protected virtual void AwakeWrapper()
+        {
+            Rb = GetComponent<Rigidbody>();
+            // Initialize techniques with null values
+            CurrentHp = maxHp;
+            CurrentMana = maxMana;
+            _techniques = new List<EquippedTechnique>();
+            _effects = new List<Effect>();
+            
+            allies.Add(this);
+            
+            for (int i = 0; i < _techLen; i++)
+            {
+                _techniques.Add(null); // Fill the list with null values
+            }
+        }
+
+        /// <summary>
+        /// Updates the character's state each frame, applying effects and managing durations.
+        /// </summary>
+        protected virtual void UpdateWrapper()
+        {
+            // Reduce the duration of vulnerability, stun, and animation block
+            _stunDuration -= IsStunned ? Time.deltaTime : 0f;
+            _animationBlockedDuration -= AnimationBlocked ? Time.deltaTime : 0f;
+
+            // Decrement the cooldown of all techniques
+            foreach (var tech in _techniques)
+            {
+                tech?.DecrementCount(); // Decrease cooldown if the technique exists
+            }
+
+            if (!IsALive)
+            {
+                Defeated();
+            }
+        }
+        
+        void OnCollisionEnter(Collision other)
+        {
+            StopForce(other);
+        }
+
+        private void OnCollisionStay(Collision other)
+        {
+            StopForce(other);
+        }
+
+        private void OnCollisionExit(Collision other)
+        {
+            StopForce(other);
+        }
+
+        private void StopForce(Collision other)
+        {
+            CharacterSheet otherCs = other.gameObject.GetComponent<CharacterSheet>();
+            if (otherCs == null)
+            {
+                return;
+            }
+
+            Rb.velocity = Vector3.zero;
         }
 
         public override int GetHashCode()

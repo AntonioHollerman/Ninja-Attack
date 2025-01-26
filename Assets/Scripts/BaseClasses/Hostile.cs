@@ -11,7 +11,7 @@ namespace BaseClasses
         private HealthBar _hbScript;
         protected List<CharacterSheet> GetAllies ()
         {
-            List<CharacterSheet> allies = new List<CharacterSheet>();
+            List<CharacterSheet> alliesLs = new List<CharacterSheet>{this};
             GameObject hostileSpawner = GameObject.Find("HostileSpawner");
             
             foreach (Transform trans in hostileSpawner.transform)
@@ -19,11 +19,11 @@ namespace BaseClasses
                 CharacterSheet ally = trans.GetComponent<CharacterSheet>();
                 if (ally != null)
                 {
-                    allies.Add(ally);
+                    alliesLs.Add(ally);
                 }
             }
 
-            return allies;
+            return alliesLs;
         }
 
         protected override void AwakeWrapper()

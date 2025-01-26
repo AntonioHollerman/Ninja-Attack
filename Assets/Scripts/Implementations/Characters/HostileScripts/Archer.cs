@@ -30,7 +30,7 @@ namespace Implementations.Characters.HostileScripts
                 transform.rotation);
 
             BasicArrow script = arrow.GetComponent<BasicArrow>();
-            script.ignore = GetAllies();
+            allies = GetAllies();
             script.destroyOnFinish = true;
         }
 
