@@ -44,7 +44,7 @@ namespace BaseClasses
             _execution = StartCoroutine(Execute());
         }
 
-        private IEnumerator PlayAnimation()
+        protected virtual IEnumerator PlayAnimation()
         {
             int i = 0;
             while (true)
