@@ -71,12 +71,14 @@ namespace BaseClasses
             if (Input.GetKey(LeftCode) || Input.GetKey(RightCode))
             {
                 body.transform.localRotation = Quaternion.Euler(0, -90, -90);
+                weaponGo.transform.localRotation = Quaternion.Euler(0, 0, 90);
                 return;
             }
 
             if (Input.GetKey(UpCode) || Input.GetKey(DownCode))
             {
                 body.transform.localRotation = Quaternion.Euler(90, -90, -90);
+                weaponGo.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
         }
 
@@ -140,6 +142,35 @@ namespace BaseClasses
         {
             _manaSlider.fillAmount = (float)CurrentMana / maxMana;
             _manaText.text = $"{CurrentMana} / {maxMana}";
+        }
+
+        public override void DealDamage(int dmg)
+        {
+            base.DealDamage(dmg);
+            UpdateHp();
+        }
+
+        public override void RestoreHp(int hp)
+        {
+            base.RestoreHp(hp);
+            UpdateHp();
+        }
+
+        public override bool CastAbility(int position)
+        {
+            bool success = base.CastAbility(position);
+            if (success)
+            {
+                UpdateMana();
+            }
+
+            return success;
+        }
+
+        public override void RestoreMana(int mana)
+        {
+            base.RestoreMana(mana);
+            UpdateMana();
         }
     }
 }

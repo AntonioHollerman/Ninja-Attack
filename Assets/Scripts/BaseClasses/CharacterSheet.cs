@@ -256,24 +256,16 @@ namespace BaseClasses
         /// Deals damage to the character, considering vulnerabilities and defense.
         /// </summary>
         /// <param name="dmg">The amount of damage to deal.</param>
-        public void DealDamage(int dmg)
+        public virtual void DealDamage(int dmg)
         {
             // Apply damage, reducing health based on vulnerability and defense
             CurrentHp -= dmg;
-            if (this is Player player)
-            {
-                player.UpdateHp();
-            }
         }
 
-        public void RestoreHp(int hp)
+        public virtual void RestoreHp(int hp)
         {
             CurrentHp += hp;
             CurrentHp = CurrentHp > maxHp ? maxHp : CurrentHp;
-            if (this is Player player)
-            {
-                player.UpdateHp();
-            }
         }
 
         /// <summary>
@@ -345,7 +337,7 @@ namespace BaseClasses
         /// </summary>
         /// <param name="position">The slot to cast the technique from.</param>
         /// <returns>True if the technique was successfully cast, otherwise false.</returns>
-        public bool CastAbility(int position)
+        public virtual bool CastAbility(int position)
         {
             // Ensure the technique exists, there's enough mana, and animations aren't blocked
             bool CanCast()
@@ -363,15 +355,11 @@ namespace BaseClasses
             {
                 CurrentMana -= _techniques[position].ManaCost; // Deduct mana
                 _animationBlockedDuration = _techniques[position].AnimationDuration; // Set animation blocked duration based on the technique's animation duration
-                if (this is Player player)
-                {
-                    player.UpdateMana();
-                }
             }
             return successful; // Return whether the technique was successfully cast
         }
 
-        public void RestoreMana(int mana)
+        public virtual void RestoreMana(int mana)
         {
             CurrentMana += mana;
             CurrentMana = CurrentMana > maxMana ? maxHp : CurrentMana;
