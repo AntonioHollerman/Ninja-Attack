@@ -17,8 +17,8 @@ namespace BaseClasses
         public bool IsALive => CurrentHp > 0; // True if the character is alive, false otherwise
 
         // Current stats for the character
-        public int maxHp;
-        public int CurrentHp { get; private set; }    // Current health points
+        public float maxHp;
+        public float CurrentHp { get; private set; }    // Current health points
         public int maxMana;
         public int CurrentMana{ get; private set; }  // Current mana points
         
@@ -310,7 +310,7 @@ namespace BaseClasses
         public virtual void RestoreMana(int mana)
         {
             CurrentMana += mana;
-            CurrentMana = CurrentMana > maxMana ? maxHp : CurrentMana;
+            CurrentMana = CurrentMana > maxMana ? maxMana : CurrentMana;
             if (this is Player player)
             {
                 player.UpdateMana();
