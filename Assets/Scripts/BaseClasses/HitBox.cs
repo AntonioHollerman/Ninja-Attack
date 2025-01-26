@@ -12,6 +12,7 @@ namespace BaseClasses
         public bool destroyOnFinish;
         // List of characters to ignore for the hit detection
         public List<CharacterSheet> ignore;
+        private List<CharacterSheet> _activeIgnore;
         
         // Time remaining before the hitbox is destroyed
         private float _aliveTime;
@@ -28,6 +29,7 @@ namespace BaseClasses
         public void Activate(float duration)
         {
             _aliveTime = duration;
+            _activeIgnore = new List<CharacterSheet>(ignore);
         }
 
         public void Deactivate()
@@ -59,14 +61,14 @@ namespace BaseClasses
             CharacterSheet cs = other.gameObject.GetComponent<CharacterSheet>();
             
             // If no CharacterSheet component is found, or if the character is in the ignore list, exit the method
-            if (cs == null || ignore.Contains(cs))
+            if (cs == null || _activeIgnore.Contains(cs))
             {
                 return;
             }
 
             // Apply the effect to the character and add them to the ignore list
             Effect(cs);
-            ignore.Add(cs);
+            _activeIgnore.Add(cs);
         }
 
         protected virtual void TriggerEnterWrapper(Collider other){}
