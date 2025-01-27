@@ -27,7 +27,7 @@ public class MenuEditor : Editor {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("options"), true);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("Select"), true);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("SceneSelect"), true);
-                EditorGUILayout.HelpBox("The audio that will be played in the menu.", MessageType.Info);
+                EditorGUILayout.HelpBox("The Audio that will be played in the menu.", MessageType.Info);
                 serializedObject.ApplyModifiedProperties();
                 break;
 
@@ -41,7 +41,7 @@ public class MenuEditor : Editor {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("options"), true);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("Select"), true);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("SceneSelect"), true);
-                EditorGUILayout.HelpBox("The audio that will be played in the menu.", MessageType.Info);
+                EditorGUILayout.HelpBox("The Audio that will be played in the menu.", MessageType.Info);
                 serializedObject.ApplyModifiedProperties();
                 break;
 
