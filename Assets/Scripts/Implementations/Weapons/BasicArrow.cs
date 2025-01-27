@@ -16,7 +16,6 @@ namespace Implementations.Weapons
             base.AwakeWrapper();
             
             AnimationDuration = speed != 0 ? maxTravelDistance / speed : 3; // Calculate duration based on speed and distance
-            Attack();
         }
 
         protected override void Effect(CharacterSheet cs)

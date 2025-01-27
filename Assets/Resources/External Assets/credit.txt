@@ -14,3 +14,18 @@
     
 "Dirt Texture Pack" by Proxy Games
     link: https://opengameart.org/content/dirt-texture-pack
+    
+"Pixel Explosion (12 Frames)" by JROB774
+    link: https://opengameart.org/content/pixel-explosion-12-frames
+
+"2D Explosion Animations #3 | Frame by frame" by Sinestesia
+    link: https://opengameart.org/content/2d-explosion-animations-3-frame-by-frame
+
+"Fire Spells Effects" by CreativeKind
+    link: https://creativekind.itch.io/fire-magic-spells
+    
+"Thunder Spell Effect 03" by pimen
+    link: https://pimen.itch.io/thunder-spell-effect-03
+
+"More Pixelated Attack/Hit Animations" by Viktor Hahn
+    link: https://opengameart.org/content/more-pixelated-attackhit-animations

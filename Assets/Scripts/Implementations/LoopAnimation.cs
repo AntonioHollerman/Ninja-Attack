@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Testing
+namespace Implementations
 {
     public class LoopAnimation : MonoBehaviour
     {
         public SpriteRenderer sr;
         public float secondsBetweenFrame;
         public List<Sprite> frames;
+        public bool loopOnce;
 
         private void Start()
         {
@@ -23,6 +24,10 @@ namespace Testing
             {
                 sr.sprite = frames[i];
                 i++;
+                if (i == frames.Count && loopOnce)
+                {
+                    Destroy(gameObject);
+                }
                 if (i == frames.Count)
                 {
                     i = 0;

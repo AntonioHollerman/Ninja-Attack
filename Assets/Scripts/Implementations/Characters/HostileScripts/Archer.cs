@@ -31,7 +31,9 @@ namespace Implementations.Characters.HostileScripts
 
             BasicArrow script = arrow.GetComponent<BasicArrow>();
             allies = GetAllies();
+            script.parent = this;
             script.destroyOnFinish = true;
+            script.Attack();
         }
 
         private IEnumerator StartAttacking()
