@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 9200647302305365399}
+  path: 
   frames:
   - {fileID: -1313402242, guid: 38f33d5314ed1b04a82e432ca32bf46d, type: 3}
   - {fileID: 511216723, guid: 38f33d5314ed1b04a82e432ca32bf46d, type: 3}
@@ -60,7 +61,7 @@ MonoBehaviour:
   - {fileID: -1999989110, guid: 38f33d5314ed1b04a82e432ca32bf46d, type: 3}
   - {fileID: -1344216276, guid: 38f33d5314ed1b04a82e432ca32bf46d, type: 3}
   framesPerSecond: 30
-  loopOnce: 0
+  loopOnce: 1
 --- !u!1 &4084126009820347734
 GameObject:
   m_ObjectHideFlags: 0
