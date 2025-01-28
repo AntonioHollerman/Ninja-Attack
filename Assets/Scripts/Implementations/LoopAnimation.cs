@@ -17,29 +17,37 @@ namespace Implementations
 
         private void Start()
         {
-            _animation = StartCoroutine(PlayAnimation());
+            GetFrames();
         }
 
         private void Awake()
         {
-            _secondsBetweenFrame = 1 / framesPerSecond;
-            if (!path.Equals(""))
-            {
-                frames = Resources.LoadAll<Sprite>(path);
-            }
+            GetFrames();
         }
 
         private void OnEnable()
+        {
+            GetFrames();
+        }
+
+        public void StartAnimation()
         {
             if (_animation != null)
             {
                 StopCoroutine(_animation);
             }
-
-            _secondsBetweenFrame = 1 / framesPerSecond;
             _animation = StartCoroutine(PlayAnimation());
         }
 
+        private void GetFrames()
+        {
+            _secondsBetweenFrame = 1 / framesPerSecond;
+            if (path.Equals("") || path == null)
+            {
+                return;
+            }
+            frames = Resources.LoadAll<Sprite>(path);
+        }
         private IEnumerator PlayAnimation()
         {
             int i = 0;
