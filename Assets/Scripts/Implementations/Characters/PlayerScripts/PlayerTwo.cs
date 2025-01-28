@@ -18,10 +18,5 @@ namespace Implementations.Characters.PlayerScripts
             FirstTechnique = KeyCode.N;
             SecondTechnique = KeyCode.M;
         }
-
-        public override void Defeated()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
