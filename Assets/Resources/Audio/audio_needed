@@ -1,0 +1,29 @@
+Notes: 
+    1. The header describing the files should be a folder ("Techniques" for example)
+    2. The extension do not matter (does not have to be mp3), just make  sure Unity supports it
+    3. Make sure to cite, make sure to have
+        * Title of package
+        * Author of package (or website from)
+        * Link to package
+
+Techniques:
+    * FlashStep.mp3
+    * StaticDischarge.mp3
+    * FireballMoving.mp3 -> Fire ball in the air, "wind" sounds or fire sparking sounds 
+    * FireballExplode.mp3
+    * FireSwordSwing.mp3
+
+Weapons:
+    * SwordSwing.mp3
+    * ArrowShot.mp3 -> dont need wind just the arrow being pulled back and released
+
+HitMarkers:
+    * BasicHit.mp3 -> sword and arrow hit
+    * FireHit.mp3
+    * ElectricHit.mp3
+    * ElectricStunned.mp3 -> while stunned will loop
+
+Environment:
+    * MenuBackground.mp3
+    * PlayingBackground.mp3
+    * ExitScreenBackground.mp3

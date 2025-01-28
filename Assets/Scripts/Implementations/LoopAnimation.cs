@@ -8,13 +8,36 @@ namespace Implementations
     public class LoopAnimation : MonoBehaviour
     {
         public SpriteRenderer sr;
-        public float secondsBetweenFrame;
-        public List<Sprite> frames;
+        public string path;
+        public Sprite[] frames;
+        public float framesPerSecond;
         public bool loopOnce;
+        private float _secondsBetweenFrame;
+        private Coroutine _animation;
 
         private void Start()
         {
-            StartCoroutine(PlayAnimation());
+            _animation = StartCoroutine(PlayAnimation());
+        }
+
+        private void Awake()
+        {
+            _secondsBetweenFrame = 1 / framesPerSecond;
+            if (!path.Equals(""))
+            {
+                frames = Resources.LoadAll<Sprite>(path);
+            }
+        }
+
+        private void OnEnable()
+        {
+            if (_animation != null)
+            {
+                StopCoroutine(_animation);
+            }
+
+            _secondsBetweenFrame = 1 / framesPerSecond;
+            _animation = StartCoroutine(PlayAnimation());
         }
 
         private IEnumerator PlayAnimation()
@@ -24,15 +47,15 @@ namespace Implementations
             {
                 sr.sprite = frames[i];
                 i++;
-                if (i == frames.Count && loopOnce)
+                if (i == frames.Length && loopOnce)
                 {
                     Destroy(gameObject);
                 }
-                if (i == frames.Count)
+                if (i == frames.Length)
                 {
                     i = 0;
                 }
-                yield return new WaitForSeconds(secondsBetweenFrame);
+                yield return new WaitForSeconds(_secondsBetweenFrame);
             }
         }
     }
