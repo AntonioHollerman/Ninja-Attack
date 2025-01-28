@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Implementations;
+using Implementations.Extras;
 using UnityEditor;
 using UnityEngine;
 
@@ -38,6 +38,11 @@ namespace BaseClasses
         {
             base.DealDamage(dmg);
             _hbScript.UpdateSlider((float) CurrentHp / maxHp);
+        }
+        public override void Defeated()
+        {
+            base.Defeated();
+            Destroy(healthBar);
         }
     }
 }

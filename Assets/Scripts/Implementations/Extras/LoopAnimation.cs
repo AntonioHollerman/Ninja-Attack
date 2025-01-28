@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Implementations
+namespace Implementations.Extras
 {
     public class LoopAnimation : MonoBehaviour
     {
