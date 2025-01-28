@@ -44,10 +44,5 @@ namespace Implementations.Characters.HostileScripts
             Vector3 direction = (Target.transform.position - transform.position).normalized;
             transform.position +=  speed * Time.deltaTime * direction;
         }
-
-        public override void Defeated()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

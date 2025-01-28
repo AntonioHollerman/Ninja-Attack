@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using BaseClasses;
+using Implementations.Extras;
 using UnityEngine;
 
 namespace Implementations.Weapons
@@ -20,8 +21,13 @@ namespace Implementations.Weapons
 
         protected override void Effect(CharacterSheet cs)
         {
-            cs.DealDamage(damage); // Apply damage to the target
+            Vector3 pos = cs.gameObject.transform.position;
+            GameObject prefab = Resources.Load<GameObject>(CharacterSheet.HitMarkPath);
+            LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
+            
             Deactivate();
+            script.StartAnimation();
+            cs.DealDamage(damage); // Apply damage to the target
         }
 
         protected override IEnumerator Execute()

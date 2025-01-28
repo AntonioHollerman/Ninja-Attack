@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Implementations.Extras;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -21,7 +22,9 @@ namespace BaseClasses
         public float CurrentHp { get; private set; }    // Current health points
         public int maxMana;
         public int CurrentMana{ get; private set; }  // Current mana points
-        
+
+        public static readonly string DeathMarkPath = "prefabs/Extras/DeathMark";
+        public static readonly string HitMarkPath = "prefabs/Extras/HitMark";
         
 
         // Durations for various temporary statuses
@@ -41,7 +44,14 @@ namespace BaseClasses
         // Property to manage the length of the techniques list
         private int _techLen;
 
-        public abstract void Defeated();
+        public virtual void Defeated()
+        {
+            Vector3 pos = transform.position;
+            Destroy(gameObject);
+            GameObject prefab = Resources.Load<GameObject>(DeathMarkPath);
+            LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
+            script.StartAnimation();
+        }
         
         public int TechniquesLength
         {
@@ -208,6 +218,7 @@ namespace BaseClasses
         {
             // Apply damage, reducing health based on vulnerability and defense
             CurrentHp -= dmg;
+            CurrentHp = CurrentHp < 0 ? 0 : CurrentHp;
         }
 
         public virtual void RestoreHp(int hp)
