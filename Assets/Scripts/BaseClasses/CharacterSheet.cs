@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Implementations.Extras;
+using Implementations.AnimationScripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
