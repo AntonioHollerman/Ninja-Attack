@@ -2036,6 +2036,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brawler
       objectReference: {fileID: 0}
+    - target: {fileID: 4113878164328276554, guid: da78a3856a7a4d44f84bfee29faefd58, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4821726668794224352, guid: da78a3856a7a4d44f84bfee29faefd58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.7689328
@@ -2293,6 +2297,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
+      propertyPath: maxHp
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
       propertyPath: hpTextGo
       value: 

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using BaseClasses;
-using Implementations.AnimationScripts;
+using Implementations.Extras;
 using UnityEngine;
 
 namespace Implementations.Weapons

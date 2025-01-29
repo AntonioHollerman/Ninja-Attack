@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Implementations.AnimationScripts;
+using Implementations.Extras;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -48,9 +48,11 @@ namespace BaseClasses
         {
             Vector3 pos = transform.position;
             Destroy(gameObject);
+            
             GameObject prefab = Resources.Load<GameObject>(DeathMarkPath);
             LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
             script.StartAnimation();
+            
         }
         
         public int TechniquesLength

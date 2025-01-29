@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Implementations.AnimationScripts
+namespace Implementations.Extras
 {
     public class MultiSpriteAnimation : MonoBehaviour
     {

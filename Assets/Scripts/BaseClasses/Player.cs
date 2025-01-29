@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Implementations.Characters.HostileScripts;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -167,6 +168,18 @@ namespace BaseClasses
         {
             base.RestoreMana(mana);
             UpdateMana();
+        }
+
+        public override void Defeated()
+        {
+            GameObject hostileSpawner = GameObject.Find("HostileSpawner");
+            foreach (Transform trans in hostileSpawner.transform)
+            {
+                GameObject go = trans.gameObject;
+                TrackingBehavior script = go.GetComponent<TrackingBehavior>();
+                script?.RemoveTarget(gameObject);
+            }
+            base.Defeated();
         }
     }
 }
