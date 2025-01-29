@@ -539,6 +539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371902974}
   - component: {fileID: 371902975}
+  - component: {fileID: 371902976}
   m_Layer: 5
   m_Name: Flash Step
   m_TagString: Untagged
@@ -618,6 +619,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &371902976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371902973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65693962ac249bd9134ad28cf9e4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cs: {fileID: 0}
+  countDown: {fileID: 0}
+  icon: {fileID: 0}
+  active: {fileID: 0}
+  notActive: {fileID: 0}
 --- !u!1 &374078199
 GameObject:
   m_ObjectHideFlags: 0

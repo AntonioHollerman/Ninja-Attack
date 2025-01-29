@@ -117,16 +117,6 @@ namespace BaseClasses
             {
                 AttackWeapon();
             }
-
-            if (Input.GetKey(FirstTechnique))
-            {
-                CastAbility(0);
-            }
-
-            if (Input.GetKey(SecondTechnique))
-            {
-                CastAbility(1);
-            }
         }
 
         public void UpdateHp()
@@ -151,17 +141,6 @@ namespace BaseClasses
         {
             base.RestoreHp(hp);
             UpdateHp();
-        }
-
-        public override bool CastAbility(int position)
-        {
-            bool success = base.CastAbility(position);
-            if (success)
-            {
-                UpdateMana();
-            }
-
-            return success;
         }
 
         public override void RestoreMana(int mana)

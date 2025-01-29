@@ -5,34 +5,6 @@ namespace Implementations.Techniques
 {
     public class FlameMelee : Technique
     {
-        protected override void UpdateWrapper()
-        {
-            base.UpdateWrapper();
-        }
         
-        protected override void AwakeWrapper()
-        {
-            base.AwakeWrapper();
-        }
-        
-        protected override IEnumerator Execute()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        protected override void Effect(CharacterSheet cs)
-        {
-            throw new System.NotImplementedException();
-        }
-        
-        public override string GetIconPath()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override string GetPrefabPath()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

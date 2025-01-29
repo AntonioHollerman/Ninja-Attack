@@ -38,11 +38,8 @@ namespace BaseClasses
 
         // Dictionary to store equipped items, and a list to store techniques
         private Weapon _weapon;
-        private List<EquippedTechnique> _techniques;
         private List<Effect> _effects;
-
-        // Property to manage the length of the techniques list
-        private int _techLen;
+        
 
         public virtual void Defeated()
         {
@@ -55,87 +52,7 @@ namespace BaseClasses
             
         }
         
-        public int TechniquesLength
-        {
-            get => _techLen;
-            set
-            {
-                if (value > _techLen) // Expand the list if new length is greater
-                {
-                    for (int i = 0; i < value - _techLen; i++)
-                    {
-                        _techniques.Add(null); // Add null to represent empty technique slots
-                    }
-                }
-                else // Truncate the list if new length is smaller
-                {
-                    _techniques = _techniques.Take(value).ToList(); // Reduce the list size
-                }
-                _techLen = value; // Update the stored length value
-            }
-        }
 
-        /// <summary>
-        /// Represents an equipped technique and its associated state.
-        /// </summary>
-        private class EquippedTechnique
-        {
-            private readonly CharacterSheet _master; // Reference to the character that owns this technique
-            private readonly Technique _tech; // The technique itself
-            private float _cooldown; // Current cooldown of the technique
-           
-            private bool OnCooldown => _cooldown > 0; // True if the technique is on cooldown
-            public float AnimationDuration => _tech.AnimationDuration; // Duration of the technique's animation
-            public int ManaCost => _tech.ManaCost; // CurrentMana cost of the technique
-
-            /// <summary>
-            /// Constructor to initialize the equipped technique.
-            /// </summary>
-            /// <param name="tech">The technique to equip.</param>
-            /// <param name="master">The character who owns this technique.</param>
-            public EquippedTechnique(Technique tech, CharacterSheet master)
-            {
-                _tech = tech; // Store the technique
-                _cooldown = 0; // Start with no cooldown
-                _master = master; // Store reference to the character
-            }
-
-            /// <summary>
-            /// Decreases the cooldown each frame, if applicable.
-            /// </summary>
-            public void DecrementCount()
-            {
-                _cooldown -= OnCooldown ? Time.deltaTime : 0; // Decrease cooldown by delta time
-            }
-
-            /// <summary>
-            /// Attempts to activate the technique, returning true if successful.
-            /// </summary>
-            /// <returns>True if the technique was activated, false otherwise.</returns>
-            public bool ActivateTechnique()
-            {
-                if (OnCooldown) // If the technique is on cooldown, do nothing
-                {
-                    return false;
-                }
-
-                _cooldown = _tech.CoolDown; // Reset the cooldown to the technique's cooldown time
-                _tech.Attack(); // Cast the technique on the owning character
-                return true; // Technique was successfully activated
-            }
-
-            // Compare via technique
-            public override bool Equals(object obj)
-            {
-                return _tech.Equals(obj);
-            }
-
-            // Hashcode equals the technique
-            public override int GetHashCode()
-            {
-                return _tech.GetHashCode();
-            }
-        }
         
         // Represents an effect applied to a character.
         private class Effect
@@ -266,59 +183,6 @@ namespace BaseClasses
 
             StartCoroutine(PlayAnimation());
         }
-        
-        /// <summary>
-        /// Loads a technique into a specific slot if not already present.
-        /// </summary>
-        /// <param name="tech">The technique to load.</param>
-        /// <param name="position">The slot to load the technique into.</param>
-        /// <returns>True if the technique was successfully loaded, otherwise false.</returns>
-        public bool LoadTechnique(Technique tech, int position)
-        {
-            EquippedTechnique et = new EquippedTechnique(tech, this); // Create an equipped technique
-            if (_techniques.Contains(et)) // Check if the technique is already loaded
-            {
-                return false; // Technique was already present
-            }
-            _techniques[position] = et; // Load the technique into the specified position
-            return true;
-        }
-
-        /// <summary>
-        /// Removes a technique from a specific slot.
-        /// </summary>
-        /// <param name="position">The slot to remove the technique from.</param>
-        public void RemoveTechnique(int position)
-        {
-            _techniques[position] = null; // Set the technique slot to null
-        }
-
-        /// <summary>
-        /// Casts a technique from a specific slot if enough mana is available.
-        /// </summary>
-        /// <param name="position">The slot to cast the technique from.</param>
-        /// <returns>True if the technique was successfully cast, otherwise false.</returns>
-        public virtual bool CastAbility(int position)
-        {
-            // Ensure the technique exists, there's enough mana, and animations aren't blocked
-            bool CanCast()
-            {
-                return _techniques[position] != null && CurrentMana > _techniques[position].ManaCost && !AnimationBlocked;
-            }
-
-            if (!CanCast())
-            {
-                return false; // Return false if casting conditions weren't met
-            }
-            
-            bool successful = _techniques[position].ActivateTechnique(); // Try to cast the technique
-            if (successful)
-            {
-                CurrentMana -= _techniques[position].ManaCost; // Deduct mana
-                _animationBlockedDuration = _techniques[position].AnimationDuration; // Set animation blocked duration based on the technique's animation duration
-            }
-            return successful; // Return whether the technique was successfully cast
-        }
 
         public virtual void RestoreMana(int mana)
         {
@@ -375,15 +239,9 @@ namespace BaseClasses
             // Initialize techniques with null values
             CurrentHp = maxHp;
             CurrentMana = maxMana;
-            _techniques = new List<EquippedTechnique>();
             _effects = new List<Effect>();
             
             allies.Add(this);
-            
-            for (int i = 0; i < _techLen; i++)
-            {
-                _techniques.Add(null); // Fill the list with null values
-            }
         }
 
         /// <summary>
@@ -394,12 +252,7 @@ namespace BaseClasses
             // Reduce the duration of vulnerability, stun, and animation block
             _stunDuration -= IsStunned ? Time.deltaTime : 0f;
             _animationBlockedDuration -= AnimationBlocked ? Time.deltaTime : 0f;
-
-            // Decrement the cooldown of all techniques
-            foreach (var tech in _techniques)
-            {
-                tech?.DecrementCount(); // Decrease cooldown if the technique exists
-            }
+            
 
             if (!IsALive)
             {

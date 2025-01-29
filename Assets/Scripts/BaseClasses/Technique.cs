@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace BaseClasses
 {
@@ -9,38 +10,17 @@ namespace BaseClasses
     /// </summary>
     public delegate void StatusEffect(CharacterSheet cs, float deltaTime);
     
-    public abstract class Technique : Weapon
+    public abstract class Technique : MonoBehaviour
     {
+        public CharacterSheet cs;
+        public TextMeshProUGUI countDown;
+        public SpriteRenderer icon;
+        public Sprite active;
+        public Sprite notActive;
+        
         public int ManaCost { get; protected set; } // How much implemented technique cost
         public float CoolDown { get; protected set; } // How many seconds is the cooldown
-        
-        /// <summary>
-        /// UI of technique when equipped
-        /// </summary>
-        /// <returns>The path to the icon</returns>
-        public abstract string GetIconPath();
 
-        /// <summary>
-        /// GameObject that will appear when ability is cast
-        /// </summary>
-        /// <returns>Path from Resources folder to the prefab</returns>
-        public abstract string GetPrefabPath();
-        
-
-        // Compares via Prefab and icon
-        public override bool Equals(object obj)
-        {
-            if (obj is Technique tech)
-            {
-                return GetPrefabPath() == tech.GetPrefabPath() && GetIconPath() == tech.GetIconPath();
-            }
-            return false;
-        }
-
-        // Hashcode is the addition Hashcode of GetPrefab() GetIconPath()
-        public override int GetHashCode()
-        {
-            return GetPrefabPath().GetHashCode() + GetIconPath().GetHashCode();
-        }
+        private Player _player;
     }
 }

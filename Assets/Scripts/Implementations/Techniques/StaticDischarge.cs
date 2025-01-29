@@ -3,7 +3,7 @@ using BaseClasses;
 
 namespace Implementations.Techniques
 {
-    public class Fireball : Technique
+    public class StaticDischarge : Technique
     {
         
     }
