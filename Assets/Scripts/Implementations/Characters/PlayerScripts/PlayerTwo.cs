@@ -14,14 +14,9 @@ namespace Implementations.Characters.PlayerScripts
             LeftCode = KeyCode.LeftArrow;
             RightCode = KeyCode.RightArrow;
 
-            AttackCode = KeyCode.Comma;
-            FirstTechnique = KeyCode.N;
-            SecondTechnique = KeyCode.M;
-        }
-
-        public override void Defeated()
-        {
-            throw new System.NotImplementedException();
+            AttackCode = KeyCode.RightShift;
+            FirstTechnique = KeyCode.Period;
+            SecondTechnique = KeyCode.Slash;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using TMPro;
+using UnityEngine;
 
 namespace BaseClasses
 {
@@ -6,41 +8,44 @@ namespace BaseClasses
     /// will run following effects every frame
     /// <param name="cs">The combative character effects will be applied on</param>
     /// <param name="deltaTime">Used to help with applying logic per second</param>
-    /// </summary>
+    /// </summary>x
     public delegate void StatusEffect(CharacterSheet cs, float deltaTime);
     
-    public abstract class Technique : Weapon
+    public abstract class Technique : MonoBehaviour
     {
-        public int ManaCost { get; protected set; } // How much implemented technique cost
-        public float CoolDown { get; protected set; } // How many seconds is the cooldown
+        [SerializeField] private int manaCost;
+        [SerializeField] private float coolDown;
         
-        /// <summary>
-        /// UI of technique when equipped
-        /// </summary>
-        /// <returns>The path to the icon</returns>
-        public abstract string GetIconPath();
-
-        /// <summary>
-        /// GameObject that will appear when ability is cast
-        /// </summary>
-        /// <returns>Path from Resources folder to the prefab</returns>
-        public abstract string GetPrefabPath();
+        public CharacterSheet cs;
+        public TextMeshProUGUI countDown;
+        public SpriteRenderer icon;
+        public Sprite active;
+        public Sprite notActive;
         
+        public int ManaCost { get; private set; } // How much implemented technique cost
+        public float CoolDown { get; private set; } // How many seconds is the cooldown
+        private float _timer;
+        private bool Ready => cs.CurrentMana >= ManaCost && _timer <= 0;
 
-        // Compares via Prefab and icon
-        public override bool Equals(object obj)
+        protected virtual void UpdateWrapper()
         {
-            if (obj is Technique tech)
-            {
-                return GetPrefabPath() == tech.GetPrefabPath() && GetIconPath() == tech.GetIconPath();
-            }
-            return false;
+            
         }
 
-        // Hashcode is the addition Hashcode of GetPrefab() GetIconPath()
-        public override int GetHashCode()
+        protected virtual void StartWrapper()
         {
-            return GetPrefabPath().GetHashCode() + GetIconPath().GetHashCode();
+            ManaCost = manaCost;
+            CoolDown = coolDown;
+        }
+
+        private void Update()
+        {
+            UpdateWrapper();
+        }
+
+        private void Start()
+        {
+            StartWrapper();
         }
     }
 }

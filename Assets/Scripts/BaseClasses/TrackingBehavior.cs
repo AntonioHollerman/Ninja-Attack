@@ -21,11 +21,20 @@ namespace BaseClasses
         protected override void AwakeWrapper()
         {
             base.AwakeWrapper();
-            _targets = new List<GameObject> {GameObject.Find("PlayerOne"), GameObject.Find("PlayerTwo") };
+            _targets = new List<GameObject>();
+            GameObject playerOne = GameObject.Find("PlayerOne");
+            GameObject playerTwo = GameObject.Find("PlayerTwo");
+            
+            AddTarget(playerOne);
+            AddTarget(playerTwo);
         }
 
         public void AddTarget(GameObject t)
         {
+            if (t == null)
+            {
+                return;
+            }
             _targets.Add(t);
         }
 

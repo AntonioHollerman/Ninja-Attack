@@ -17,11 +17,6 @@ namespace Implementations.Characters.HostileScripts
             StartCoroutine(StartAttacking());
         }
 
-        public override void Defeated()
-        {
-            throw new System.NotImplementedException();
-        }
-
         private void Attack()
         {
             Vector3 pos = transform.position + arrowDisplacement * transform.forward;

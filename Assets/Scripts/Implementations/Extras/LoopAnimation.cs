@@ -3,44 +3,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Implementations
+namespace Implementations.Extras
 {
     public class LoopAnimation : MonoBehaviour
     {
         public SpriteRenderer sr;
         public string path;
         public Sprite[] frames;
-        public float framesPerSecond;
+        public float framesPerSecond = 30;
         public bool loopOnce;
-        private float _secondsBetweenFrame;
+        protected float SecondsBetweenFrame;
         private Coroutine _animation;
 
         private void Start()
         {
-            _animation = StartCoroutine(PlayAnimation());
+            GetFrames();
         }
 
         private void Awake()
         {
-            _secondsBetweenFrame = 1 / framesPerSecond;
-            if (!path.Equals(""))
-            {
-                frames = Resources.LoadAll<Sprite>(path);
-            }
+           GetFrames();
         }
 
         private void OnEnable()
+        {
+            GetFrames();
+        }
+
+        public void StartAnimation()
         {
             if (_animation != null)
             {
                 StopCoroutine(_animation);
             }
-
-            _secondsBetweenFrame = 1 / framesPerSecond;
             _animation = StartCoroutine(PlayAnimation());
         }
 
-        private IEnumerator PlayAnimation()
+        private void GetFrames()
+        {
+            SecondsBetweenFrame = 1 / framesPerSecond;
+            
+            if (frames.Length == 0)
+            {
+                frames = Resources.LoadAll<Sprite>(path);
+            }
+        }
+        
+        protected virtual IEnumerator PlayAnimation()
         {
             int i = 0;
             while (true)
@@ -55,7 +64,7 @@ namespace Implementations
                 {
                     i = 0;
                 }
-                yield return new WaitForSeconds(_secondsBetweenFrame);
+                yield return new WaitForSeconds(SecondsBetweenFrame);
             }
         }
     }

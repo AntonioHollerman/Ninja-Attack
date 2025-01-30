@@ -130,10 +130,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 4916354228412847689}
+  path: 
   frames:
   - {fileID: 738471409, guid: 67e92139fb326604a9fa23489811a32c, type: 3}
   - {fileID: 249531957, guid: 67e92139fb326604a9fa23489811a32c, type: 3}
   - {fileID: -1450259260, guid: 67e92139fb326604a9fa23489811a32c, type: 3}
   - {fileID: 958663650, guid: 67e92139fb326604a9fa23489811a32c, type: 3}
   framesPerSecond: 30
-  loopOnce: 0
+  loopOnce: 1

@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using Implementations.Extras;
 using BaseClasses;
 using UnityEngine;
 
@@ -19,6 +19,11 @@ namespace Implementations.Weapons
 
         protected override void Effect(CharacterSheet cs)
         {
+            Vector3 pos = cs.gameObject.transform.position;
+            GameObject prefab = Resources.Load<GameObject>(CharacterSheet.HitMarkPath);
+            LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
+            
+            script.StartAnimation();
             cs.DealDamage(damage); // Apply damage to the target
         }
 
@@ -33,6 +38,11 @@ namespace Implementations.Weapons
             BasicArrow arr = other.gameObject.GetComponent<BasicArrow>();
             if (arr != null)
             {
+                Vector3 pos = arr.gameObject.transform.position;
+                GameObject prefab = Resources.Load<GameObject>(CharacterSheet.HitMarkPath);
+                LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
+            
+                script.StartAnimation();
                 Destroy(other.gameObject);
             }
         }

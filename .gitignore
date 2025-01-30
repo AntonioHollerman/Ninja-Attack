@@ -17,7 +17,8 @@
 /Assets/Scenes/Testing.meta
 # Recordings can get excessive in size
 /[Rr]ecordings/
-
+/Assets/Scenes/Experiment
+/Assets/Scenes/Experiment.meta
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
@@ -71,3 +72,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Scenes/Experiment.meta
+Assets/Scenes/Experiment/Level One.unity
+Assets/Scenes/Experiment/Level One.unity.meta
