@@ -3,7 +3,7 @@ using Implementations.Extras;
 using Implementations.Weapons;
 using UnityEngine;
 
-namespace Implementations.Techniques.HitBoxes
+namespace Implementations.HitBoxes
 {
     public class FlameMeleeHitBox : HitBox
     {

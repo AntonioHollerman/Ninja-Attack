@@ -2,9 +2,8 @@
 using System.Collections;
 using BaseClasses;
 using Implementations.Extras;
-using Implementations.Techniques.HitBoxes;
+using Implementations.HitBoxes;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Implementations.Techniques
 {
