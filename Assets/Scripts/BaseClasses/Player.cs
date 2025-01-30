@@ -16,6 +16,9 @@ namespace BaseClasses
         public GameObject manaSliderGo;
         public GameObject manaTextGo;
 
+        public Technique techOne;
+        public Technique techTwo;
+
         protected KeyCode AttackCode;
         
         protected KeyCode UpCode;
@@ -38,6 +41,7 @@ namespace BaseClasses
             HandleMovement();
             HandleDirection();
             AttackHandler();
+            TechniqueHandler();
         }
 
         protected override void AwakeWrapper()
@@ -116,6 +120,19 @@ namespace BaseClasses
             if (Input.GetKey(AttackCode))
             {
                 AttackWeapon();
+            }
+        }
+
+        private void TechniqueHandler()
+        {
+            if (Input.GetKey(FirstTechnique))
+            {
+                techOne.ActivateTech();
+            }
+
+            if (Input.GetKey(SecondTechnique))
+            {
+                techTwo.ActivateTech();
             }
         }
 

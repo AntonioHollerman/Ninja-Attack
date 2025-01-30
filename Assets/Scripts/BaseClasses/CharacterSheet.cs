@@ -194,6 +194,17 @@ namespace BaseClasses
             }
         }
 
+        public bool CastTechnique(int mana)
+        {
+            if (CurrentMana - mana < 0)
+            {
+                return false;
+            }
+
+            CurrentMana -= mana;
+            return true;
+        }
+
         /// <summary>
         /// Stuns the character for a specific duration.
         /// </summary>

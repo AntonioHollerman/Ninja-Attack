@@ -5,6 +5,9 @@ namespace Implementations.Techniques
 {
     public class Fireball : Technique
     {
-        
+        public override void Execute()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -27,15 +29,53 @@ namespace BaseClasses
         private float _timer;
         private bool Ready => cs.CurrentMana >= ManaCost && _timer <= 0;
 
+        public abstract void Execute();
+
+        public void ActivateTech()
+        {
+            if (!Ready)
+            {
+                return;
+            }
+            
+            bool successful = cs.CastTechnique(ManaCost);
+            if (successful)
+            {
+                Execute();
+            }
+        }
         protected virtual void UpdateWrapper()
         {
-            
+            if (Ready)
+            {
+                return;
+            }
+
+            _timer -= _timer > 0 ? Time.deltaTime : _timer;
+            countDown.text = Math.Ceiling(_timer).ToString(CultureInfo.InvariantCulture);
         }
 
         protected virtual void StartWrapper()
         {
             ManaCost = manaCost;
             CoolDown = coolDown;
+            if (countDown != null && icon != null && active != null && notActive != null)
+            {
+                StartCoroutine(StateListener());
+            }
+        }
+
+        private IEnumerator StateListener()
+        {
+            while (true)
+            {
+                yield return new WaitUntil(() => Ready);
+                countDown.gameObject.SetActive(false);
+                icon.sprite = active;
+                yield return new WaitUntil(() => !Ready);
+                countDown.gameObject.SetActive(true);
+                icon.sprite = notActive;
+            }
         }
 
         private void Update()

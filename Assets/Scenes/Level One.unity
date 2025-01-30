@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -538,6 +538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 301625655}
+  - component: {fileID: 301625656}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -560,6 +561,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1127534649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &301625656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301625654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ef6cba0f9f43f993a7e34c594bdc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaCost: 75
+  coolDown: 12
+  cs: {fileID: 1272078720}
+  countDown: {fileID: 374078201}
+  icon: {fileID: 755996416}
+  active: {fileID: 1665446925, guid: 19c08825398e41f41a57f20c75e28965, type: 3}
+  notActive: {fileID: 1558847855, guid: 19c08825398e41f41a57f20c75e28965, type: 3}
 --- !u!1 &371902973
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,6 +1014,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 433608631}
+  - component: {fileID: 433608632}
   m_Layer: 0
   m_Name: StaticDischarge
   m_TagString: Untagged
@@ -1016,6 +1037,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1127534649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &433608632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433608630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2789701398b9447e89eb8beeaf850efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaCost: 50
+  coolDown: 12
+  cs: {fileID: 962242012}
+  countDown: {fileID: 1521534845}
+  icon: {fileID: 236376316}
+  active: {fileID: 1045486412, guid: ba13e5729f57cdd4d853b67b5e5b356a, type: 3}
+  notActive: {fileID: -630561447, guid: ba13e5729f57cdd4d853b67b5e5b356a, type: 3}
 --- !u!1 &592271646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4554922097971385247, guid: d72bfbffaacf05244af8bbffabc067ea, type: 3}
@@ -1601,6 +1641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1177601651}
+  - component: {fileID: 1177601652}
   m_Layer: 0
   m_Name: FireSword
   m_TagString: Untagged
@@ -1623,6 +1664,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1127534649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1177601652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177601650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e387b0059d418aadb9ac69abc9fb17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaCost: 50
+  coolDown: 8
+  cs: {fileID: 1272078720}
+  countDown: {fileID: 430820522}
+  icon: {fileID: 1841772203}
+  active: {fileID: -1927839504, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
+  notActive: {fileID: -1523329453, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
 --- !u!1 &1195577229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,6 +3137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2089345446}
+  - component: {fileID: 2089345447}
   m_Layer: 0
   m_Name: FlashStep
   m_TagString: Untagged
@@ -3099,6 +3160,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1127534649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2089345447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089345445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65693962ac249bd9134ad28cf9e4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaCost: 20
+  coolDown: 5
+  cs: {fileID: 962242012}
+  countDown: {fileID: 1195577231}
+  icon: {fileID: 371902975}
+  active: {fileID: 1552951868, guid: cc72c327cd5ef3c4cabca6134a9b4a0c, type: 3}
+  notActive: {fileID: 657524681, guid: cc72c327cd5ef3c4cabca6134a9b4a0c, type: 3}
 --- !u!1 &2136100507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3233,6 +3313,14 @@ PrefabInstance:
       propertyPath: maxHp
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
+      propertyPath: techOne
+      value: 
+      objectReference: {fileID: 301625656}
+    - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
+      propertyPath: techTwo
+      value: 
+      objectReference: {fileID: 1177601652}
     - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
       propertyPath: hpTextGo
       value: 
@@ -3595,6 +3683,14 @@ PrefabInstance:
       propertyPath: maxHp
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
+      propertyPath: techOne
+      value: 
+      objectReference: {fileID: 2089345447}
+    - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
+      propertyPath: techTwo
+      value: 
+      objectReference: {fileID: 433608632}
     - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
       propertyPath: hpTextGo
       value: 
