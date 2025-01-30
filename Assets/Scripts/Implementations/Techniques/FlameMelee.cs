@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using BaseClasses;
 using Implementations.Extras;
 using Implementations.Techniques.HitBoxes;
@@ -23,6 +24,46 @@ namespace Implementations.Techniques
             Player playerScript = cs.GetComponent<Player>();
             bool notPlayer = playerScript != null;
             Transform sprite = ani.transform.Find("sprite");
+
+            IEnumerator NormalizeSpriteDirection()
+            {
+                if (cs.transform.forward == Vector3.right || cs.transform.forward == Vector3.left)
+                {
+                    try
+                    {
+                        sprite.localRotation = Quaternion.Euler(0, 90, 90);
+                    }
+                    catch (Exception ignore)
+                    {
+                        // ignored
+                    }
+                    yield return null;
+                }
+                if (Input.GetKey(playerScript.leftCode) || Input.GetKey(playerScript.rightCode))
+                {
+                    try
+                    {
+                        sprite.localRotation = Quaternion.Euler(0, 90, 90);
+                    }
+                    catch (Exception ignore)
+                    {
+                        // ignored
+                    }
+                    yield return null;
+                }
+                if (cs.transform.forward == Vector3.up || cs.transform.forward == Vector3.down)
+                {
+                    try
+                    {
+                        sprite.localRotation = Quaternion.Euler(270, 90, 90);
+                    }
+                    catch (Exception ignore)
+                    {
+                        // ignored
+                    }
+                }
+                yield return null;
+            }
             while (true)
             {
                 if (ani == null)
@@ -38,22 +79,8 @@ namespace Implementations.Techniques
                 {
                     yield return null;
                 }
-                
-                if (cs.transform.forward == Vector3.right || cs.transform.forward == Vector3.left)
-                {
-                    sprite.localRotation = Quaternion.Euler(0, 90, 90);
-                    yield return null;
-                }
-                if (Input.GetKey(playerScript.leftCode) || Input.GetKey(playerScript.rightCode))
-                {
-                    sprite.localRotation = Quaternion.Euler(0, 90, 90);
-                    yield return null;
-                }
-                if (cs.transform.forward == Vector3.up || cs.transform.forward == Vector3.down)
-                {
-                    sprite.localRotation = Quaternion.Euler(270, 90, 90);
-                }
-                yield return null;
+
+                yield return NormalizeSpriteDirection();
             }
         }
 

@@ -94,6 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 976756918264091770}
   - component: {fileID: 1366180215671737190}
+  - component: {fileID: 8821516567676848627}
+  - component: {fileID: 9158630369238350844}
   m_Layer: 0
   m_Name: Firesword
   m_TagString: Untagged
@@ -115,7 +117,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 491627495884745693}
-  - {fileID: 5671411827775269342}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &1366180215671737190
@@ -154,45 +155,13 @@ MonoBehaviour:
   - {fileID: -959233021, guid: 95a76b155b98b6b44b004162adee0730, type: 3}
   framesPerSecond: 25
   loopOnce: 1
---- !u!1 &2430686933910893995
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5671411827775269342}
-  - component: {fileID: 3818784765452827611}
-  m_Layer: 0
-  m_Name: HitBox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5671411827775269342
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2430686933910893995}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 976756918264091770}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3818784765452827611
+--- !u!65 &8821516567676848627
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2430686933910893995}
+  m_GameObject: {fileID: 1648239436938574504}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -207,3 +176,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7429095, y: 1, z: 1.4884764}
   m_Center: {x: -0.3470738, y: 3.1063345e-16, z: -0.24423653}
+--- !u!114 &9158630369238350844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648239436938574504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1158423cc41b40eb990e564b376f73ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  destroyOnFinish: 0
+  workOnCollider: 1
+  baseDamage: 5
+  burnEffectDps: 2
+  duration: 1.5
