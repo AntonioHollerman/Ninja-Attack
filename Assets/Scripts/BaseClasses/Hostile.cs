@@ -33,6 +33,13 @@ namespace BaseClasses
             healthBar = Instantiate(healthBar, GameObject.Find("Canvas").transform);
             _hbScript = healthBar.GetComponent<HealthBar>();
             _hbScript.target = transform;
+            
+            GameObject playerOne = GameObject.Find("PlayerOne");
+            GameObject playerTwo = GameObject.Find("PlayerTwo");
+            
+            AddTarget(playerOne);
+            AddTarget(playerTwo);
+            
         }
 
         public override void DealDamage(float dmg)

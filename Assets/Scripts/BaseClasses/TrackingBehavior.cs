@@ -22,11 +22,6 @@ namespace BaseClasses
         {
             base.AwakeWrapper();
             _targets = new List<GameObject>();
-            GameObject playerOne = GameObject.Find("PlayerOne");
-            GameObject playerTwo = GameObject.Find("PlayerTwo");
-            
-            AddTarget(playerOne);
-            AddTarget(playerTwo);
         }
 
         public void AddTarget(GameObject t)
