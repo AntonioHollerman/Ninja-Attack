@@ -12,13 +12,26 @@ namespace Implementations.Techniques
     {
         public GameObject meleeAnimationPrefab;
         public float xOffset;
+        public int frameStartHitBox;
         public override void Execute()
-        { 
-            LoopAnimation animationScript = Instantiate(meleeAnimationPrefab).GetComponent<LoopAnimation>();
-            animationScript.StartAnimation();
+        {
+            GameObject techGo = Instantiate(meleeAnimationPrefab);
+            LoopAnimation animationScript = techGo.GetComponent<LoopAnimation>();
+            FlameMeleeHitBox hitBoxScript = techGo.GetComponent<FlameMeleeHitBox>();
+            hitBoxScript.parent = cs;
+            
+            
             StartCoroutine(TrackParent(animationScript));
+            StartCoroutine(FramesListener(animationScript, hitBoxScript));
+            animationScript.StartAnimation();
         }
 
+        private IEnumerator FramesListener(LoopAnimation ani, FlameMeleeHitBox hitBox)
+        {
+            yield return new WaitUntil(() => ani.FrameIndex >= frameStartHitBox);
+            int framesLeft = ani.frames.Length - ani.FrameIndex;
+            hitBox.Activate(framesLeft * ani.SecondsBetweenFrame);
+        }
         private IEnumerator TrackParent(LoopAnimation ani)
         {
             Player playerScript = cs.GetComponent<Player>();
