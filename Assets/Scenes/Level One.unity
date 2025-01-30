@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2094,7 +2094,7 @@ MonoBehaviour:
   active: {fileID: -1927839504, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
   notActive: {fileID: -1523329453, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
   meleeAnimationPrefab: {fileID: 1648239436938574504, guid: 1a82e60c67218de46a4ecb84727867a3, type: 3}
-  xOffset: 2
+  zOffset: 3
   frameStartHitBox: 8
 --- !u!1 &1195577229
 GameObject:

@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -112,8 +112,8 @@ Transform:
   m_GameObject: {fileID: 1648239436938574504}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.6882, y: 2.6882, z: 2.6882}
+  m_LocalPosition: {x: 0.38759, y: 0.27275, z: -0.000000049523}
+  m_LocalScale: {x: 3.8048782, y: 3.8048782, z: 3.8048782}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 491627495884745693}
@@ -174,8 +174,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7429095, y: 1, z: 1.4884764}
-  m_Center: {x: -0.3470738, y: 3.1063345e-16, z: -0.24423653}
+  m_Size: {x: 0.7429098, y: 0.99999934, z: 1.152191}
+  m_Center: {x: -0.34707388, y: -3.6787217e-15, z: -0.41236946}
 --- !u!114 &9158630369238350844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,5 +192,5 @@ MonoBehaviour:
   destroyOnFinish: 0
   workOnCollider: 1
   baseDamage: 5
-  burnEffectDps: 2
-  duration: 1.5
+  burnEffectDps: 2.2
+  duration: 2.5

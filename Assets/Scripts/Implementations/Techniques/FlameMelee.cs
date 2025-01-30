@@ -11,7 +11,7 @@ namespace Implementations.Techniques
     public class FlameMelee : Technique
     {
         public GameObject meleeAnimationPrefab;
-        public float xOffset;
+        public float zOffset;
         public int frameStartHitBox;
         public override void Execute()
         {
@@ -86,7 +86,7 @@ namespace Implementations.Techniques
                 
                 ani.transform.rotation = cs.transform.rotation;
                 ani.transform.position = cs.transform.position;
-                ani.transform.Translate(Vector3.forward * xOffset);
+                ani.transform.Translate(Vector3.forward * zOffset);
 
                 if (notPlayer)
                 {
