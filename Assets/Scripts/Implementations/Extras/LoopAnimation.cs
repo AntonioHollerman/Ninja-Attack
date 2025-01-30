@@ -67,5 +67,10 @@ namespace Implementations.Extras
                 yield return new WaitForSeconds(SecondsBetweenFrame);
             }
         }
+
+        public float GetAnimationDuration()
+        {
+            return frames.Length * SecondsBetweenFrame;
+        }
     }
 }

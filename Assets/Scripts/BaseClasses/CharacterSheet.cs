@@ -133,7 +133,7 @@ namespace BaseClasses
         /// Deals damage to the character, considering vulnerabilities and defense.
         /// </summary>
         /// <param name="dmg">The amount of damage to deal.</param>
-        public virtual void DealDamage(int dmg)
+        public virtual void DealDamage(float dmg)
         {
             // Apply damage, reducing health based on vulnerability and defense
             CurrentHp -= dmg;
@@ -194,13 +194,14 @@ namespace BaseClasses
             }
         }
 
-        public bool CastTechnique(int mana)
+        public bool CastTechnique(int mana, float animationBlockDuration)
         {
-            if (CurrentMana - mana < 0)
+            if (CurrentMana - mana < 0 || IsStunned || AnimationBlocked)
             {
                 return false;
             }
 
+            BlockAnimation(animationBlockDuration);
             CurrentMana -= mana;
             return true;
         }

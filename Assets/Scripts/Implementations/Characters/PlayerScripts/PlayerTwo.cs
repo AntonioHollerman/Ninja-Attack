@@ -9,10 +9,10 @@ namespace Implementations.Characters.PlayerScripts
         {
             base.AwakeWrapper();
         
-            UpCode = KeyCode.UpArrow;
-            DownCode = KeyCode.DownArrow;
-            LeftCode = KeyCode.LeftArrow;
-            RightCode = KeyCode.RightArrow;
+            upCode = KeyCode.UpArrow;
+            downCode = KeyCode.DownArrow;
+            leftCode = KeyCode.LeftArrow;
+            rightCode = KeyCode.RightArrow;
 
             AttackCode = KeyCode.RightShift;
             FirstTechnique = KeyCode.Period;

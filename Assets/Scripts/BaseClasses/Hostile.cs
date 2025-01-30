@@ -35,7 +35,7 @@ namespace BaseClasses
             _hbScript.target = transform;
         }
 
-        public override void DealDamage(int dmg)
+        public override void DealDamage(float dmg)
         {
             base.DealDamage(dmg);
             _hbScript.UpdateSlider((float) CurrentHp / maxHp);

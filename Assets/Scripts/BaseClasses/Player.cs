@@ -1,6 +1,7 @@
 ﻿using Implementations.Characters.HostileScripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace BaseClasses
@@ -21,10 +22,10 @@ namespace BaseClasses
 
         protected KeyCode AttackCode;
         
-        protected KeyCode UpCode;
-        protected KeyCode DownCode;
-        protected KeyCode LeftCode;
-        protected KeyCode RightCode;
+        public KeyCode upCode;
+        public KeyCode downCode;
+        public KeyCode leftCode;
+        public KeyCode rightCode;
 
         protected KeyCode FirstTechnique;
         protected KeyCode SecondTechnique;
@@ -70,14 +71,14 @@ namespace BaseClasses
             
             transform.localRotation = Quaternion.LookRotation(GetDirection());
             
-            if (Input.GetKey(LeftCode) || Input.GetKey(RightCode))
+            if (Input.GetKey(leftCode) || Input.GetKey(rightCode))
             {
                 body.transform.localRotation = Quaternion.Euler(0, -90, -90);
                 weaponGo.transform.localRotation = Quaternion.Euler(0, 0, 90);
                 return;
             }
 
-            if (Input.GetKey(UpCode) || Input.GetKey(DownCode))
+            if (Input.GetKey(upCode) || Input.GetKey(downCode))
             {
                 body.transform.localRotation = Quaternion.Euler(90, -90, -90);
                 weaponGo.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -92,22 +93,22 @@ namespace BaseClasses
         private Vector3 GetDirection()
         {
             Vector3 direction = Vector3.zero;
-            if (Input.GetKey(UpCode))
+            if (Input.GetKey(upCode))
             {
                 direction += Vector3.up;
             }
 
-            if (Input.GetKey(DownCode))
+            if (Input.GetKey(downCode))
             {
                 direction += Vector3.down;
             }
 
-            if (Input.GetKey(LeftCode))
+            if (Input.GetKey(leftCode))
             {
                 direction += Vector3.left;
             }
 
-            if (Input.GetKey(RightCode))
+            if (Input.GetKey(rightCode))
             {
                 direction += Vector3.right;
             }
@@ -128,11 +129,14 @@ namespace BaseClasses
             if (Input.GetKey(FirstTechnique))
             {
                 techOne.ActivateTech();
+                UpdateMana();
             }
 
             if (Input.GetKey(SecondTechnique))
             {
+                Debug.Log("Made it");
                 techTwo.ActivateTech();
+                UpdateMana();
             }
         }
 
@@ -148,7 +152,7 @@ namespace BaseClasses
             _manaText.text = $"{CurrentMana} / {maxMana}";
         }
 
-        public override void DealDamage(int dmg)
+        public override void DealDamage(float dmg)
         {
             base.DealDamage(dmg);
             UpdateHp();

@@ -133,4 +133,4 @@ MonoBehaviour:
   path: sprites/Techniques/Flash Step
   frames: []
   framesPerSecond: 30
-  loopOnce: 0
+  loopOnce: 1

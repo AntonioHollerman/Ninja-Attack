@@ -135,7 +135,7 @@ MonoBehaviour:
   - {fileID: 7590337913773121255}
   - {fileID: 1906974792632515951}
   - {fileID: 3163309553101267195}
-  loopOnce: 0
+  loopOnce: 1
   playAsynchronously: 1
 --- !u!1 &2994337452376064848
 GameObject:

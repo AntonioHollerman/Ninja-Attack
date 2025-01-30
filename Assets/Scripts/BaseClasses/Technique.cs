@@ -18,6 +18,7 @@ namespace BaseClasses
         [SerializeField] private int manaCost;
         [SerializeField] private float coolDown;
         
+        public float animationBlockDuration;
         public CharacterSheet cs;
         public TextMeshProUGUI countDown;
         public SpriteRenderer icon;
@@ -38,9 +39,10 @@ namespace BaseClasses
                 return;
             }
             
-            bool successful = cs.CastTechnique(ManaCost);
+            bool successful = cs.CastTechnique(ManaCost, animationBlockDuration);
             if (successful)
             {
+                _timer = CoolDown;
                 Execute();
             }
         }
