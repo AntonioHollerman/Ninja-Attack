@@ -134,7 +134,6 @@ namespace BaseClasses
 
             if (Input.GetKey(SecondTechnique))
             {
-                Debug.Log("Made it");
                 techTwo.ActivateTech();
                 UpdateMana();
             }

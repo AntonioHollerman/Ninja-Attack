@@ -12,7 +12,9 @@ namespace Implementations.Extras
         public Sprite[] frames;
         public float framesPerSecond = 30;
         public bool loopOnce;
-        protected float SecondsBetweenFrame;
+        
+        public int FrameIndex { private set; get;}
+        public float SecondsBetweenFrame { private set; get;}
         private Coroutine _animation;
 
         private void Start()
@@ -41,6 +43,7 @@ namespace Implementations.Extras
 
         private void GetFrames()
         {
+            FrameIndex = 0;
             SecondsBetweenFrame = 1 / framesPerSecond;
             
             if (frames.Length == 0)
@@ -51,18 +54,18 @@ namespace Implementations.Extras
         
         protected virtual IEnumerator PlayAnimation()
         {
-            int i = 0;
+            FrameIndex = 0;
             while (true)
             {
-                sr.sprite = frames[i];
-                i++;
-                if (i == frames.Length && loopOnce)
+                sr.sprite = frames[FrameIndex];
+                FrameIndex++;
+                if (FrameIndex == frames.Length && loopOnce)
                 {
                     Destroy(gameObject);
                 }
-                if (i == frames.Length)
+                if (FrameIndex == frames.Length)
                 {
-                    i = 0;
+                    FrameIndex = 0;
                 }
                 yield return new WaitForSeconds(SecondsBetweenFrame);
             }
