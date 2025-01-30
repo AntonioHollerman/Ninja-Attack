@@ -36,7 +36,10 @@ namespace Implementations.Characters.HostileScripts
             while (true)
             {
                 yield return new WaitForSeconds(atkSpeed);
-                Attack();
+                if (!IsStunned)
+                {
+                    Attack();   
+                }
             }
         }
     }
