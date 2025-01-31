@@ -844,8 +844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ef6cba0f9f43f993a7e34c594bdc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 75
-  coolDown: 12
+  manaCost: 0
+  coolDown: 0
   animationBlockDuration: 0
   cs: {fileID: 1272078720}
   countDown: {fileID: 374078201}
@@ -1322,8 +1322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2789701398b9447e89eb8beeaf850efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 75
-  coolDown: 12
+  manaCost: 0
+  coolDown: 0
   animationBlockDuration: 0
   cs: {fileID: 962242012}
   countDown: {fileID: 1521534845}
@@ -2087,8 +2087,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e387b0059d418aadb9ac69abc9fb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 50
-  coolDown: 7
+  manaCost: 0
+  coolDown: 0
   animationBlockDuration: 0
   cs: {fileID: 1272078720}
   countDown: {fileID: 430820522}
@@ -3990,8 +3990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65693962ac249bd9134ad28cf9e4925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 20
-  coolDown: 5
+  manaCost: 0
+  coolDown: 0
   animationBlockDuration: 0
   cs: {fileID: 962242012}
   countDown: {fileID: 1195577231}

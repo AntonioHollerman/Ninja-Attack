@@ -31,51 +31,57 @@ namespace Implementations.Techniques
             int framesLeft = ani.frames.Length - ani.FrameIndex;
             hitBox.Activate(framesLeft * ani.SecondsBetweenFrame);
         }
+        
+        private void NormalizeSpriteDirection(Transform sprite, Player playerScript)
+        {
+            Debug.Log(cs.transform.forward);
+            if (cs.transform.forward == Vector3.right || cs.transform.forward == Vector3.left)
+            {
+                try
+                {
+                    sprite.localRotation = Quaternion.Euler(0, 90, 90);
+                }
+                catch (Exception ignore)
+                {
+                    // ignored
+                }
+                return;
+            }
+            if (Input.GetKey(playerScript.leftCode) || Input.GetKey(playerScript.rightCode))
+            {
+                try
+                {
+                    sprite.localRotation = Quaternion.Euler(0, 90, 90);
+                }
+                catch (Exception ignore)
+                {
+                    // ignored
+                }
+                return;
+            }
+            if (cs.transform.forward == Vector3.up || cs.transform.forward == Vector3.down)
+            {
+                try
+                {
+                    sprite.localRotation = Quaternion.Euler(270, 90, 90);
+                }
+                catch (Exception ignore)
+                {
+                    // ignored
+                }
+            }
+        }
         private IEnumerator TrackParent(LoopAnimation ani)
         {
             Player playerScript = cs.GetComponent<Player>();
-            bool notPlayer = playerScript != null;
+            bool isPlayer = playerScript != null;
             Transform sprite = ani.transform.Find("sprite");
 
-            IEnumerator NormalizeSpriteDirection()
+            if (isPlayer)
             {
-                if (cs.transform.forward == Vector3.right || cs.transform.forward == Vector3.left)
-                {
-                    try
-                    {
-                        sprite.localRotation = Quaternion.Euler(0, 90, 90);
-                    }
-                    catch (Exception ignore)
-                    {
-                        // ignored
-                    }
-                    yield return null;
-                }
-                if (Input.GetKey(playerScript.leftCode) || Input.GetKey(playerScript.rightCode))
-                {
-                    try
-                    {
-                        sprite.localRotation = Quaternion.Euler(0, 90, 90);
-                    }
-                    catch (Exception ignore)
-                    {
-                        // ignored
-                    }
-                    yield return null;
-                }
-                if (cs.transform.forward == Vector3.up || cs.transform.forward == Vector3.down)
-                {
-                    try
-                    {
-                        sprite.localRotation = Quaternion.Euler(270, 90, 90);
-                    }
-                    catch (Exception ignore)
-                    {
-                        // ignored
-                    }
-                }
-                yield return null;
+                NormalizeSpriteDirection(sprite, playerScript);
             }
+            ani.transform.rotation = cs.transform.rotation;
             while (true)
             {
                 if (ani == null)
@@ -83,16 +89,10 @@ namespace Implementations.Techniques
                     break;
                 }
                 
-                ani.transform.rotation = cs.transform.rotation;
                 ani.transform.position = cs.transform.position;
                 ani.transform.Translate(Vector3.forward * zOffset);
-
-                if (notPlayer)
-                {
-                    yield return null;
-                }
-
-                yield return NormalizeSpriteDirection();
+                
+                yield return null;
             }
         }
 
