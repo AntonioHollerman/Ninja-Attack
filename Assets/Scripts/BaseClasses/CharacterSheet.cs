@@ -315,6 +315,10 @@ namespace BaseClasses
 
         public override bool Equals(object other)
         {
+            if (this == null)
+            {
+                return false;
+            }
             if (other is CharacterSheet cs)
             {
                 return gameObject.name == cs.gameObject.name;

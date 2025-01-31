@@ -16,7 +16,7 @@ namespace Implementations.Techniques
         {
             GameObject techGo = Instantiate(meleeAnimationPrefab);
             LoopAnimation animationScript = techGo.GetComponent<LoopAnimation>();
-            FlameMeleeHitBox hitBoxScript = techGo.GetComponent<FlameMeleeHitBox>();
+            FireHitBox hitBoxScript = techGo.GetComponent<FireHitBox>();
             hitBoxScript.parent = cs;
             
             
@@ -25,7 +25,7 @@ namespace Implementations.Techniques
             animationScript.StartAnimation();
         }
 
-        private IEnumerator FramesListener(LoopAnimation ani, FlameMeleeHitBox hitBox)
+        private IEnumerator FramesListener(LoopAnimation ani, FireHitBox hitBox)
         {
             yield return new WaitUntil(() => ani.FrameIndex >= frameStartHitBox);
             int framesLeft = ani.frames.Length - ani.FrameIndex;

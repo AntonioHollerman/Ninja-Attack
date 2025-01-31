@@ -137,7 +137,7 @@ namespace Implementations.Techniques
             GameObject explosion = Instantiate(explosionPrefab, pos, explosionPrefab.transform.rotation);
 
             LoopAnimation animationScript = explosion.GetComponent<LoopAnimation>();
-            FireballHitBox hitBox = explosion.GetComponent<FireballHitBox>();
+            FireHitBox hitBox = explosion.GetComponent<FireHitBox>();
 
             hitBox.parent = cs;
             hitBox.Activate(animationScript.frames.Length * animationScript.SecondsBetweenFrame);

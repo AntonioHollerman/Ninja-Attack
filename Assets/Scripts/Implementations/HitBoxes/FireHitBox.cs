@@ -5,11 +5,12 @@ using UnityEngine;
 
 namespace Implementations.HitBoxes
 {
-    public class FireballHitBox : HitBox
+    public class FireHitBox : HitBox
     {
         public float baseDamage;
         public float burnEffectDps;
         public float duration;
+        public bool damageSelf;
         protected override void Effect(CharacterSheet cs)
         {
             cs.DealDamage(baseDamage);
@@ -18,7 +19,10 @@ namespace Implementations.HitBoxes
         
         protected override void TriggerEnterWrapper(Collider other)
         {
-            ActiveIgnore.Remove(parent);
+            if (damageSelf)
+            {
+                ActiveIgnore.Remove(parent);
+            }
             base.TriggerEnterWrapper(other);
             BasicArrow arr = other.gameObject.GetComponent<BasicArrow>();
             if (arr != null)

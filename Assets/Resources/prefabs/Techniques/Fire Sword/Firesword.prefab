@@ -185,12 +185,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1648239436938574504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1158423cc41b40eb990e564b376f73ce, type: 3}
+  m_Script: {fileID: 11500000, guid: ce522e45fced4bf6a040e29b9df00387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   destroyOnFinish: 0
   workOnCollider: 1
   baseDamage: 5
-  burnEffectDps: 2.2
-  duration: 2.5
+  burnEffectDps: 3
+  duration: 1.5

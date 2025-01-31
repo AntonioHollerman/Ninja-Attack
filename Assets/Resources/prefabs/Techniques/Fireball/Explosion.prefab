@@ -103,6 +103,7 @@ MonoBehaviour:
   baseDamage: 5
   burnEffectDps: 3
   duration: 2
+  damageSelf: 1
 --- !u!1 &4084126009820347734
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ namespace Implementations.Techniques
         {
             GameObject techGo = Instantiate(dischargeAnimationPrefab);
             StaticDischargeAnimation animationScript = techGo.GetComponent<StaticDischargeAnimation>();
-            StaticDischargeHitBox hitBoxScript = techGo.GetComponent<StaticDischargeHitBox>();
+            ElectricHitBox hitBoxScript = techGo.GetComponent<ElectricHitBox>();
             hitBoxScript.parent = cs;
             hitBoxScript.parentTech = this;
             
@@ -25,7 +25,7 @@ namespace Implementations.Techniques
             animationScript.StartAnimation();
         }
 
-        private IEnumerator FramesListener(LoopAnimation ani, StaticDischargeHitBox hitBox)
+        private IEnumerator FramesListener(LoopAnimation ani, ElectricHitBox hitBox)
         {
             yield return new WaitUntil(() => ani.FrameIndex >= frameStartHitBox);
             int framesLeft = ani.frames.Length - ani.FrameIndex;

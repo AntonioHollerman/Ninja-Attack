@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Implementations.HitBoxes
 {
-    public class StaticDischargeHitBox : HitBox
+    public class ElectricHitBox : HitBox
     {
         public Technique parentTech;
         public float damage;
