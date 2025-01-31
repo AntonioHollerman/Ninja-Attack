@@ -17,6 +17,7 @@ namespace Implementations.Techniques
             StaticDischargeAnimation animationScript = techGo.GetComponent<StaticDischargeAnimation>();
             StaticDischargeHitBox hitBoxScript = techGo.GetComponent<StaticDischargeHitBox>();
             hitBoxScript.parent = cs;
+            hitBoxScript.parentTech = this;
             
             
             StartCoroutine(TrackParent(animationScript));

@@ -32,7 +32,7 @@ namespace BaseClasses
         private float _animationBlockedDuration; // Duration of animation block
 
         // Properties to check if the character is vulnerable, stunned, or has animation blocked
-        protected bool IsStunned => _stunDuration > 0;
+        public bool IsStunned => _stunDuration > 0;
         protected bool AnimationBlocked => _animationBlockedDuration > 0;
         protected Rigidbody Rb;
 
@@ -215,6 +215,10 @@ namespace BaseClasses
             // Update stun duration to the maximum of the current or new duration
             _stunDuration = duration > _stunDuration ? duration : _stunDuration;
 
+            if (_weapon == null)
+            {
+                return;
+            }
             if (_weapon.deactivateOnStun)
             {
                 _weapon.Deactivate();

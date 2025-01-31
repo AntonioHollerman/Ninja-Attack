@@ -1322,8 +1322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2789701398b9447e89eb8beeaf850efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 0
-  coolDown: 0
+  manaCost: 75
+  coolDown: 12
   animationBlockDuration: 0
   cs: {fileID: 962242012}
   countDown: {fileID: 1521534845}
@@ -4479,7 +4479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6749301715164734955, guid: b44be1afe9f0645478c614fa075f61c1, type: 3}
       propertyPath: maxHp
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6749301715164734955, guid: b44be1afe9f0645478c614fa075f61c1, type: 3}
       propertyPath: healthBar

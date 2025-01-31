@@ -69,6 +69,10 @@ MonoBehaviour:
   parent: {fileID: 0}
   destroyOnFinish: 0
   workOnCollider: 1
+  damage: 5
+  stunDuration: 3
+  hitPrefab: {fileID: 3956356833508220928, guid: f2caa9280086ffd498e36919981fec0b, type: 3}
+  stunPrefab: {fileID: 4553206577251356814, guid: b03f3971e4c3ade439ac9c632fbba551, type: 3}
 --- !u!135 &3228075044658835918
 SphereCollider:
   m_ObjectHideFlags: 0

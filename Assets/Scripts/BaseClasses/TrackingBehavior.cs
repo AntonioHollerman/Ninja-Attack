@@ -14,8 +14,12 @@ namespace BaseClasses
         protected override void UpdateWrapper()
         {
             base.UpdateWrapper();
-            SetClosestTarget();
-            LookAtTarget();
+            if (!IsStunned)
+            {
+                SetClosestTarget();
+                LookAtTarget();
+            }
+
         }
 
         protected override void AwakeWrapper()
