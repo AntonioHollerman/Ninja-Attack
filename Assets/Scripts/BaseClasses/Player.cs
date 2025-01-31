@@ -1,4 +1,5 @@
-﻿using Implementations.Characters.HostileScripts;
+﻿using System;
+using Implementations.Characters.HostileScripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -141,13 +142,13 @@ namespace BaseClasses
 
         public void UpdateHp()
         {
-            _hpSlider.fillAmount = (float) CurrentHp /  maxHp;
-            _hpText.text = $"{CurrentHp} / {maxHp}";
+            _hpSlider.fillAmount = CurrentHp /  maxHp;
+            _hpText.text = $"{Math.Floor(CurrentHp)} / {maxHp}";
         }
 
         public void UpdateMana()
         {
-            _manaSlider.fillAmount = (float)CurrentMana / maxMana;
+            _manaSlider.fillAmount = (float) CurrentMana / maxMana;
             _manaText.text = $"{CurrentMana} / {maxMana}";
         }
 

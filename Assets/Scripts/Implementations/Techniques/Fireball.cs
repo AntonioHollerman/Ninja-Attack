@@ -135,7 +135,13 @@ namespace Implementations.Techniques
             
             Destroy(_curFireball.gameObject);
             GameObject explosion = Instantiate(explosionPrefab, pos, explosionPrefab.transform.rotation);
-            explosion.GetComponent<LoopAnimation>().StartAnimation();
+
+            LoopAnimation animationScript = explosion.GetComponent<LoopAnimation>();
+            FireballHitBox hitBox = explosion.GetComponent<FireballHitBox>();
+
+            hitBox.parent = cs;
+            hitBox.Activate(animationScript.frames.Length * animationScript.SecondsBetweenFrame);
+            animationScript.StartAnimation();
             
             Timer = CoolDown;
             _curState = Ready ? State.FIRST_ACTIVATION_READY : State.FIRST_ACTIVATION_NOT_READY;

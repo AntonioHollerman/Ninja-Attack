@@ -15,7 +15,7 @@ namespace BaseClasses
 
 
         private Collider _collider;
-        private List<CharacterSheet> _activeIgnore;
+        protected List<CharacterSheet> ActiveIgnore;
         private float _aliveTime;
         private bool IsAlive => _aliveTime > 0;
 
@@ -28,7 +28,7 @@ namespace BaseClasses
         public void Activate(float duration)
         {
             _aliveTime = duration;
-            _activeIgnore = new List<CharacterSheet>(parent.allies);
+            ActiveIgnore = new List<CharacterSheet>(parent.allies);
         }
 
         public void Deactivate()
@@ -68,14 +68,14 @@ namespace BaseClasses
             CharacterSheet cs = other.gameObject.GetComponent<CharacterSheet>();
             
             // If no CharacterSheet component is found, or if the character is in the ignore list, exit the method
-            if (cs == null || _activeIgnore.Contains(cs))
+            if (cs == null || ActiveIgnore.Contains(cs))
             {
                 return;
             }
 
             // Apply the effect to the character and add them to the ignore list
             Effect(cs);
-            _activeIgnore.Add(cs);
+            ActiveIgnore.Add(cs);
         }
 
         protected virtual void TriggerEnterWrapper(Collider other){}
