@@ -1,13 +1,144 @@
 ﻿using System.Collections;
 using BaseClasses;
+using Implementations.Extras;
+using Implementations.HitBoxes;
+using UnityEngine;
 
 namespace Implementations.Techniques
 {
     public class Fireball : Technique
     {
+        private enum State
+        {
+            FIRST_ACTIVATION_NOT_READY, FIRST_ACTIVATION_READY, SECOND_ACTIVATION_READY
+        }
+
+        public SpriteRenderer yellowBoarder;
+        public GameObject explosionPrefab;
+        public GameObject fireballPrefab;
+        public float flySpeed;
+        public float zDisplacement;
+        
+        private State _curState = State.FIRST_ACTIVATION_NOT_READY;
+        private GameObject _curFireball;
+        private bool _activationBeingProcessed;
         public override void Execute()
         {
             throw new System.NotImplementedException();
+        }
+
+        public override void ActivateTech()
+        {
+            if (_activationBeingProcessed)
+            {
+                return;
+            }
+            if (_curState is State.FIRST_ACTIVATION_READY)
+            {
+                _activationBeingProcessed = true;
+                FirstActivation();
+                _activationBeingProcessed = false;
+            }
+
+            else if (_curState is State.SECOND_ACTIVATION_READY)
+            {
+                _activationBeingProcessed = true;
+                SecondActivation();
+                _activationBeingProcessed = false;
+            }
+        }
+        
+        protected override IEnumerator StateListener()
+        {
+            _curState = Ready ? State.FIRST_ACTIVATION_READY : State.FIRST_ACTIVATION_NOT_READY;
+            if (_curState is State.FIRST_ACTIVATION_NOT_READY)
+            {
+                countDown.gameObject.SetActive(true);
+                yellowBoarder.gameObject.SetActive(false);
+                icon.sprite = notActive;
+            }
+
+            while (true)
+            {
+                yield return new WaitUntil(() => _curState is State.FIRST_ACTIVATION_READY);
+                countDown.gameObject.SetActive(false);
+                yellowBoarder.gameObject.SetActive(false);
+                icon.sprite = active;
+                yield return new WaitUntil(() => _curState is State.SECOND_ACTIVATION_READY);
+                countDown.gameObject.SetActive(false);
+                yellowBoarder.gameObject.SetActive(true);
+                icon.sprite = active;
+                yield return new WaitUntil(() => _curState is State.FIRST_ACTIVATION_NOT_READY or State.FIRST_ACTIVATION_READY);
+                countDown.gameObject.SetActive(true);
+                yellowBoarder.gameObject.SetActive(false);
+                icon.sprite = notActive;
+                yield return new WaitUntil(() => Ready);
+                _curState = State.FIRST_ACTIVATION_READY;
+            }
+        }
+
+        private bool ReadyToCast()
+        {
+            if (cs == null)
+            {
+                Destroy(gameObject);
+            }
+            if (!Ready)
+            {
+                return false;
+            }
+            
+            bool successful = cs.CastTechnique(ManaCost, animationBlockDuration);
+            return successful;
+        }
+
+        private void NormalizeSpriteDirection(Transform sprite, Player playerScript)
+        {
+            if (playerScript.transform.forward.x != 0)
+            {
+                sprite.transform.localRotation = Quaternion.Euler(0, 90, -90);
+            }
+        }
+        private void FirstActivation()
+        {
+            if (!ReadyToCast())
+            {
+                return;
+            }
+
+            _curFireball = Instantiate(fireballPrefab, 
+                cs.transform.position, 
+                cs.transform.rotation);
+            _curFireball.transform.Translate(Vector3.forward * zDisplacement);
+            
+            if (cs is Player playerScript)
+            {
+                Transform sprite = _curFireball.transform.Find("sprite");
+                NormalizeSpriteDirection(sprite, playerScript);
+            }
+            
+            FireballCollider ballCollider = _curFireball.GetComponent<FireballCollider>();
+            ballCollider.parentTech = this;
+            ballCollider.speed = _curFireball.transform.forward * flySpeed;
+            
+            _curFireball.GetComponent<LoopAnimation>().StartAnimation();
+            
+            Rigidbody ballRb = _curFireball.GetComponent<Rigidbody>();
+            ballRb.velocity = _curFireball.transform.forward * flySpeed;
+            
+            _curState = State.SECOND_ACTIVATION_READY;
+        }
+        
+        private void SecondActivation()
+        {
+            Vector3 pos = _curFireball.transform.position;
+            
+            Destroy(_curFireball.gameObject);
+            GameObject explosion = Instantiate(explosionPrefab, pos, explosionPrefab.transform.rotation);
+            explosion.GetComponent<LoopAnimation>().StartAnimation();
+            
+            Timer = CoolDown;
+            _curState = Ready ? State.FIRST_ACTIVATION_READY : State.FIRST_ACTIVATION_NOT_READY;
         }
     }
 }

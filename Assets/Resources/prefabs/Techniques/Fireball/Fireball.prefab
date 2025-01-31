@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8967535278522890189}
   - component: {fileID: 4916354228412847689}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,6 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3156545568252881017}
   - component: {fileID: 570491586523871923}
+  - component: {fileID: 3286318971395343363}
+  - component: {fileID: 5533531558271201063}
+  - component: {fileID: 7798608059896614811}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -109,8 +112,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7133896301033899153}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.02, y: 1.25, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.02, y: 1.209744, z: 0.039884925}
   m_LocalScale: {x: 2.14689, y: 2.14689, z: 2.14689}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -138,3 +141,64 @@ MonoBehaviour:
   - {fileID: 958663650, guid: 67e92139fb326604a9fa23489811a32c, type: 3}
   framesPerSecond: 30
   loopOnce: 0
+--- !u!65 &3286318971395343363
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7133896301033899153}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.16107732, y: 0.1662559, z: 0.23616727}
+  m_Center: {x: -0.002589291, y: 0.002589298, z: 0.019419812}
+--- !u!114 &5533531558271201063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7133896301033899153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbdc4ee7c3404b579bc288fe03d83077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTech: {fileID: 0}
+--- !u!54 &7798608059896614811
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7133896301033899153}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0

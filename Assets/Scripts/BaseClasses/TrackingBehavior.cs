@@ -20,6 +20,14 @@ namespace BaseClasses
                 LookAtTarget();
             }
 
+            if (Mathf.Approximately(transform.position.y, Target.transform.position.y))
+            {
+                transform.position += Vector3.up * 0.01f;
+            }
+            if (Mathf.Approximately(transform.position.x, Target.transform.position.x))
+            {
+                transform.position += Vector3.right * 0.01f;
+            }
         }
 
         protected override void AwakeWrapper()

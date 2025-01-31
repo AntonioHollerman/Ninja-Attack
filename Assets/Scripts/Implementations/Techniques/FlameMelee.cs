@@ -34,8 +34,7 @@ namespace Implementations.Techniques
         
         private void NormalizeSpriteDirection(Transform sprite, Player playerScript)
         {
-            Debug.Log(cs.transform.forward);
-            if (cs.transform.forward == Vector3.right || cs.transform.forward == Vector3.left)
+            if (playerScript.transform.forward == Vector3.right || playerScript.transform.forward == Vector3.left)
             {
                 try
                 {
@@ -47,19 +46,7 @@ namespace Implementations.Techniques
                 }
                 return;
             }
-            if (Input.GetKey(playerScript.leftCode) || Input.GetKey(playerScript.rightCode))
-            {
-                try
-                {
-                    sprite.localRotation = Quaternion.Euler(0, 90, 90);
-                }
-                catch (Exception ignore)
-                {
-                    // ignored
-                }
-                return;
-            }
-            if (cs.transform.forward == Vector3.up || cs.transform.forward == Vector3.down)
+            if (playerScript.transform.forward == Vector3.up || playerScript.transform.forward == Vector3.down)
             {
                 try
                 {
@@ -71,14 +58,12 @@ namespace Implementations.Techniques
                 }
             }
         }
+        
         private IEnumerator TrackParent(LoopAnimation ani)
         {
-            Player playerScript = cs.GetComponent<Player>();
-            bool isPlayer = playerScript != null;
-            Transform sprite = ani.transform.Find("sprite");
-
-            if (isPlayer)
+            if (cs is Player playerScript)
             {
+                Transform sprite = ani.transform.Find("sprite");
                 NormalizeSpriteDirection(sprite, playerScript);
             }
             ani.transform.rotation = cs.transform.rotation;

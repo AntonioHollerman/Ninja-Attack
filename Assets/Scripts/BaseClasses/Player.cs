@@ -87,7 +87,7 @@ namespace BaseClasses
 
         private void HandleMovement()
         {
-            Rb.velocity = GetDirection() * speed;
+            rb.velocity = GetDirection() * speed;
         }
 
         private Vector3 GetDirection()
@@ -118,7 +118,7 @@ namespace BaseClasses
 
         private void AttackHandler()
         {
-            if (Input.GetKey(AttackCode))
+            if (Input.GetKeyDown(AttackCode))
             {
                 AttackWeapon();
             }
@@ -126,13 +126,13 @@ namespace BaseClasses
 
         private void TechniqueHandler()
         {
-            if (Input.GetKey(FirstTechnique))
+            if (Input.GetKeyDown(FirstTechnique))
             {
                 techOne.ActivateTech();
                 UpdateMana();
             }
 
-            if (Input.GetKey(SecondTechnique))
+            if (Input.GetKeyDown(SecondTechnique))
             {
                 techTwo.ActivateTech();
                 UpdateMana();

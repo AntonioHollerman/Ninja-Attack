@@ -34,7 +34,7 @@ namespace BaseClasses
         // Properties to check if the character is vulnerable, stunned, or has animation blocked
         public bool IsStunned => _stunDuration > 0;
         protected bool AnimationBlocked => _animationBlockedDuration > 0;
-        protected Rigidbody Rb;
+        public Rigidbody rb;
 
         // Dictionary to store equipped items, and a list to store techniques
         private Weapon _weapon;
@@ -194,15 +194,21 @@ namespace BaseClasses
             }
         }
 
-        public bool CastTechnique(int mana, float animationBlockDuration)
+        public bool CastTechnique(int manaCost, float animationBlockDuration)
         {
-            if (CurrentMana - mana < 0 || IsStunned || AnimationBlocked)
+            if (CurrentMana < manaCost || IsStunned || AnimationBlocked)
             {
                 return false;
             }
 
             BlockAnimation(animationBlockDuration);
-            CurrentMana -= mana;
+            CurrentMana -= manaCost;
+            
+            if (this is Player player)
+            {
+                player.UpdateMana();
+            }
+            
             return true;
         }
 
@@ -251,7 +257,7 @@ namespace BaseClasses
         /// </summary>
         protected virtual void AwakeWrapper()
         {
-            Rb = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();
             // Initialize techniques with null values
             CurrentHp = maxHp;
             CurrentMana = maxMana;
@@ -299,7 +305,7 @@ namespace BaseClasses
                 return;
             }
 
-            Rb.velocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
         }
 
         public override int GetHashCode()

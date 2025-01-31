@@ -27,12 +27,12 @@ namespace BaseClasses
         
         public int ManaCost { get; private set; } // How much implemented technique cost
         public float CoolDown { get; private set; } // How many seconds is the cooldown
-        private float _timer;
-        private bool Ready => cs.CurrentMana >= ManaCost && _timer <= 0;
+        protected float Timer;
+        protected bool Ready => cs.CurrentMana >= ManaCost && Timer <= 0;
 
         public abstract void Execute();
 
-        public void ActivateTech()
+        public virtual void ActivateTech()
         {
             if (cs == null)
             {
@@ -46,7 +46,7 @@ namespace BaseClasses
             bool successful = cs.CastTechnique(ManaCost, animationBlockDuration);
             if (successful)
             {
-                _timer = CoolDown;
+                Timer = CoolDown;
                 Execute();
             }
         }
@@ -57,8 +57,8 @@ namespace BaseClasses
                 return;
             }
 
-            _timer -= _timer > 0 ? Time.deltaTime : _timer;
-            countDown.text = Math.Ceiling(_timer).ToString(CultureInfo.InvariantCulture);
+            Timer -= Timer > 0 ? Time.deltaTime : Timer;
+            countDown.text = Math.Ceiling(Timer).ToString(CultureInfo.InvariantCulture);
         }
 
         protected virtual void StartWrapper()
@@ -71,8 +71,13 @@ namespace BaseClasses
             }
         }
 
-        private IEnumerator StateListener()
+        protected virtual IEnumerator StateListener()
         {
+            if (!Ready)
+            {
+                countDown.gameObject.SetActive(true);
+                icon.sprite = notActive;
+            }
             while (true)
             {
                 yield return new WaitUntil(() => Ready);
