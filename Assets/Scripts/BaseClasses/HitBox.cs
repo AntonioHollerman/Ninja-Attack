@@ -11,13 +11,12 @@ namespace BaseClasses
     {
         public CharacterSheet parent;
         public bool destroyOnFinish;
-        // List of characters to ignore for the hit detection
+        public bool workOnCollider;
+
+
+        private Collider _collider;
         private List<CharacterSheet> _activeIgnore;
-        
-        // Time remaining before the hitbox is destroyed
         private float _aliveTime;
-        
-        // Property to check if the hitbox is still active (alive time is greater than 0)
         private bool IsAlive => _aliveTime > 0;
 
         /// <summary>
@@ -42,7 +41,15 @@ namespace BaseClasses
             while (true)
             {
                 yield return new WaitUntil(() => IsAlive);
+                if (workOnCollider)
+                {
+                    _collider.enabled = true;
+                }
                 yield return new WaitUntil(() => !IsAlive);
+                if (workOnCollider)
+                {
+                    _collider.enabled = false;
+                }
                 if (destroyOnFinish)
                 {
                     Destroy(gameObject);
@@ -75,6 +82,11 @@ namespace BaseClasses
         protected virtual void AwakeWrapper()
         {
             StartCoroutine(AliveChecker());
+            if (workOnCollider)
+            {
+                _collider = gameObject.GetComponent<Collider>();
+                _collider.enabled = false;
+            }
         }
 
         protected virtual void UpdateWrapper()
