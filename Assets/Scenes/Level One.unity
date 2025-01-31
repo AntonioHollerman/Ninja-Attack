@@ -1330,6 +1330,8 @@ MonoBehaviour:
   icon: {fileID: 236376316}
   active: {fileID: 1045486412, guid: ba13e5729f57cdd4d853b67b5e5b356a, type: 3}
   notActive: {fileID: -630561447, guid: ba13e5729f57cdd4d853b67b5e5b356a, type: 3}
+  dischargeAnimationPrefab: {fileID: 6345832872046445668, guid: 084d869a805864841be0b449f337e67f, type: 3}
+  frameStartHitBox: 17
 --- !u!1 &592271646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4554922097971385247, guid: d72bfbffaacf05244af8bbffabc067ea, type: 3}
@@ -3216,9 +3218,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Implementations.Extras.MultiSpriteAnimation, Assembly-CSharp
+        m_TargetAssemblyTypeName: Implementations.Extras.LoopAnimation, Assembly-CSharp
         m_MethodName: StartAnimation
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4168,15 +4170,15 @@ PrefabInstance:
       objectReference: {fileID: 962242012}
     - target: {fileID: 8130472360917072081, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.72
       objectReference: {fileID: 0}
     - target: {fileID: 8130472360917072081, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.41
       objectReference: {fileID: 0}
     - target: {fileID: 8130472360917072081, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8130472360917072081, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
       propertyPath: m_LocalRotation.w

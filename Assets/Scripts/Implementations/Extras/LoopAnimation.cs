@@ -13,7 +13,7 @@ namespace Implementations.Extras
         public float framesPerSecond = 30;
         public bool loopOnce;
         
-        public int FrameIndex { private set; get;}
+        public int FrameIndex { protected set; get;}
         public float SecondsBetweenFrame { private set; get;}
         private Coroutine _animation;
 
@@ -34,6 +34,7 @@ namespace Implementations.Extras
 
         public void StartAnimation()
         {
+            gameObject.SetActive(true);
             if (_animation != null)
             {
                 StopCoroutine(_animation);

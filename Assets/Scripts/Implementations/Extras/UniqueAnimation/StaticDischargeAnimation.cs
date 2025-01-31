@@ -9,18 +9,18 @@ namespace Implementations.Extras.UniqueAnimation
         public float growRate;
         protected override IEnumerator PlayAnimation()
         {
-            int i = 0;
+            FrameIndex = 0;
             bool growing = false;
             while (true)
             {
-                sr.sprite = frames[i];
-                i++;
-                if (i == frames.Length && loopOnce)
+                sr.sprite = frames[FrameIndex];
+                FrameIndex++;
+                if (FrameIndex == frames.Length && loopOnce)
                 {
                     Destroy(gameObject);
                 }
 
-                if (i == startToGrow)
+                if (FrameIndex == startToGrow)
                 {
                     growing = true;
                 }
@@ -28,9 +28,9 @@ namespace Implementations.Extras.UniqueAnimation
                 {
                     transform.localScale *= growRate;
                 }
-                if (i == frames.Length)
+                if (FrameIndex == frames.Length)
                 {
-                    i = 0;
+                    FrameIndex = 0;
                     transform.localScale = new Vector3(1, 1, 1);
                     growing = false;
                 }
