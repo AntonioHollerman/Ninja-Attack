@@ -1322,8 +1322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2789701398b9447e89eb8beeaf850efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 50
-  coolDown: 12
+  manaCost: 0
+  coolDown: 0
   animationBlockDuration: 0
   cs: {fileID: 962242012}
   countDown: {fileID: 1521534845}

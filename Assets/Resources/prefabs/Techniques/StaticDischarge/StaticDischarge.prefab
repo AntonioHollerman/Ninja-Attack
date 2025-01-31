@@ -53,7 +53,7 @@ MonoBehaviour:
   framesPerSecond: 30
   loopOnce: 1
   startToGrow: 10
-  growRate: 1.15
+  growRate: 1.18
 --- !u!114 &777349437124807103
 MonoBehaviour:
   m_ObjectHideFlags: 0

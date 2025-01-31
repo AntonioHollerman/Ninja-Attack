@@ -34,6 +34,10 @@ namespace BaseClasses
 
         public void ActivateTech()
         {
+            if (cs == null)
+            {
+                Destroy(gameObject);
+            }
             if (!Ready)
             {
                 return;
