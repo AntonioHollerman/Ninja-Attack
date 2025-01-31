@@ -78,6 +78,9 @@ public class MenuController : MonoBehaviour {
     [SerializeField, HideInInspector]
     public GameObject OptionsMenu;
 
+    [SerializeField, Tooltip("Array of menu buttons")]
+    public Button[] menuButtons; // Array to hold your buttons
+
 
     void Start()
     {
@@ -85,7 +88,16 @@ public class MenuController : MonoBehaviour {
         instance = this;
         //Set the activeBackground array length
         if (useParallax) { activeBackground = new GameObject[backgroundsParallax.Length]; } else { activeBackground = new GameObject[backgrounds.Length]; }
+
+        if (menuButtons.Length > 1) // Ensure there are at least 2 buttons
+        {
+            menuButtons[1].onClick.AddListener(exitGame); // Link the second button to exitGame
+        }
+
+
+
         initiate();      
+
     }
 
 	void Update () {
@@ -225,7 +237,7 @@ public class MenuController : MonoBehaviour {
     public void newGame()
     {
         //Loads the first scene, change the number to your desired scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     //Continue

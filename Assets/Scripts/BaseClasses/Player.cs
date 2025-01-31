@@ -36,6 +36,9 @@ namespace BaseClasses
         private Image _manaSlider;
         private TextMeshProUGUI _manaText;
 
+        public GameManager gameManager;
+        private bool isDefeated = false;
+
         protected override void UpdateWrapper()
         {
             base.UpdateWrapper();
@@ -172,14 +175,29 @@ namespace BaseClasses
 
         public override void Defeated()
         {
-            GameObject hostileSpawner = GameObject.Find("HostileSpawner");
-            foreach (Transform trans in hostileSpawner.transform)
+            if (!isDefeated) // Ensure we only process this once
             {
-                GameObject go = trans.gameObject;
-                TrackingBehavior script = go.GetComponent<TrackingBehavior>();
-                script?.RemoveTarget(gameObject);
+                isDefeated = true; // Mark this player as defeated
+                gameManager = FindObjectOfType<GameManager>();
+
+                GameObject hostileSpawner = GameObject.Find("HostileSpawner");
+                foreach (Transform trans in hostileSpawner.transform)
+                {
+                    GameObject go = trans.gameObject;
+                    TrackingBehavior script = go.GetComponent<TrackingBehavior>();
+                    script?.RemoveTarget(gameObject);
+                }
+
+                // Stops game logic
+                Time.timeScale = 0;
+
+                base.Defeated();
             }
-            base.Defeated();
+        }
+
+        public bool IsDefeated()
+        {
+            return isDefeated;
         }
     }
 }
