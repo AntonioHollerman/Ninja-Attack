@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
 
         // Check if both players are defeated
-        if (playerOne != null && playerTwo != null && playerOne.IsDefeated() && playerTwo.IsDefeated())
+        if (playerOne != null && playerTwo != null && playerOne == null && playerTwo == null)
         {
             gameOver();
         }
