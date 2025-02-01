@@ -847,7 +847,7 @@ MonoBehaviour:
   manaCost: 0
   coolDown: 0
   animationBlockDuration: 0
-  cs: {fileID: 1272078720}
+  parent: {fileID: 1272078720}
   countDown: {fileID: 374078201}
   icon: {fileID: 755996416}
   active: {fileID: 1665446925, guid: 19c08825398e41f41a57f20c75e28965, type: 3}
@@ -1330,7 +1330,7 @@ MonoBehaviour:
   manaCost: 0
   coolDown: 0
   animationBlockDuration: 0
-  cs: {fileID: 962242012}
+  parent: {fileID: 962242012}
   countDown: {fileID: 1521534845}
   icon: {fileID: 236376316}
   active: {fileID: 1045486412, guid: ba13e5729f57cdd4d853b67b5e5b356a, type: 3}
@@ -2096,7 +2096,7 @@ MonoBehaviour:
   manaCost: 0
   coolDown: 0
   animationBlockDuration: 0
-  cs: {fileID: 1272078720}
+  parent: {fileID: 1272078720}
   countDown: {fileID: 430820522}
   icon: {fileID: 1841772203}
   active: {fileID: -1927839504, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
@@ -4118,7 +4118,7 @@ MonoBehaviour:
   manaCost: 0
   coolDown: 0
   animationBlockDuration: 0
-  cs: {fileID: 962242012}
+  parent: {fileID: 962242012}
   countDown: {fileID: 1195577231}
   icon: {fileID: 371902975}
   active: {fileID: 1552951868, guid: cc72c327cd5ef3c4cabca6134a9b4a0c, type: 3}
@@ -4143,7 +4143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2136100508
 Transform:
   m_ObjectHideFlags: 0

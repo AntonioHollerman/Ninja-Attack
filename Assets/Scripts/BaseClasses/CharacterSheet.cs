@@ -13,6 +13,7 @@ namespace BaseClasses
     /// </summary>
     public abstract class CharacterSheet : MonoBehaviour
     {
+        public static List<CharacterSheet> CharacterSheets = new List<CharacterSheet>();
         public List<CharacterSheet> allies;
         public float speed;
         public bool IsALive => CurrentHp > 0; // True if the character is alive, false otherwise
@@ -264,6 +265,7 @@ namespace BaseClasses
             _effects = new List<Effect>();
             
             allies.Add(this);
+            CharacterSheets.Add(this);
         }
 
         /// <summary>
@@ -278,6 +280,7 @@ namespace BaseClasses
 
             if (!IsALive)
             {
+                CharacterSheets.Remove(this);
                 Defeated();
             }
         }

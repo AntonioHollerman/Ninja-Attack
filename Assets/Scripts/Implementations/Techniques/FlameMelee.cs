@@ -17,7 +17,7 @@ namespace Implementations.Techniques
             GameObject techGo = Instantiate(meleeAnimationPrefab);
             LoopAnimation animationScript = techGo.GetComponent<LoopAnimation>();
             FireHitBox hitBoxScript = techGo.GetComponent<FireHitBox>();
-            hitBoxScript.parent = cs;
+            hitBoxScript.parent = parent;
             
             
             StartCoroutine(TrackParent(animationScript));
@@ -61,12 +61,12 @@ namespace Implementations.Techniques
         
         private IEnumerator TrackParent(LoopAnimation ani)
         {
-            if (cs is Player playerScript)
+            if (parent is Player playerScript)
             {
                 Transform sprite = ani.transform.Find("sprite");
                 NormalizeSpriteDirection(sprite, playerScript);
             }
-            ani.transform.rotation = cs.transform.rotation;
+            ani.transform.rotation = parent.transform.rotation;
             while (true)
             {
                 if (ani == null)
@@ -74,7 +74,7 @@ namespace Implementations.Techniques
                     break;
                 }
                 
-                ani.transform.position = cs.transform.position;
+                ani.transform.position = parent.transform.position;
                 ani.transform.Translate(Vector3.forward * zOffset);
                 
                 yield return null;

@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d6274e35274989bcab3d7802a263a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sr: {fileID: 0}
-  path: sprites/Techniques/Flash Step
+  sr: {fileID: 4913960799092368544}
+  path: sprites/Techniques/Flash Step/HitEffect
   frames: []
   framesPerSecond: 30
   loopOnce: 1

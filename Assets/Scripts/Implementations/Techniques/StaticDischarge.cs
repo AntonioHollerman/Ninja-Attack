@@ -16,7 +16,7 @@ namespace Implementations.Techniques
             GameObject techGo = Instantiate(dischargeAnimationPrefab);
             StaticDischargeAnimation animationScript = techGo.GetComponent<StaticDischargeAnimation>();
             ElectricHitBox hitBoxScript = techGo.GetComponent<ElectricHitBox>();
-            hitBoxScript.parent = cs;
+            hitBoxScript.parent = parent;
             hitBoxScript.parentTech = this;
             
             
@@ -39,7 +39,7 @@ namespace Implementations.Techniques
                 {
                     break;
                 }
-                ani.transform.position = cs.transform.position;
+                ani.transform.position = parent.transform.position;
                 yield return null;
             }
         }

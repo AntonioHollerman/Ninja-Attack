@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using BaseClasses;
 using Implementations.Extras;
+using Implementations.HitBoxes;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Implementations.Techniques
@@ -15,15 +16,18 @@ namespace Implementations.Techniques
         public Vector3 sparkOffset;
         public float distance;
 
-        private float _dashAnimationDuration;
+        private Collider _parentCollider;
+        private float _dashDuration;
         protected override void StartWrapper()
         {
             base.StartWrapper();
+            _parentCollider = parent.gameObject.GetComponent<Collider>();
+            
             MultiSpriteAnimation dashAni = Instantiate(dashPrefab).GetComponent<MultiSpriteAnimation>();
             LoopAnimation redSparkAni = Instantiate(redSparkPrefab).GetComponent<LoopAnimation>();
-
-            _dashAnimationDuration = dashAni.GetDuration();
+            
             animationBlockDuration = dashAni.GetDuration() + redSparkAni.GetDuration();
+            _dashDuration = dashAni.GetDuration();
             
             Destroy(dashAni.gameObject);
             Destroy(redSparkAni.gameObject);
@@ -31,6 +35,14 @@ namespace Implementations.Techniques
 
         public override void Execute()
         {
+            foreach (CharacterSheet cs in CharacterSheet.CharacterSheets)
+            {
+                if (cs == parent)
+                {
+                    continue;
+                }
+                Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), true);
+            }
             StartCoroutine(PlayAnimation());
         }
 
@@ -58,9 +70,9 @@ namespace Implementations.Techniques
         
         private void RedSparkAnimation()
         {
-            GameObject redSpark = Instantiate(redSparkPrefab, cs.transform.position, cs.transform.rotation);
+            GameObject redSpark = Instantiate(redSparkPrefab, parent.transform.position, parent.transform.rotation);
             redSpark.transform.Translate(sparkOffset);
-            if (cs is Player playerScript)
+            if (parent is Player playerScript)
             {
                 NormalizeSpriteDirection(redSpark.transform, playerScript.transform.forward);
             }
@@ -69,8 +81,8 @@ namespace Implementations.Techniques
 
         private MultiSpriteAnimation DashAnimation()
         {
-            GameObject dash = Instantiate(dashPrefab, cs.transform.position, cs.transform.rotation);
-            if (cs is Player playerScript)
+            GameObject dash = Instantiate(dashPrefab, parent.transform.position, parent.transform.rotation);
+            if (parent is Player playerScript)
             {
                 NormalizeSpriteDirection(dash.transform, playerScript.transform.forward);
             }
@@ -80,11 +92,11 @@ namespace Implementations.Techniques
         
         private void BlueSparkAnimation()
         {
-            Vector3 dirInverse = cs.transform.forward * -1;
-            GameObject blueSpark = Instantiate(blueSparkPrefab, cs.transform.position, blueSparkPrefab.transform.rotation);
+            Vector3 dirInverse = parent.transform.forward * -1;
+            GameObject blueSpark = Instantiate(blueSparkPrefab, parent.transform.position, blueSparkPrefab.transform.rotation);
             blueSpark.transform.localRotation = Quaternion.LookRotation(dirInverse);
             blueSpark.transform.Translate(sparkOffset);
-            if (cs is Player)
+            if (parent is Player)
             {
                 NormalizeSpriteDirection(blueSpark.transform, dirInverse);
             }
@@ -93,13 +105,19 @@ namespace Implementations.Techniques
 
         private IEnumerator PlayAnimation()
         {
-            if (cs is Player player)
+            if (parent is Player player)
             {
                 player.BlockInput(animationBlockDuration);
             }
             
             RedSparkAnimation();
             MultiSpriteAnimation dashScript = DashAnimation();
+
+            ElectricHitBox hb = dashScript.gameObject.GetComponent<ElectricHitBox>();
+            hb.parent = parent;
+            hb.parentTech = this;
+            hb.Activate(_dashDuration);
+            
             StartCoroutine(MoveParent(dashScript));
             dashScript.StartAnimation(3);
             yield return new WaitUntil(() => dashScript == null);
@@ -108,15 +126,24 @@ namespace Implementations.Techniques
 
         private IEnumerator MoveParent(MultiSpriteAnimation dashScript)
         {
-            Vector3 startPos = cs.transform.position;
-            Vector3 maxDistance = startPos + cs.transform.forward * distance;
-            cs.rb.velocity = cs.transform.forward * 20;
-            yield return new WaitUntil(() => Vector3.Distance(startPos, cs.transform.position) > distance || dashScript == null);
-            if (Vector3.Distance(startPos, cs.transform.position) > distance)
+            Vector3 startPos = parent.transform.position;
+            Vector3 maxDistance = startPos + parent.transform.forward * distance;
+            parent.rb.velocity = parent.transform.forward * 20;
+            yield return new WaitUntil(() => Vector3.Distance(startPos, parent.transform.position) > distance || dashScript == null);
+            if (Vector3.Distance(startPos, parent.transform.position) > distance)
             {
-                cs.transform.position = maxDistance;
+                parent.transform.position = maxDistance;
             }
-            cs.rb.velocity = Vector3.zero;
+            
+            parent.rb.velocity = Vector3.zero;
+            foreach (CharacterSheet cs in CharacterSheet.CharacterSheets)
+            {
+                if (cs == parent)
+                {
+                    continue;
+                }
+                Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
+            }
         }
     }
 }

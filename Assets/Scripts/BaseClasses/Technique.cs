@@ -3,6 +3,7 @@ using System.Collections;
 using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BaseClasses
 {
@@ -19,7 +20,7 @@ namespace BaseClasses
         [SerializeField] private float coolDown;
         
         public float animationBlockDuration;
-        public CharacterSheet cs;
+        public CharacterSheet parent;
         public TextMeshProUGUI countDown;
         public SpriteRenderer icon;
         public Sprite active;
@@ -28,13 +29,13 @@ namespace BaseClasses
         public int ManaCost { get; private set; } // How much implemented technique cost
         public float CoolDown { get; private set; } // How many seconds is the cooldown
         protected float Timer;
-        protected bool Ready => cs.CurrentMana >= ManaCost && Timer <= 0;
+        protected bool Ready => parent.CurrentMana >= ManaCost && Timer <= 0;
 
         public abstract void Execute();
 
         public virtual void ActivateTech()
         {
-            if (cs == null)
+            if (parent == null)
             {
                 Destroy(gameObject);
             }
@@ -43,7 +44,7 @@ namespace BaseClasses
                 return;
             }
             
-            bool successful = cs.CastTechnique(ManaCost, animationBlockDuration);
+            bool successful = parent.CastTechnique(ManaCost, animationBlockDuration);
             if (successful)
             {
                 Timer = CoolDown;

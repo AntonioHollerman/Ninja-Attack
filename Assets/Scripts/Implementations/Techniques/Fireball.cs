@@ -79,7 +79,7 @@ namespace Implementations.Techniques
 
         private bool ReadyToCast()
         {
-            if (cs == null)
+            if (parent == null)
             {
                 Destroy(gameObject);
             }
@@ -88,7 +88,7 @@ namespace Implementations.Techniques
                 return false;
             }
             
-            bool successful = cs.CastTechnique(ManaCost, animationBlockDuration);
+            bool successful = parent.CastTechnique(ManaCost, animationBlockDuration);
             return successful;
         }
 
@@ -107,11 +107,11 @@ namespace Implementations.Techniques
             }
 
             _curFireball = Instantiate(fireballPrefab, 
-                cs.transform.position, 
-                cs.transform.rotation);
+                parent.transform.position, 
+                parent.transform.rotation);
             _curFireball.transform.Translate(Vector3.forward * zDisplacement);
             
-            if (cs is Player playerScript)
+            if (parent is Player playerScript)
             {
                 Transform sprite = _curFireball.transform.Find("sprite");
                 NormalizeSpriteDirection(sprite, playerScript);
@@ -139,7 +139,7 @@ namespace Implementations.Techniques
             LoopAnimation animationScript = explosion.GetComponent<LoopAnimation>();
             FireHitBox hitBox = explosion.GetComponent<FireHitBox>();
 
-            hitBox.parent = cs;
+            hitBox.parent = parent;
             hitBox.Activate(animationScript.frames.Length * animationScript.SecondsBetweenFrame);
             animationScript.StartAnimation();
             

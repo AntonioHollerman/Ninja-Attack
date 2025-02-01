@@ -78,7 +78,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.48, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -94,6 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3147790831673658134}
   - component: {fileID: 2656288713875371503}
+  - component: {fileID: 5717772458181220762}
+  - component: {fileID: 8305488414597514426}
   m_Layer: 0
   m_Name: Dash
   m_TagString: Untagged
@@ -137,6 +139,47 @@ MonoBehaviour:
   - {fileID: 3163309553101267195}
   loopOnce: 1
   playAsynchronously: 1
+--- !u!65 &5717772458181220762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2323067174952427558}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 2.53839}
+  m_Center: {x: 0, y: -3.2799318e-15, z: 0.7691951}
+--- !u!114 &8305488414597514426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2323067174952427558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d638c97fc54ebbbfd47361e75521ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  destroyOnFinish: 0
+  workOnCollider: 1
+  parentTech: {fileID: 0}
+  damage: 5
+  stunDuration: 3
+  hitPrefab: {fileID: 3464262347358634055, guid: da7524227292ff74da48a16a9f3eebad, type: 3}
+  stunPrefab: {fileID: 4553206577251356814, guid: e08d1ce3f8286a541be78be0ba6686bf, type: 3}
 --- !u!1 &2994337452376064848
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +358,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.48, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -399,7 +442,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.48, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

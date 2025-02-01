@@ -25,7 +25,7 @@ namespace Implementations.HitBoxes
         {
             TurnOffForce(other);
             
-            if (other.gameObject == parentTech.cs.gameObject)
+            if (other.gameObject == parentTech.parent.gameObject)
             {
                 return;
             }
