@@ -383,20 +383,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11427428, guid: 6f40747fa9c2b6b439dfbb5d6b8ed66a, type: 3}
       propertyPath: options.Array.data[1]
-      value: Exit
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 11427428, guid: 6f40747fa9c2b6b439dfbb5d6b8ed66a, type: 3}
       propertyPath: backgrounds.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11427428, guid: 6f40747fa9c2b6b439dfbb5d6b8ed66a, type: 3}
       propertyPath: mainBackgroundParallax
       value: 
       objectReference: {fileID: 123392, guid: 52005b25791146745ac91432f3a7979e, type: 3}
-    - target: {fileID: 11427428, guid: 6f40747fa9c2b6b439dfbb5d6b8ed66a, type: 3}
-      propertyPath: backgrounds.Array.data[0]
-      value: 
-      objectReference: {fileID: 113482, guid: 15fde678dfaf5a046a89c5639a90011d, type: 3}
     - target: {fileID: 11427428, guid: 6f40747fa9c2b6b439dfbb5d6b8ed66a, type: 3}
       propertyPath: backgrounds.Array.data[1]
       value: 
