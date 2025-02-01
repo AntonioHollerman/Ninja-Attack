@@ -185,7 +185,7 @@ MonoBehaviour:
   sr: {fileID: 5350974968757324853}
   path: sprites/Techniques/Flash Step/Dash
   frames: []
-  framesPerSecond: 30
+  framesPerSecond: 120
   loopOnce: 0
 --- !u!1 &3222087449975154125
 GameObject:
@@ -235,7 +235,7 @@ MonoBehaviour:
   sr: {fileID: 9220884385977284949}
   path: sprites/Techniques/Flash Step/Dash
   frames: []
-  framesPerSecond: 30
+  framesPerSecond: 120
   loopOnce: 0
 --- !u!1 &4967143048475529560
 GameObject:
@@ -453,5 +453,5 @@ MonoBehaviour:
   sr: {fileID: 49944275818288338}
   path: sprites/Techniques/Flash Step/Dash
   frames: []
-  framesPerSecond: 30
+  framesPerSecond: 120
   loopOnce: 0

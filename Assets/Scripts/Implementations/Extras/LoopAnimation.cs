@@ -42,7 +42,7 @@ namespace Implementations.Extras
             _animation = StartCoroutine(PlayAnimation());
         }
 
-        private void GetFrames()
+        public void GetFrames()
         {
             FrameIndex = 0;
             SecondsBetweenFrame = 1 / framesPerSecond;
@@ -73,6 +73,12 @@ namespace Implementations.Extras
         }
 
         public float GetAnimationDuration()
+        {
+            GetFrames();
+            return frames.Length * SecondsBetweenFrame;
+        }
+
+        public float GetDuration()
         {
             return frames.Length * SecondsBetweenFrame;
         }

@@ -62,6 +62,7 @@ namespace Implementations.Extras
         private float GetDuration(LoopAnimation ani)
         {
             return ani.frames.Length * (1 / ani.framesPerSecond);
+            
         }
 
         private float GetLongestDuration()
@@ -93,6 +94,19 @@ namespace Implementations.Extras
             {
                 _animation = StartCoroutine(LinearAnimation());
             }
+        }
+
+        public float GetDuration()
+        {
+            float duration = 0;
+
+            foreach (LoopAnimation ani in spriteAnimations)
+            {
+                ani.gameObject.SetActive(true);
+                duration += GetDuration(ani);
+                ani.gameObject.SetActive(false);
+            }
+            return duration;
         }
     }
 }

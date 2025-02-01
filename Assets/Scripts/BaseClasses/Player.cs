@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Timers;
 using Implementations.Characters.HostileScripts;
 using TMPro;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -37,9 +39,17 @@ namespace BaseClasses
         private Image _manaSlider;
         private TextMeshProUGUI _manaText;
 
+        public bool InputBlocked => _blockInput > 0 ;
+        private float _blockInput;
+
         protected override void UpdateWrapper()
         {
             base.UpdateWrapper();
+            _blockInput -= _blockInput < 0 ? _blockInput : Time.deltaTime;
+            if (InputBlocked)
+            {
+                return;
+            }
             HandleMovement();
             HandleDirection();
             AttackHandler();
@@ -180,6 +190,12 @@ namespace BaseClasses
                 script?.RemoveTarget(gameObject);
             }
             base.Defeated();
+        }
+
+        public void BlockInput(float duration)
+        {
+            _blockInput = _blockInput > duration ? _blockInput : duration;
+            rb.velocity = Vector3.zero;
         }
     }
 }
