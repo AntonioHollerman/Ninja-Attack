@@ -2,7 +2,6 @@
 using BaseClasses;
 using Implementations.Extras;
 using Implementations.HitBoxes;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Implementations.Techniques
@@ -16,19 +15,23 @@ namespace Implementations.Techniques
         public Vector3 sparkOffset;
         public float distance;
 
+        public AudioClip dashSound; // Sound effect for the dash
+        private AudioSource audioSource; // Reference to the AudioSource component
+
         private Collider _parentCollider;
         private float _dashDuration;
+
         protected override void StartWrapper()
         {
             base.StartWrapper();
             _parentCollider = parent.gameObject.GetComponent<Collider>();
-            
+
             MultiSpriteAnimation dashAni = Instantiate(dashPrefab).GetComponent<MultiSpriteAnimation>();
             LoopAnimation redSparkAni = Instantiate(redSparkPrefab).GetComponent<LoopAnimation>();
-            
+
             animationBlockDuration = dashAni.GetDuration() + redSparkAni.GetDuration();
             _dashDuration = dashAni.GetDuration();
-            
+
             Destroy(dashAni.gameObject);
             Destroy(redSparkAni.gameObject);
         }
@@ -61,13 +64,13 @@ namespace Implementations.Techniques
                 else
                 {
                     sprite.transform.localRotation = Quaternion.Euler(
-                        sprite.transform.localEulerAngles.x, 
-                        sprite.transform.localEulerAngles.y, 
+                        sprite.transform.localEulerAngles.x,
+                        sprite.transform.localEulerAngles.y,
                         -90);
                 }
             }
         }
-        
+
         private void RedSparkAnimation()
         {
             GameObject redSpark = Instantiate(redSparkPrefab, parent.transform.position, parent.transform.rotation);
@@ -86,10 +89,10 @@ namespace Implementations.Techniques
             {
                 NormalizeSpriteDirection(dash.transform, playerScript.transform.forward);
             }
-            
+
             return dash.GetComponent<MultiSpriteAnimation>();
         }
-        
+
         private void BlueSparkAnimation()
         {
             Vector3 dirInverse = parent.transform.forward * -1;
@@ -109,7 +112,7 @@ namespace Implementations.Techniques
             {
                 player.BlockInput(animationBlockDuration);
             }
-            
+
             RedSparkAnimation();
             MultiSpriteAnimation dashScript = DashAnimation();
 
@@ -117,9 +120,10 @@ namespace Implementations.Techniques
             hb.parent = parent;
             hb.parentTech = this;
             hb.Activate(_dashDuration);
-            
+
             StartCoroutine(MoveParent(dashScript));
             dashScript.StartAnimation(3);
+            PlayDashSound(); // Play the dash sound
             yield return new WaitUntil(() => dashScript == null);
             BlueSparkAnimation();
         }
@@ -134,16 +138,29 @@ namespace Implementations.Techniques
             {
                 parent.transform.position = maxDistance;
             }
-            
+
             parent.rb.velocity = Vector3.zero;
             foreach (CharacterSheet cs in CharacterSheet.CharacterSheets)
             {
                 if (cs == parent)
-                {
                     continue;
-                }
-                Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
             }
+            Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
         }
     }
+
+    private void PlayDashSound()
+    {
+        if (audioSource != null && dashSound != null)
+        {
+            audioSource.PlayOneShot(dashSound); // Play the dash sound
+        }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
+    }
+}
 }

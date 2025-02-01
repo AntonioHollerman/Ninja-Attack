@@ -11,6 +11,10 @@ namespace Implementations.Techniques
     {
         public GameObject dischargeAnimationPrefab;
         public int frameStartHitBox;
+
+        public AudioClip dischargeSound; // Sound effect for the static discharge
+        private AudioSource audioSource; // Reference to the AudioSource component
+
         public override void Execute()
         {
             GameObject techGo = Instantiate(dischargeAnimationPrefab);
@@ -18,11 +22,12 @@ namespace Implementations.Techniques
             ElectricHitBox hitBoxScript = techGo.GetComponent<ElectricHitBox>();
             hitBoxScript.parent = parent;
             hitBoxScript.parentTech = this;
-            
-            
+
             StartCoroutine(TrackParent(animationScript));
             StartCoroutine(FramesListener(animationScript, hitBoxScript));
             animationScript.StartAnimation();
+
+            PlayDischargeSound(); // Play the discharge sound
         }
 
         private IEnumerator FramesListener(LoopAnimation ani, ElectricHitBox hitBox)
@@ -31,6 +36,7 @@ namespace Implementations.Techniques
             int framesLeft = ani.frames.Length - ani.FrameIndex;
             hitBox.Activate(framesLeft * ani.SecondsBetweenFrame);
         }
+
         private IEnumerator TrackParent(LoopAnimation ani)
         {
             while (true)
@@ -50,6 +56,20 @@ namespace Implementations.Techniques
             LoopAnimation animationScript = Instantiate(dischargeAnimationPrefab).GetComponent<LoopAnimation>();
             animationBlockDuration = animationScript.GetAnimationDuration();
             Destroy(animationScript.gameObject);
+        }
+
+        private void PlayDischargeSound()
+        {
+            if (audioSource != null && dischargeSound != null)
+            {
+                audioSource.PlayOneShot(dischargeSound); // Play the discharge sound
+            }
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
         }
     }
 }
