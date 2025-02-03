@@ -12,17 +12,23 @@ namespace Implementations.Techniques
         public GameObject meleeAnimationPrefab;
         public float zOffset;
         public int frameStartHitBox;
+
+        public AudioClip fireSwordSound; // Sound effect for the fire sword
+        public AudioClip hitSound; // Sound effect for when the melee hits a target
+        private AudioSource audioSource; // Reference to the AudioSource component
+
         public override void Execute()
         {
             GameObject techGo = Instantiate(meleeAnimationPrefab);
             LoopAnimation animationScript = techGo.GetComponent<LoopAnimation>();
             FireHitBox hitBoxScript = techGo.GetComponent<FireHitBox>();
             hitBoxScript.parent = parent;
-            
-            
+
             StartCoroutine(TrackParent(animationScript));
             StartCoroutine(FramesListener(animationScript, hitBoxScript));
             animationScript.StartAnimation();
+
+            PlayFireSwordSound(); // Play the fire sword sound
         }
 
         private IEnumerator FramesListener(LoopAnimation ani, FireHitBox hitBox)
@@ -31,7 +37,7 @@ namespace Implementations.Techniques
             int framesLeft = ani.frames.Length - ani.FrameIndex;
             hitBox.Activate(framesLeft * ani.SecondsBetweenFrame);
         }
-        
+
         private void NormalizeSpriteDirection(Transform sprite, Player playerScript)
         {
             if (playerScript.transform.forward == Vector3.right || playerScript.transform.forward == Vector3.left)
@@ -58,7 +64,7 @@ namespace Implementations.Techniques
                 }
             }
         }
-        
+
         private IEnumerator TrackParent(LoopAnimation ani)
         {
             if (parent is Player playerScript)
@@ -73,10 +79,10 @@ namespace Implementations.Techniques
                 {
                     break;
                 }
-                
+
                 ani.transform.position = parent.transform.position;
                 ani.transform.Translate(Vector3.forward * zOffset);
-                
+
                 yield return null;
             }
         }
@@ -87,6 +93,36 @@ namespace Implementations.Techniques
             LoopAnimation animationScript = Instantiate(meleeAnimationPrefab).GetComponent<LoopAnimation>();
             animationBlockDuration = animationScript.GetAnimationDuration();
             Destroy(animationScript.gameObject);
+        }
+
+        private void PlayFireSwordSound()
+        {
+            if (audioSource != null && fireSwordSound != null)
+            {
+                audioSource.PlayOneShot(fireSwordSound); // Play the fire sword sound
+            }
+        }
+
+        private void PlayHitSound()
+        {
+            if (audioSource != null && hitSound != null)
+            {
+                audioSource.PlayOneShot(hitSound); // Play the hit sound
+            }
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
+        }
+
+        // Call this method when the melee attack hits a target
+        protected override void Effect(CharacterSheet cs)
+        {
+            // Call the base effect method if it exists
+            base.Effect(cs);
+            PlayHitSound(); // Play the hit sound when hitting a target
         }
     }
 }
