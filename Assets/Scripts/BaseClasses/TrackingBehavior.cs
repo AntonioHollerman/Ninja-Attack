@@ -14,10 +14,16 @@ namespace BaseClasses
         protected override void UpdateWrapper()
         {
             base.UpdateWrapper();
+            
             if (!IsStunned)
             {
                 SetClosestTarget();
                 LookAtTarget();
+            }
+            
+            if (Target == null)
+            {
+                return;
             }
 
             if (Mathf.Approximately(transform.position.y, Target.transform.position.y))
@@ -52,6 +58,10 @@ namespace BaseClasses
 
         private void SetClosestTarget()
         {
+            if (_targets.Count <= 0)
+            {
+                return;
+            }
             GameObject newTarget = _targets[0];
             float smallestDistance = detectRange;
             foreach (var t in _targets)
@@ -70,6 +80,10 @@ namespace BaseClasses
 
         private void LookAtTarget()
         {
+            if (Target == null)
+            {
+                return;
+            }
             Vector3 targetVec = Target.transform.position;
             Vector3 curVec = transform.position;
             

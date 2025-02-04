@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Timers;
-using Implementations.Characters.HostileScripts;
+using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace BaseClasses
 {
     public abstract class Player : CharacterSheet
     {
+        public static List<Player> Players = new List<Player>();
         public GameObject body;
         public GameObject weaponGo;
         
@@ -42,6 +40,7 @@ namespace BaseClasses
         public bool InputBlocked => _blockInput > 0 ;
         private float _blockInput;
 
+        
         protected override void UpdateWrapper()
         {
             base.UpdateWrapper();
@@ -70,6 +69,8 @@ namespace BaseClasses
             
             UpdateHp();
             UpdateMana();
+            
+            Players.Add(this);
         }
 
         private void HandleDirection()
@@ -182,13 +183,14 @@ namespace BaseClasses
 
         public override void Defeated()
         {
-            GameObject hostileSpawner = GameObject.Find("HostileSpawner");
-            foreach (Transform trans in hostileSpawner.transform)
+            foreach (Hostile enemy in Hostile.Hostiles)
             {
-                GameObject go = trans.gameObject;
+                GameObject go = enemy.gameObject;
                 TrackingBehavior script = go.GetComponent<TrackingBehavior>();
                 script?.RemoveTarget(gameObject);
             }
+
+            Players.Remove(this);
             base.Defeated();
         }
 

@@ -75,13 +75,13 @@ public class SettingsController : MonoBehaviour {
 
     public void loadSettings()
     {
-        gameSettings = JsonUtility.FromJson<Settings>(File.ReadAllText( Application.persistentDataPath + "/gamesettings.json"));
-        fullscreenToggle.isOn = gameSettings.fullscreen;
-        resolutionDrop.value = gameSettings.resolutionIndex;
-        antialiasingDrop.value = gameSettings.antialiasing;
-        vSyncDrop.value = gameSettings.vSync;
-        textQualityDrop.value = gameSettings.textureQuality;
-        volume.value = gameSettings.volume;
-        resolutionDrop.RefreshShownValue();
+        // gameSettings = JsonUtility.FromJson<Settings>(File.ReadAllText( Application.persistentDataPath + "/gamesettings.json"));
+        // fullscreenToggle.isOn = gameSettings.fullscreen;
+        // resolutionDrop.value = gameSettings.resolutionIndex;
+        // antialiasingDrop.value = gameSettings.antialiasing;
+        // vSyncDrop.value = gameSettings.vSync;
+        // textQualityDrop.value = gameSettings.textureQuality;
+        // volume.value = gameSettings.volume;
+        // resolutionDrop.RefreshShownValue();
     }
 }

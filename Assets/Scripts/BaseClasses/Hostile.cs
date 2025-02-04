@@ -8,23 +8,12 @@ namespace BaseClasses
 {
     public abstract class Hostile : TrackingBehavior
     {
+        public static List<Hostile> Hostiles = new List<Hostile>();
         public GameObject healthBar;
         private HealthBar _hbScript;
         protected List<CharacterSheet> GetAllies ()
         {
-            List<CharacterSheet> alliesLs = new List<CharacterSheet>{this};
-            GameObject hostileSpawner = GameObject.Find("HostileSpawner");
-            
-            foreach (Transform trans in hostileSpawner.transform)
-            {
-                CharacterSheet ally = trans.GetComponent<CharacterSheet>();
-                if (ally != null)
-                {
-                    alliesLs.Add(ally);
-                }
-            }
-
-            return alliesLs;
+            return new List<CharacterSheet>(Hostiles);
         }
 
         protected override void AwakeWrapper()
@@ -40,6 +29,7 @@ namespace BaseClasses
             AddTarget(playerOne);
             AddTarget(playerTwo);
             
+            Hostiles.Add(this);
         }
 
         public override void DealDamage(float dmg)
@@ -49,6 +39,7 @@ namespace BaseClasses
         }
         public override void Defeated()
         {
+            Hostiles.Remove(this);
             base.Defeated();
             Destroy(healthBar);
         }
