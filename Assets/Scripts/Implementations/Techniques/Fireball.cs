@@ -171,11 +171,5 @@ namespace Implementations.Techniques
                 audioSource.PlayOneShot(explosionSound); // Play the explosion sound
             }
         }
-
-        protected override void Awake()
-        {
-            base.Awake();
-            audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
-        }
     }
 }

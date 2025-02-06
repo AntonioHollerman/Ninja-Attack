@@ -123,7 +123,6 @@ namespace Implementations.Techniques
 
             StartCoroutine(MoveParent(dashScript));
             dashScript.StartAnimation(3);
-            PlayDashSound(); // Play the dash sound
             yield return new WaitUntil(() => dashScript == null);
             BlueSparkAnimation();
         }
@@ -145,22 +144,7 @@ namespace Implementations.Techniques
                 if (cs == parent)
                     continue;
             }
-            Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
+            //Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
         }
     }
-
-    private void PlayDashSound()
-    {
-        if (audioSource != null && dashSound != null)
-        {
-            audioSource.PlayOneShot(dashSound); // Play the dash sound
-        }
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
-    }
-}
 }

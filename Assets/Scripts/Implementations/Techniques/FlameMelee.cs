@@ -109,20 +109,7 @@ namespace Implementations.Techniques
             {
                 audioSource.PlayOneShot(hitSound); // Play the hit sound
             }
-        }
 
-        protected override void Awake()
-        {
-            base.Awake();
-            audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
-        }
-
-        // Call this method when the melee attack hits a target
-        protected override void Effect(CharacterSheet cs)
-        {
-            // Call the base effect method if it exists
-            base.Effect(cs);
-            PlayHitSound(); // Play the hit sound when hitting a target
-        }
+    }
     }
 }

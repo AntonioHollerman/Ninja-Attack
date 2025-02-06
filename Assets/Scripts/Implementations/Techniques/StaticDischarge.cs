@@ -65,11 +65,5 @@ namespace Implementations.Techniques
                 audioSource.PlayOneShot(dischargeSound); // Play the discharge sound
             }
         }
-
-        protected override void Awake()
-        {
-            base.Awake();
-            audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
-        }
     }
 }
