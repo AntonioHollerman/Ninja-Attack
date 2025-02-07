@@ -72,7 +72,7 @@ namespace Implementations.Managers
             Player.Players = new List<Player>();
             Hostile.Hostiles = new List<Hostile>();
             CharacterSheet.CharacterSheets = new List<CharacterSheet>();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(1);
         }
 
         public void MainMenu()
