@@ -47,27 +47,7 @@ namespace Implementations.Managers
             }
         }
 
-        public void StartLevel(int level, int round)
-        {
-            foreach (Hostile hostile in Hostile.Hostiles)
-            {
-                hostile.DealDamage(hostile.CurrentHp);
-            }
-            Hostile.Hostiles = new List<Hostile>();
 
-            foreach (SpawnPos pos in SpawnPos.Spawns)
-            {
-                if (pos.level == level && pos.round == round)
-                {
-                    SpawnEnemy(pos);
-                }
-            }
-        }
-
-        private void SpawnEnemy(SpawnPos pos)
-        {
-            
-        }
 
         public void GameOver()
         {
