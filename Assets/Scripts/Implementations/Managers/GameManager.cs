@@ -1,94 +1,119 @@
-using BaseClasses;
-using System.Collections;
 using System.Collections.Generic;
+using BaseClasses;
+using Implementations.Extras;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+namespace Implementations.Managers
 {
-    public TextMeshProUGUI gameOverText;
-    public GameObject gameOverUI;
-    public GameObject credits;
-    public static bool InMenu = false;
+    public class GameManager : MonoBehaviour
+    {
+        public TextMeshProUGUI gameOverText;
+        public GameObject gameOverUI;
+        public GameObject credits;
+        public static bool InMenu = false;
     
-    void Start()
-    {
-
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        
-    }
-
-    void Update()
-    {
-
-        // Disables the Cursor until the game menu is active
-        if (InMenu)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
+        void Start()
         {
 
             Cursor.visible = false;
-            Cursor.lockState= CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked;
+        
         }
 
-
-
-        // Check if both players are defeated
-        if ((Player.Players.Count == 0 || Hostile.Hostiles.Count == 0) && !InMenu)
+        void Update()
         {
-            gameOver();
+
+            // Disables the Cursor until the game menu is active
+            if (InMenu)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+
+                Cursor.visible = false;
+                Cursor.lockState= CursorLockMode.Locked;
+            }
+
+
+
+            // Check if both players are defeated
+            if ((Player.Players.Count == 0 || Hostile.Hostiles.Count == 0) && !InMenu)
+            {
+                GameOver();
+            }
         }
-    }
 
-    public void gameOver()
-    {
-        gameOverUI.SetActive(true);
-        credits.SetActive(false);
-
-        if (Player.Players.Count == 0)
+        public void StartLevel(int level, int round)
         {
-            gameOverText.text = "Nice Try, you got this next time!";
+            foreach (Hostile hostile in Hostile.Hostiles)
+            {
+                hostile.DealDamage(hostile.CurrentHp);
+            }
+            Hostile.Hostiles = new List<Hostile>();
+
+            foreach (SpawnPos pos in SpawnPos.Spawns)
+            {
+                if (pos.level == level && pos.round == round)
+                {
+                    SpawnEnemy(pos);
+                }
+            }
         }
-        else
+
+        private void SpawnEnemy(SpawnPos pos)
         {
-            gameOverText.text = "CONGRATS ON WINNING!!!";
+            
         }
 
-        InMenu = true;
-    }
+        public void GameOver()
+        {
+            gameOverUI.SetActive(true);
+            credits.SetActive(false);
 
-    public void restart()
-    {
-        InMenu = false;
-        Player.Players = new List<Player>();
-        Hostile.Hostiles = new List<Hostile>();
-        CharacterSheet.CharacterSheets = new List<CharacterSheet>();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+            if (Player.Players.Count == 0)
+            {
+                gameOverText.text = "Nice Try, you got this next time!";
+            }
+            else
+            {
+                gameOverText.text = "CONGRATS ON WINNING!!!";
+            }
 
-    public void mainMenu()
-    {
-        SceneManager.LoadScene("Main Menu");
-    }
+            InMenu = true;
+        }
 
-    public void GoCredits()
-    {
-        gameOverUI.SetActive(false);
-        credits.SetActive(true);
-    }
+        public void Restart()
+        {
+            InMenu = false;
+            Player.Players = new List<Player>();
+            Hostile.Hostiles = new List<Hostile>();
+            CharacterSheet.CharacterSheets = new List<CharacterSheet>();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
-    public void quit()
-    {
+        public void MainMenu()
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
+
+        public void GoCredits()
+        {
+            gameOverUI.SetActive(false);
+            credits.SetActive(true);
+        }
+
+        public void Quit()
+        {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
     Application.Quit();
 #endif
-    }
+        }
 
+    }
 }

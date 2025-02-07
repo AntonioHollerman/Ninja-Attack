@@ -1595,7 +1595,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1362070894}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: restart
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2973,7 +2973,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1362070894}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: quit
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6372,7 +6372,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1362070894}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: mainMenu
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
