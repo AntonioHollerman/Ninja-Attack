@@ -18,7 +18,6 @@ namespace Implementations.Weapons
         {
             base.AwakeWrapper();
             audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
-
             AnimationDuration = speed != 0 ? maxTravelDistance / speed : 3; // Calculate duration based on speed and distance
         }
 
@@ -60,7 +59,7 @@ namespace Implementations.Weapons
             }
         }
 
-        private void PlayHitSound()
+        private void PlayHitSound(float volume = 0.5f)
         {
             if (audioSource != null && hitSound != null)
             {

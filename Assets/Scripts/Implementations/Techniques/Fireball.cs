@@ -106,6 +106,7 @@ namespace Implementations.Techniques
 
         private void FirstActivation()
         {
+            audioSource = GetComponent<AudioSource>();
             if (!ReadyToCast())
             {
                 return;

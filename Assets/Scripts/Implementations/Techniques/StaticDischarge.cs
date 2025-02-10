@@ -53,6 +53,7 @@ namespace Implementations.Techniques
         protected override void StartWrapper()
         {
             base.StartWrapper();
+            audioSource = GetComponent<AudioSource>();
             LoopAnimation animationScript = Instantiate(dischargeAnimationPrefab).GetComponent<LoopAnimation>();
             animationBlockDuration = animationScript.GetAnimationDuration();
             Destroy(animationScript.gameObject);

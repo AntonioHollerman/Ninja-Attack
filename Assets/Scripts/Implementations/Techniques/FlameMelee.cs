@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections;
-using BaseClasses;
+﻿using BaseClasses;
 using Implementations.Extras;
 using Implementations.HitBoxes;
+using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Implementations.Techniques
@@ -29,6 +29,7 @@ namespace Implementations.Techniques
             animationScript.StartAnimation();
 
             PlayFireSwordSound(); // Play the fire sword sound
+            PlayHitSound();
         }
 
         private IEnumerator FramesListener(LoopAnimation ani, FireHitBox hitBox)
@@ -90,6 +91,7 @@ namespace Implementations.Techniques
         protected override void StartWrapper()
         {
             base.StartWrapper();
+            audioSource = GetComponent<AudioSource>();
             LoopAnimation animationScript = Instantiate(meleeAnimationPrefab).GetComponent<LoopAnimation>();
             animationBlockDuration = animationScript.GetAnimationDuration();
             Destroy(animationScript.gameObject);
@@ -103,7 +105,7 @@ namespace Implementations.Techniques
             }
         }
 
-        private void PlayHitSound()
+        private void PlayHitSound(float volume = 0.5f)
         {
             if (audioSource != null && hitSound != null)
             {

@@ -10,6 +10,7 @@ namespace Implementations.Weapons
         public int damage; // Damage dealt by the melee attack
         public AudioClip SwordSwing; // Sound effect for the melee attack
         public AudioClip HitSound; // Sound effect for when the melee hits a target
+        public AudioClip SwordClash;
         private AudioSource audioSource; // Reference to the AudioSource component
 
         protected override void AwakeWrapper()
@@ -22,6 +23,8 @@ namespace Implementations.Weapons
 
         protected override void Effect(CharacterSheet cs)
         {
+   
+
             Vector3 pos = cs.gameObject.transform.position;
             GameObject prefab = Resources.Load<GameObject>(CharacterSheet.HitMarkPath);
             LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
@@ -29,8 +32,8 @@ namespace Implementations.Weapons
             script.StartAnimation();
             cs.DealDamage(damage); // Apply damage to the target
 
-            PlayHitSound(); // Play the hit sound
-            PlayAttackSound(); // Play the attack sound
+            PlayAttackSound();
+            PlayHitSound();// Play the attack sound
         }
 
         protected override IEnumerator Execute()
@@ -46,6 +49,7 @@ namespace Implementations.Weapons
             {
                 Vector3 pos = arr.gameObject.transform.position;
                 GameObject prefab = Resources.Load<GameObject>(CharacterSheet.HitMarkPath);
+                PlayClashSound();
                 LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
 
                 script.StartAnimation();
@@ -57,15 +61,38 @@ namespace Implementations.Weapons
         {
             if (audioSource != null && SwordSwing != null)
             {
+                Debug.Log("Playing attack sound");
                 audioSource.PlayOneShot(SwordSwing); // Play the attack sound
+            }
+            else
+            {
+                Debug.LogWarning("AudioSource or SwordSwing is null");
             }
         }
 
-        private void PlayHitSound()
+        private void PlayClashSound()
+        {
+            if (audioSource != null && SwordClash != null)
+            {
+                Debug.Log("Playing Clash sound");
+                audioSource.PlayOneShot(SwordClash); // Play the attack sound
+            }
+            else
+            {
+                Debug.LogWarning("AudioSource or SwordClash is null");
+            }
+        }
+
+        private void PlayHitSound(float volume = 0.5f)
         {
             if (audioSource != null && HitSound != null)
             {
-                audioSource.PlayOneShot(HitSound); // Play the hit sound
+                Debug.Log("Playing hit sound");
+                audioSource.PlayOneShot(HitSound, volume); // Play the hit sound with specified volume
+            }
+            else
+            {
+                Debug.LogWarning("AudioSource or HitSound is null");
             }
         }
     }

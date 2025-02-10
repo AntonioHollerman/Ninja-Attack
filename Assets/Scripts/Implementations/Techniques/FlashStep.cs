@@ -24,6 +24,7 @@ namespace Implementations.Techniques
         protected override void StartWrapper()
         {
             base.StartWrapper();
+            audioSource = GetComponent<AudioSource>();
             _parentCollider = parent.gameObject.GetComponent<Collider>();
 
             MultiSpriteAnimation dashAni = Instantiate(dashPrefab).GetComponent<MultiSpriteAnimation>();
@@ -116,6 +117,9 @@ namespace Implementations.Techniques
             RedSparkAnimation();
             MultiSpriteAnimation dashScript = DashAnimation();
 
+            // Play the dash sound
+            PlayDashSound();
+
             ElectricHitBox hb = dashScript.gameObject.GetComponent<ElectricHitBox>();
             hb.parent = parent;
             hb.parentTech = this;
@@ -125,6 +129,18 @@ namespace Implementations.Techniques
             dashScript.StartAnimation(3);
             yield return new WaitUntil(() => dashScript == null);
             BlueSparkAnimation();
+        }
+
+        private void PlayDashSound()
+        {
+            if (audioSource != null && dashSound != null)
+            {
+                audioSource.PlayOneShot(dashSound); // Play the dash sound
+            }
+            else
+            {
+                Debug.LogWarning("AudioSource or dash Sound is not assigned.");
+            }
         }
 
         private IEnumerator MoveParent(MultiSpriteAnimation dashScript)
@@ -143,8 +159,8 @@ namespace Implementations.Techniques
             {
                 if (cs == parent)
                     continue;
+                Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
             }
-            //Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
         }
     }
 }
