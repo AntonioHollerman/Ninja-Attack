@@ -19,8 +19,11 @@ namespace BaseClasses
         protected override void AwakeWrapper()
         {
             base.AwakeWrapper();
-            healthBar = Instantiate(healthBar, GameObject.Find("Canvas").transform);
-            _hbScript = healthBar.GetComponent<HealthBar>();
+            if (healthBar != null)
+            {
+                healthBar = Instantiate(healthBar, GameObject.Find("Canvas").transform);
+                _hbScript = healthBar.GetComponent<HealthBar>();
+            }
             _hbScript.target = transform;
             
             GameObject playerOne = GameObject.Find("PlayerOne");
