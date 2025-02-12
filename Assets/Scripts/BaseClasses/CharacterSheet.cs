@@ -14,6 +14,8 @@ namespace BaseClasses
     public abstract class CharacterSheet : MonoBehaviour
     {
         public static List<CharacterSheet> CharacterSheets = new List<CharacterSheet>();
+        public static bool UniversalStopCsUpdateLoop;
+        
         public List<CharacterSheet> allies;
         public float speed;
         public bool IsALive => CurrentHp > 0; // True if the character is alive, false otherwise
@@ -250,6 +252,10 @@ namespace BaseClasses
         /// </summary>
         private void Update()
         {
+            if (UniversalStopCsUpdateLoop)
+            {
+                return;
+            }
             UpdateWrapper(); // Calls a custom update method each frame
         }
 
