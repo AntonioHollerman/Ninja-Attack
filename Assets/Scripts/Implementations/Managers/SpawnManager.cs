@@ -9,6 +9,7 @@ namespace Implementations.Managers
     {
         public void StartLevel(int level, int round)
         {
+            CharacterSheet.UniversalStopCsUpdateLoop = true;
             foreach (Hostile hostile in Hostile.Hostiles)
             {
                 hostile.DealDamage(hostile.CurrentHp);
@@ -19,14 +20,11 @@ namespace Implementations.Managers
             {
                 if (pos.level == level && pos.round == round)
                 {
-                    SpawnEnemy(pos);
+                    pos.Spawn();
                 }
             }
+            CharacterSheet.UniversalStopCsUpdateLoop = false;
         }
-
-        private void SpawnEnemy(SpawnPos pos)
-        {
-            
-        }
+        
     }
 }
