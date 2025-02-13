@@ -1,77 +1,100 @@
-using BaseClasses;
-using System.Collections;
 using System.Collections.Generic;
+using BaseClasses;
+using Implementations.Extras;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+namespace Implementations.Managers
 {
-    public GameObject gameOverUI;
-
-    private Player playerOne;
-    private Player playerTwo;
-
-    void Start()
+    public class GameManager : MonoBehaviour
     {
-
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
-
-        // Find both players in the scene by their names
-        playerOne = GameObject.Find("PlayerOne").GetComponent<Player>();
-        playerTwo = GameObject.Find("PlayerTwo").GetComponent<Player>();
-    }
-
-    void Update()
-    {
-
-        // Disables the Cursor until the game menu is active
-        if (gameOverUI.activeInHierarchy)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
+        public TextMeshProUGUI gameOverText;
+        public GameObject gameOverUI;
+        public GameObject credits;
+        private bool _listeningForGameOver;
+    
+        void Start()
         {
 
             Cursor.visible = false;
-            Cursor.lockState= CursorLockMode.Locked;  
-
-
+            Cursor.lockState = CursorLockMode.Locked;
+            StartRound(1, 1);
         }
 
-
-
-        // Check if both players are defeated
-        if (playerOne != null && playerTwo != null && playerOne == null && playerTwo == null)
+        void Update()
         {
-            gameOver();
+
+            // Disables the Cursor until the game menu is active
+            if (!_listeningForGameOver)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+
+                Cursor.visible = false;
+                Cursor.lockState= CursorLockMode.Locked;
+            }
+
+
+
+            // Check if both players are defeated
+            if ((Player.Players.Count == 0 || Hostile.Hostiles.Count == 0) && _listeningForGameOver)
+            {
+                GameOver();
+            }
         }
-    }
 
-    public void gameOver()
-    {
-        gameOverUI.SetActive(true);
-        Time.timeScale = 0; // Stop game logic
-    }
+        public void StartRound(int level, int round)
+        {
+            StartCoroutine(SpawnManager.Instance.SpawnEnemies(level, round));
+            _listeningForGameOver = true;
+        } 
 
-    public void restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log("restart");
-    }
+        public void GameOver()
+        {
+            gameOverUI.SetActive(true);
+            credits.SetActive(false);
 
-    public void mainMenu()
-    {
-        SceneManager.LoadScene("Main Menu");
-        Debug.Log("main menu");
-    }
+            if (Player.Players.Count == 0)
+            {
+                gameOverText.text = "Nice Try, you got this next time!";
+            }
+            else
+            {
+                gameOverText.text = "CONGRATS ON WINNING!!!";
+            }
 
-    public void quit()
-    {
-        Application.Quit();
-        Debug.Log("quit");
-    }
+            _listeningForGameOver = false;
+        }
 
+        public void Restart()
+        {
+            CharacterSheet.CharacterSheets = new List<CharacterSheet>();
+            SceneManager.LoadScene(1);
+        }
+
+        public void MainMenu()
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
+
+        public void GoCredits()
+        {
+            gameOverUI.SetActive(false);
+            credits.SetActive(true);
+        }
+
+        public void Quit()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
+        }
+
+    }
 }

@@ -14,6 +14,8 @@ namespace BaseClasses
     public abstract class CharacterSheet : MonoBehaviour
     {
         public static List<CharacterSheet> CharacterSheets = new List<CharacterSheet>();
+        public static bool UniversalStopCsUpdateLoop;
+        
         public List<CharacterSheet> allies;
         public float speed;
         public bool IsALive => CurrentHp > 0; // True if the character is alive, false otherwise
@@ -250,6 +252,10 @@ namespace BaseClasses
         /// </summary>
         private void Update()
         {
+            if (UniversalStopCsUpdateLoop)
+            {
+                return;
+            }
             UpdateWrapper(); // Calls a custom update method each frame
         }
 
@@ -313,7 +319,7 @@ namespace BaseClasses
 
         public override int GetHashCode()
         {
-            return gameObject.name.GetHashCode();
+            return gameObject.GetHashCode();
         }
 
         public override bool Equals(object other)
@@ -324,7 +330,7 @@ namespace BaseClasses
             }
             if (other is CharacterSheet cs)
             {
-                return gameObject.name == cs.gameObject.name;
+                return gameObject == cs.gameObject;
             }
 
             return false;

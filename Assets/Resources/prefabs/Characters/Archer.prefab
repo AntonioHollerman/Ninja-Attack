@@ -131,10 +131,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951a6c3cede242c3a3e8efee10fc7b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allies: []
   speed: 10
-  maxHp: 5
+  maxHp: 10
   maxMana: 0
+  rb: {fileID: 0}
   detectRange: 100
+  healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
   arrowPrefab: {fileID: 3645658548792679990, guid: fef7c5082b290724d8acc7d834c87a10, type: 3}
   atkSpeed: 3
   arrowDisplacement: 0.65

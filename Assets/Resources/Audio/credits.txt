@@ -1,135 +1,20 @@
 FlashStep.mp3
-Credit: diego200052
-Link:  https://opengameart.org/content/8-bit-teleport
-
-
-=======================
-
-StaticDischarge.mp3
-Credit: Not needed/ Copyright free
-
-
-=======================
-
-FireballMoving.mp3
-Credit: Not needed/ Copyright free
-
-
-=======================
-
-FireballExplode.mp3
-Credit: Not needed/ Copyright free
-
-
-=======================
+Credit: diego200052 Link:  https://opengameart.org/content/8-bit-teleport
 
 FireSwordSwing.mp3
-Credit: Bart K.
-Link: https://opengameart.org/content/spell-4-fire
-
-
-=======================
-
-
-SwordSwing.mp3
-Credit: Not needed/ Copyright free
-
-
-
-=======================
+Credit: Bart K. Link: https://opengameart.org/content/spell-4-fire
 
 ArrowShot.mp3
-Credit: dorkster (Justin Jacobs)
-Link : https://opengameart.org/content/bow-arrow-shot
-
-
-
-
-=======================
-
-
-BasicHit.mp3
-Credit: Not needed/ Copyright free
-
-
-
-=======================
-
-
-FireHit.mp3
-Credit: Not needed/ Copyright free
-
-
-
-=======================
-
-ElectricStunned.mp3
-Credit: Not needed/ Copyright free
- 
-
-=======================
-
-
+Credit: dorkster (Justin Jacobs) Link : https://opengameart.org/content/bow-arrow-shot
 
 MenuBackground.mp3
-Credit: SOUND AIRYLUVS by ISAo
-Link: https://airyluvs.com/
-
-
-=======================
-
+Credit: SOUND AIRYLUVS by ISAo Link: https://airyluvs.com/
 
 PlayingBackground.mp3
-Credit: WuxiaScrub
-Link: https://wuxia-scrub.itch.io/
-
-
-=======================
-
-
+Credit: WuxiaScrub Link: https://wuxia-scrub.itch.io/
 
 ExitScreenBackground.mp3
-Credit: Otto Halmén
-Link: https://opengameart.org/content/death-is-just-another-path
-
-
-
-
-
-=======================
-
-
+Credit: Otto Halmén Link: https://opengameart.org/content/death-is-just-another-path
 
 RoundBeginning.mp3
-Credit: Ulrich Metzner
-Link: https://opengameart.org/content/death-bell
-
-
-
-=======================
-
-
-SwordClash.mp3
-Credit: Not needed/ Copyright free
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
+Credit: Ulrich Metzner Link: https://opengameart.org/content/death-bell
