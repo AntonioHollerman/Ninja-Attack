@@ -16,7 +16,7 @@ namespace Implementations.Managers
             Instance = this;
         }
 
-        private IEnumerator SpawnEnemies(int level, int round)
+        public IEnumerator SpawnEnemies(int level, int round)
         {
             CharacterSheet.UniversalStopCsUpdateLoop = true;
             foreach (Hostile hostile in Hostile.Hostiles)
@@ -34,11 +34,6 @@ namespace Implementations.Managers
                 }
             }
             CharacterSheet.UniversalStopCsUpdateLoop = false;
-        }
-
-        public void StartLevel(int level, int round)
-        {
-            StartCoroutine(SpawnEnemies(level, round));
         }
     }
 }

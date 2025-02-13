@@ -10,7 +10,7 @@ namespace Implementations.Extras
 {
     public class SpawnPos : MonoBehaviour
     {
-        public static List<SpawnPos> Spawns;
+        public static List<SpawnPos> Spawns = new List<SpawnPos>();
         
         public int level;
         public int round;

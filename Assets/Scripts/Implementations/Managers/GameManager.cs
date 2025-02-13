@@ -12,21 +12,21 @@ namespace Implementations.Managers
         public TextMeshProUGUI gameOverText;
         public GameObject gameOverUI;
         public GameObject credits;
-        public static bool InMenu = false;
+        private bool _listeningForGameOver;
     
         void Start()
         {
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-        
+            StartRound(1, 1);
         }
 
         void Update()
         {
 
             // Disables the Cursor until the game menu is active
-            if (InMenu)
+            if (!_listeningForGameOver)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -41,13 +41,17 @@ namespace Implementations.Managers
 
 
             // Check if both players are defeated
-            if ((Player.Players.Count == 0 || Hostile.Hostiles.Count == 0) && !InMenu)
+            if ((Player.Players.Count == 0 || Hostile.Hostiles.Count == 0) && _listeningForGameOver)
             {
                 GameOver();
             }
         }
 
-
+        public void StartRound(int level, int round)
+        {
+            StartCoroutine(SpawnManager.Instance.SpawnEnemies(level, round));
+            _listeningForGameOver = true;
+        } 
 
         public void GameOver()
         {
@@ -63,17 +67,15 @@ namespace Implementations.Managers
                 gameOverText.text = "CONGRATS ON WINNING!!!";
             }
 
-            InMenu = true;
+            _listeningForGameOver = false;
         }
 
         public void Restart()
         {
-            InMenu = false;
             Player.Players = new List<Player>();
             Hostile.Hostiles = new List<Hostile>();
             CharacterSheet.CharacterSheets = new List<CharacterSheet>();
             SceneManager.LoadScene(1);
-            SpawnManager.Instance.StartLevel(1, 1);
         }
 
         public void MainMenu()
