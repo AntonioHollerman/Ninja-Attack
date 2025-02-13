@@ -16,6 +16,9 @@ namespace Implementations.Managers
         {
             Instance = this;
             SpawnPos.Spawns.RemoveAll(spawn => spawn == null);
+            Player.Players.RemoveAll(player => player == null);
+            Hostile.Hostiles.RemoveAll(hostile => hostile == null);
+            CharacterSheet.CharacterSheets.RemoveAll(sheet => sheet == null);
         }
 
         public IEnumerator SpawnEnemies(int level, int round)
