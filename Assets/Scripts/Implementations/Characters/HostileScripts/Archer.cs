@@ -36,9 +36,9 @@ namespace Implementations.Characters.HostileScripts
             while (true)
             {
                 yield return new WaitForSeconds(atkSpeed);
-                if (!IsStunned)
+                if (!IsStunned && !CharacterSheet.UniversalStopCsUpdateLoop)
                 {
-                    Attack();   
+                    Attack();
                 }
             }
         }

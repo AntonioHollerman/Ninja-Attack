@@ -319,7 +319,7 @@ namespace BaseClasses
 
         public override int GetHashCode()
         {
-            return gameObject.name.GetHashCode();
+            return gameObject.GetHashCode();
         }
 
         public override bool Equals(object other)
@@ -330,7 +330,7 @@ namespace BaseClasses
             }
             if (other is CharacterSheet cs)
             {
-                return gameObject.name == cs.gameObject.name;
+                return gameObject == cs.gameObject;
             }
 
             return false;

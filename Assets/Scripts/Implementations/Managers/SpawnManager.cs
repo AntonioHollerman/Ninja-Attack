@@ -10,10 +10,12 @@ namespace Implementations.Managers
     public class SpawnManager : MonoBehaviour
     {
         public float delayBetweenSpawn;
+        public float lastSpawnDelay;
         public static SpawnManager Instance { get; private set; }
         private void Awake()
         {
             Instance = this;
+            SpawnPos.Spawns.RemoveAll(spawn => spawn == null);
         }
 
         public IEnumerator SpawnEnemies(int level, int round)
@@ -33,6 +35,8 @@ namespace Implementations.Managers
                     yield return new WaitForSeconds(delayBetweenSpawn);
                 }
             }
+
+            yield return new WaitForSeconds(lastSpawnDelay);
             CharacterSheet.UniversalStopCsUpdateLoop = false;
         }
     }

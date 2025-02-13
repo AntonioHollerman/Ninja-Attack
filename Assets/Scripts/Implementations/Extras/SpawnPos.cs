@@ -37,7 +37,7 @@ namespace Implementations.Extras
 
         public void Spawn()
         {
-            CharacterSheet cs = Instantiate(toSpawnPrefab, transform.position, spawnSmokePrefab.transform.rotation).GetComponent<CharacterSheet>();
+            CharacterSheet cs = Instantiate(toSpawnPrefab, transform.position, toSpawnPrefab.transform.rotation).GetComponent<CharacterSheet>();
             SetParent(cs);
             
             _smokeInstance = Instantiate(spawnSmokePrefab, transform.position, spawnSmokePrefab.transform.rotation);
