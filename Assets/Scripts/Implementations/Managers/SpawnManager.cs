@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BaseClasses;
 using Implementations.Extras;
 using UnityEngine;
@@ -7,6 +8,11 @@ namespace Implementations.Managers
 {
     public class SpawnManager : MonoBehaviour
     {
+        private void Awake()
+        {
+            StartLevel(1, 1);
+        }
+
         public void StartLevel(int level, int round)
         {
             CharacterSheet.UniversalStopCsUpdateLoop = true;

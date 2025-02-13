@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Implementations.Characters.HostileScripts
 {
-    public class SwordMan : Hostile
+    public class Brawler : Hostile
     {
         public GameObject meleeGo;
         public float attackDelay;
