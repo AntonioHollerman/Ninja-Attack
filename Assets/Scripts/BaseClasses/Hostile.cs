@@ -8,30 +8,22 @@ namespace BaseClasses
 {
     public abstract class Hostile : TrackingBehavior
     {
+        public static List<Hostile> Hostiles = new List<Hostile>();
         public GameObject healthBar;
         private HealthBar _hbScript;
         protected List<CharacterSheet> GetAllies ()
         {
-            List<CharacterSheet> alliesLs = new List<CharacterSheet>{this};
-            GameObject hostileSpawner = GameObject.Find("HostileSpawner");
-            
-            foreach (Transform trans in hostileSpawner.transform)
-            {
-                CharacterSheet ally = trans.GetComponent<CharacterSheet>();
-                if (ally != null)
-                {
-                    alliesLs.Add(ally);
-                }
-            }
-
-            return alliesLs;
+            return new List<CharacterSheet>(Hostiles);
         }
 
         protected override void AwakeWrapper()
         {
             base.AwakeWrapper();
-            healthBar = Instantiate(healthBar, GameObject.Find("Canvas").transform);
-            _hbScript = healthBar.GetComponent<HealthBar>();
+            if (healthBar != null)
+            {
+                healthBar = Instantiate(healthBar, GameObject.Find("Canvas").transform);
+                _hbScript = healthBar.GetComponent<HealthBar>();
+            }
             _hbScript.target = transform;
             
             GameObject playerOne = GameObject.Find("PlayerOne");
@@ -40,15 +32,17 @@ namespace BaseClasses
             AddTarget(playerOne);
             AddTarget(playerTwo);
             
+            Hostiles.Add(this);
         }
 
         public override void DealDamage(float dmg)
         {
             base.DealDamage(dmg);
-            _hbScript.UpdateSlider((float) CurrentHp / maxHp);
+            _hbScript.UpdateSlider(CurrentHp / maxHp);
         }
         public override void Defeated()
         {
+            Hostiles.Remove(this);
             base.Defeated();
             Destroy(healthBar);
         }
