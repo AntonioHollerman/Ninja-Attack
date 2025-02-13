@@ -73,6 +73,7 @@ namespace Implementations.Managers
             Hostile.Hostiles = new List<Hostile>();
             CharacterSheet.CharacterSheets = new List<CharacterSheet>();
             SceneManager.LoadScene(1);
+            SpawnManager.Instance.StartLevel(1, 1);
         }
 
         public void MainMenu()
