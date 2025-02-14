@@ -10,13 +10,14 @@ namespace Implementations.Managers
     public class GameManager : MonoBehaviour
     {
         public TextMeshProUGUI gameOverText;
+        public GameObject statsUI;
         public GameObject gameOverUI;
         public GameObject credits;
-        private bool _listeningForGameOver;
+        private bool _listeningForRoundOver;
     
         void Start()
         {
-
+            statsUI.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             StartRound(1, 1);
@@ -24,9 +25,7 @@ namespace Implementations.Managers
 
         void Update()
         {
-
-            // Disables the Cursor until the game menu is active
-            if (!_listeningForGameOver)
+            if (!_listeningForRoundOver)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -41,7 +40,7 @@ namespace Implementations.Managers
 
 
             // Check if both players are defeated
-            if ((Player.Players.Count == 0 || Hostile.Hostiles.Count == 0) && _listeningForGameOver)
+            if ((Player.Players.Count == 0 || Hostile.Hostiles.Count == 0) && _listeningForRoundOver)
             {
                 GameOver();
             }
@@ -50,13 +49,15 @@ namespace Implementations.Managers
         public void StartRound(int level, int round)
         {
             StartCoroutine(SpawnManager.Instance.SpawnEnemies(level, round));
-            _listeningForGameOver = true;
+            _listeningForRoundOver = true;
         } 
 
         public void GameOver()
         {
+            CharacterSheet.UniversalStopCsUpdateLoop = true;
             gameOverUI.SetActive(true);
             credits.SetActive(false);
+            statsUI.SetActive(false);
 
             if (Player.Players.Count == 0)
             {
@@ -67,7 +68,7 @@ namespace Implementations.Managers
                 gameOverText.text = "CONGRATS ON WINNING!!!";
             }
 
-            _listeningForGameOver = false;
+            _listeningForRoundOver = false;
         }
 
         public void Restart()
@@ -85,6 +86,7 @@ namespace Implementations.Managers
         {
             gameOverUI.SetActive(false);
             credits.SetActive(true);
+            statsUI.SetActive(false);
         }
 
         public void Quit()
@@ -95,6 +97,5 @@ namespace Implementations.Managers
     Application.Quit();
 #endif
         }
-
     }
 }

@@ -32,12 +32,12 @@ namespace Implementations.Weapons
             script.StartAnimation();
             cs.DealDamage(damage); // Apply damage to the target
 
-            PlayAttackSound();
             PlayHitSound();// Play the attack sound
         }
 
         protected override IEnumerator Execute()
         {
+            PlayAttackSound();
             yield return null;
         }
 
@@ -59,41 +59,17 @@ namespace Implementations.Weapons
 
         private void PlayAttackSound()
         {
-            if (audioSource != null && SwordSwing != null)
-            {
-                Debug.Log("Playing attack sound");
-                audioSource.PlayOneShot(SwordSwing); // Play the attack sound
-            }
-            else
-            {
-                Debug.LogWarning("AudioSource or SwordSwing is null");
-            }
+            audioSource.PlayOneShot(SwordSwing); // Play the attack sound
         }
 
         private void PlayClashSound()
         {
-            if (audioSource != null && SwordClash != null)
-            {
-                Debug.Log("Playing Clash sound");
-                audioSource.PlayOneShot(SwordClash); // Play the attack sound
-            }
-            else
-            {
-                Debug.LogWarning("AudioSource or SwordClash is null");
-            }
+            audioSource.PlayOneShot(SwordClash); // Play the attack sound
         }
 
         private void PlayHitSound(float volume = 0.5f)
         {
-            if (audioSource != null && HitSound != null)
-            {
-                Debug.Log("Playing hit sound");
-                audioSource.PlayOneShot(HitSound, volume); // Play the hit sound with specified volume
-            }
-            else
-            {
-                Debug.LogWarning("AudioSource or HitSound is null");
-            }
+            audioSource.PlayOneShot(HitSound, volume); // Play the hit sound with specified volume
         }
     }
 }
