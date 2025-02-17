@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allies: []
   speed: 10
-  maxHp: 10
+  maxHp: 15
   maxMana: 0
   rb: {fileID: 0}
   detectRange: 100

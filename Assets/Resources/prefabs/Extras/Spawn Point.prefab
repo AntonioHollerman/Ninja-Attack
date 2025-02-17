@@ -49,6 +49,7 @@ MonoBehaviour:
   round: 1
   toSpawnPrefab: {fileID: 8937803762815483181, guid: b44be1afe9f0645478c614fa075f61c1, type: 3}
   spawnSmokePrefab: {fileID: 8128153735471901540, guid: 9f83187e67964ef46983d297b9ef6c79, type: 3}
+  sr: {fileID: 5597680582354786274}
 --- !u!212 &5597680582354786274
 SpriteRenderer:
   m_ObjectHideFlags: 0

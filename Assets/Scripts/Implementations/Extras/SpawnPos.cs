@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using BaseClasses;
 using Implementations.Characters.HostileScripts;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Implementations.Extras
 {
@@ -16,6 +14,7 @@ namespace Implementations.Extras
         public int round;
         public GameObject toSpawnPrefab;
         public GameObject spawnSmokePrefab;
+        public SpriteRenderer sr;
 
         private Transform _archers;
         private Transform _brawlers;
@@ -27,6 +26,7 @@ namespace Implementations.Extras
 
         private void Awake()
         {
+            sr.enabled = false;
             Spawns.Add(this);
             
             _archers = GameObject.Find("SpawnManager/Archers").GetComponent<Transform>();
