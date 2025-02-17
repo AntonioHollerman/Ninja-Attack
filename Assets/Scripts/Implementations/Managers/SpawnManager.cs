@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using BaseClasses;
 using Implementations.Extras;
 using UnityEngine;
+using System.Linq;
+using Random = System.Random;
 
 namespace Implementations.Managers
 {
@@ -24,19 +26,23 @@ namespace Implementations.Managers
         public IEnumerator SpawnEnemies(int level, int round)
         {
             CharacterSheet.UniversalStopCsUpdateLoop = true;
+            
             foreach (Hostile hostile in Hostile.Hostiles)
             {
                 hostile.DealDamage(hostile.CurrentHp);
             }
             Hostile.Hostiles = new List<Hostile>();
 
-            foreach (SpawnPos pos in SpawnPos.Spawns)
+            
+            Random rnd = new Random();
+            List<SpawnPos> positions = new List<SpawnPos>(SpawnPos.Spawns
+                .FindAll(p => p.level == level && p.round == round)
+                .OrderBy(p => rnd.Next()));
+            
+            foreach (var pos in positions)
             {
-                if (pos.level == level && pos.round == round)
-                {
-                    pos.Spawn();
-                    yield return new WaitForSeconds(delayBetweenSpawn);
-                }
+                pos.Spawn();
+                yield return new WaitForSeconds(delayBetweenSpawn);
             }
 
             yield return new WaitForSeconds(lastSpawnDelay);
