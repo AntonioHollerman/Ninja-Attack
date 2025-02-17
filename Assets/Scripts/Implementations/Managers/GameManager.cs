@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using BaseClasses;
 using Implementations.Extras;
 using TMPro;
@@ -13,14 +14,21 @@ namespace Implementations.Managers
         public GameObject statsUI;
         public GameObject gameOverUI;
         public GameObject credits;
+        
         private bool _listeningForRoundOver;
-    
+        private int _curLevel = 1;
+        private int _curRound = 1;
+
+        private bool IsAnotherRound => SpawnPos.Spawns
+            .Any(p => p.level == _curLevel && p.round == _curRound + 1);
+        private bool IsAnotherLevel=> SpawnPos.Spawns
+            .Any(p => p.level == _curLevel + 1 && p.round == 1);
         void Start()
         {
             statsUI.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            StartRound(1, 1);
+            StartRound(_curLevel, _curRound);
         }
 
         void Update()
@@ -40,9 +48,15 @@ namespace Implementations.Managers
 
 
             // Check if both players are defeated
-            if ((Player.Players.Count == 0 || Hostile.Hostiles.Count == 0) && _listeningForRoundOver)
+            if (Player.Players.Count == 0  && _listeningForRoundOver)
             {
                 GameOver();
+                return;
+            }
+
+            if (Hostile.Hostiles.Count == 0 && _listeningForRoundOver)
+            {
+                RoundOver();
             }
         }
 
@@ -50,8 +64,21 @@ namespace Implementations.Managers
         {
             StartCoroutine(SpawnManager.Instance.SpawnEnemies(level, round));
             _listeningForRoundOver = true;
-        } 
+        }
 
+        public void RoundOver()
+        {
+            if (IsAnotherRound)
+            {
+                return;
+            }
+
+            if (IsAnotherLevel)
+            {
+                return;
+            }
+            GameOver();
+        }
         public void GameOver()
         {
             CharacterSheet.UniversalStopCsUpdateLoop = true;
