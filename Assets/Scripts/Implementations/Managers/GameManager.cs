@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using BaseClasses;
@@ -25,6 +26,11 @@ namespace Implementations.Managers
             .Any(p => p.level == _curLevel + 1 && p.round == 1);
         void Start()
         {
+            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(statsUI);
+            DontDestroyOnLoad(gameOverUI);
+            DontDestroyOnLoad(credits);
+            
             statsUI.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -70,14 +76,24 @@ namespace Implementations.Managers
         {
             if (IsAnotherRound)
             {
+                _curRound++;
+                StartRound(_curLevel, _curRound);
                 return;
             }
 
             if (IsAnotherLevel)
             {
+                _curLevel++;
+                _curRound = 1;
+                StartRound(_curLevel, _curRound);
                 return;
             }
             GameOver();
+        }
+
+        private IEnumerator SwapLevel(int level)
+        {
+            yield return null;
         }
         public void GameOver()
         {
