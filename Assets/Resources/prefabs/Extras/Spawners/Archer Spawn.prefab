@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4141075665979025882}
   - component: {fileID: 5597680582354786274}
   m_Layer: 0
-  m_Name: Spawn Point
+  m_Name: Archer Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 7708b7522e23ca84488060694539a844, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

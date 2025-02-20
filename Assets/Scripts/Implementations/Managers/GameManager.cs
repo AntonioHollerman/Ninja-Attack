@@ -15,10 +15,13 @@ namespace Implementations.Managers
         public GameObject statsUI;
         public GameObject gameOverUI;
         public GameObject credits;
+        public GameObject pauseMenu;
+        public GameObject fadeScreen;
         
         private bool _listeningForRoundOver;
         private int _curLevel = 1;
         private int _curRound = 1;
+        private FadeScreen _fs;
 
         private bool IsAnotherRound => SpawnPos.Spawns
             .Any(p => p.level == _curLevel && p.round == _curRound + 1);
@@ -30,7 +33,10 @@ namespace Implementations.Managers
             DontDestroyOnLoad(statsUI);
             DontDestroyOnLoad(gameOverUI);
             DontDestroyOnLoad(credits);
-            
+            DontDestroyOnLoad(pauseMenu);
+            DontDestroyOnLoad(fadeScreen);
+
+            _fs = fadeScreen.GetComponent<FadeScreen>();
             statsUI.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -85,15 +91,22 @@ namespace Implementations.Managers
             {
                 _curLevel++;
                 _curRound = 1;
-                StartRound(_curLevel, _curRound);
+                StartCoroutine(SwapLevel());
                 return;
             }
             GameOver();
         }
 
-        private IEnumerator SwapLevel(int level)
+        private IEnumerator SwapLevel()
         {
-            yield return null;
+            StartCoroutine(_fs.FadeIn());
+            yield return new WaitUntil(() => Mathf.Approximately(_fs.Opacity, 1.0f));
+            SceneManager.LoadScene(_curLevel);
+            
+            StartCoroutine(_fs.FadeOut());
+            yield return new WaitUntil(() => _fs.Opacity >= 0);
+            
+            StartRound(_curLevel, _curRound);
         }
         public void GameOver()
         {
@@ -116,8 +129,9 @@ namespace Implementations.Managers
 
         public void Restart()
         {
-            CharacterSheet.CharacterSheets = new List<CharacterSheet>();
-            SceneManager.LoadScene(1);
+            _curLevel = 1;
+            _curRound = 1;
+            StartCoroutine(SwapLevel());
         }
 
         public void MainMenu()
