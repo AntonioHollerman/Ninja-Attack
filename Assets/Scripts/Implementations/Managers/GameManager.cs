@@ -17,10 +17,11 @@ namespace Implementations.Managers
         public GameObject credits;
         public GameObject pauseMenu;
         public GameObject fadeScreen;
+        public int level;
         
         private bool _listeningForRoundOver;
-        private int _curLevel = 1;
-        private int _curRound = 1;
+        private int _curLevel;
+        private int _curRound;
         private FadeScreen _fs;
 
         private bool IsAnotherRound => SpawnPos.Spawns
@@ -29,18 +30,14 @@ namespace Implementations.Managers
             .Any(p => p.level == _curLevel + 1 && p.round == 1);
         void Start()
         {
-            DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(statsUI);
-            DontDestroyOnLoad(gameOverUI);
-            DontDestroyOnLoad(credits);
-            DontDestroyOnLoad(pauseMenu);
-            DontDestroyOnLoad(fadeScreen);
-
             _fs = fadeScreen.GetComponent<FadeScreen>();
+            _curLevel = level;
+            _curRound = 1;
+            
             statsUI.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            StartRound(_curLevel, _curRound);
+            StartCoroutine(StartRound(_curRound, true));
         }
 
         void Update()
@@ -72,10 +69,17 @@ namespace Implementations.Managers
             }
         }
 
-        public void StartRound(int level, int round)
+        public IEnumerator StartRound(int round, bool fadeOut = false)
         {
-            StartCoroutine(SpawnManager.Instance.SpawnEnemies(level, round));
+            if (fadeOut)
+            {
+                StartCoroutine(_fs.FadeOut());
+                yield return new WaitUntil(() => _fs.Opacity <= 0);
+            }
+            
+            StartCoroutine(SpawnManager.Instance.SpawnEnemies(_curLevel, round));
             _listeningForRoundOver = true;
+            yield return null;
         }
 
         public void RoundOver()
@@ -83,7 +87,7 @@ namespace Implementations.Managers
             if (IsAnotherRound)
             {
                 _curRound++;
-                StartRound(_curLevel, _curRound);
+                StartCoroutine(StartRound(_curRound));
                 return;
             }
 
@@ -106,7 +110,7 @@ namespace Implementations.Managers
             StartCoroutine(_fs.FadeOut());
             yield return new WaitUntil(() => _fs.Opacity >= 0);
             
-            StartRound(_curLevel, _curRound);
+            StartCoroutine(StartRound(_curRound));
         }
         public void GameOver()
         {
@@ -117,7 +121,7 @@ namespace Implementations.Managers
 
             if (Player.Players.Count == 0)
             {
-                gameOverText.text = "Nice Try, you got this next time!";
+                gameOverText.text = "Nice Try";
             }
             else
             {

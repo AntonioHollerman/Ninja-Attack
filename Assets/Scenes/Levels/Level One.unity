@@ -1021,7 +1021,6 @@ GameObject:
   - component: {fileID: 209110876}
   - component: {fileID: 209110875}
   - component: {fileID: 209110874}
-  - component: {fileID: 209110878}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1117,19 +1116,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &209110878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209110873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb7f8598a1e4217a09b7597460128be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 1
 --- !u!1 &216166612
 GameObject:
   m_ObjectHideFlags: 0
@@ -4419,7 +4405,6 @@ GameObject:
   - component: {fileID: 936810257}
   - component: {fileID: 936810256}
   - component: {fileID: 936810255}
-  - component: {fileID: 936810259}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -4514,19 +4499,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &936810259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936810254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb7f8598a1e4217a09b7597460128be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 3
 --- !u!114 &962242012 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
@@ -4777,14 +4749,13 @@ GameObject:
   - component: {fileID: 1075673870}
   - component: {fileID: 1075673869}
   - component: {fileID: 1075673868}
-  - component: {fileID: 1075673872}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1075673868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4832,7 +4803,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075673867}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 963194227}
@@ -4868,19 +4839,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1075673872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075673867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb7f8598a1e4217a09b7597460128be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 2
 --- !u!1 &1090588442
 GameObject:
   m_ObjectHideFlags: 0
@@ -6443,7 +6401,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1362070895}
   - component: {fileID: 1362070894}
-  - component: {fileID: 1362070896}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6469,6 +6426,7 @@ MonoBehaviour:
   credits: {fileID: 936810254}
   pauseMenu: {fileID: 1815606726}
   fadeScreen: {fileID: 1693584544}
+  level: 1
 --- !u!4 &1362070895
 Transform:
   m_ObjectHideFlags: 0
@@ -6484,19 +6442,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1362070896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362070893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb7f8598a1e4217a09b7597460128be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
 --- !u!1 &1393450974
 GameObject:
   m_ObjectHideFlags: 0
@@ -7713,7 +7658,6 @@ GameObject:
   - component: {fileID: 1693584546}
   - component: {fileID: 1693584545}
   - component: {fileID: 1693584548}
-  - component: {fileID: 1693584547}
   m_Layer: 0
   m_Name: FadeScreen
   m_TagString: Untagged
@@ -7788,19 +7732,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1693584547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693584544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb7f8598a1e4217a09b7597460128be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 5
 --- !u!114 &1693584548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7813,7 +7744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9044328fe3524eb598326907bf0366e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changePerSecond: 0.1
+  changePerSecond: 0.5
   sr: {fileID: 1693584545}
 --- !u!1 &1751135259
 GameObject:
@@ -8249,7 +8180,6 @@ GameObject:
   - component: {fileID: 1815606729}
   - component: {fileID: 1815606728}
   - component: {fileID: 1815606727}
-  - component: {fileID: 1815606731}
   m_Layer: 5
   m_Name: PauseGame
   m_TagString: Untagged
@@ -8340,19 +8270,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1815606731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815606726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb7f8598a1e4217a09b7597460128be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 4
 --- !u!1 &1821055813
 GameObject:
   m_ObjectHideFlags: 0
