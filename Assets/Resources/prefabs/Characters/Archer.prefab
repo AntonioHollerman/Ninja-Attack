@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951a6c3cede242c3a3e8efee10fc7b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnSmokePrefab: {fileID: 8128153735471901540, guid: 9f83187e67964ef46983d297b9ef6c79, type: 3}
   allies: []
   speed: 10
   maxHp: 15

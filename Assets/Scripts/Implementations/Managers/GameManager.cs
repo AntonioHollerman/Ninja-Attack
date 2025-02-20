@@ -23,13 +23,17 @@ namespace Implementations.Managers
         private int _curLevel;
         private int _curRound;
         private FadeScreen _fs;
+        private Dictionary<int, List<int>> _avaRounds = new Dictionary<int, List<int>>();
 
-        private bool IsAnotherRound => SpawnPos.Spawns
-            .Any(p => p.level == _curLevel && p.round == _curRound + 1);
-        private bool IsAnotherLevel=> SpawnPos.Spawns
-            .Any(p => p.level == _curLevel + 1 && p.round == 1);
+        private bool IsAnotherRound => _avaRounds[_curRound].Contains(_curRound + 1);
+        private bool IsAnotherLevel=> _avaRounds.ContainsKey(_curLevel + 1);
+        private bool _transitioning;
         void Start()
         {
+            _avaRounds[1] = new List<int>{1};
+            _avaRounds[2] = new List<int>{1, 2};
+            _avaRounds[3] = new List<int>{1, 2};
+            
             _fs = fadeScreen.GetComponent<FadeScreen>();
             _curLevel = level;
             _curRound = 1;
@@ -71,6 +75,7 @@ namespace Implementations.Managers
 
         public IEnumerator StartRound(int round, bool fadeOut = false)
         {
+            CharacterSheet.UniversalStopCsUpdateLoop = true;
             if (fadeOut)
             {
                 StartCoroutine(_fs.FadeOut());
@@ -84,6 +89,10 @@ namespace Implementations.Managers
 
         public void RoundOver()
         {
+            if (_transitioning)
+            {
+                return;
+            }
             if (IsAnotherRound)
             {
                 _curRound++;
@@ -93,6 +102,7 @@ namespace Implementations.Managers
 
             if (IsAnotherLevel)
             {
+                _transitioning = true;
                 _curLevel++;
                 _curRound = 1;
                 StartCoroutine(SwapLevel());
@@ -106,11 +116,6 @@ namespace Implementations.Managers
             StartCoroutine(_fs.FadeIn());
             yield return new WaitUntil(() => Mathf.Approximately(_fs.Opacity, 1.0f));
             SceneManager.LoadScene(_curLevel);
-            
-            StartCoroutine(_fs.FadeOut());
-            yield return new WaitUntil(() => _fs.Opacity >= 0);
-            
-            StartCoroutine(StartRound(_curRound));
         }
         public void GameOver()
         {

@@ -55,7 +55,14 @@ namespace Implementations.HitBoxes
             {
                 Destroy(hitAni.gameObject);
             }
-            LoopAnimation stunAni = Instantiate(stunPrefab).GetComponent<LoopAnimation>();
+
+            GameObject stunObj = Instantiate(stunPrefab);
+            if (cs.isLarge)
+            {
+                stunObj.transform.localScale *= 5;
+            }
+            
+            LoopAnimation stunAni = stunObj.GetComponent<LoopAnimation>();
             parentTech.StartCoroutine(TrackTarget(stunAni, cs));
             yield return new WaitUntil(() => cs == null || !cs.IsStunned);
             Destroy(stunAni.gameObject);

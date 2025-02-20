@@ -13,7 +13,6 @@ namespace Implementations.Extras
         public int level;
         public int round;
         public GameObject toSpawnPrefab;
-        public GameObject spawnSmokePrefab;
         public SpriteRenderer sr;
 
         private Transform _archers;
@@ -23,6 +22,7 @@ namespace Implementations.Extras
 
         private ParticleSystem _psInstance;
         private GameObject _smokeInstance;
+        private GameObject _spawnSmokePrefab;
 
         private void Awake()
         {
@@ -33,6 +33,7 @@ namespace Implementations.Extras
             _brawlers = GameObject.Find("SpawnManager/Brawlers").GetComponent<Transform>();
             _players = GameObject.Find("SpawnManager/Players").GetComponent<Transform>();
             _others = GameObject.Find("SpawnManager/Others").GetComponent<Transform>();
+            _spawnSmokePrefab = toSpawnPrefab.GetComponent<CharacterSheet>().spawnSmokePrefab;
         }
 
         public void Spawn()
@@ -40,7 +41,7 @@ namespace Implementations.Extras
             CharacterSheet cs = Instantiate(toSpawnPrefab, transform.position, toSpawnPrefab.transform.rotation).GetComponent<CharacterSheet>();
             SetParent(cs);
             
-            _smokeInstance = Instantiate(spawnSmokePrefab, transform.position, spawnSmokePrefab.transform.rotation);
+            _smokeInstance = Instantiate(_spawnSmokePrefab, transform.position, _spawnSmokePrefab.transform.rotation);
             _psInstance = _smokeInstance.GetComponent<ParticleSystem>();
             StartCoroutine(WaitToDestroySmoke());
         }

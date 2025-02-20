@@ -55,12 +55,14 @@ namespace BaseClasses
             float randVal = Random.value;
             if (randVal <= 0.25f)
             {
-                Instantiate(hpPotion, transform.position, hpPotion.transform.rotation);
+                GameObject go = Instantiate(hpPotion, transform.position, hpPotion.transform.rotation);
+                go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 0);
             }
 
             if (randVal >= 0.75f)
             {
-                Instantiate(manaPotion, transform.position, manaPotion.transform.rotation);
+                GameObject go = Instantiate(manaPotion, transform.position, manaPotion.transform.rotation);
+                go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 0);
             }
         }
     }
