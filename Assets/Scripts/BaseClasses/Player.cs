@@ -169,7 +169,7 @@ namespace BaseClasses
             UpdateHp();
         }
 
-        public override void RestoreHp(int hp)
+        public override void RestoreHp(float hp)
         {
             base.RestoreHp(hp);
             UpdateHp();

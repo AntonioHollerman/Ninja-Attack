@@ -143,7 +143,7 @@ namespace BaseClasses
             CurrentHp = CurrentHp < 0 ? 0 : CurrentHp;
         }
 
-        public virtual void RestoreHp(int hp)
+        public virtual void RestoreHp(float hp)
         {
             CurrentHp += hp;
             CurrentHp = CurrentHp > maxHp ? maxHp : CurrentHp;
