@@ -7,7 +7,11 @@ namespace BaseClasses
     public abstract class Hostile : TrackingBehavior
     {
         public static List<Hostile> Hostiles = new List<Hostile>();
+        
         public GameObject healthBar;
+        public GameObject manaPotion;
+        public GameObject hpPotion;
+        
         private HealthBar _hbScript;
         protected List<CharacterSheet> GetAllies ()
         {
@@ -41,8 +45,23 @@ namespace BaseClasses
         public override void Defeated()
         {
             Hostiles.Remove(this);
+            DropItem();
             base.Defeated();
             Destroy(healthBar);
+        }
+
+        private void DropItem()
+        {
+            float randVal = Random.value;
+            if (randVal <= 0.25f)
+            {
+                Instantiate(hpPotion, transform.position, hpPotion.transform.rotation);
+            }
+
+            if (randVal >= 0.75f)
+            {
+                Instantiate(manaPotion, transform.position, manaPotion.transform.rotation);
+            }
         }
     }
 }
