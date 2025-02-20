@@ -9,7 +9,7 @@ namespace BaseClasses
 
         private void OnTriggerEnter(Collider other)
         {
-            CharacterSheet cs = other.GetComponent<CharacterSheet>();
+            CharacterSheet cs = other.GetComponent<Player>();
             if (cs != null)
             {
                 Effect(cs);
