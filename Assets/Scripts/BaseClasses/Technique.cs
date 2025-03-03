@@ -59,7 +59,6 @@ namespace BaseClasses
             }
 
             Timer -= Timer > 0 ? Time.deltaTime : Timer;
-            countDown.text = Math.Ceiling(Timer).ToString(CultureInfo.InvariantCulture);
         }
 
         protected virtual void StartWrapper()
@@ -69,9 +68,18 @@ namespace BaseClasses
             if (countDown != null && icon != null && active != null && notActive != null)
             {
                 StartCoroutine(StateListener());
+                StartCoroutine(UpdateCountDown());
             }
         }
 
+        private IEnumerator UpdateCountDown()
+        {
+            while (true)
+            {
+                countDown.text = Math.Ceiling(Timer).ToString(CultureInfo.InvariantCulture);
+                return null;
+            }
+        }
         protected virtual IEnumerator StateListener()
         {
             if (!Ready)

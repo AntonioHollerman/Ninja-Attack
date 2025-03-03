@@ -30,7 +30,7 @@ namespace Implementations.Managers
         private bool _transitioning;
         void Start()
         {
-            _avaRounds[1] = new List<int>{1};
+            _avaRounds[1] = new List<int>{1, 2, 3};
             _avaRounds[2] = new List<int>{1, 2};
             _avaRounds[3] = new List<int>{1, 2};
             

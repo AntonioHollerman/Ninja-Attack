@@ -291,6 +291,11 @@ namespace BaseClasses
                 CharacterSheets.Remove(this);
                 Defeated();
             }
+
+            if (IsStunned || UniversalStopCsUpdateLoop)
+            {
+                rb.velocity = Vector3.zero;
+            }
         }
         
         void OnCollisionEnter(Collision other)
