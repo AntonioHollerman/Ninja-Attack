@@ -77,7 +77,7 @@ namespace BaseClasses
             while (true)
             {
                 countDown.text = Math.Ceiling(Timer).ToString(CultureInfo.InvariantCulture);
-                return null;
+                yield return null;
             }
         }
         protected virtual IEnumerator StateListener()
