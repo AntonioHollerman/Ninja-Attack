@@ -98,6 +98,13 @@ namespace BaseClasses
             }
         }
 
+        public void DestroyTech()
+        {
+            Destroy(icon.gameObject);
+            Destroy(countDown.gameObject);
+            Destroy(gameObject);
+        }
+
         private void Update()
         {
             UpdateWrapper();
