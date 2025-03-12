@@ -13,38 +13,35 @@ namespace BaseClasses
     /// </summary>
     public abstract class CharacterSheet : MonoBehaviour
     {
-        public static List<CharacterSheet> CharacterSheets = new List<CharacterSheet>();
-        public static bool UniversalStopCsUpdateLoop;
-
-        public GameObject spawnSmokePrefab;
-        public bool isLarge;
-        public List<CharacterSheet> allies;
-        public float speed;
-        public bool IsALive => CurrentHp > 0; // True if the character is alive, false otherwise
-
-        // Current stats for the character
-        public float maxHp;
-        public float CurrentHp { get; private set; }    // Current health points
-        public int maxMana;
-        public int CurrentMana{ get; private set; }  // Current mana points
-
         public static readonly string DeathMarkPath = "prefabs/Extras/DeathMark";
         public static readonly string HitMarkPath = "prefabs/Extras/HitMark";
         
+        public static List<CharacterSheet> CharacterSheets = new List<CharacterSheet>();
+        public static bool                 UniversalStopCsUpdateLoop;
 
-        // Durations for various temporary statuses
-        private float _stunDuration; // Duration of stun
-        private float _animationBlockedDuration; // Duration of animation block
+        [Header("Game Object Components")]
+        public GameObject           spawnSmokePrefab;
+        public bool                 isLarge;
+        public List<CharacterSheet> allies;
+        public Rigidbody            rb;
+        public List<Technique>      techniques;
 
-        // Properties to check if the character is vulnerable, stunned, or has animation blocked
-        public bool IsStunned => _stunDuration > 0;
-        protected bool AnimationBlocked => _animationBlockedDuration > 0;
-        public Rigidbody rb;
-
-        // Dictionary to store equipped items, and a list to store techniques
-        private Weapon _weapon;
-        private List<Effect> _effects;
+        [Header("Character Sheet Stats")]
+        public float maxHp;
+        public int   maxMana;
+        public float speed;
+        public float baseDefence; // Todo: Not implemented
         
+        private Weapon          _weapon;
+        private List<Effect>    _effects;
+        private float           _stunDuration; // Duration of stun
+        private float           _animationBlockedDuration; // Duration of animation block
+        
+        public bool  IsALive => CurrentHp > 0; // True if the character is alive, false otherwise
+        public int   CurrentMana{ get; private set; }  // Current mana points
+        public float CurrentHp { get; private set; }    // Current health points
+        public bool  IsStunned => _stunDuration > 0;
+        public bool  AnimationBlocked => _animationBlockedDuration > 0;
 
         public virtual void Defeated()
         {
