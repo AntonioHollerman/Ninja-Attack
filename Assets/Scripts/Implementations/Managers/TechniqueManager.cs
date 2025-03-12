@@ -48,7 +48,7 @@ namespace Implementations.Managers
             return techScript;
         }
 
-        public Technique LoadPlayerOneTechnique(TechEnum tech, Player player, KeyCode code) // Todo: connect technique to icon
+        public Technique LoadPlayerOneTechnique(TechEnum tech, Player player, KeyCode code) 
         {
             GameObject iconPrefab = Resources.Load<GameObject>(GetIconPrefabPath(tech));
             GameObject iconGo = Instantiate(
@@ -58,13 +58,16 @@ namespace Implementations.Managers
                 techniquesIcons.transform);
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
+            Transform countDownTrans = iconGo.transform.Find("CountDown");
             keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>().text = code.ToString();
             
             Technique techScript = LoadTechnique(tech, player);
+            techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();
+            techScript.icon = iconGo.GetComponent<SpriteRenderer>();
             return techScript;
         }
         
-        public Technique LoadPlayerTwoTechnique(TechEnum tech, Player player, KeyCode code) // Todo: connect technique to icon
+        public Technique LoadPlayerTwoTechnique(TechEnum tech, Player player, KeyCode code) 
         {
             GameObject iconPrefab = Resources.Load<GameObject>(GetIconPrefabPath(tech));
             GameObject iconGo = Instantiate(
@@ -74,9 +77,12 @@ namespace Implementations.Managers
                 techniquesIcons.transform);
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
+            Transform countDownTrans = iconGo.transform.Find("CountDown");
             keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>().text = code.ToString();
             
             Technique techScript = LoadTechnique(tech, player);
+            techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();
+            techScript.icon = iconGo.GetComponent<SpriteRenderer>();
             return techScript;
         }
 
