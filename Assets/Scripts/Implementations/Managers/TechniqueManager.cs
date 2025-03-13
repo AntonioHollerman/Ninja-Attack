@@ -8,6 +8,7 @@ namespace Implementations.Managers
     public class TechniqueManager : MonoBehaviour
     {
         public static TechniqueManager Instance { private set; get; }
+        public static List<TechEnum> HasBoarder = new() { TechEnum.FireBall };
 
         public GameObject statsUiCanvas;
         public GameObject techniquesIcons;
@@ -17,7 +18,7 @@ namespace Implementations.Managers
         public float iconXDisplacement; // 1.463123 
         private void Awake()
         {
-            if (this != null)
+            if (Instance != null)
             {
                 Destroy(gameObject);
                 Destroy(activeTechniques);
@@ -44,45 +45,50 @@ namespace Implementations.Managers
 
             Technique techScript = techniqueGo.GetComponent<Technique>();
             techScript.parent = cs;
-            cs.techniques.Add(techScript);
             return techScript;
         }
 
-        public Technique LoadPlayerOneTechnique(TechEnum tech, Player player, KeyCode code) 
+        public Technique LoadPlayerOneTechnique(TechEnum tech, Player player, KeyCode code, int index) 
         {
             GameObject iconPrefab = Resources.Load<GameObject>(GetIconPrefabPath(tech));
             GameObject iconGo = Instantiate(
                 iconPrefab, 
-                iconPlayerOneStartPos + new Vector3(iconXDisplacement * player.techniques.Count, 0, 0),
+                iconPlayerOneStartPos + new Vector3(iconXDisplacement * index, 0, 0),
                 iconPrefab.transform.rotation,
                 techniquesIcons.transform);
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
+            Transform boarder = HasBoarder.Contains(tech) ? iconGo.transform.Find("Boarder") : null;
             keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>().text = code.ToString();
             
             Technique techScript = LoadTechnique(tech, player);
             techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();
             techScript.icon = iconGo.GetComponent<SpriteRenderer>();
+            techScript.boarder = boarder?.gameObject.GetComponent<SpriteRenderer>();
             return techScript;
         }
         
-        public Technique LoadPlayerTwoTechnique(TechEnum tech, Player player, KeyCode code) 
+        public Technique LoadPlayerTwoTechnique(TechEnum tech, Player player, KeyCode code, int index) 
         {
             GameObject iconPrefab = Resources.Load<GameObject>(GetIconPrefabPath(tech));
             GameObject iconGo = Instantiate(
                 iconPrefab, 
-                iconPlayerTwoStartPos - new Vector3(iconXDisplacement * player.techniques.Count, 0, 0),
+                iconPlayerTwoStartPos - new Vector3(iconXDisplacement * index, 0, 0),
                 iconPrefab.transform.rotation,
                 techniquesIcons.transform);
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
-            keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>().text = code.ToString();
+            Transform boarder = HasBoarder.Contains(tech) ? iconGo.transform.Find("Boarder") : null;
+            keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>().text = code.ToString()
+                .Replace("Period", ".")
+                .Replace("Slash", "/");
             
             Technique techScript = LoadTechnique(tech, player);
             techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();
             techScript.icon = iconGo.GetComponent<SpriteRenderer>();
+            techScript.boarder = boarder?.gameObject.GetComponent<SpriteRenderer>();
             return techScript;
         }
 

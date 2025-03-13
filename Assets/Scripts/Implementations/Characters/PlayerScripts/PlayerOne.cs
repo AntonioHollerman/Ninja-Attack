@@ -1,4 +1,5 @@
 ﻿using BaseClasses;
+using Implementations.Managers;
 using UnityEngine;
 
 namespace Implementations.Characters.PlayerScripts
@@ -17,6 +18,17 @@ namespace Implementations.Characters.PlayerScripts
             AttackCode = KeyCode.Space;
             FirstTechnique = KeyCode.Q;
             SecondTechnique = KeyCode.E;
+
+            techOne = TechniqueManager.Instance.LoadPlayerOneTechnique(
+                TechEnum.ElectricDash, 
+                this, 
+                FirstTechnique,
+           0);
+            techTwo = TechniqueManager.Instance.LoadPlayerOneTechnique(
+                TechEnum.StaticDischarge,
+                this, 
+                SecondTechnique, 
+                1);
         }
     }
 }

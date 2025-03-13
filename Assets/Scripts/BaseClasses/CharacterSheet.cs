@@ -24,13 +24,19 @@ namespace BaseClasses
         public bool                 isLarge;
         public List<CharacterSheet> allies;
         public Rigidbody            rb;
-        public List<Technique>      techniques;
 
-        [Header("Character Sheet Stats")]
+        [Header("Character Sheet Stats")] 
+        // Todo: Not implemented
+        public int   level;  
+        public float baseDefence;
+        public float baseAtk;
+        public float baseSpeed;
+        public int   baseMana;
+        
+        // Todo: Make private
         public float maxHp;
         public int   maxMana;
         public float speed;
-        public float baseDefence; // Todo: Not implemented
         
         private Weapon          _weapon;
         private List<Effect>    _effects;
