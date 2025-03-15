@@ -7563,6 +7563,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 962242012}
     - target: {fileID: 4265153142897932032, guid: f29c0a3d5f439b140a584df8247af9bf, type: 3}
+      propertyPath: coolDown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265153142897932032, guid: f29c0a3d5f439b140a584df8247af9bf, type: 3}
+      propertyPath: manaCost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265153142897932032, guid: f29c0a3d5f439b140a584df8247af9bf, type: 3}
       propertyPath: countDown
       value: 
       objectReference: {fileID: 1521534845}
@@ -7627,6 +7635,14 @@ PrefabInstance:
       propertyPath: parent
       value: 
       objectReference: {fileID: 962242012}
+    - target: {fileID: 6731083815745700954, guid: ab130ec46b674fb4ea441e8bf81c938b, type: 3}
+      propertyPath: coolDown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731083815745700954, guid: ab130ec46b674fb4ea441e8bf81c938b, type: 3}
+      propertyPath: manaCost
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6731083815745700954, guid: ab130ec46b674fb4ea441e8bf81c938b, type: 3}
       propertyPath: countDown
       value: 
@@ -7933,6 +7949,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1272078720}
     - target: {fileID: 8232529846003682919, guid: 059b54607498a2f45be5c8f334f7aed9, type: 3}
+      propertyPath: boarder
+      value: 
+      objectReference: {fileID: 1844722442}
+    - target: {fileID: 8232529846003682919, guid: 059b54607498a2f45be5c8f334f7aed9, type: 3}
+      propertyPath: coolDown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232529846003682919, guid: 059b54607498a2f45be5c8f334f7aed9, type: 3}
+      propertyPath: manaCost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232529846003682919, guid: 059b54607498a2f45be5c8f334f7aed9, type: 3}
       propertyPath: countDown
       value: 
       objectReference: {fileID: 430820522}
@@ -8098,6 +8126,18 @@ PrefabInstance:
       propertyPath: parent
       value: 
       objectReference: {fileID: 1272078720}
+    - target: {fileID: 2014929944246472446, guid: f157ef83577844c44934e9c8075b7910, type: 3}
+      propertyPath: boarder
+      value: 
+      objectReference: {fileID: 1844722442}
+    - target: {fileID: 2014929944246472446, guid: f157ef83577844c44934e9c8075b7910, type: 3}
+      propertyPath: coolDown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014929944246472446, guid: f157ef83577844c44934e9c8075b7910, type: 3}
+      propertyPath: manaCost
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2014929944246472446, guid: f157ef83577844c44934e9c8075b7910, type: 3}
       propertyPath: countDown
       value: 
