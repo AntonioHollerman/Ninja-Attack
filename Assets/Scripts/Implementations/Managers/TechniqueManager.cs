@@ -115,5 +115,10 @@ namespace Implementations.Managers
                 _ => "null"
             };
         }
+
+        public static void PlayerOneMoveTechniqueIconPosition(GameObject iconGo, int index)
+        {
+            
+        }
     }
 }
