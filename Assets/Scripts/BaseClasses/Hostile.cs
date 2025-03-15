@@ -40,7 +40,7 @@ namespace BaseClasses
         public override void DealDamage(float dmg)
         {
             base.DealDamage(dmg);
-            _hbScript.UpdateSlider(CurrentHp / maxHp);
+            _hbScript.UpdateSlider(Hp / MaxHp);
         }
         public override void Defeated()
         {

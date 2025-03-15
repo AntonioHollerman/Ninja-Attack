@@ -25,28 +25,31 @@ namespace BaseClasses
         public List<CharacterSheet> allies;
         public Rigidbody            rb;
 
-        [Header("Character Sheet Stats")] 
-        // Todo: Not implemented
-        public int   level;  
-        public float baseDefence;
+        [Header("Character Sheet Stats")]
+        public int   level;
+        public float baseHp;
         public float baseAtk;
-        public float baseSpeed;
         public int   baseMana;
-        
-        // Todo: Make private
-        public float maxHp;
-        public int   maxMana;
         public float speed;
         
         private Weapon          _weapon;
         private List<Effect>    _effects;
+        private List<Armor>     _equipment;
         private float           _stunDuration; // Duration of stun
         private float           _animationBlockedDuration; // Duration of animation block
+        private float           _vulnerableDuration;
         
-        public bool  IsALive => CurrentHp > 0; // True if the character is alive, false otherwise
-        public int   CurrentMana{ get; private set; }  // Current mana points
-        public float CurrentHp { get; private set; }    // Current health points
+        public float MaxHp { get; private set; }
+        public int   MaxMana { get; private set; }
+        public float Atk { get; private set; }
+        public int   Mana{ get; private set; }  // Current mana 
+        public float Hp { get; private set; }    // Current health 
+        public float Def { get; private set; }  // Current defence
+        
+        public bool  IsALive => Hp > 0; // True if the character is, false otherwise
+
         public bool  IsStunned => _stunDuration > 0;
+        public bool IsVulnerable => _vulnerableDuration > 0;
         public bool  AnimationBlocked => _animationBlockedDuration > 0;
 
         public virtual void Defeated()
@@ -144,14 +147,26 @@ namespace BaseClasses
         public virtual void DealDamage(float dmg)
         {
             // Apply damage, reducing health based on vulnerability and defense
-            CurrentHp -= dmg;
-            CurrentHp = CurrentHp < 0 ? 0 : CurrentHp;
+            Hp -= IsVulnerable ? GetFinalDamage(dmg, 0) : GetFinalDamage(dmg, Def);
+            Hp = Hp < 0 ? 0 : Hp;
+        }
+
+        /// <summary>
+        /// Calculates the final damage value after applying defense reduction.
+        /// </summary>
+        /// <param name="dmg">The initial damage value.</param>
+        /// <param name="defense">The defense value to apply to the damage.</param>
+        /// <returns>The final damage value after defense.</returns>
+        private float GetFinalDamage(float dmg, float defense)
+        {
+            // Formula to calculate final damage after defense is applied
+            return (dmg * (1 / (0.01f * defense + 0.8f)));
         }
 
         public virtual void RestoreHp(float hp)
         {
-            CurrentHp += hp;
-            CurrentHp = CurrentHp > maxHp ? maxHp : CurrentHp;
+            Hp += hp;
+            Hp = Hp > MaxHp ? MaxHp : Hp;
         }
 
         /// <summary>
@@ -167,6 +182,16 @@ namespace BaseClasses
         public void EquipWeapon(Weapon w)
         {
             _weapon = w;
+        }
+
+        public void AddEquipment(Armor armor)
+        {
+            _equipment.Add(armor);
+        }
+
+        public void RemoveEquipment(Armor armor)
+        {
+            _equipment.RemoveAll(x => x == armor);
         }
 
         public void AttackWeapon()
@@ -194,8 +219,8 @@ namespace BaseClasses
 
         public virtual void RestoreMana(int mana)
         {
-            CurrentMana += mana;
-            CurrentMana = CurrentMana > maxMana ? maxMana : CurrentMana;
+            Mana += mana;
+            Mana = Mana > MaxMana ? MaxMana : Mana;
             if (this is Player player)
             {
                 player.UpdateMana();
@@ -204,13 +229,13 @@ namespace BaseClasses
 
         public bool CastTechnique(int manaCost, float animationBlockDuration)
         {
-            if (CurrentMana < manaCost || IsStunned || AnimationBlocked)
+            if (Mana < manaCost || IsStunned || AnimationBlocked)
             {
                 return false;
             }
 
             BlockAnimation(animationBlockDuration);
-            CurrentMana -= manaCost;
+            Mana -= manaCost;
             
             if (this is Player player)
             {
@@ -238,12 +263,49 @@ namespace BaseClasses
                 _weapon.Deactivate();
             }
         }
+        
+        /// <summary>
+        /// Makes the character vulnerable for a specific duration.
+        /// </summary>
+        /// <param name="duration">The duration of vulnerability.</param>
+        public void Vulnerable(float duration)
+        {
+            // Update vulnerability duration to the maximum of the current or new duration
+            _vulnerableDuration = duration > _vulnerableDuration ? duration : _vulnerableDuration;
+        }
 
         public void BlockAnimation(float duration)
         {
             _animationBlockedDuration = _animationBlockedDuration > duration ? _animationBlockedDuration : duration;
         }
 
+        /// <summary>
+        /// Updates the character's stats based on their level and base attributes.
+        /// </summary>
+        private void UpdateStats()
+        {
+            // Calculate current health, mana, attack, and speed based on the character's level
+            Hp = MaxHp = (int)(1.8f * Math.Log(level) * baseHp) + 10;
+            Mana = MaxMana = 50 * (int)(Math.Log(level + 0.5) * baseMana) + 50;
+            Atk = (float) Math.Log(level) * baseAtk;
+            UpdateDefense();
+        } 
+
+        /// <summary>
+        /// Updates the character's defense based on equipped armor.
+        /// </summary>
+        private void UpdateDefense()
+        {
+            float newDef = 0; // Temporary variable to accumulate defense
+
+            // Loop through all equipped items and add their defense if they are armor
+            foreach (var armor in _equipment)
+            {
+                newDef += armor.Def;
+            }
+
+            Def = newDef; // Update the character's defense stat
+        }
         /// <summary>
         /// Unity's Start method. Calls the StartWrapper to initialize the character.
         /// </summary>
@@ -269,14 +331,24 @@ namespace BaseClasses
         /// </summary>
         protected virtual void AwakeWrapper()
         {
+            UpdateStats();
             rb = GetComponent<Rigidbody>();
-            // Initialize techniques with null values
-            CurrentHp = maxHp;
-            CurrentMana = maxMana;
             _effects = new List<Effect>();
+            _equipment = new List<Armor>();
             
             allies.Add(this);
             CharacterSheets.Add(this);
+            StartCoroutine(LevelChange());
+        }
+
+        private IEnumerator LevelChange()
+        {
+            int lastLevel = level;
+            while (true)
+            {
+                yield return new WaitUntil(() => lastLevel != level);
+                UpdateStats();
+            }
         }
 
         /// <summary>
@@ -287,7 +359,7 @@ namespace BaseClasses
             // Reduce the duration of vulnerability, stun, and animation block
             _stunDuration -= IsStunned ? Time.deltaTime : 0f;
             _animationBlockedDuration -= AnimationBlocked ? Time.deltaTime : 0f;
-            
+            _vulnerableDuration -= IsVulnerable ? Time.deltaTime : 0f;
 
             if (!IsALive)
             {

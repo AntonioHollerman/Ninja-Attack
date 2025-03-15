@@ -31,7 +31,7 @@ namespace BaseClasses
         public int ManaCost { get; private set; } // How much implemented technique cost
         public float CoolDown { get; private set; } // How many seconds is the cooldown
         protected float Timer;
-        protected bool Ready => parent.CurrentMana >= ManaCost && Timer <= 0;
+        protected bool Ready => parent.Mana >= ManaCost && Timer <= 0;
 
         public abstract void Execute();
 

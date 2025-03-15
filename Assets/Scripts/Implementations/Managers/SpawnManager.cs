@@ -29,7 +29,7 @@ namespace Implementations.Managers
             
             foreach (Hostile hostile in Hostile.Hostiles)
             {
-                hostile.DealDamage(hostile.CurrentHp);
+                hostile.DealDamage(hostile.Hp);
             }
             Hostile.Hostiles = new List<Hostile>();
 

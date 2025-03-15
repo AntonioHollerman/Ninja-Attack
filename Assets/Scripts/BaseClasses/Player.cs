@@ -153,14 +153,14 @@ namespace BaseClasses
 
         public void UpdateHp()
         {
-            _hpSlider.fillAmount = CurrentHp /  maxHp;
-            _hpText.text = $"{Math.Floor(CurrentHp)} / {maxHp}";
+            _hpSlider.fillAmount = Hp /  MaxHp;
+            _hpText.text = $"{Math.Floor(Hp)} / {MaxHp}";
         }
 
         public void UpdateMana()
         {
-            _manaSlider.fillAmount = (float) CurrentMana / maxMana;
-            _manaText.text = $"{CurrentMana} / {maxMana}";
+            _manaSlider.fillAmount = (float) Mana / MaxMana;
+            _manaText.text = $"{Mana} / {MaxMana}";
         }
 
         public override void DealDamage(float dmg)

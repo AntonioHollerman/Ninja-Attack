@@ -17,7 +17,6 @@ namespace Implementations.Characters.HostileScripts
         private BasicMelee _meleeScript;
         protected override void AwakeWrapper()
         {
-            maxHp = 12;
             base.AwakeWrapper();
             _meleeScript = meleeGo.GetComponent<BasicMelee>();
         }
