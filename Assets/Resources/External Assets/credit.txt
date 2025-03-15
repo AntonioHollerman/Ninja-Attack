@@ -29,3 +29,27 @@
 
 "More Pixelated Attack/Hit Animations" by Viktor Hahn
     link: https://opengameart.org/content/more-pixelated-attackhit-animations
+
+"[LPC] Jungle Ruins" by bluecarrot16
+	link: https://opengameart.org/content/lpc-jungle-ruins
+
+"Dungeon Tileset" by Buch
+	link: https://opengameart.org/content/dungeon-tileset
+
+"Thatched-roof Cottage" by bluecarrot16
+	link: https://opengameart.org/content/lpc-thatched-roof-cottage
+
+"[LPC] Containers" by bluecarrot16
+	link: https://opengameart.org/content/lpc-containers
+
+"Farming tilesets, magic animations and UI elements" by daneeklu
+	link: https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements
+
+"[LPC] Forest tiles" by Reemax
+	link: https://opengameart.org/content/lpc-forest-tiles
+
+"[LPC] Medieval Village Decorations" by bluecarrot16
+	link: https://opengameart.org/content/lpc-medieval-village-decorations
+
+"RPG Asset Tile Set 'Cemetery' NES" by Chasersgaming
+	link: https://opengameart.org/content/rpg-asset-tile-set-cemetery-nes
