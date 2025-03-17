@@ -24,6 +24,7 @@ namespace BaseClasses
         public bool                 isLarge;
         public List<CharacterSheet> allies;
         public Rigidbody            rb;
+        public CharacterSheet lastHit;
 
         [Header("Character Sheet Stats")]
         public int   level;
