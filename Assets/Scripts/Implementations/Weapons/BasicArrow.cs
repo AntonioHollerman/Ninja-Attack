@@ -29,7 +29,7 @@ namespace Implementations.Weapons
 
             Deactivate();
             script.StartAnimation();
-            cs.DealDamage(damage); // Apply damage to the target
+            cs.DealDamage(damage, parent); // Apply damage to the target
 
             PlayHitSound(); // Play the hit sound
             PlayArrowSound(); // Play the arrow sound

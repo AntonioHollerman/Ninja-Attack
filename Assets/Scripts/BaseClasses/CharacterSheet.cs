@@ -55,13 +55,13 @@ namespace BaseClasses
 
         public virtual void Defeated()
         {
+            Debug.Log($"{name}: Defeated by {lastHit?.name}");
             Vector3 pos = transform.position;
             Destroy(gameObject);
             
             GameObject prefab = Resources.Load<GameObject>(DeathMarkPath);
             LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
             script.StartAnimation();
-            
         }
         
 
@@ -145,8 +145,10 @@ namespace BaseClasses
         /// Deals damage to the character, considering vulnerabilities and defense.
         /// </summary>
         /// <param name="dmg">The amount of damage to deal.</param>
-        public virtual void DealDamage(float dmg)
+        /// <param name="ownership">The character sheet that dealt the damage</param>
+        public virtual void DealDamage(float dmg, CharacterSheet ownership)
         {
+            lastHit = ownership;
             // Apply damage, reducing health based on vulnerability and defense
             Hp -= IsVulnerable ? GetFinalDamage(dmg, 0) : GetFinalDamage(dmg, Def);
             Hp = Hp < 0 ? 0 : Hp;
@@ -332,13 +334,14 @@ namespace BaseClasses
         /// </summary>
         protected virtual void AwakeWrapper()
         {
-            UpdateStats();
             rb = GetComponent<Rigidbody>();
             _effects = new List<Effect>();
             _equipment = new List<Armor>();
             
             allies.Add(this);
             CharacterSheets.Add(this);
+            
+            UpdateStats();
             StartCoroutine(LevelChange());
         }
 

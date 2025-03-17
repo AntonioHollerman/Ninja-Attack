@@ -16,7 +16,7 @@ namespace Implementations.HitBoxes
         
         protected override void Effect(CharacterSheet cs)
         {
-            cs.DealDamage(damage);
+            cs.DealDamage(damage, parent);
             cs.Stun(stunDuration);
             parentTech.StartCoroutine(HitAnimation(cs));
         }

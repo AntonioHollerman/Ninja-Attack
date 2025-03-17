@@ -13,8 +13,8 @@ namespace Implementations.HitBoxes
         public bool damageSelf;
         protected override void Effect(CharacterSheet cs)
         {
-            cs.DealDamage(baseDamage);
-            cs.LoadEffect(((sheet, deltaTime) => sheet.DealDamage(deltaTime * burnEffectDps)), duration);
+            cs.DealDamage(baseDamage, parent);
+            cs.LoadEffect(((sheet, deltaTime) => sheet.DealDamage(deltaTime * burnEffectDps, parent)), duration);
         }
         
         protected override void TriggerEnterWrapper(Collider other)

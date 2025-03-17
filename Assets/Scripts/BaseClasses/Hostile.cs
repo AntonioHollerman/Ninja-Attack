@@ -37,9 +37,9 @@ namespace BaseClasses
             Hostiles.Add(this);
         }
 
-        public override void DealDamage(float dmg)
+        public override void DealDamage(float dmg, CharacterSheet ownership)
         {
-            base.DealDamage(dmg);
+            base.DealDamage(dmg, ownership);
             _hbScript.UpdateSlider(Hp / MaxHp);
         }
         public override void Defeated()

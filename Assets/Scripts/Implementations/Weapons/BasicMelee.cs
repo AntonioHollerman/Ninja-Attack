@@ -30,7 +30,7 @@ namespace Implementations.Weapons
             LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
 
             script.StartAnimation();
-            cs.DealDamage(damage); // Apply damage to the target
+            cs.DealDamage(damage, parent); // Apply damage to the target
 
             PlayHitSound();// Play the attack sound
         }

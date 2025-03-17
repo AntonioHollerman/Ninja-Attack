@@ -163,9 +163,9 @@ namespace BaseClasses
             _manaText.text = $"{Mana} / {MaxMana}";
         }
 
-        public override void DealDamage(float dmg)
+        public override void DealDamage(float dmg, CharacterSheet ownership)
         {
-            base.DealDamage(dmg);
+            base.DealDamage(dmg, ownership);
             UpdateHp();
         }
 
