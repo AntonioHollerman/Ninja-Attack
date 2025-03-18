@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7377,14 +7377,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
-      propertyPath: techOne
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
-      propertyPath: techTwo
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
       propertyPath: hpTextGo
       value: 
       objectReference: {fileID: 2043609693}
@@ -7471,14 +7463,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
-      propertyPath: techOne
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
-      propertyPath: techTwo
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
       propertyPath: hpTextGo
       value: 
