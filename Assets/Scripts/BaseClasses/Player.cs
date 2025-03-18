@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -163,9 +164,9 @@ namespace BaseClasses
             _manaText.text = $"{Mana} / {MaxMana}";
         }
 
-        public override void DealDamage(float dmg)
+        public override void DealDamage(float dmg, CharacterSheet ownership)
         {
-            base.DealDamage(dmg);
+            base.DealDamage(dmg, ownership);
             UpdateHp();
         }
 
@@ -198,6 +199,18 @@ namespace BaseClasses
         {
             _blockInput = _blockInput > duration ? _blockInput : duration;
             rb.velocity = Vector3.zero;
+        }
+
+        protected override IEnumerator LevelChange()
+        {
+            int lastLevel = level;
+            while (true)
+            {
+                yield return new WaitUntil(() => lastLevel != level);
+                UpdateStats();
+                UpdateHp();
+                UpdateMana();
+            }
         }
     }
 }

@@ -30,7 +30,6 @@ namespace Implementations.Managers
             Instance = this;
             DontDestroyOnLoad(gameObject);
             DontDestroyOnLoad(statsUiCanvas);
-            DontDestroyOnLoad(techniquesIcons);
             DontDestroyOnLoad(activeTechniques);
         }
         public Technique LoadTechnique(TechEnum tech, CharacterSheet cs)
@@ -91,7 +90,16 @@ namespace Implementations.Managers
             techScript.boarder = boarder?.gameObject.GetComponent<SpriteRenderer>();
             return techScript;
         }
-
+        
+        public void PlayerOneMoveTechniqueIconPosition(GameObject iconGo, int index)
+        {
+            iconGo.transform.position = iconPlayerOneStartPos - new Vector3(iconXDisplacement * index, 0, 0);
+        }
+        
+        public void PlayerTwoMoveTechniqueIconPosition(GameObject iconGo, int index)
+        {
+            iconGo.transform.position = iconPlayerTwoStartPos - new Vector3(iconXDisplacement * index, 0, 0);
+        }
         public static string GetTechniquePath(TechEnum tech)
         {
             return tech switch
@@ -114,11 +122,6 @@ namespace Implementations.Managers
                 TechEnum.ElectricDash    => "prefabs/PlayerUI/TechniquesIcon/Flash Step",
                 _ => "null"
             };
-        }
-
-        public static void PlayerOneMoveTechniqueIconPosition(GameObject iconGo, int index)
-        {
-            
         }
     }
 }

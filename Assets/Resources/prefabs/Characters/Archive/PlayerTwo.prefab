@@ -136,10 +136,13 @@ MonoBehaviour:
   isLarge: 0
   allies:
   - {fileID: 0}
-  speed: 5
-  maxHp: 30
-  maxMana: 300
   rb: {fileID: 0}
+  lastHit: {fileID: 0}
+  level: 3
+  baseHp: 9
+  baseAtk: 4
+  baseMana: 75
+  speed: 5
   body: {fileID: 3737377238936792110}
   weaponGo: {fileID: 1849076035800163100}
   hpSliderGo: {fileID: 0}

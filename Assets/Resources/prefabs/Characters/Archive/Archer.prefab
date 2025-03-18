@@ -132,11 +132,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnSmokePrefab: {fileID: 8128153735471901540, guid: 9f83187e67964ef46983d297b9ef6c79, type: 3}
+  isLarge: 0
   allies: []
-  speed: 10
-  maxHp: 15
-  maxMana: 0
   rb: {fileID: 0}
+  lastHit: {fileID: 0}
+  level: 3
+  baseHp: 4
+  baseAtk: 2
+  baseMana: 40
+  speed: 7
   detectRange: 100
   healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
   manaPotion: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}

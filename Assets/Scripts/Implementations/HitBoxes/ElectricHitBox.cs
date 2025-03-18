@@ -9,14 +9,13 @@ namespace Implementations.HitBoxes
     public class ElectricHitBox : HitBox
     {
         public Technique parentTech;
-        public float damage;
         public float stunDuration;
         public GameObject hitPrefab;
         public GameObject stunPrefab;
         
         protected override void Effect(CharacterSheet cs)
         {
-            cs.DealDamage(damage);
+            cs.DealDamage(1.35f * parent.Atk, parent);
             cs.Stun(stunDuration);
             parentTech.StartCoroutine(HitAnimation(cs));
         }

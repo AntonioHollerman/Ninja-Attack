@@ -7,7 +7,6 @@ namespace Implementations.Weapons
 {
     public class BasicMelee : Weapon
     {
-        public int damage; // Damage dealt by the melee attack
         public AudioClip SwordSwing; // Sound effect for the melee attack
         public AudioClip HitSound; // Sound effect for when the melee hits a target
         public AudioClip SwordClash;
@@ -30,7 +29,7 @@ namespace Implementations.Weapons
             LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
 
             script.StartAnimation();
-            cs.DealDamage(damage); // Apply damage to the target
+            cs.DealDamage(0.85f * parent.Atk, parent); // Apply damage to the target
 
             PlayHitSound();// Play the attack sound
         }

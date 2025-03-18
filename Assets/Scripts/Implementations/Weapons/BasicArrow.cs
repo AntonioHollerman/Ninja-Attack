@@ -7,7 +7,6 @@ namespace Implementations.Weapons
 {
     public class BasicArrow : Weapon
     {
-        public int damage;
         public float speed = 5f; // Speed of the arrow
         public float maxTravelDistance = 15f; // Maximum distance the arrow can travel before deactivating
         public AudioClip arrowSound; // Sound effect for the arrow
@@ -29,7 +28,7 @@ namespace Implementations.Weapons
 
             Deactivate();
             script.StartAnimation();
-            cs.DealDamage(damage); // Apply damage to the target
+            cs.DealDamage(1.05f * parent.Atk, parent); // Apply damage to the target
 
             PlayHitSound(); // Play the hit sound
             PlayArrowSound(); // Play the arrow sound

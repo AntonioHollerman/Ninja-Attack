@@ -61,7 +61,6 @@ namespace BaseClasses
             GameObject prefab = Resources.Load<GameObject>(DeathMarkPath);
             LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
             script.StartAnimation();
-            
         }
         
 
@@ -145,8 +144,10 @@ namespace BaseClasses
         /// Deals damage to the character, considering vulnerabilities and defense.
         /// </summary>
         /// <param name="dmg">The amount of damage to deal.</param>
-        public virtual void DealDamage(float dmg)
+        /// <param name="ownership">The character sheet that dealt the damage</param>
+        public virtual void DealDamage(float dmg, CharacterSheet ownership)
         {
+            lastHit = ownership;
             // Apply damage, reducing health based on vulnerability and defense
             Hp -= IsVulnerable ? GetFinalDamage(dmg, 0) : GetFinalDamage(dmg, Def);
             Hp = Hp < 0 ? 0 : Hp;
@@ -283,12 +284,12 @@ namespace BaseClasses
         /// <summary>
         /// Updates the character's stats based on their level and base attributes.
         /// </summary>
-        private void UpdateStats()
+        protected void UpdateStats()
         {
             // Calculate current health, mana, attack, and speed based on the character's level
-            Hp = MaxHp = (int)(1.8f * Math.Log(level) * baseHp) + 10;
-            Mana = MaxMana = 50 * (int)(Math.Log(level + 0.5) * baseMana) + 50;
-            Atk = (float) Math.Log(level) * baseAtk;
+            Hp = MaxHp = (int)(1.3f * Math.Log(level) * baseHp) + baseHp;
+            Mana = MaxMana = 50 * (int)(Math.Log(level + 0.5) * (100 / (float) baseMana)) + baseMana;
+            Atk = (float) Math.Log(level) * baseAtk + baseAtk;
             UpdateDefense();
         } 
 
@@ -332,17 +333,18 @@ namespace BaseClasses
         /// </summary>
         protected virtual void AwakeWrapper()
         {
-            UpdateStats();
             rb = GetComponent<Rigidbody>();
             _effects = new List<Effect>();
             _equipment = new List<Armor>();
             
             allies.Add(this);
             CharacterSheets.Add(this);
+            
+            UpdateStats();
             StartCoroutine(LevelChange());
         }
 
-        private IEnumerator LevelChange()
+        protected virtual IEnumerator LevelChange()
         {
             int lastLevel = level;
             while (true)

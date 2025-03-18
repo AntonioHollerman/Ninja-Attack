@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -689,12 +689,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182225898}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1179906900}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &182225900
 MonoBehaviour:
@@ -4244,40 +4244,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8006372606010726497, guid: c5763c6f49f4b46448c88976871a6ff4, type: 3}
   m_PrefabInstance: {fileID: 1170488673}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1179906899
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1179906900}
-  m_Layer: 0
-  m_Name: Managers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1179906900
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1179906899}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2136100508}
-  - {fileID: 1362070895}
-  - {fileID: 182225899}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1193110613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8006372606010726497, guid: c5763c6f49f4b46448c88976871a6ff4, type: 3}
@@ -4537,7 +4503,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1179906900}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1368461166 stripped
 Transform:
@@ -7158,7 +7124,7 @@ Transform:
   - {fileID: 51791053}
   - {fileID: 1420854993}
   - {fileID: 1655032208}
-  m_Father: {fileID: 1179906900}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2136100509
 MonoBehaviour:
@@ -7377,12 +7343,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
-      propertyPath: techOne
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
-      propertyPath: techTwo
-      value: 
+      propertyPath: level
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
       propertyPath: hpTextGo
@@ -7472,12 +7434,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
-      propertyPath: techOne
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
-      propertyPath: techTwo
-      value: 
+      propertyPath: level
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
       propertyPath: hpTextGo
@@ -7554,7 +7512,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 1179906900}
+  - {fileID: 2136100508}
+  - {fileID: 1362070895}
+  - {fileID: 182225899}
   - {fileID: 287592377}
   - {fileID: 8673343425285442903}
   - {fileID: 2375431109417316651}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Implementations.Extras;
 using UnityEngine;
 
@@ -37,9 +38,9 @@ namespace BaseClasses
             Hostiles.Add(this);
         }
 
-        public override void DealDamage(float dmg)
+        public override void DealDamage(float dmg, CharacterSheet ownership)
         {
-            base.DealDamage(dmg);
+            base.DealDamage(dmg, ownership);
             _hbScript.UpdateSlider(Hp / MaxHp);
         }
         public override void Defeated()
@@ -63,6 +64,17 @@ namespace BaseClasses
             {
                 GameObject go = Instantiate(manaPotion, transform.position, manaPotion.transform.rotation);
                 go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 0);
+            }
+        }
+
+        protected override IEnumerator LevelChange()
+        {
+            int lastLevel = level;
+            while (true)
+            {
+                yield return new WaitUntil(() => lastLevel != level);
+                UpdateStats();
+                _hbScript.UpdateSlider(Hp / MaxHp);
             }
         }
     }
