@@ -72,7 +72,6 @@ namespace BaseClasses
             UpdateMana();
             
             Players.Add(this);
-            Debug.Log($"Level: {level}, Hp: {Hp}, Attack: {Atk}");
         }
 
         private void HandleDirection()

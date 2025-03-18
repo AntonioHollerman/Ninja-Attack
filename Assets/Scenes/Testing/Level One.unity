@@ -7344,7 +7344,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
       propertyPath: level
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 641717655267450115, guid: 0446f85da25d98a4baecc7de86a76278, type: 3}
       propertyPath: hpTextGo
@@ -7435,7 +7435,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
       propertyPath: level
-      value: 15
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2304938073001906317, guid: 2fe17ff82e229b445884b268473d1996, type: 3}
       propertyPath: hpTextGo

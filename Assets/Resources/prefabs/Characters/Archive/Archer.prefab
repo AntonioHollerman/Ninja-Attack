@@ -136,9 +136,9 @@ MonoBehaviour:
   allies: []
   rb: {fileID: 0}
   lastHit: {fileID: 0}
-  level: 1
-  baseHp: 5
-  baseAtk: 6
+  level: 3
+  baseHp: 4
+  baseAtk: 2
   baseMana: 40
   speed: 7
   detectRange: 100
