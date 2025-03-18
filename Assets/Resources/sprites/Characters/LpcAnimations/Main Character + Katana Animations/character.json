@@ -1,0 +1,285 @@
+{
+  "bodyTypeName": "male",
+  "url": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Body_color_olive&head=Human_male_olive&wound_eye_right=Right_Eye_eye_right&wheelchair=none_Wheelchair&visor=none_Slit_visor&hat=Hood_charcoal&bandana=Mail_silver&bandana_overlay=none_Skull_Bandana_Overlay&facial_mask=none_Plain_Mask&facial_eyes=none_Eyepatch_2_Left&neck=none_Necktie&shoulders=Mantal_slate&arms=Armour_steel&bauldron=none_Bauldron&bracers=none_Bracers&gloves=none_Gloves&belt=Double_Belt_charcoal&sash=none_Obi&bandages=none_Bandages&apron=none_Apron&overalls=Suspenders_charcoal&jacket=Tabard_black&cape=Tattered_slate&legs=Pantaloons_slate&shoes=Ghillies_slate&shoes_toe=none_Plated_Toe&weapon=Katana_katana",
+  "spritesheets": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/spritesheets/",
+  "version": 1,
+  "datetime": "3/5/2025, 8:17:50 AM",
+  "credits": [
+    {
+      "fileName": "body/bodies/male/olive.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "bluecarrot16,JaidynReiman,Benjamin K. Smith (BenCreating),Evert,Eliza Wyatt (ElizaWy),TheraHedwig,MuffinElZangano,Durrani,Johannes Sjölund (wulax),Stephen Challener (Redshrike)",
+      "urls": "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles,https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-male-jumping-animation-by-durrani,https://opengameart.org/content/lpc-runcycle-and-diagonal-walkcycle,https://opengameart.org/content/lpc-revised-character-basics,https://opengameart.org/content/lpc-be-seated,https://opengameart.org/content/lpc-runcycle-for-male-muscular-and-pregnant-character-bases-with-modular-heads,https://opengameart.org/content/lpc-jump-expanded,https://opengameart.org/content/lpc-character-bases",
+      "notes": "see details at https://opengameart.org/content/lpc-character-bases; 'Thick' Male Revised Run/Climb by JaidynReiman (based on ElizaWy's LPC Revised)"
+    },
+    {
+      "fileName": "body/wound/eye_right.png",
+      "licenses": "CC-BY-SA 3.0,GPL 3.0",
+      "authors": "Benjamin K. Smith (BenCreating),Sander Frenken (castelonia)",
+      "urls": "https://opengameart.org/content/lpc-zombie",
+      "notes": ""
+    },
+    {
+      "fileName": "head/heads/human/male/olive.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "bluecarrot16,Benjamin K. Smith (BenCreating),Stephen Challener (Redshrike)",
+      "urls": "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles,https://opengameart.org/content/lpc-character-bases",
+      "notes": "original head by Redshrike, tweaks by BenCreating, modular version by bluecarrot16"
+    },
+    {
+      "fileName": "hat/cloth/hood/adult/charcoal.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "Johannes Sjölund (wulax),JaidynReiman",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-expanded-hats-facial-helmets",
+      "notes": "Brown hood by Wulax, original black/white recolors by ??, mapped to idle/run/jump/revised combat by JaidynReiman, along with additional recolors."
+    },
+    {
+      "fileName": "hat/helmet/mail/adult/silver.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "Napsio,Johannes Sjölund (wulax),JaidynReiman",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-expanded-hats-facial-helmets",
+      "notes": "reduced palette version by Napsio"
+    },
+    {
+      "fileName": "shoulders/mantal/male/slate.png",
+      "licenses": "CC-BY-SA 3.0",
+      "authors": "bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-pirates",
+      "notes": ""
+    },
+    {
+      "fileName": "arms/armour/plate/male/steel.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "Michael Whitlock (bigbeargames),Matthew Krohn (makrohn),Johannes Sjölund (wulax)",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,http://opengameart.org/content/lpc-clothing-updates",
+      "notes": "original by wulax, recolors by bigbeargames; adapted to v3 bases and further recolors by bluecarrot16"
+    },
+    {
+      "fileName": "torso/aprons/suspenders/male/charcoal.png",
+      "licenses": "OGA-BY 3.0",
+      "authors": "ElizaWy,JaidynReiman",
+      "urls": "https://github.com/ElizaWy/LPC/tree/main/Characters/Clothing,https://opengameart.org/content/expanded-universal-lpc-spritesheet-idle-run-jump-lpc-revised-combat-and-assets",
+      "notes": "original by ElizaWy; spellcast/thrust/shoot/hurt/combat adapted from original by JaidynReiman"
+    },
+    {
+      "fileName": "torso/jacket/tabard/male/black.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "bluecarrot16,Johannes Sjölund (wulax)",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,http://opengameart.org/content/lpc-clothing-updates",
+      "notes": "original by wulax, edited to v3 base by bluecarrot16"
+    },
+    {
+      "fileName": "cape/tattered/female/slate.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "Nila122,JaidynReiman",
+      "urls": "https://opengameart.org/content/lpc-curly-hair-elven-ears-white-cape-with-blue-trim-and-more,https://opengameart.org/content/lpc-roman-armor",
+      "notes": ""
+    },
+    {
+      "fileName": "cape/tattered_behind/slate.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "Nila122,JaidynReiman",
+      "urls": "https://opengameart.org/content/lpc-curly-hair-elven-ears-white-cape-with-blue-trim-and-more,https://opengameart.org/content/lpc-roman-armor",
+      "notes": ""
+    },
+    {
+      "fileName": "torso/waist/belt_double/male/charcoal.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "bluecarrot16,Johannes Sjölund (wulax),Matthew Krohn (makrohn)",
+      "urls": "https://opengameart.org/content/lpc-combat-armor-for-women,https://opengameart.org/content/lpc-pirates",
+      "notes": ""
+    },
+    {
+      "fileName": "legs/pantaloons/male/slate.png",
+      "licenses": "OGA-BY 3.0,GPL 2.0,GPL 3.0,CC-BY-SA 3.0",
+      "authors": "Nila122,JaidynReiman,Johannes Sjölund (wulax),Stephen Challener (Redshrike)",
+      "urls": "https://opengameart.org/content/lpc-pirates,https://opengameart.org/content/more-lpc-clothes-and-hair,https://opengameart.org/content/lpc-expanded-pants",
+      "notes": "Original bases by Redshrike, thrust/shoot bases by Wulax, Original Pantaloons by Nila122, climb/jump/run/sit/emotes/revised combat by JaidynReiman"
+    },
+    {
+      "fileName": "feet/shoes/ghillies/male/slate.png",
+      "licenses": "CC-BY-SA 3.0,GPL 3.0",
+      "authors": "bluecarrot16,JaidynReiman,Thane Brimhall (pennomi),laetissima,Matthew Krohn (makrohn)",
+      "urls": "https://opengameart.org/content/lpc-2-characters,http://opengameart.org/content/lpc-clothing-updates,https://opengameart.org/content/lpc-expanded-socks-shoes",
+      "notes": "original by pennomi, laetissima and makrohn; edited for v3 bases by bluecarrot16, Jump/Sit/Emote/Run/Revised Combat by JaidynReiman"
+    },
+    {
+      "fileName": "weapon/sword/katana/walk/katana.png",
+      "licenses": "OGA-BY 3.0",
+      "authors": "Pierre Vigier and DCSS artists (see https://github.com/crawl/tiles/blob/master/ARTISTS.md)",
+      "urls": "https://opengameart.org/content/lpc-dcss-swords",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/katana/walk/behind/katana.png",
+      "licenses": "OGA-BY 3.0",
+      "authors": "Pierre Vigier and DCSS artists (see https://github.com/crawl/tiles/blob/master/ARTISTS.md)",
+      "urls": "https://opengameart.org/content/lpc-dcss-swords",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/katana/slash/katana.png",
+      "licenses": "OGA-BY 3.0",
+      "authors": "Pierre Vigier and DCSS artists (see https://github.com/crawl/tiles/blob/master/ARTISTS.md)",
+      "urls": "https://opengameart.org/content/lpc-dcss-swords",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/katana/slash/behind/katana.png",
+      "licenses": "OGA-BY 3.0",
+      "authors": "Pierre Vigier and DCSS artists (see https://github.com/crawl/tiles/blob/master/ARTISTS.md)",
+      "urls": "https://opengameart.org/content/lpc-dcss-swords",
+      "notes": ""
+    }
+  ],
+  "layers": [
+    {
+      "fileName": "cape/tattered_behind/slate.png",
+      "zPos": 5,
+      "parentName": "cape",
+      "name": "Tattered",
+      "variant": "slate",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/katana/walk/behind/katana.png",
+      "zPos": 9,
+      "custom_animation": "walk_128",
+      "parentName": "weapon",
+      "name": "Katana",
+      "variant": "katana",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/katana/slash/behind/katana.png",
+      "zPos": 9,
+      "custom_animation": "slash_128",
+      "parentName": "weapon",
+      "name": "Katana",
+      "variant": "katana",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "body/bodies/male/olive.png",
+      "zPos": 10,
+      "parentName": "body",
+      "name": "Body_color",
+      "variant": "olive",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "feet/shoes/ghillies/male/slate.png",
+      "zPos": 15,
+      "parentName": "shoes",
+      "name": "Ghillies",
+      "variant": "slate",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "legs/pantaloons/male/slate.png",
+      "zPos": 20,
+      "parentName": "legs",
+      "name": "Pantaloons",
+      "variant": "slate",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "torso/aprons/suspenders/male/charcoal.png",
+      "zPos": 38,
+      "parentName": "overalls",
+      "name": "Suspenders",
+      "variant": "charcoal",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "torso/jacket/tabard/male/black.png",
+      "zPos": 55,
+      "parentName": "jacket",
+      "name": "Tabard",
+      "variant": "black",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "arms/armour/plate/male/steel.png",
+      "zPos": 60,
+      "parentName": "arms",
+      "name": "Armour",
+      "variant": "steel",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "torso/waist/belt_double/male/charcoal.png",
+      "zPos": 70,
+      "parentName": "belt",
+      "name": "Double_Belt",
+      "variant": "charcoal",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "shoulders/mantal/male/slate.png",
+      "zPos": 75,
+      "parentName": "shoulders",
+      "name": "Mantal",
+      "variant": "slate",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "cape/tattered/female/slate.png",
+      "zPos": 85,
+      "parentName": "cape",
+      "name": "Tattered",
+      "variant": "slate",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "head/heads/human/male/olive.png",
+      "zPos": 100,
+      "parentName": "head",
+      "name": "Human_male",
+      "variant": "olive",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "body/wound/eye_right.png",
+      "zPos": 115,
+      "parentName": "wound_eye_right",
+      "name": "Right_Eye",
+      "variant": "eye_right",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "hat/helmet/mail/adult/silver.png",
+      "zPos": 125,
+      "parentName": "bandana",
+      "name": "Mail",
+      "variant": "silver",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "hat/cloth/hood/adult/charcoal.png",
+      "zPos": 130,
+      "parentName": "hat",
+      "name": "Hood",
+      "variant": "charcoal",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "weapon/sword/katana/walk/katana.png",
+      "zPos": 140,
+      "custom_animation": "walk_128",
+      "parentName": "weapon",
+      "name": "Katana",
+      "variant": "katana",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/katana/slash/katana.png",
+      "zPos": 140,
+      "custom_animation": "slash_128",
+      "parentName": "weapon",
+      "name": "Katana",
+      "variant": "katana",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    }
+  ]
+}

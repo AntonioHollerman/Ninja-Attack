@@ -1,0 +1,212 @@
+{
+  "bodyTypeName": "male",
+  "url": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Zombie_zombie&head=Zombie_zombie&wound_arm=none_Arm&wound_ribs=Ribs_ribs&wound_mouth=none_Mouth&shoulders=Leather_gray&bracers=none_Bracers&wrists=Lace_Cuffs_silver&weapon=Longsword_longsword",
+  "spritesheets": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/spritesheets/",
+  "version": 1,
+  "datetime": "3/4/2025, 10:24:44 AM",
+  "credits": [
+    {
+      "fileName": "body/bodies/zombie/zombie.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "Stephen Challener (Redshrike),Johannes Sjölund (wulax),Sander Frenken (castelonia),Benjamin K. Smith (BenCreating),bluecarrot16",
+      "urls": "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles,https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-zombie,https://opengameart.org/content/lpc-character-bases",
+      "notes": ""
+    },
+    {
+      "fileName": "body/wound/ribs.png",
+      "licenses": "CC-BY-SA 3.0,GPL 3.0",
+      "authors": "Benjamin K. Smith (BenCreating),Sander Frenken (castelonia)",
+      "urls": "https://opengameart.org/content/lpc-zombie",
+      "notes": ""
+    },
+    {
+      "fileName": "head/heads/zombie/adult/zombie.png",
+      "licenses": "CC-BY-SA 3.0,GPL 3.0",
+      "authors": "bluecarrot16,Benjamin K. Smith (BenCreating),Sander Frenken (castelonia),Stephen Challener (Redshrike)",
+      "urls": "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles,https://opengameart.org/content/lpc-zombie,https://opengameart.org/content/lpc-character-bases",
+      "notes": ""
+    },
+    {
+      "fileName": "shoulders/leather/male/gray.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "Matthew Krohn (makrohn),Johannes Sjölund (wulax)",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,http://opengameart.org/content/lpc-clothing-updates",
+      "notes": "adapted to female base by makrohn, adapted to v3 bases by bluecarrot16"
+    },
+    {
+      "fileName": "wrists/lace/male/silver.png",
+      "licenses": "OGA-BY 3.0",
+      "authors": "bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-pirates",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/universal_behind/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash/behind/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash_reverse/behind/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash_reverse/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_thrust/behind/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_thrust/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    }
+  ],
+  "layers": [
+    {
+      "fileName": "weapon/sword/longsword/attack_slash/behind/longsword.png",
+      "zPos": -1,
+      "custom_animation": "slash_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash_reverse/behind/longsword.png",
+      "zPos": -1,
+      "custom_animation": "slash_reverse_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_thrust/behind/longsword.png",
+      "zPos": -1,
+      "custom_animation": "thrust_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/universal_behind/longsword.png",
+      "zPos": 9,
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "body/bodies/zombie/zombie.png",
+      "zPos": 10,
+      "parentName": "body",
+      "name": "Zombie",
+      "variant": "zombie",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "body/wound/ribs.png",
+      "zPos": 15,
+      "parentName": "wound_ribs",
+      "name": "Ribs",
+      "variant": "ribs",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "shoulders/leather/male/gray.png",
+      "zPos": 60,
+      "parentName": "shoulders",
+      "name": "Leather",
+      "variant": "gray",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "wrists/lace/male/silver.png",
+      "zPos": 70,
+      "parentName": "wrists",
+      "name": "Lace_Cuffs",
+      "variant": "silver",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "head/heads/zombie/adult/zombie.png",
+      "zPos": 100,
+      "parentName": "head",
+      "name": "Zombie",
+      "variant": "zombie",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "weapon/sword/longsword/longsword.png",
+      "zPos": 140,
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash/longsword.png",
+      "zPos": 150,
+      "custom_animation": "slash_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash_reverse/longsword.png",
+      "zPos": 150,
+      "custom_animation": "slash_reverse_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_thrust/longsword.png",
+      "zPos": 150,
+      "custom_animation": "thrust_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    }
+  ]
+}
