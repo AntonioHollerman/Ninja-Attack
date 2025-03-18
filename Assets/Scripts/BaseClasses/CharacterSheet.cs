@@ -55,7 +55,6 @@ namespace BaseClasses
 
         public virtual void Defeated()
         {
-            Debug.Log($"{name}: Defeated by {lastHit?.name}");
             Vector3 pos = transform.position;
             Destroy(gameObject);
             
@@ -285,12 +284,12 @@ namespace BaseClasses
         /// <summary>
         /// Updates the character's stats based on their level and base attributes.
         /// </summary>
-        private void UpdateStats()
+        protected void UpdateStats()
         {
             // Calculate current health, mana, attack, and speed based on the character's level
-            Hp = MaxHp = (int)(1.8f * Math.Log(level) * baseHp) + 10;
-            Mana = MaxMana = 50 * (int)(Math.Log(level + 0.5) * baseMana) + 50;
-            Atk = (float) Math.Log(level) * baseAtk;
+            Hp = MaxHp = (int)(1.3f * Math.Log(level) * baseHp) + baseHp;
+            Mana = MaxMana = 50 * (int)(Math.Log(level + 0.5) * (100 / (float) baseMana)) + baseMana;
+            Atk = (float) Math.Log(level) * baseAtk + baseAtk;
             UpdateDefense();
         } 
 
@@ -345,7 +344,7 @@ namespace BaseClasses
             StartCoroutine(LevelChange());
         }
 
-        private IEnumerator LevelChange()
+        protected virtual IEnumerator LevelChange()
         {
             int lastLevel = level;
             while (true)

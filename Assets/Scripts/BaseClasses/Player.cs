@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -71,6 +72,7 @@ namespace BaseClasses
             UpdateMana();
             
             Players.Add(this);
+            Debug.Log($"Level: {level}, Hp: {Hp}, Attack: {Atk}");
         }
 
         private void HandleDirection()
@@ -198,6 +200,18 @@ namespace BaseClasses
         {
             _blockInput = _blockInput > duration ? _blockInput : duration;
             rb.velocity = Vector3.zero;
+        }
+
+        protected override IEnumerator LevelChange()
+        {
+            int lastLevel = level;
+            while (true)
+            {
+                yield return new WaitUntil(() => lastLevel != level);
+                UpdateStats();
+                UpdateHp();
+                UpdateMana();
+            }
         }
     }
 }
