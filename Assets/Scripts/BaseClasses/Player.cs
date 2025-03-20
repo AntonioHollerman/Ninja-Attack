@@ -10,7 +10,6 @@ namespace BaseClasses
     public abstract class Player : CharacterSheet
     {
         public static List<Player> Players = new List<Player>();
-        public GameObject body;
         public GameObject weaponGo;
         
         public GameObject hpSliderGo;
@@ -93,14 +92,12 @@ namespace BaseClasses
             
             if (Input.GetKey(leftCode) || Input.GetKey(rightCode))
             {
-                body.transform.localRotation = Quaternion.Euler(0, -90, -90);
                 weaponGo.transform.localRotation = Quaternion.Euler(0, 0, 90);
                 return;
             }
 
             if (Input.GetKey(upCode) || Input.GetKey(downCode))
             {
-                body.transform.localRotation = Quaternion.Euler(90, -90, -90);
                 weaponGo.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
         }

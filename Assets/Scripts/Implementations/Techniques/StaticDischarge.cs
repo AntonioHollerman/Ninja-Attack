@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using BaseClasses;
+using Implementations.Animations.UniqueAnimation;
 using Implementations.Extras;
-using Implementations.Extras.UniqueAnimation;
 using Implementations.HitBoxes;
 using UnityEngine;
 

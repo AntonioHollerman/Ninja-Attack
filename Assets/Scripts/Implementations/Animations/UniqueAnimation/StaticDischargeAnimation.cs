@@ -1,7 +1,8 @@
 ﻿using System.Collections;
+using Implementations.Extras;
 using UnityEngine;
 
-namespace Implementations.Extras.UniqueAnimation
+namespace Implementations.Animations.UniqueAnimation
 {
     public class StaticDischargeAnimation : LoopAnimation
     {
