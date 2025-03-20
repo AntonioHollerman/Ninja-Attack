@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using BaseClasses;
+using Implementations.Animations;
 using Implementations.Extras;
 using UnityEngine;
 

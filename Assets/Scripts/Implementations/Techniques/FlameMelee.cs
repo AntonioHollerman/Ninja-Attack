@@ -3,6 +3,7 @@ using Implementations.Extras;
 using Implementations.HitBoxes;
 using System;
 using System.Collections;
+using Implementations.Animations;
 using UnityEngine;
 
 namespace Implementations.Techniques

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using BaseClasses;
+using Implementations.Animations;
 using Implementations.Extras;
 using Implementations.HitBoxes;
 using UnityEngine;

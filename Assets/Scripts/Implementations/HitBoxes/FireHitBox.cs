@@ -1,4 +1,5 @@
 ﻿using BaseClasses;
+using Implementations.Animations;
 using Implementations.Extras;
 using Implementations.Weapons;
 using UnityEngine;
