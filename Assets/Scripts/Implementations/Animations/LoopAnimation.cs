@@ -32,6 +32,13 @@ namespace Implementations.Animations
             GetFrames();
         }
 
+        public void StopAnimation()
+        {
+            if (_animation != null)
+            {
+                StopCoroutine(_animation);
+            }
+        }
         public void StartAnimation()
         {
             gameObject.SetActive(true);
