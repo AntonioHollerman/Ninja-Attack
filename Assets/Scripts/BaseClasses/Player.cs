@@ -41,6 +41,9 @@ namespace BaseClasses
         public bool InputBlocked => _blockInput > 0 ;
         private float _blockInput;
 
+        private int _expNeeded;
+        private int _exp;
+
         
         protected override void UpdateWrapper()
         {
@@ -70,6 +73,10 @@ namespace BaseClasses
             
             UpdateHp();
             UpdateMana();
+
+            _expNeeded = CalcExpNeeded();
+            _exp = 0;
+            StartCoroutine(ExpListener());
             
             Players.Add(this);
         }
@@ -201,6 +208,15 @@ namespace BaseClasses
             rb.velocity = Vector3.zero;
         }
 
+        private int CalcExpNeeded()
+        {
+            return (int) (10 + Math.Log(level) * Math.Pow(level, 2));
+        }
+
+        public void AddExp(int exp)
+        {
+            _exp += exp;
+        }
         protected override IEnumerator LevelChange()
         {
             int lastLevel = level;
@@ -210,6 +226,17 @@ namespace BaseClasses
                 UpdateStats();
                 UpdateHp();
                 UpdateMana();
+            }
+        }
+
+        private IEnumerator ExpListener()
+        {
+            while (true)
+            {
+                yield return new WaitUntil(() => _exp >= _expNeeded);
+                _exp = _expNeeded - _exp;
+                level++;
+                _expNeeded = CalcExpNeeded();
             }
         }
     }

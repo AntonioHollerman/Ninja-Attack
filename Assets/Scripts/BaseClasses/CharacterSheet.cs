@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Implementations.Extras;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace BaseClasses
 {
@@ -24,7 +22,7 @@ namespace BaseClasses
         public bool                 isLarge;
         public List<CharacterSheet> allies;
         public Rigidbody            rb;
-        public CharacterSheet lastHit;
+        public CharacterSheet       lastHit;
 
         [Header("Character Sheet Stats")]
         public int   level;
@@ -55,6 +53,10 @@ namespace BaseClasses
 
         public virtual void Defeated()
         {
+            if (lastHit is Player player)
+            {
+                player.AddExp(2 + (int) (10 + Math.Log(level) * Math.Pow(level, 2) / 4));
+            }
             Vector3 pos = transform.position;
             Destroy(gameObject);
             
