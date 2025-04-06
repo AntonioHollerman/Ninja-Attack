@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BaseClasses;
+using Implementations.Extras;
 using TMPro;
 using UnityEngine;
 
@@ -47,14 +48,17 @@ namespace Implementations.Managers
             return techScript;
         }
 
-        public Technique LoadPlayerOneTechnique(TechEnum tech, Player player, KeyCode code, int index) 
+        public Technique LoadPlayerOneTechnique(TechEnum tech, Player player, KeyCode code, int index)
         {
+            Vector3 pos = iconPlayerOneStartPos + new Vector3(iconXDisplacement * index, 0, 0);
+            
             GameObject iconPrefab = Resources.Load<GameObject>(GetIconPrefabPath(tech));
             GameObject iconGo = Instantiate(
                 iconPrefab, 
-                iconPlayerOneStartPos + new Vector3(iconXDisplacement * index, 0, 0),
+                pos,
                 iconPrefab.transform.rotation,
                 techniquesIcons.transform);
+            iconGo.GetComponent<LockUIPosition>().pos = pos;
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
@@ -68,14 +72,16 @@ namespace Implementations.Managers
             return techScript;
         }
         
-        public Technique LoadPlayerTwoTechnique(TechEnum tech, Player player, KeyCode code, int index) 
+        public Technique LoadPlayerTwoTechnique(TechEnum tech, Player player, KeyCode code, int index)
         {
+            Vector3 pos = iconPlayerTwoStartPos - new Vector3(iconXDisplacement * index, 0, 0);
             GameObject iconPrefab = Resources.Load<GameObject>(GetIconPrefabPath(tech));
             GameObject iconGo = Instantiate(
                 iconPrefab, 
-                iconPlayerTwoStartPos - new Vector3(iconXDisplacement * index, 0, 0),
+                pos,
                 iconPrefab.transform.rotation,
                 techniquesIcons.transform);
+            iconGo.GetComponent<LockUIPosition>().pos = pos;
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
@@ -93,7 +99,7 @@ namespace Implementations.Managers
         
         public void PlayerOneMoveTechniqueIconPosition(GameObject iconGo, int index)
         {
-            iconGo.transform.position = iconPlayerOneStartPos - new Vector3(iconXDisplacement * index, 0, 0);
+            iconGo.transform.position = iconPlayerOneStartPos + new Vector3(iconXDisplacement * index, 0, 0);
         }
         
         public void PlayerTwoMoveTechniqueIconPosition(GameObject iconGo, int index)
