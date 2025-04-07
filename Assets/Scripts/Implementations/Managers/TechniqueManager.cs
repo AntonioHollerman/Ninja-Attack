@@ -55,10 +55,10 @@ namespace Implementations.Managers
             GameObject iconPrefab = Resources.Load<GameObject>(GetIconPrefabPath(tech));
             GameObject iconGo = Instantiate(
                 iconPrefab, 
-                pos,
+                Vector3.zero,
                 iconPrefab.transform.rotation,
                 techniquesIcons.transform);
-            iconGo.GetComponent<LockUIPosition>().pos = pos;
+            iconGo.GetComponent<RectTransform>().anchoredPosition = pos;
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
@@ -78,10 +78,10 @@ namespace Implementations.Managers
             GameObject iconPrefab = Resources.Load<GameObject>(GetIconPrefabPath(tech));
             GameObject iconGo = Instantiate(
                 iconPrefab, 
-                pos,
+                Vector3.zero,
                 iconPrefab.transform.rotation,
                 techniquesIcons.transform);
-            iconGo.GetComponent<LockUIPosition>().pos = pos;
+            iconGo.GetComponent<RectTransform>().anchoredPosition = pos;
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
