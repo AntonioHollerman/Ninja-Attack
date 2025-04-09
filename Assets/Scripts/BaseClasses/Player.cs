@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Implementations.Extras;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,13 +11,8 @@ namespace BaseClasses
     public abstract class Player : CharacterSheet
     {
         public static List<Player> Players = new List<Player>();
+        public PlayerUI statsUI;
         public GameObject weaponGo;
-        
-        public GameObject hpSliderGo;
-        public GameObject hpTextGo;
-        
-        public GameObject manaSliderGo;
-        public GameObject manaTextGo;
 
         public Technique techOne;
         public Technique techTwo;
@@ -31,17 +27,12 @@ namespace BaseClasses
         protected KeyCode FirstTechnique;
         protected KeyCode SecondTechnique;
         
-        private Image _hpSlider;
-        private TextMeshProUGUI _hpText;
-
-        private Image _manaSlider;
-        private TextMeshProUGUI _manaText;
 
         public bool InputBlocked => _blockInput > 0 ;
         private float _blockInput;
 
-        private int _expNeeded;
-        private int _exp;
+        public int ExpNeeded {get; private set; }
+        public int Exp { get; private set; }
 
         
         protected override void UpdateWrapper()
@@ -62,19 +53,12 @@ namespace BaseClasses
         {
             base.AwakeWrapper();
             
-            _hpSlider = hpSliderGo.GetComponent<Image>();
-            _hpText = hpTextGo.GetComponent<TextMeshProUGUI>();
-
-            _manaSlider = manaSliderGo.GetComponent<Image>();
-            _manaText = manaTextGo.GetComponent<TextMeshProUGUI>();
-            
             EquipWeapon(weaponGo.GetComponent<Weapon>());
-            
-            UpdateHp();
-            UpdateMana();
 
-            _expNeeded = CalcExpNeeded();
-            _exp = 0;
+            statsUI.UpdateFlagged = true;
+
+            ExpNeeded = CalcExpNeeded();
+            Exp = 0;
             StartCoroutine(ExpListener());
             
             Players.Add(this);
@@ -146,44 +130,32 @@ namespace BaseClasses
             if (Input.GetKeyDown(FirstTechnique))
             {
                 techOne.ActivateTech();
-                UpdateMana();
+                statsUI.UpdateFlagged = true;
             }
 
             if (Input.GetKeyDown(SecondTechnique))
             {
                 techTwo.ActivateTech();
-                UpdateMana();
+                statsUI.UpdateFlagged = true;
             }
-        }
-
-        public void UpdateHp()
-        {
-            _hpSlider.fillAmount = Hp /  MaxHp;
-            _hpText.text = $"{Math.Floor(Hp)} / {MaxHp}";
-        }
-
-        public void UpdateMana()
-        {
-            _manaSlider.fillAmount = (float) Mana / MaxMana;
-            _manaText.text = $"{Mana} / {MaxMana}";
         }
 
         public override void DealDamage(float dmg, CharacterSheet ownership)
         {
             base.DealDamage(dmg, ownership);
-            UpdateHp();
+            statsUI.UpdateFlagged = true;
         }
 
         public override void RestoreHp(float hp)
         {
             base.RestoreHp(hp);
-            UpdateHp();
+            statsUI.UpdateFlagged = true;
         }
 
         public override void RestoreMana(int mana)
         {
             base.RestoreMana(mana);
-            UpdateMana();
+            statsUI.UpdateFlagged = true;
         }
 
         public override void Defeated()
@@ -212,7 +184,7 @@ namespace BaseClasses
 
         public void AddExp(int exp)
         {
-            _exp += exp;
+            Exp += exp;
         }
         protected override IEnumerator LevelChange()
         {
@@ -221,8 +193,7 @@ namespace BaseClasses
             {
                 yield return new WaitUntil(() => lastLevel != level);
                 UpdateStats();
-                UpdateHp();
-                UpdateMana();
+                statsUI.UpdateFlagged = true;
             }
         }
 
@@ -230,10 +201,10 @@ namespace BaseClasses
         {
             while (true)
             {
-                yield return new WaitUntil(() => _exp >= _expNeeded);
-                _exp = _expNeeded - _exp;
+                yield return new WaitUntil(() => Exp >= ExpNeeded);
+                Exp = ExpNeeded - Exp;
                 level++;
-                _expNeeded = CalcExpNeeded();
+                ExpNeeded = CalcExpNeeded();
             }
         }
     }

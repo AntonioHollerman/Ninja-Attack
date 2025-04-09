@@ -228,7 +228,7 @@ namespace BaseClasses
             Mana = Mana > MaxMana ? MaxMana : Mana;
             if (this is Player player)
             {
-                player.UpdateMana();
+                player.statsUI.UpdateFlagged = true;
             }
         }
 
@@ -244,7 +244,7 @@ namespace BaseClasses
             
             if (this is Player player)
             {
-                player.UpdateMana();
+                player.statsUI.UpdateFlagged = true;
             }
             
             return true;

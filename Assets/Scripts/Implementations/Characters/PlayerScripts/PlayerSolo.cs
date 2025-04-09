@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+using System.Collections;
 using BaseClasses;
 using Implementations.Managers;
 using UnityEngine;
 
 namespace Implementations.Characters.PlayerScripts
 {
-    public class PlayerOne : Player
+    public class PlayerSolo : Player
     {
         protected override void AwakeWrapper()
         {
@@ -20,7 +19,7 @@ namespace Implementations.Characters.PlayerScripts
             AttackCode = KeyCode.Space;
             FirstTechnique = KeyCode.Q;
             SecondTechnique = KeyCode.E;
-
+            
             StartCoroutine(WaitTillTechManagerActive());
         }
 
