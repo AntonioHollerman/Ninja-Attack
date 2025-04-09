@@ -349,9 +349,9 @@ namespace BaseClasses
 
         protected virtual IEnumerator LevelChange()
         {
-            int lastLevel = level;
             while (true)
             {
+                int lastLevel = level;
                 yield return new WaitUntil(() => lastLevel != level);
                 UpdateStats();
             }

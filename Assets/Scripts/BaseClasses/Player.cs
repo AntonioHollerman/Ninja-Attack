@@ -189,9 +189,9 @@ namespace BaseClasses
         }
         protected override IEnumerator LevelChange()
         {
-            int lastLevel = level;
             while (true)
             {
+                int lastLevel = level;
                 yield return new WaitUntil(() => lastLevel != level);
                 UpdateStats();
                 statsUI.UpdateFlagged = true;
@@ -204,7 +204,7 @@ namespace BaseClasses
             {
                 int tempExpNeeded = ExpNeeded;
                 yield return new WaitUntil(() => Exp >= ExpNeeded);
-                Exp = Exp - tempExpNeeded;
+                Exp -= tempExpNeeded;
                 level++;
                 ExpNeeded = CalcExpNeeded();
                 statsUI.UpdateFlagged = true;

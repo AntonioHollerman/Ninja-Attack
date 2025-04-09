@@ -69,9 +69,9 @@ namespace BaseClasses
 
         protected override IEnumerator LevelChange()
         {
-            int lastLevel = level;
             while (true)
             {
+                int lastLevel = level;
                 yield return new WaitUntil(() => lastLevel != level);
                 UpdateStats();
                 _hbScript.UpdateSlider(Hp / MaxHp);
