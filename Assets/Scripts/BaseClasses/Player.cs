@@ -185,6 +185,7 @@ namespace BaseClasses
         public void AddExp(int exp)
         {
             Exp += exp;
+            statsUI.UpdateFlagged = true;
         }
         protected override IEnumerator LevelChange()
         {
@@ -201,10 +202,12 @@ namespace BaseClasses
         {
             while (true)
             {
+                int tempExpNeeded = ExpNeeded;
                 yield return new WaitUntil(() => Exp >= ExpNeeded);
-                Exp = ExpNeeded - Exp;
+                Exp = Exp - tempExpNeeded;
                 level++;
                 ExpNeeded = CalcExpNeeded();
+                statsUI.UpdateFlagged = true;
             }
         }
     }
