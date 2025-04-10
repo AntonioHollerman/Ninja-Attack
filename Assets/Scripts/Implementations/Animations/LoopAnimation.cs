@@ -15,20 +15,28 @@ namespace Implementations.Animations
         
         public int FrameIndex { protected set; get;}
         public float SecondsBetweenFrame { private set; get;}
+        public bool startAtRuntime;
         private Coroutine _animation;
 
         private void Start()
         {
+            SecondsBetweenFrame = 1 / framesPerSecond;
             GetFrames();
         }
 
         private void Awake()
-        {
+        { 
+           SecondsBetweenFrame = 1 / framesPerSecond;
            GetFrames();
+           if (startAtRuntime)
+           {
+               StartAnimation();
+           }
         }
 
         private void OnEnable()
         {
+            SecondsBetweenFrame = 1 / framesPerSecond;
             GetFrames();
         }
 
@@ -49,10 +57,9 @@ namespace Implementations.Animations
             _animation = StartCoroutine(PlayAnimation());
         }
 
-        public void GetFrames()
+        public virtual void GetFrames()
         {
             FrameIndex = 0;
-            SecondsBetweenFrame = 1 / framesPerSecond;
             
             if (frames.Length == 0)
             {
