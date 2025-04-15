@@ -113,6 +113,6 @@ namespace Implementations.Techniques
                 audioSource.PlayOneShot(hitSound); // Play the hit sound
             }
 
-    }
+        }
     }
 }
