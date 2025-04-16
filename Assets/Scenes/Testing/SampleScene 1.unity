@@ -641,6 +641,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1996221487621011072, guid: c94a20cd9c28b3e43be217c78d3aea08, type: 3}
   m_PrefabInstance: {fileID: 6749839026419348113}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2092627455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3413777526170651186, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+  m_PrefabInstance: {fileID: 856192959791216370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2092627458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092627455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d638c97fc54ebbbfd47361e75521ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  destroyOnFinish: 0
+  workOnCollider: 1
+  parentTech: {fileID: 0}
+  stunDuration: 2.3
+  hitPrefab: {fileID: 3956356833508220928, guid: 35bfb8a99adf62c4bb055add5e623cfd, type: 3}
+  stunPrefab: {fileID: 4553206577251356814, guid: 537b79c51d4c2b94798f4eeaa023f599, type: 3}
+--- !u!65 &2092627459
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092627455}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.40195334, y: 1, z: 0.47064704}
+  m_Center: {x: 0.064653605, y: -1.4193858e-16, z: -0.026265629}
 --- !u!1001 &829820507661006940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -652,6 +697,10 @@ PrefabInstance:
     - target: {fileID: 464045402978302276, guid: ae488fcb51edbb441a382e1b4cd791ba, type: 3}
       propertyPath: m_Name
       value: FireSummon
+      objectReference: {fileID: 0}
+    - target: {fileID: 464045402978302276, guid: ae488fcb51edbb441a382e1b4cd791ba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8604410034673791743, guid: ae488fcb51edbb441a382e1b4cd791ba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -707,16 +756,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 491271290650941541, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 491271290650941541, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.3788
+      objectReference: {fileID: 0}
+    - target: {fileID: 491271290650941541, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 491271290650941541, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.43
       objectReference: {fileID: 0}
     - target: {fileID: 491271290650941541, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 491271290650941541, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
       propertyPath: m_LocalRotation.w
@@ -750,10 +807,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectricWhip
       objectReference: {fileID: 0}
+    - target: {fileID: 5749748993308440901, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+      propertyPath: m_Size.x
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749748993308440901, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+      propertyPath: m_Size.y
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749748993308440901, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749748993308440901, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003794202712810294, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+      propertyPath: startAtRuntime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3413777526170651186, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2092627459}
+    - targetCorrespondingSourceObject: {fileID: 3413777526170651186, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2092627458}
   m_SourcePrefab: {fileID: 100100000, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
 --- !u!224 &2762539558130224023 stripped
 RectTransform:
@@ -782,6 +865,10 @@ PrefabInstance:
     - target: {fileID: 74349131077549921, guid: 21643772ecda561429c87be6ce36e09a, type: 3}
       propertyPath: m_Name
       value: FireRain
+      objectReference: {fileID: 0}
+    - target: {fileID: 74349131077549921, guid: 21643772ecda561429c87be6ce36e09a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6342156888195200770, guid: 21643772ecda561429c87be6ce36e09a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1013,9 +1100,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1125446788}
     m_Modifications:
+    - target: {fileID: 84909610167517550, guid: c94a20cd9c28b3e43be217c78d3aea08, type: 3}
+      propertyPath: frameStartHitBox
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1249960671363389540, guid: c94a20cd9c28b3e43be217c78d3aea08, type: 3}
       propertyPath: m_Name
       value: ElectricWhip
+      objectReference: {fileID: 0}
+    - target: {fileID: 1249960671363389540, guid: c94a20cd9c28b3e43be217c78d3aea08, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1996221487621011072, guid: c94a20cd9c28b3e43be217c78d3aea08, type: 3}
       propertyPath: m_LocalPosition.x

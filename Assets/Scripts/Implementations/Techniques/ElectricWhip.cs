@@ -10,7 +10,7 @@ namespace Implementations.Techniques
     {
         [Header("Electric Whip Components")]
         public GameObject meleeAnimationPrefab;
-        public float yOffset;
+        public float forwardOffset;
         public int frameStartHitBox;
         
         public override void Execute()
@@ -36,7 +36,10 @@ namespace Implementations.Techniques
                 }
 
                 ani.transform.position = parent.transform.position;
-                ani.transform.Translate(Vector3.forward * yOffset);
+                ani.transform.rotation = parent.transform.rotation;
+                ani.transform.Translate(Vector3.forward * forwardOffset);
+
+                ani.transform.rotation = Quaternion.LookRotation(parent.transform.forward, Vector3.forward);
 
                 yield return null;
             }
