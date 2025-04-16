@@ -4,7 +4,7 @@ namespace Implementations.Techniques
 {
     public class FireSummon : Technique
     {
-        public override void Execute()
+        protected override void Execute()
         {
             
         }

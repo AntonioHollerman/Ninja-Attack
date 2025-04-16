@@ -33,7 +33,7 @@ namespace BaseClasses
         protected float Timer;
         protected bool Ready => parent.Mana >= ManaCost && Timer <= 0;
 
-        public abstract void Execute();
+        protected abstract void Execute();
 
         public virtual void ActivateTech()
         {

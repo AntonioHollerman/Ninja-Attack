@@ -13,7 +13,7 @@ namespace Implementations.Techniques
         public float forwardOffset;
         public int frameStartHitBox;
         
-        public override void Execute()
+        protected override void Execute()
         {
             GameObject techGo = Instantiate(meleeAnimationPrefab);
             LoopAnimation animationScript = techGo.GetComponent<LoopAnimation>();

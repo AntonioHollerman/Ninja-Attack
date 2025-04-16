@@ -5,7 +5,7 @@ namespace Implementations.Techniques
     public class FireRain : Technique
     
     {
-        public override void Execute()
+        protected override void Execute()
         {
             
         }

@@ -27,7 +27,7 @@ namespace Implementations.Techniques
         private GameObject _curFireball;
         private bool _activationBeingProcessed;
         
-        public override void Execute()
+        protected override void Execute()
         {
             throw new System.NotImplementedException();
         }

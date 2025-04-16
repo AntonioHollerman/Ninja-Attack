@@ -19,7 +19,7 @@ namespace Implementations.Techniques
         public AudioClip hitSound; // Sound effect for when the melee hits a target
         private AudioSource audioSource; // Reference to the AudioSource component
 
-        public override void Execute()
+        protected override void Execute()
         {
             GameObject techGo = Instantiate(meleeAnimationPrefab);
             LoopAnimation animationScript = techGo.GetComponent<LoopAnimation>();

@@ -16,7 +16,7 @@ namespace Implementations.Techniques
         public AudioClip dischargeSound; // Sound effect for the static discharge
         private AudioSource audioSource; // Reference to the AudioSource component
 
-        public override void Execute()
+        protected override void Execute()
         {
             GameObject techGo = Instantiate(dischargeAnimationPrefab);
             StaticDischargeAnimation animationScript = techGo.GetComponent<StaticDischargeAnimation>();

@@ -38,7 +38,7 @@ namespace Implementations.Techniques
             Destroy(redSparkAni.gameObject);
         }
 
-        public override void Execute()
+        protected override void Execute()
         {
             foreach (CharacterSheet cs in CharacterSheet.CharacterSheets)
             {
