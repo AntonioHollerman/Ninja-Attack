@@ -114,6 +114,9 @@ namespace Implementations.Managers
                 TechEnum.FireSword       => "prefabs/Techniques/FireSword",
                 TechEnum.StaticDischarge => "prefabs/Techniques/StaticDischarge",
                 TechEnum.ElectricDash    => "prefabs/Techniques/FlashStep",
+                TechEnum.ElectricWhip => null,
+                TechEnum.FireRain => null,
+                TechEnum.FireSummmon => null,
                 _ => "null"
             };
         }
@@ -126,6 +129,9 @@ namespace Implementations.Managers
                 TechEnum.FireSword       => "prefabs/PlayerUI/TechniquesIcon/FireSword",
                 TechEnum.StaticDischarge => "prefabs/PlayerUI/TechniquesIcon/Static Discharge",
                 TechEnum.ElectricDash    => "prefabs/PlayerUI/TechniquesIcon/Flash Step",
+                TechEnum.ElectricWhip    => "prefabs/PlayerUI/TechniquesIcon/ElectricWhip",
+                TechEnum.FireRain        => "prefabs/PlayerUI/TechniquesIcon/FireRain",
+                TechEnum.FireSummmon     => "prefabs/PlayerUI/TechniquesIcon/FireSummon",
                 _ => "null"
             };
         }
