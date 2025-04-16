@@ -20,20 +20,6 @@ namespace BaseClasses
                 SetClosestTarget();
                 LookAtTarget();
             }
-            
-            if (Target == null)
-            {
-                return;
-            }
-
-            if (Mathf.Approximately(transform.position.y, Target.transform.position.y))
-            {
-                transform.position += Vector3.up * 0.01f;
-            }
-            if (Mathf.Approximately(transform.position.x, Target.transform.position.x))
-            {
-                transform.position += Vector3.right * 0.01f;
-            }
         }
 
         protected override void AwakeWrapper()
@@ -95,7 +81,7 @@ namespace BaseClasses
             if (direction != Vector3.zero)
             {
                 // Calculate the rotation to face the target
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.forward);
 
                 // Apply the rotation globally
                 transform.rotation = targetRotation;

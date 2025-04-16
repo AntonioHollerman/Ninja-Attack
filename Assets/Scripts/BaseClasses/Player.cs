@@ -72,18 +72,7 @@ namespace BaseClasses
                 return;
             }
             
-            transform.localRotation = Quaternion.LookRotation(GetDirection());
-            
-            if (Input.GetKey(leftCode) || Input.GetKey(rightCode))
-            {
-                weaponGo.transform.localRotation = Quaternion.Euler(0, 0, 90);
-                return;
-            }
-
-            if (Input.GetKey(upCode) || Input.GetKey(downCode))
-            {
-                weaponGo.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
+            transform.localRotation = Quaternion.LookRotation(GetDirection(), Vector3.forward);
         }
 
         private void HandleMovement()
