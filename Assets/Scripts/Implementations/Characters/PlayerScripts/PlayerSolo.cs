@@ -32,7 +32,7 @@ namespace Implementations.Characters.PlayerScripts
                 FirstTechnique,
                 0);
             techTwo = TechniqueManager.Instance.LoadPlayerOneTechnique(
-                TechEnum.StaticDischarge,
+                TechEnum.FireSword,
                 this, 
                 SecondTechnique, 
                 1);

@@ -11,7 +11,8 @@ namespace Implementations.Techniques
     public class FlameMelee : Technique
     {
         public GameObject meleeAnimationPrefab;
-        public float zOffset;
+        public float forwardOffset; // 2.65
+        public float leftOffset; // 1
         public int frameStartHitBox;
 
         public AudioClip fireSwordSound; // Sound effect for the fire sword
@@ -40,41 +41,9 @@ namespace Implementations.Techniques
             hitBox.Activate(framesLeft * ani.SecondsBetweenFrame);
         }
 
-        private void NormalizeSpriteDirection(Transform sprite, Player playerScript)
-        {
-            if (playerScript.transform.forward == Vector3.right || playerScript.transform.forward == Vector3.left)
-            {
-                try
-                {
-                    sprite.localRotation = Quaternion.Euler(0, 90, 90);
-                }
-                catch (Exception ignore)
-                {
-                    // ignored
-                }
-                return;
-            }
-            if (playerScript.transform.forward == Vector3.up || playerScript.transform.forward == Vector3.down)
-            {
-                try
-                {
-                    sprite.localRotation = Quaternion.Euler(270, 90, 90);
-                }
-                catch (Exception ignore)
-                {
-                    // ignored
-                }
-            }
-        }
-
         private IEnumerator TrackParent(LoopAnimation ani)
         {
-            if (parent is Player playerScript)
-            {
-                Transform sprite = ani.transform.Find("sprite");
-                NormalizeSpriteDirection(sprite, playerScript);
-            }
-            ani.transform.rotation = parent.transform.rotation;
+            ani.transform.rotation = Quaternion.LookRotation(parent.transform.forward, Vector3.forward);
             while (true)
             {
                 if (ani == null)
@@ -83,7 +52,8 @@ namespace Implementations.Techniques
                 }
 
                 ani.transform.position = parent.transform.position;
-                ani.transform.Translate(Vector3.forward * zOffset);
+                ani.transform.Translate(Vector3.forward * forwardOffset);
+                ani.transform.Translate(Vector3.right * leftOffset);
 
                 yield return null;
             }

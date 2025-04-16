@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769140648391849715}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.201, y: -0, z: -0.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 976756918264091770}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &2310009111193384400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -111,14 +111,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648239436938574504}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.38759, y: 0.27275, z: -0.000000049523}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.8048782, y: 3.8048782, z: 3.8048782}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 491627495884745693}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
 --- !u!114 &1366180215671737190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +155,7 @@ MonoBehaviour:
   - {fileID: -959233021, guid: 95a76b155b98b6b44b004162adee0730, type: 3}
   framesPerSecond: 25
   loopOnce: 1
+  startAtRuntime: 0
 --- !u!65 &8821516567676848627
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -191,6 +192,5 @@ MonoBehaviour:
   parent: {fileID: 0}
   destroyOnFinish: 0
   workOnCollider: 1
-  baseDamage: 5
-  burnEffectDps: 3
   duration: 1.5
+  damageSelf: 0
