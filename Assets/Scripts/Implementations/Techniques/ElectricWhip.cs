@@ -15,7 +15,14 @@ namespace Implementations.Techniques
         
         public override void Execute()
         {
-            
+            GameObject techGo = Instantiate(meleeAnimationPrefab);
+            LoopAnimation animationScript = techGo.GetComponent<LoopAnimation>();
+            ElectricHitBox hitBoxScript = techGo.GetComponent<ElectricHitBox>();
+            hitBoxScript.parent = parent;
+
+            StartCoroutine(TrackParent(animationScript));
+            StartCoroutine(FramesListener(animationScript, hitBoxScript));
+            animationScript.StartAnimation();
         }
         
         private IEnumerator FramesListener(LoopAnimation ani, ElectricHitBox hitBox)

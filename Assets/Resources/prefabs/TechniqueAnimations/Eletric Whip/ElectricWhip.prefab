@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 491271290650941541}
   - component: {fileID: 7003794202712810294}
+  - component: {fileID: 2015067711397677132}
+  - component: {fileID: 8727729458967028886}
   m_Layer: 0
   m_Name: ElectricWhip
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.3788, y: 4.3788, z: 1.4596}
+  m_LocalScale: {x: 4.3788, y: 1, z: 4.3788}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9216285001627489656}
@@ -49,8 +51,48 @@ MonoBehaviour:
   path: sprites/Techniques/Eletric Whip/ThunderWhip
   frames: []
   framesPerSecond: 15
-  loopOnce: 0
+  loopOnce: 1
   startAtRuntime: 0
+--- !u!65 &2015067711397677132
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413777526170651186}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.40195334, y: 1, z: 0.47064704}
+  m_Center: {x: 0.064653605, y: -1.4193858e-16, z: -0.026265629}
+--- !u!114 &8727729458967028886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413777526170651186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d638c97fc54ebbbfd47361e75521ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  destroyOnFinish: 0
+  workOnCollider: 1
+  parentTech: {fileID: 0}
+  stunDuration: 2.3
+  hitPrefab: {fileID: 3956356833508220928, guid: 35bfb8a99adf62c4bb055add5e623cfd, type: 3}
+  stunPrefab: {fileID: 4553206577251356814, guid: 537b79c51d4c2b94798f4eeaa023f599, type: 3}
 --- !u!1 &3616246721949694122
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +171,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.56, y: 0.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

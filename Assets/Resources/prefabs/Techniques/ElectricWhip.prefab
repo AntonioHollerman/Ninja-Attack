@@ -53,6 +53,6 @@ MonoBehaviour:
   countDown: {fileID: 0}
   icon: {fileID: 0}
   boarder: {fileID: 0}
-  meleeAnimationPrefab: {fileID: 0}
-  yOffset: 0
-  frameStartHitBox: 0
+  meleeAnimationPrefab: {fileID: 3413777526170651186, guid: 6b318a7731d592841952b427c6c4bb61, type: 3}
+  forwardOffset: 1
+  frameStartHitBox: 4
