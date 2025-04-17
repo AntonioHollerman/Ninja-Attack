@@ -16,7 +16,7 @@ namespace Implementations.Animations.UniqueAnimation
             
             Sprite[] vortexSpliced = new ArraySegment<Sprite>(Resources.LoadAll<Sprite>(vortexPath), 
                 0,
-                20)
+                16)
                 .ToArray();
             Sprite[] hurricaneSpliced = new ArraySegment<Sprite>(Resources.LoadAll<Sprite>(hurricanePath),
                 6, 
@@ -43,12 +43,6 @@ namespace Implementations.Animations.UniqueAnimation
                 if (FrameIndex == frames.Length)
                 {
                     FrameIndex = 0;
-                    transform.Translate(Vector3.up * yDisplacement);
-                }
-
-                if (FrameIndex == 20)
-                {
-                    transform.Translate(Vector3.down * yDisplacement);
                 }
                 yield return new WaitForSeconds(SecondsBetweenFrame);
             }
