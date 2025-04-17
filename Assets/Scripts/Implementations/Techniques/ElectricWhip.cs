@@ -29,7 +29,7 @@ namespace Implementations.Techniques
         private IEnumerator FramesListener(LoopAnimation ani, ElectricHitBox hitBox)
         {
             yield return new WaitUntil(() => ani.FrameIndex >= frameStartHitBox);
-            int framesLeft = ani.frames.Length - ani.FrameIndex;
+            int framesLeft = 3;
             hitBox.Activate(framesLeft * ani.SecondsBetweenFrame);
         }
         
