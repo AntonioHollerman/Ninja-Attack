@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using BaseClasses;
+using Implementations.Extras;
 using Implementations.Managers;
 using UnityEngine;
 
 namespace Implementations.Characters.HostileScripts
 {
-    public class DungeonBoss : TrackingBehavior
+    public class DungeonBoss : Hostile
     {
         private Technique _tech1;
         private Technique _tech2;
@@ -14,18 +15,25 @@ namespace Implementations.Characters.HostileScripts
         protected override void AwakeWrapper()
         {
             base.AwakeWrapper();
+            AddTarget(GameObject.Find("SoloPlayer"));
 
+            StartCoroutine(WaitTillTechManagerActive());
+        }
+        
+        private IEnumerator WaitTillTechManagerActive()
+        {
+            yield return new WaitUntil(() => TechniqueManager.Instance != null);
             _tech1 = TechniqueManager.Instance.LoadTechnique(TechEnum.ElectricWhip, this);
-
+            
             StartCoroutine(MeleeListener());
             StartCoroutine(TechOneListener());
             StartCoroutine(TechTwoListener());
             StartCoroutine(TechThreeListener());
-        }
+        } 
 
         private IEnumerator MeleeListener()
         {
-            return null;
+            yield return null;
         }
 
         private IEnumerator TechOneListener()
@@ -39,12 +47,12 @@ namespace Implementations.Characters.HostileScripts
         
         private IEnumerator TechTwoListener()
         {
-            return null;
+            yield return null;
         }
         
         private IEnumerator TechThreeListener()
         {
-            return null;
+            yield return null;
         }
     }
 }

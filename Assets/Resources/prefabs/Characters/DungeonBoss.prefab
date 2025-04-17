@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6269546578871389881}
-  - component: {fileID: 9020024772882075566}
   - component: {fileID: 8952855476805449575}
   - component: {fileID: 2693118693662665556}
+  - component: {fileID: 1976861826489589124}
   m_Layer: 0
-  m_Name: ThirdLevelBoss
+  m_Name: DungeonBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,36 +29,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
   m_LocalPosition: {x: 0.02, y: -1, z: 0}
-  m_LocalScale: {x: 4.665158, y: 4.665158, z: 4.665158}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3868449719017477100}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 270, y: 90, z: 0}
---- !u!114 &9020024772882075566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7219058337297258654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 951a6c3cede242c3a3e8efee10fc7b6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allies: []
-  speed: 7
-  maxHp: 25
-  maxMana: 0
-  rb: {fileID: 0}
-  detectRange: 100
-  healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
-  manaPotion: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}
-  hpPotion: {fileID: 4497868298466907819, guid: 4ce88630428cffd42ac3db89f8d340ac, type: 3}
-  arrowPrefab: {fileID: 3645658548792679990, guid: fef7c5082b290724d8acc7d834c87a10, type: 3}
-  atkSpeed: 3
-  arrowDisplacement: 0.65
 --- !u!65 &8952855476805449575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107,6 +83,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1976861826489589124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7219058337297258654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b012e06e7864b7b89193057366cfc0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnSmokePrefab: {fileID: 0}
+  isLarge: 0
+  allies: []
+  rb: {fileID: 0}
+  lastHit: {fileID: 0}
+  level: 0
+  baseHp: 0
+  baseAtk: 0
+  baseMana: 0
+  speed: 0
+  detectRange: 0
 --- !u!1 &7672845044795290829
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3868449719017477100}
   - component: {fileID: 3812873859059532574}
+  - component: {fileID: 243036038349385455}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -132,13 +132,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7672845044795290829}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6269546578871389881}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &3812873859059532574
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -191,3 +191,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &243036038349385455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672845044795290829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854b4f0699434a96837c5d94817ede69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

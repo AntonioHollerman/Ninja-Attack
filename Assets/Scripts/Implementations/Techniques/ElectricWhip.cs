@@ -18,6 +18,7 @@ namespace Implementations.Techniques
             GameObject techGo = Instantiate(meleeAnimationPrefab);
             LoopAnimation animationScript = techGo.GetComponent<LoopAnimation>();
             ElectricHitBox hitBoxScript = techGo.GetComponent<ElectricHitBox>();
+            hitBoxScript.parentTech = this;
             hitBoxScript.parent = parent;
 
             StartCoroutine(TrackParent(animationScript));

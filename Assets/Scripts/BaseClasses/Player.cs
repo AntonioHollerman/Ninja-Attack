@@ -39,7 +39,7 @@ namespace BaseClasses
         {
             base.UpdateWrapper();
             _blockInput -= _blockInput < 0 ? _blockInput : Time.deltaTime;
-            if (InputBlocked)
+            if (InputBlocked || IsStunned)
             {
                 return;
             }
