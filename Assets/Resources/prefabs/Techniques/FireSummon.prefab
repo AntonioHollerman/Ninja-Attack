@@ -53,3 +53,6 @@ MonoBehaviour:
   countDown: {fileID: 0}
   icon: {fileID: 0}
   boarder: {fileID: 0}
+  detectDistance: 20
+  frameStartHitBox: 17
+  summonPrefab: {fileID: 6941363235486878996, guid: 30044e795ce9eec4d9ae2f74f2ef9519, type: 3}
