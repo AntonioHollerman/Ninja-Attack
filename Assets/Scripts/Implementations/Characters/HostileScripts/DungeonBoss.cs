@@ -34,8 +34,8 @@ namespace Implementations.Characters.HostileScripts
             }
             
             StartCoroutine(MeleeListener());
-            StartCoroutine(TechOneListener());
-            StartCoroutine(TechTwoListener());
+            // StartCoroutine(TechOneListener());
+            // StartCoroutine(TechTwoListener());
             StartCoroutine(TechThreeListener());
         } 
 
@@ -66,8 +66,9 @@ namespace Implementations.Characters.HostileScripts
         {
             while (true)
             {
-                yield return new WaitForSeconds(7);
+                yield return new WaitForSeconds(2);
                 _tech3.ActivateTech();
+                yield return new WaitForSeconds(5);
             }
         }
     }
