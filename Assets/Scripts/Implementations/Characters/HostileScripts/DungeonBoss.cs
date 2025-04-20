@@ -2,6 +2,7 @@
 using BaseClasses;
 using Implementations.Extras;
 using Implementations.Managers;
+using Implementations.Techniques;
 using UnityEngine;
 
 namespace Implementations.Characters.HostileScripts
@@ -26,8 +27,11 @@ namespace Implementations.Characters.HostileScripts
             _tech1 = TechniqueManager.Instance.LoadTechnique(TechEnum.ElectricWhip, this);
             _tech2 = TechniqueManager.Instance.LoadTechnique(TechEnum.FireSummmon, this);
             _tech3 = TechniqueManager.Instance.LoadTechnique(TechEnum.FireRain, this);
-            
-            
+            if (_tech3 is FireRain fireRain)
+            {
+                fireRain.secondsLooped = 5;
+                _tech3 = fireRain;
+            }
             
             StartCoroutine(MeleeListener());
             StartCoroutine(TechOneListener());
