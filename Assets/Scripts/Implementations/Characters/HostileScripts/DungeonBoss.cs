@@ -29,13 +29,13 @@ namespace Implementations.Characters.HostileScripts
             _tech3 = TechniqueManager.Instance.LoadTechnique(TechEnum.FireRain, this);
             if (_tech3 is FireRain fireRain)
             {
-                fireRain.secondsLooped = 5;
+                fireRain.secondsLooped = 3;
                 _tech3 = fireRain;
             }
             
             StartCoroutine(MeleeListener());
-            // StartCoroutine(TechOneListener());
-            // StartCoroutine(TechTwoListener());
+            StartCoroutine(TechOneListener());
+            StartCoroutine(TechTwoListener());
             StartCoroutine(TechThreeListener());
         } 
 
@@ -68,7 +68,7 @@ namespace Implementations.Characters.HostileScripts
             {
                 yield return new WaitForSeconds(2);
                 _tech3.ActivateTech();
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(3);
             }
         }
     }

@@ -27,11 +27,11 @@ namespace Implementations.Techniques
             
             GameObject techGo = Instantiate(
                 fireRainPrefab, 
-                target.transform.position, 
+                target.transform.position + Vector3.forward, 
                 fireRainPrefab.transform.rotation
             );
             FireRainAnimation animationScript = techGo.GetComponent<FireRainAnimation>();
-            FireAoeHitBox hitBoxScript = techGo.GetComponent<FireAoeHitBox>();
+            LingeringFireHitBox hitBoxScript = techGo.GetComponent<LingeringFireHitBox>();
 
             animationScript.secondsLooped = secondsLooped;
             hitBoxScript.parent = parent;
@@ -41,7 +41,7 @@ namespace Implementations.Techniques
             animationScript.StartAnimation();
         }
         
-        private IEnumerator FramesListener(FireRainAnimation ani, FireAoeHitBox hitBox)
+        private IEnumerator FramesListener(FireRainAnimation ani, LingeringFireHitBox hitBox)
         {
             yield return new WaitUntil(() => ani.FrameIndex >= frameStartHitBox);
             int framesLeft = ani.frames.Length - 17;

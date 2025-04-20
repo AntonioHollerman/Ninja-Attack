@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Implementations.HitBoxes
 {
-    public class FireAoeHitBox : HitBox
+    public class LingeringFireHitBox : HitBox
     {
         public bool damageSelf;
         private List<CharacterSheet> _ignore;
