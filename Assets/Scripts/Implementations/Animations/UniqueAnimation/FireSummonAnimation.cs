@@ -9,7 +9,6 @@ namespace Implementations.Animations.UniqueAnimation
     {
         public string vortexPath;
         public string hurricanePath;
-        public float yDisplacement;
         public override void GetFrames()
         {
             FrameIndex = 0;
