@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Implementations.Extras;
+using Implementations.Weapons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,6 @@ namespace BaseClasses
     {
         public static List<Player> Players = new List<Player>();
         public PlayerUI statsUI;
-        public GameObject weaponGo;
 
         public Technique techOne;
         public Technique techTwo;
@@ -52,8 +52,6 @@ namespace BaseClasses
         protected override void AwakeWrapper()
         {
             base.AwakeWrapper();
-            
-            EquipWeapon(weaponGo.GetComponent<Weapon>());
 
             statsUI.UpdateFlagged = true;
 

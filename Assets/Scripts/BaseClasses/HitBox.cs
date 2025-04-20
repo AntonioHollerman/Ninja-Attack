@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Implementations.HitBoxes;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace BaseClasses
 {
@@ -15,7 +12,7 @@ namespace BaseClasses
         public bool workOnCollider;
 
 
-        private Collider _collider;
+        protected Collider Collider;
         protected List<CharacterSheet> ActiveIgnore;
         private float _aliveTime;
         private bool IsAlive => _aliveTime > 0;
@@ -44,12 +41,12 @@ namespace BaseClasses
                 yield return new WaitUntil(() => IsAlive);
                 if (workOnCollider)
                 {
-                    _collider.enabled = true;
+                    Collider.enabled = true;
                 }
                 yield return new WaitUntil(() => !IsAlive);
                 if (workOnCollider)
                 {
-                    _collider.enabled = false;
+                    Collider.enabled = false;
                 }
                 if (destroyOnFinish)
                 {
@@ -83,7 +80,7 @@ namespace BaseClasses
         {
             TriggerStayWrapper(other);
         }
-
+        
         protected virtual void TriggerEnterWrapper(Collider other){}   
         protected virtual void TriggerStayWrapper(Collider other){}
         protected virtual void AwakeWrapper()
@@ -91,8 +88,8 @@ namespace BaseClasses
             StartCoroutine(AliveChecker());
             if (workOnCollider)
             {
-                _collider = gameObject.GetComponent<Collider>();
-                _collider.enabled = false;
+                Collider = gameObject.GetComponent<Collider>();
+                Collider.enabled = false;
             }
         }
 

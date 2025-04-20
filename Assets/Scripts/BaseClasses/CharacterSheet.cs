@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Implementations.Animations;
 using Implementations.Extras;
+using Implementations.Weapons;
 using UnityEngine;
 
 namespace BaseClasses
@@ -31,8 +32,8 @@ namespace BaseClasses
         public float baseAtk;
         public int   baseMana;
         public float speed;
+        public Melee weapon;
         
-        private Weapon          _weapon;
         private List<Effect>    _effects;
         private List<Armor>     _equipment;
         private float           _stunDuration; // Duration of stun
@@ -184,11 +185,6 @@ namespace BaseClasses
             new Effect(se, duration, this);
         }
 
-        public void EquipWeapon(Weapon w)
-        {
-            _weapon = w;
-        }
-
         public void AddEquipment(Armor armor)
         {
             _equipment.Add(armor);
@@ -206,20 +202,11 @@ namespace BaseClasses
                 return;
             }
 
-            if (_weapon.blocksAnimation)
+            bool successful = weapon.Attack();
+            if (successful)
             {
-                BlockAnimation(_weapon.GetAnimationBlockDuration());
+                BlockAnimation(weapon.animationBlockDuration);
             }
-
-            IEnumerator PlayAnimation()
-            {
-                _weapon.gameObject.SetActive(true);
-                _weapon.Attack();
-                yield return new WaitForSeconds(_weapon.AnimationDuration);
-                _weapon.gameObject.SetActive(false);
-            }
-
-            StartCoroutine(PlayAnimation());
         }
 
         public virtual void RestoreMana(int mana)
@@ -259,13 +246,13 @@ namespace BaseClasses
             // Update stun duration to the maximum of the current or new duration
             _stunDuration = duration > _stunDuration ? duration : _stunDuration;
 
-            if (_weapon == null)
+            if (weapon == null)
             {
                 return;
             }
-            if (_weapon.deactivateOnStun)
+            if (weapon.deactivateOnStun)
             {
-                _weapon.Deactivate();
+                weapon.Deactivate();
             }
         }
         
