@@ -25,6 +25,9 @@ namespace Implementations.Characters.HostileScripts
             yield return new WaitUntil(() => TechniqueManager.Instance != null);
             _tech1 = TechniqueManager.Instance.LoadTechnique(TechEnum.ElectricWhip, this);
             _tech2 = TechniqueManager.Instance.LoadTechnique(TechEnum.FireSummmon, this);
+            _tech3 = TechniqueManager.Instance.LoadTechnique(TechEnum.FireRain, this);
+            
+            
             
             StartCoroutine(MeleeListener());
             StartCoroutine(TechOneListener());
@@ -57,7 +60,11 @@ namespace Implementations.Characters.HostileScripts
         
         private IEnumerator TechThreeListener()
         {
-            yield return null;
+            while (true)
+            {
+                yield return new WaitForSeconds(7);
+                _tech3.ActivateTech();
+            }
         }
     }
 }

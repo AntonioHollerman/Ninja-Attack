@@ -15,7 +15,7 @@ namespace Implementations.Techniques
         public GameObject summonPrefab;
         protected override void Execute()
         {
-            GameObject target = null;
+            GameObject target;
             if (parent is Player)
             {
                 target = GetClosestTarget(Hostile.Hostiles);

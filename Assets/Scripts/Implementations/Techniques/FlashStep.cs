@@ -31,7 +31,7 @@ namespace Implementations.Techniques
             MultiSpriteAnimation dashAni = Instantiate(dashPrefab).GetComponent<MultiSpriteAnimation>();
             LoopAnimation redSparkAni = Instantiate(redSparkPrefab).GetComponent<LoopAnimation>();
 
-            animationBlockDuration = dashAni.GetDuration() + redSparkAni.GetDuration();
+            animationBlockDuration = dashAni.GetDuration() + redSparkAni.GetAnimationDuration();
             _dashDuration = dashAni.GetDuration();
 
             Destroy(dashAni.gameObject);

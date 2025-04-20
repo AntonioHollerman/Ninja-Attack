@@ -53,3 +53,7 @@ MonoBehaviour:
   countDown: {fileID: 0}
   icon: {fileID: 0}
   boarder: {fileID: 0}
+  fireRainPrefab: {fileID: 389975406689200882, guid: df94535438732d546bd0e4b994c19bd1, type: 3}
+  detectDistance: 20
+  frameStartHitBox: 8
+  secondsLooped: 1

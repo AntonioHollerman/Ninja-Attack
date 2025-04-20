@@ -79,7 +79,13 @@ namespace BaseClasses
             ActiveIgnore.Add(cs);
         }
 
-        protected virtual void TriggerEnterWrapper(Collider other){}
+        private void OnTriggerStay(Collider other)
+        {
+            TriggerStayWrapper(other);
+        }
+
+        protected virtual void TriggerEnterWrapper(Collider other){}   
+        protected virtual void TriggerStayWrapper(Collider other){}
         protected virtual void AwakeWrapper()
         {
             StartCoroutine(AliveChecker());
