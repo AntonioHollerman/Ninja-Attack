@@ -6,17 +6,16 @@ using UnityEngine;
 
 namespace Implementations.Extras
 {
-    public class SpawnPos : MonoBehaviour
+    public class SpawnArea : MonoBehaviour
     {
-        public static List<SpawnPos> Spawns = new List<SpawnPos>();
+        public static List<SpawnArea> Spawns = new List<SpawnArea>();
         
         public int level;
         public int round;
         public GameObject toSpawnPrefab;
         public SpriteRenderer sr;
 
-        private Transform _archers;
-        private Transform _brawlers;
+        private Transform _hostiles;
         private Transform _players;
         private Transform _others;
 
@@ -29,10 +28,9 @@ namespace Implementations.Extras
             sr.enabled = false;
             Spawns.Add(this);
             
-            _archers = GameObject.Find("SpawnManager/Archers").GetComponent<Transform>();
-            _brawlers = GameObject.Find("SpawnManager/Brawlers").GetComponent<Transform>();
-            _players = GameObject.Find("SpawnManager/Players").GetComponent<Transform>();
-            _others = GameObject.Find("SpawnManager/Others").GetComponent<Transform>();
+            _hostiles = GameObject.Find("Characters/Hostiles").GetComponent<Transform>();
+            _players = GameObject.Find("Characters/Players").GetComponent<Transform>();
+            _others = GameObject.Find("Characters/Others").GetComponent<Transform>();
             _spawnSmokePrefab = toSpawnPrefab.GetComponent<CharacterSheet>().spawnSmokePrefab;
         }
 
@@ -52,13 +50,9 @@ namespace Implementations.Extras
             {
                 cs.transform.parent = _players;
             } 
-            else if (cs is Archer)
+            else if (cs is Hostile)
             {
-                cs.transform.parent = _archers;
-            }
-            else if (cs is Brawler)
-            {
-                cs.transform.parent = _brawlers;
+                cs.transform.parent = _hostiles;
             }
             else
             {

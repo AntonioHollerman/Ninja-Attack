@@ -26,16 +26,17 @@ namespace Implementations.HitBoxes
                 ActiveIgnore.Remove(parent);
             }
             base.TriggerEnterWrapper(other);
-            BasicArrow arr = other.gameObject.GetComponent<BasicArrow>();
-            if (arr != null)
-            {
-                Vector3 pos = arr.gameObject.transform.position;
-                GameObject prefab = Resources.Load<GameObject>(CharacterSheet.HitMarkPath);
-                LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
-            
-                script.StartAnimation();
-                Destroy(other.gameObject);
-            }
+            // TODO: Work on arrow deflect script
+            // BasicArrow arr = other.gameObject.GetComponent<BasicArrow>();
+            // if (arr != null)
+            // {
+            //     Vector3 pos = arr.gameObject.transform.position;
+            //     GameObject prefab = Resources.Load<GameObject>(CharacterSheet.HitMarkPath);
+            //     LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
+            //
+            //     script.StartAnimation();
+            //     Destroy(other.gameObject);
+            // }
         }
     }
 }
