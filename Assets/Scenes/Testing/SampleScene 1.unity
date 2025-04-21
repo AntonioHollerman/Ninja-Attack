@@ -350,7 +350,6 @@ MonoBehaviour:
   deactivateOnStun: 1
   animationBlockDuration: 0.8
   atkMultiplier: 0.6
-  zOffset: 0.32
   stopAttack: 0
 --- !u!1 &705507993
 GameObject:
@@ -802,7 +801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
       propertyPath: baseHp
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
       propertyPath: baseAtk
@@ -878,7 +877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7219058337297258654, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

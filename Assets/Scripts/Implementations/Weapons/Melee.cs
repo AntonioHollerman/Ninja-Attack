@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Implementations.Weapons
 {
+    // Parent Roc: (-90, 0, 180)
+    // Body Roc: (90, 0, 0)
     public class Melee : HitBox
     {
         public SpriteRenderer sprite;
@@ -12,7 +14,6 @@ namespace Implementations.Weapons
         public bool deactivateOnStun;
         public float animationBlockDuration;
         public float atkMultiplier;
-        public float zOffset;
 
         public bool stopAttack;
         private readonly Color _activeC = new Color(0.1921568f, 0.792156f, 0);
@@ -41,6 +42,7 @@ namespace Implementations.Weapons
 
         public virtual bool Attack()
         {
+            
             StartCoroutine(HitBoxListener());
             return true;
         }
@@ -50,8 +52,11 @@ namespace Implementations.Weapons
             Activate(animationBlockDuration);
             
             sprite.color = _activeC;
+            stopAttack = false;
+            yield return new WaitUntil(() => Collider.enabled);
             yield return new WaitUntil(() => stopAttack || !Collider.enabled);
             sprite.color = _nonactiveC;
+            stopAttack = false;
         }
     }
 }

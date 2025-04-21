@@ -33,16 +33,10 @@ namespace Implementations.Characters.HostileScripts
                 _tech3 = fireRain;
             }
             
-            StartCoroutine(MeleeListener());
             StartCoroutine(TechOneListener());
             StartCoroutine(TechTwoListener());
             StartCoroutine(TechThreeListener());
         } 
-
-        private IEnumerator MeleeListener()
-        {
-            yield return null;
-        }
 
         private IEnumerator TechOneListener()
         {
