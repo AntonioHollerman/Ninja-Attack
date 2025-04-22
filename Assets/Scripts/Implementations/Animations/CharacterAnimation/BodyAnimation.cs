@@ -1,19 +1,28 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using BaseClasses;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Implementations.Animations.CharacterAnimation
 {
     public class BodyAnimation : MonoBehaviour
     {
+        [Header("Target")] 
+        public CharacterSheet parent;
         public SpriteRenderer body;
+        public AnimationState curState;
 
+        [Header("Animations")]
         public string hurtPath;
         public string spellCastPath;
         public string slashPath;
         public string walkPath;
+        public float fps;
 
         private Dictionary<AnimationState, AnimationSet> _animations;
+        private float _secondsBetweenFrames;
 
         public static float ForwardToDegrees(Vector3 f)
         {
@@ -62,14 +71,14 @@ namespace Implementations.Animations.CharacterAnimation
             return Direction.Right;
         }
 
-        private void LoadAnimation(AnimationState state, string path)
+        private void LoadAnimation(AnimationState targetState, string path)
         {
             Sprite[] frames = Resources.LoadAll<Sprite>(path);
             AnimationSet set;
-            if (state == AnimationState.Hurt)
+            if (targetState == AnimationState.Hurt)
             {
                 set = new AnimationSet(frames, frames, frames, frames);
-                _animations.Add(state, set);
+                _animations.Add(targetState, set);
                 return;
             }
             
@@ -80,49 +89,60 @@ namespace Implementations.Animations.CharacterAnimation
             Sprite[] leftSet  = new ArraySegment<Sprite>(frames,3 * stepSize,stepSize).ToArray();
 
             set = new AnimationSet(upSet, downSet, rightSet, leftSet);
-            _animations.Add(state, set);
-        }
-        private void LoadHurtAnimation()
-        {
-            
+            _animations.Add(curState, set);
         }
 
-        private void LoadSpellCastAnimation()
+        private IEnumerator StartAnimation()
         {
-            
-        }
+            int index = 0;
+            AnimationState lastState = curState;
+            while (true)
+            {
+                if (lastState != curState)
+                {
+                    index = 0;
+                    lastState = curState;
+                }
 
-        private void LoadSlashAnimation()
-        {
-            
-        }
-
-        private void LoadWalkAnimation()
-        {
-            
-        }
-
+                if (index == _animations[curState].Length)
+                {
+                    index = 0;
+                }
+                Vector3 forward = parent.transform.forward;
+                float degrees = ForwardToDegrees(forward);
+                Direction dir = DegToDir(degrees);
+                
+                body.sprite = _animations[curState].GetFrame(dir, index);
+                index++;
+                yield return new WaitForSeconds(_secondsBetweenFrames);
+                yield return new WaitUntil(() => !parent.IsStunned && !CharacterSheet.UniversalStopCsUpdateLoop);
+            }
+        } 
         private void Awake()
         {
             if (hurtPath != null)
             {
-                LoadHurtAnimation();
+                LoadAnimation(AnimationState.Hurt, hurtPath);
             }
 
             if (slashPath != null)
             {
-                LoadSlashAnimation();
+                LoadAnimation(AnimationState.Melee, slashPath);
             }
 
             if (spellCastPath != null)
             {
-                LoadSpellCastAnimation();
+                LoadAnimation(AnimationState.SpellCast, spellCastPath);
             }
 
             if (walkPath != null)
             {
-                LoadWalkAnimation();
+                LoadAnimation(AnimationState.Walk, spellCastPath);
             }
+
+            _secondsBetweenFrames = 1 / fps;
+            curState = AnimationState.Walk;
+            StartCoroutine(StartAnimation());
         }
 
         private void LateUpdate()
