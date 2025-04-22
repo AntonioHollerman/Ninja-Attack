@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Implementations.Animations.CharacterAnimation
 {
@@ -11,12 +13,7 @@ namespace Implementations.Animations.CharacterAnimation
         public string slashPath;
         public string walkPath;
 
-        public Sprite[] hurtFrames;
-
-        public Sprite[] spellCastLeftFrames;
-        public Sprite[] spellCastRightFrames;
-        public Sprite[] spellCastUpFrames;
-        public Sprite[] spellCastDownFrames;
+        private Dictionary<AnimationState, AnimationSet> _animations;
 
         public static float ForwardToDegrees(Vector3 f)
         {
@@ -44,7 +41,91 @@ namespace Implementations.Animations.CharacterAnimation
                 return result;
             }
         }
-        void LateUpdate()
+
+        public static Direction DegToDir(float degrees)
+        {
+            if (120 >= degrees && degrees >= 60)
+            {
+                return Direction.Up;
+            }
+
+            if (240 > degrees && degrees > 120)
+            {
+                return Direction.Left;
+            }
+
+            if (300 >= degrees && degrees >= 240)
+            {
+                return Direction.Down;
+            }
+            
+            return Direction.Right;
+        }
+
+        private void LoadAnimation(AnimationState state, string path)
+        {
+            Sprite[] frames = Resources.LoadAll<Sprite>(path);
+            AnimationSet set;
+            if (state == AnimationState.Hurt)
+            {
+                set = new AnimationSet(frames, frames, frames, frames);
+                _animations.Add(state, set);
+                return;
+            }
+            
+            int stepSize = frames.Length / 4;
+            Sprite[] upSet    = new ArraySegment<Sprite>(frames,           0,stepSize).ToArray();
+            Sprite[] downSet  = new ArraySegment<Sprite>(frames,    stepSize,stepSize).ToArray();
+            Sprite[] rightSet = new ArraySegment<Sprite>(frames,2 * stepSize,stepSize).ToArray();
+            Sprite[] leftSet  = new ArraySegment<Sprite>(frames,3 * stepSize,stepSize).ToArray();
+
+            set = new AnimationSet(upSet, downSet, rightSet, leftSet);
+            _animations.Add(state, set);
+        }
+        private void LoadHurtAnimation()
+        {
+            
+        }
+
+        private void LoadSpellCastAnimation()
+        {
+            
+        }
+
+        private void LoadSlashAnimation()
+        {
+            
+        }
+
+        private void LoadWalkAnimation()
+        {
+            
+        }
+
+        private void Awake()
+        {
+            if (hurtPath != null)
+            {
+                LoadHurtAnimation();
+            }
+
+            if (slashPath != null)
+            {
+                LoadSlashAnimation();
+            }
+
+            if (spellCastPath != null)
+            {
+                LoadSpellCastAnimation();
+            }
+
+            if (walkPath != null)
+            {
+                LoadWalkAnimation();
+            }
+        }
+
+        private void LateUpdate()
         {
             transform.rotation = Quaternion.identity; // Resets rotation to world space
         }
