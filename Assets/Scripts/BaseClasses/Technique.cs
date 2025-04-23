@@ -4,6 +4,7 @@ using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace BaseClasses
 {
@@ -46,9 +47,11 @@ namespace BaseClasses
                 return;
             }
             
-            bool successful = parent.CastTechnique(ManaCost, animationBlockDuration);
+            bool successful = parent.CastTechnique(ManaCost);
             if (successful)
             {
+                parent.body.curState = AnimationState.SpellCast;
+                parent.BlockAnimation(animationBlockDuration);
                 Timer = CoolDown;
                 Execute();
             }
@@ -65,6 +68,7 @@ namespace BaseClasses
 
         protected virtual void StartWrapper()
         {
+            animationBlockDuration = parent.body.GetDuration(AnimationState.SpellCast);
             ManaCost = manaCost;
             CoolDown = coolDown;
             if (countDown != null && icon != null && active != null && notActive != null)

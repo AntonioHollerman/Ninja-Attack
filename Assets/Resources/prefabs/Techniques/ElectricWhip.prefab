@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manaCost: 0
-  coolDown: 0
+  coolDown: 1
   animationBlockDuration: 0
   parent: {fileID: 0}
   active: {fileID: 0}

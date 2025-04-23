@@ -221,14 +221,13 @@ namespace BaseClasses
             }
         }
 
-        public bool CastTechnique(int manaCost, float animationBlockDuration)
+        public bool CastTechnique(int manaCost)
         {
             if (Mana < manaCost || IsStunned || AnimationBlocked)
             {
                 return false;
             }
-
-            BlockAnimation(animationBlockDuration);
+            
             Mana -= manaCost;
             
             if (this is Player player)

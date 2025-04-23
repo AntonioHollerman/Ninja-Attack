@@ -1169,7 +1169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: spellCastFps
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: spellCastPath

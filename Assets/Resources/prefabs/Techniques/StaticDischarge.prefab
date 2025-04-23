@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2789701398b9447e89eb8beeaf850efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 50
-  coolDown: 3
+  manaCost: 0
+  coolDown: 1
   animationBlockDuration: 0
   parent: {fileID: 0}
   active: {fileID: 1045486412, guid: ba13e5729f57cdd4d853b67b5e5b356a, type: 3}

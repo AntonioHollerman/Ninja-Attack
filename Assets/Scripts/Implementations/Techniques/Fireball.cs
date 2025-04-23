@@ -4,6 +4,7 @@ using Implementations.Animations;
 using Implementations.Extras;
 using Implementations.HitBoxes;
 using UnityEngine;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace Implementations.Techniques
 {
@@ -92,7 +93,7 @@ namespace Implementations.Techniques
                 return false;
             }
 
-            bool successful = parent.CastTechnique(ManaCost, animationBlockDuration);
+            bool successful = parent.CastTechnique(ManaCost);
             return successful;
         }
 
@@ -112,6 +113,9 @@ namespace Implementations.Techniques
                 return;
             }
 
+            parent.body.curState = AnimationState.SpellCast;
+            parent.BlockAnimation(animationBlockDuration);
+            
             _curFireball = Instantiate(fireballPrefab,
                 parent.transform.position,
                 parent.transform.rotation);
