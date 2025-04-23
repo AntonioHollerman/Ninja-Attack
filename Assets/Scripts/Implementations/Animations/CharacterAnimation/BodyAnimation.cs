@@ -13,12 +13,14 @@ namespace Implementations.Animations.CharacterAnimation
         public CharacterSheet parent;
         public SpriteRenderer body;
         public AnimationState curState;
+        public Vector3 velocity;
 
         [Header("Animations")]
         public string hurtPath;
         public string spellCastPath;
         public string slashPath;
         public string walkPath;
+        public string idlePath;
         public float fps;
 
         private Dictionary<AnimationState, AnimationSet> _animations = new();
@@ -102,6 +104,11 @@ namespace Implementations.Animations.CharacterAnimation
             AnimationState lastState = curState;
             while (true)
             {
+                if (curState == AnimationState.Walk)
+                {
+                    curState = parent.rb.velocity == Vector3.zero ? AnimationState.Idle : AnimationState.Walk;
+                }
+                
                 if (lastState != curState)
                 {
                     index = 0;
@@ -111,7 +118,7 @@ namespace Implementations.Animations.CharacterAnimation
                 if (index == _animations[curState].Length)
                 {
                     index = 0;
-                    curState = AnimationState.Walk;
+                    curState = parent.rb.velocity == Vector3.zero ? AnimationState.Idle : AnimationState.Walk;
                 }
                 Vector3 forward = parent.transform.forward;
                 float degrees = ForwardToDegrees(forward);
@@ -145,6 +152,11 @@ namespace Implementations.Animations.CharacterAnimation
                 LoadAnimation(AnimationState.Walk, walkPath);
             }
 
+            if (idlePath != null)
+            {
+                LoadAnimation(AnimationState.Idle, idlePath);
+            }
+
             _secondsBetweenFrames = 1 / fps;
             curState = AnimationState.Walk;
             StartCoroutine(StartAnimation());
@@ -152,6 +164,7 @@ namespace Implementations.Animations.CharacterAnimation
 
         private void LateUpdate()
         {
+            velocity = parent.rb.velocity;
             transform.rotation = Quaternion.identity; // Resets rotation to world space
         }
     }

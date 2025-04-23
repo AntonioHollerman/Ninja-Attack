@@ -2,6 +2,6 @@
 {
     public enum AnimationState
     {
-        Hurt, Melee, SpellCast, Walk
+        Hurt, Melee, SpellCast, Walk, Idle
     }
 }
