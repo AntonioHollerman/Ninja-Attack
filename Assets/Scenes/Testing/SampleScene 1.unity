@@ -1136,6 +1136,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6084661047370379624}
     - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: hurtFps
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: idleFps
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: walkFps
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: hurtPath
       value: sprites/Characters/Players/Main Character + Katana Animations/hurt
       objectReference: {fileID: 0}
@@ -1144,12 +1156,20 @@ PrefabInstance:
       value: sprites/Characters/Players/Main Character + Katana Animations/combat_idle
       objectReference: {fileID: 0}
     - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: slashFps
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: walkPath
       value: sprites/Characters/Players/Main Character + Katana Animations/walk_128
       objectReference: {fileID: 0}
     - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: slashPath
       value: sprites/Characters/Players/Main Character + Katana Animations/slash_128
+      objectReference: {fileID: 0}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: spellCastFps
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: spellCastPath

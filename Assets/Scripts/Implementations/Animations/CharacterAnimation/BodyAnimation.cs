@@ -13,7 +13,6 @@ namespace Implementations.Animations.CharacterAnimation
         public CharacterSheet parent;
         public SpriteRenderer body;
         public AnimationState curState;
-        public Vector3 velocity;
 
         [Header("Animations")]
         public string hurtPath;
@@ -21,10 +20,16 @@ namespace Implementations.Animations.CharacterAnimation
         public string slashPath;
         public string walkPath;
         public string idlePath;
-        public float fps;
 
-        private Dictionary<AnimationState, AnimationSet> _animations = new();
-        private float _secondsBetweenFrames;
+        [Header("Animations FPS")] 
+        public int hurtFps;
+        public int spellCastFps;
+        public int slashFps;
+        public int walkFps;
+        public int idleFps;
+
+        private readonly Dictionary<AnimationState, AnimationSet> _animations = new();
+        private readonly Dictionary<AnimationState, int> _fps = new();
 
         public static float ForwardToDegrees(Vector3 f)
         {
@@ -72,9 +77,13 @@ namespace Implementations.Animations.CharacterAnimation
             return Direction.Right;
         }
 
+        private float GetSecondsBetweenFrames(AnimationState state)
+        {
+            return 1 / (float) _fps[state];
+        }
         public float GetDuration(AnimationState state)
         {
-            return _animations[state].Length * _secondsBetweenFrames;
+            return _animations[state].Length * GetSecondsBetweenFrames(state);
         }
 
         private void LoadAnimation(AnimationState targetState, string path)
@@ -126,12 +135,17 @@ namespace Implementations.Animations.CharacterAnimation
                 
                 body.sprite = _animations[curState].GetFrame(dir, index);
                 index++;
-                yield return new WaitForSeconds(_secondsBetweenFrames);
+                yield return new WaitForSeconds(GetSecondsBetweenFrames(curState));
                 yield return new WaitUntil(() => !parent.IsStunned && !CharacterSheet.UniversalStopCsUpdateLoop);
             }
         } 
         private void Awake()
         {
+            _fps[AnimationState.Hurt] = hurtFps;
+            _fps[AnimationState.SpellCast] = spellCastFps;
+            _fps[AnimationState.Melee] = slashFps;
+            _fps[AnimationState.Walk] = walkFps;
+            _fps[AnimationState.Idle] = idleFps;
             if (hurtPath != null)
             {
                 LoadAnimation(AnimationState.Hurt, hurtPath);
@@ -156,15 +170,13 @@ namespace Implementations.Animations.CharacterAnimation
             {
                 LoadAnimation(AnimationState.Idle, idlePath);
             }
-
-            _secondsBetweenFrames = 1 / fps;
+            
             curState = AnimationState.Walk;
             StartCoroutine(StartAnimation());
         }
 
         private void LateUpdate()
         {
-            velocity = parent.rb.velocity;
             transform.rotation = Quaternion.identity; // Resets rotation to world space
         }
     }
