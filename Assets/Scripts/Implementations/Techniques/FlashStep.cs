@@ -21,6 +21,7 @@ namespace Implementations.Techniques
 
         private Collider _parentCollider;
         private float _dashDuration;
+        private float _blockInputDuration;
 
         protected override void StartWrapper()
         {
@@ -31,7 +32,7 @@ namespace Implementations.Techniques
             MultiSpriteAnimation dashAni = Instantiate(dashPrefab).GetComponent<MultiSpriteAnimation>();
             LoopAnimation redSparkAni = Instantiate(redSparkPrefab).GetComponent<LoopAnimation>();
 
-            animationBlockDuration = dashAni.GetDuration() + redSparkAni.GetAnimationDuration();
+            _blockInputDuration = dashAni.GetDuration();
             _dashDuration = dashAni.GetDuration();
 
             Destroy(dashAni.gameObject);
@@ -112,7 +113,7 @@ namespace Implementations.Techniques
         {
             if (parent is Player player)
             {
-                player.BlockInput(animationBlockDuration);
+                player.BlockInput(_blockInputDuration);
             }
 
             RedSparkAnimation();
@@ -162,6 +163,11 @@ namespace Implementations.Techniques
                     continue;
                 Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
             }
+        }
+
+        protected override float GetSpellCastDuration()
+        {
+            return dashPrefab.GetComponent<MultiSpriteAnimation>().GetDuration();
         }
     }
 }

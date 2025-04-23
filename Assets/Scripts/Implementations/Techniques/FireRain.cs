@@ -5,6 +5,7 @@ using Implementations.Animations;
 using Implementations.Animations.UniqueAnimation;
 using Implementations.HitBoxes;
 using UnityEngine;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace Implementations.Techniques
 {
@@ -14,6 +15,7 @@ namespace Implementations.Techniques
         public float detectDistance = 20;
         public int frameStartHitBox;
         public float secondsLooped;
+        public float spellCastFps = 12f;
         protected override void Execute()
         {
             GameObject target;
@@ -63,6 +65,11 @@ namespace Implementations.Techniques
                 }
             }
             return target;
+        }
+
+        protected override float GetSpellCastDuration()
+        {
+            return parent.body.GetAnimationLength(AnimationState.SpellCast) * spellCastFps;
         }
     }
 }

@@ -56,7 +56,6 @@ namespace Implementations.Techniques
             base.StartWrapper();
             audioSource = GetComponent<AudioSource>();
             LoopAnimation animationScript = Instantiate(dischargeAnimationPrefab).GetComponent<LoopAnimation>();
-            animationBlockDuration = animationScript.GetAnimationDuration();
             Destroy(animationScript.gameObject);
         }
 
@@ -66,6 +65,11 @@ namespace Implementations.Techniques
             {
                 audioSource.PlayOneShot(dischargeSound); // Play the discharge sound
             }
+        }
+
+        protected override float GetSpellCastDuration()
+        {
+            return dischargeAnimationPrefab.GetComponent<LoopAnimation>().GetAnimationDuration();
         }
     }
 }

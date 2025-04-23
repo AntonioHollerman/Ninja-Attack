@@ -22,14 +22,14 @@ namespace Implementations.Animations.CharacterAnimation
         public string idlePath;
 
         [Header("Animations FPS")] 
-        public int hurtFps;
-        public int spellCastFps;
-        public int slashFps;
-        public int walkFps;
-        public int idleFps;
+        public float hurtFps;
+        public float spellCastFps;
+        public float slashFps;
+        public float walkFps;
+        public float idleFps;
 
         private readonly Dictionary<AnimationState, AnimationSet> _animations = new();
-        private readonly Dictionary<AnimationState, int> _fps = new();
+        private readonly Dictionary<AnimationState, float> _fps = new();
 
         public static float ForwardToDegrees(Vector3 f)
         {
@@ -79,11 +79,16 @@ namespace Implementations.Animations.CharacterAnimation
 
         private float GetSecondsBetweenFrames(AnimationState state)
         {
-            return 1 / (float) _fps[state];
+            return 1 / _fps[state];
         }
         public float GetDuration(AnimationState state)
         {
             return _animations[state].Length * GetSecondsBetweenFrames(state);
+        }
+
+        public int GetAnimationLength(AnimationState state)
+        {
+            return _animations[state].Length;
         }
 
         private void LoadAnimation(AnimationState targetState, string path)

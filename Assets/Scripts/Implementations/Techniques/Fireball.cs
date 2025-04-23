@@ -19,6 +19,7 @@ namespace Implementations.Techniques
         public GameObject fireballPrefab;
         public float flySpeed;
         public float zDisplacement;
+        public float spellCastFps = 12f;
 
         public AudioClip fireballSound; // Sound effect for the fireball flying
         public AudioClip explosionSound; // Sound effect for the explosion
@@ -112,9 +113,11 @@ namespace Implementations.Techniques
             {
                 return;
             }
-
+            
+            int n = parent.body.GetAnimationLength(AnimationState.SpellCast);
+            parent.body.spellCastFps = n / GetSpellCastDuration();
             parent.body.curState = AnimationState.SpellCast;
-            parent.BlockAnimation(animationBlockDuration);
+            parent.BlockAnimation(parent.body.GetDuration(AnimationState.SpellCast));
             
             _curFireball = Instantiate(fireballPrefab,
                 parent.transform.position,
@@ -175,6 +178,11 @@ namespace Implementations.Techniques
             {
                 audioSource.PlayOneShot(explosionSound); // Play the explosion sound
             }
+        }
+        
+        protected override float GetSpellCastDuration()
+        {
+            return parent.body.GetAnimationLength(AnimationState.SpellCast) * spellCastFps;
         }
     }
 }

@@ -52,5 +52,10 @@ namespace Implementations.Techniques
                 yield return null;
             }
         }
+
+        protected override float GetSpellCastDuration()
+        {
+            return meleeAnimationPrefab.GetComponent<LoopAnimation>().GetAnimationDuration();
+        }
     }
 }

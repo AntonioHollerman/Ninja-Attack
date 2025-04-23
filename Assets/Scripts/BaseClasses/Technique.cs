@@ -20,7 +20,6 @@ namespace BaseClasses
         [SerializeField] private int manaCost;
         [SerializeField] private float coolDown;
         
-        public float animationBlockDuration;
         public CharacterSheet parent;
         public Sprite active;
         public Sprite notActive;
@@ -35,6 +34,7 @@ namespace BaseClasses
         protected bool Ready => parent.Mana >= ManaCost && Timer <= 0;
 
         protected abstract void Execute();
+        protected abstract float GetSpellCastDuration();
 
         public virtual void ActivateTech()
         {
@@ -50,8 +50,11 @@ namespace BaseClasses
             bool successful = parent.CastTechnique(ManaCost);
             if (successful)
             {
+                int n = parent.body.GetAnimationLength(AnimationState.SpellCast);
+                parent.body.spellCastFps = n / GetSpellCastDuration();
                 parent.body.curState = AnimationState.SpellCast;
-                parent.BlockAnimation(animationBlockDuration);
+                parent.BlockAnimation(parent.body.GetDuration(AnimationState.SpellCast));
+                
                 Timer = CoolDown;
                 Execute();
             }
@@ -68,7 +71,6 @@ namespace BaseClasses
 
         protected virtual void StartWrapper()
         {
-            animationBlockDuration = parent.body.GetDuration(AnimationState.SpellCast);
             ManaCost = manaCost;
             CoolDown = coolDown;
             if (countDown != null && icon != null && active != null && notActive != null)
