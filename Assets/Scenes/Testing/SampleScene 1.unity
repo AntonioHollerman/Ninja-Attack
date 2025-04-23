@@ -346,9 +346,8 @@ MonoBehaviour:
   destroyOnFinish: 0
   workOnCollider: 1
   sprite: {fileID: 24793107}
-  debugModeOn: 1
+  debugModeOn: 0
   deactivateOnStun: 1
-  animationBlockDuration: 0.8
   atkMultiplier: 0.6
   stopAttack: 0
 --- !u!1 &705507993
@@ -618,7 +617,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.7078123
+  orthographic size: 2.18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1105,17 +1104,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: fps
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 5449163802549579667}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 6084661047370379624}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: hurtPath
+      value: sprites/Characters/Players/Main Character + Katana Animations/hurt
+      objectReference: {fileID: 0}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: walkPath
+      value: sprites/Characters/Players/Main Character + Katana Animations/walk_128
+      objectReference: {fileID: 0}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: slashPath
+      value: sprites/Characters/Players/Main Character + Katana Animations/slash_128
+      objectReference: {fileID: 0}
+    - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: spellCastPath
+      value: sprites/Characters/Players/Main Character + Katana Animations/spellcast
+      objectReference: {fileID: 0}
     - target: {fileID: 1178749989484539670, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: parent
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2071009203574041851, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -615359779, guid: d5281af2d6c6a6647b503f133529fdaa, type: 3}
     - target: {fileID: 2584723929660046766, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2584723929660046766, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2584723929660046766, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1153,6 +1184,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoloPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 9044087889339115366, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044087889339115366, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044087889339115366, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147837663595110699, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 5449163802549579669}
     - target: {fileID: 9147837663595110699, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: weapon
       value: 
@@ -1170,6 +1217,22 @@ PrefabInstance:
       addedObject: {fileID: 365461636}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+--- !u!212 &5449163802549579667 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2071009203574041851, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+  m_PrefabInstance: {fileID: 5449163802549579666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5449163802549579669 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+  m_PrefabInstance: {fileID: 5449163802549579666}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854b4f0699434a96837c5d94817ede69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6084661047370379624 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9147837663595110699, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}

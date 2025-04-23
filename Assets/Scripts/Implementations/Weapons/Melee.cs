@@ -12,7 +12,6 @@ namespace Implementations.Weapons
         public bool debugModeOn;
         
         public bool deactivateOnStun;
-        public float animationBlockDuration;
         public float atkMultiplier;
 
         public bool stopAttack;
@@ -40,16 +39,15 @@ namespace Implementations.Weapons
             cs.DealDamage(atkMultiplier * parent.Atk, parent);
         }
 
-        public virtual bool Attack()
+        public virtual bool Attack(float duration)
         {
-            
-            StartCoroutine(HitBoxListener());
+            StartCoroutine(HitBoxListener(duration));
             return true;
         }
 
-        private IEnumerator HitBoxListener()
+        private IEnumerator HitBoxListener(float duration)
         {
-            Activate(animationBlockDuration);
+            Activate(duration);
             
             sprite.color = _activeC;
             stopAttack = false;

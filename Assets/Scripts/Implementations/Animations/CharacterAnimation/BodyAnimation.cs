@@ -21,34 +21,33 @@ namespace Implementations.Animations.CharacterAnimation
         public string walkPath;
         public float fps;
 
-        private Dictionary<AnimationState, AnimationSet> _animations;
+        private Dictionary<AnimationState, AnimationSet> _animations = new();
         private float _secondsBetweenFrames;
 
         public static float ForwardToDegrees(Vector3 f)
         {
             float x = Mathf.Clamp(f.x, -1, 1);
             float y = Mathf.Clamp(f.y, -1, 1);
-
+            float result;
+            
             if (x != 0)
             {
-                float result = Mathf.Atan(y / x) * Mathf.Rad2Deg;
+                result = Mathf.Atan(y / x) * Mathf.Rad2Deg;
                 if (x < 0)
                 {
                     result += 180f;
                 }
-
-                if (result < 0)
-                {
-                    result += 360;
-                }
-
-                return result;
-            }
+            } 
             else
             {
-                float result = Mathf.Asin(y) * Mathf.Rad2Deg;
-                return result;
+                result = Mathf.Asin(y) * Mathf.Rad2Deg;
             }
+            
+            if (result < 0)
+            {
+                result += 360;
+            }
+            return result;
         }
 
         public static Direction DegToDir(float degrees)
@@ -71,6 +70,11 @@ namespace Implementations.Animations.CharacterAnimation
             return Direction.Right;
         }
 
+        public float GetDuration(AnimationState state)
+        {
+            return _animations[state].Length * _secondsBetweenFrames;
+        }
+
         private void LoadAnimation(AnimationState targetState, string path)
         {
             Sprite[] frames = Resources.LoadAll<Sprite>(path);
@@ -84,12 +88,12 @@ namespace Implementations.Animations.CharacterAnimation
             
             int stepSize = frames.Length / 4;
             Sprite[] upSet    = new ArraySegment<Sprite>(frames,           0,stepSize).ToArray();
-            Sprite[] downSet  = new ArraySegment<Sprite>(frames,    stepSize,stepSize).ToArray();
-            Sprite[] rightSet = new ArraySegment<Sprite>(frames,2 * stepSize,stepSize).ToArray();
-            Sprite[] leftSet  = new ArraySegment<Sprite>(frames,3 * stepSize,stepSize).ToArray();
+            Sprite[] leftSet  = new ArraySegment<Sprite>(frames,    stepSize,stepSize).ToArray();
+            Sprite[] downSet = new ArraySegment<Sprite>(frames,2 * stepSize,stepSize).ToArray();
+            Sprite[] rightSet  = new ArraySegment<Sprite>(frames,3 * stepSize,stepSize).ToArray();
 
             set = new AnimationSet(upSet, downSet, rightSet, leftSet);
-            _animations.Add(curState, set);
+            _animations.Add(targetState, set);
         }
 
         private IEnumerator StartAnimation()
@@ -107,6 +111,7 @@ namespace Implementations.Animations.CharacterAnimation
                 if (index == _animations[curState].Length)
                 {
                     index = 0;
+                    curState = AnimationState.Walk;
                 }
                 Vector3 forward = parent.transform.forward;
                 float degrees = ForwardToDegrees(forward);
@@ -137,7 +142,7 @@ namespace Implementations.Animations.CharacterAnimation
 
             if (walkPath != null)
             {
-                LoadAnimation(AnimationState.Walk, spellCastPath);
+                LoadAnimation(AnimationState.Walk, walkPath);
             }
 
             _secondsBetweenFrames = 1 / fps;

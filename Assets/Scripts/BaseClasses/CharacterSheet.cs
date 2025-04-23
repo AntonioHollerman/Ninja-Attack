@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Implementations.Animations;
+using Implementations.Animations.CharacterAnimation;
 using Implementations.Extras;
 using Implementations.Weapons;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace BaseClasses
         public List<CharacterSheet> allies;
         public Rigidbody            rb;
         public CharacterSheet       lastHit;
+        public BodyAnimation        body;
 
         [Header("Character Sheet Stats")]
         public int   level;
@@ -195,17 +197,17 @@ namespace BaseClasses
             _equipment.RemoveAll(x => x == armor);
         }
 
-        public void AttackWeapon()
+        public void AttackWeapon(float animationDuration)
         {
             if (IsStunned || AnimationBlocked)
             {
                 return;
             }
 
-            bool successful = weapon.Attack();
+            bool successful = weapon.Attack(animationDuration);
             if (successful)
             {
-                BlockAnimation(weapon.animationBlockDuration);
+                BlockAnimation(animationDuration);
             }
         }
 

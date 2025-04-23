@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Implementations.Animations.CharacterAnimation;
 using Implementations.Extras;
-using Implementations.Weapons;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace BaseClasses
 {
@@ -108,7 +107,8 @@ namespace BaseClasses
         {
             if (Input.GetKeyDown(AttackCode))
             {
-                AttackWeapon();
+                body.curState = AnimationState.Melee;
+                AttackWeapon(body.GetDuration(AnimationState.Melee));
             }
         }
 
