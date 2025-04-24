@@ -62,13 +62,11 @@ namespace Implementations.Managers
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
-            Transform boarder = HasBoarder.Contains(tech) ? iconGo.transform.Find("Boarder") : null;
             keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>().text = code.ToString();
             
             Technique techScript = LoadTechnique(tech, player);
             techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();
             techScript.icon = iconGo.GetComponent<SpriteRenderer>();
-            techScript.boarder = boarder?.gameObject.GetComponent<SpriteRenderer>();
             return techScript;
         }
         
@@ -85,7 +83,6 @@ namespace Implementations.Managers
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
-            Transform boarder = HasBoarder.Contains(tech) ? iconGo.transform.Find("Boarder") : null;
             keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>().text = code.ToString()
                 .Replace("Period", ".")
                 .Replace("Slash", "/");
@@ -93,7 +90,6 @@ namespace Implementations.Managers
             Technique techScript = LoadTechnique(tech, player);
             techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();
             techScript.icon = iconGo.GetComponent<SpriteRenderer>();
-            techScript.boarder = boarder?.gameObject.GetComponent<SpriteRenderer>();
             return techScript;
         }
         

@@ -26,7 +26,6 @@ namespace BaseClasses
 
         public TextMeshProUGUI countDown;
         public SpriteRenderer icon;
-        public SpriteRenderer boarder;
         
         public int ManaCost { get; private set; } // How much implemented technique cost
         public float CoolDown { get; private set; } // How many seconds is the cooldown

@@ -628,7 +628,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.18
+  orthographic size: 2.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -822,6 +822,14 @@ PrefabInstance:
       propertyPath: parent
       value: 
       objectReference: {fileID: 1512775787}
+    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
+      propertyPath: hurtPath
+      value: sprites/Characters/Hostiles/Villian + Sword/hurt
+      objectReference: {fileID: 0}
+    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
+      propertyPath: spellCastFps
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6269546578871389881, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.66
@@ -1053,7 +1061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: spellCastFps
-      value: 12
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 328391010336356674, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: spellCastPath

@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13067550a904b3849b49b0b662f7e6e1
-      internalID: 1552951868
+      spriteID: d60e1b9ab8b98a647b752c945967ef80
+      internalID: -1427427492
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c30b70c4ab3700341b5b36faa09c39d4
-      internalID: 657524681
+      spriteID: ed732ebf2e4d5744086449f769f3afca
+      internalID: 1677882450
       vertices: []
       indices: 
       edges: []
@@ -167,7 +167,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 559e6e93ccae1ce48b88e3377d0b036b
+    spriteID: d953fe356d488cc41930becf7af6a8eb
     internalID: 0
     vertices: []
     indices: 
@@ -175,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FlashStepIcon_0: 1552951868
-      FlashStepIcon_1: 657524681
+      FlashStepIcon_0: -1427427492
+      FlashStepIcon_1: 1677882450
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

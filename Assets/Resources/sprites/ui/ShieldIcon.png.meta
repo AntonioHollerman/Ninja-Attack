@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 97a76957a6ec87a4c8c512b96235bc8f
+guid: fc8e111899aa191439762e6aefa87c33
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IceShieldIcon_0
+      name: ShieldIcon_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c75ad4f84f8dba4fa720536fbc4adc0
-      internalID: -1095977023
+      spriteID: d9a18832f1b7ec947ac50aba51c76d3a
+      internalID: -181014432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IceShieldIcon_1
+      name: ShieldIcon_1
       rect:
         serializedVersion: 2
         x: 1558
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c46de8cd2076b9d4cb65256d80729412
-      internalID: -231472454
+      spriteID: 57b299af3c8a9ca46810930c4ff799cf
+      internalID: 643721704
       vertices: []
       indices: 
       edges: []
@@ -167,7 +167,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 471d7218772028c4c85c9a851cd1049a
+    spriteID: 97b2b1c5660bb634ebb122f9fddf9182
     internalID: 0
     vertices: []
     indices: 
@@ -175,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IceShieldIcon_0: -1095977023
-      IceShieldIcon_1: -231472454
+      ShieldIcon_0: -181014432
+      ShieldIcon_1: 643721704
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

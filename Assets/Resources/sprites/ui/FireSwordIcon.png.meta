@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68215256648af3a4ba16d46271dd64a2
-      internalID: -1927839504
+      spriteID: 71eabc86ac5eee34a90bb98e7bbfde32
+      internalID: 1144222396
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 396cb979b70b1f74c9cd463b3de26974
-      internalID: -1523329453
+      spriteID: e12367b7d4d4de24585ebc769a112b0d
+      internalID: -1351747221
       vertices: []
       indices: 
       edges: []
@@ -167,7 +167,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 77a1df9de197904438859b3628695d70
+    spriteID: 69ce3b5fe2fbca249a7341c9a71f983d
     internalID: 0
     vertices: []
     indices: 
@@ -175,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FireSwordIcon_0: -1927839504
-      FireSwordIcon_1: -1523329453
+      FireSwordIcon_0: 1144222396
+      FireSwordIcon_1: -1351747221
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

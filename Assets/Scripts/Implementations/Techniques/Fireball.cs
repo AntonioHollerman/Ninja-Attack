@@ -17,6 +17,7 @@ namespace Implementations.Techniques
         
         public GameObject explosionPrefab;
         public GameObject fireballPrefab;
+        public Sprite yelloActive;
         public float flySpeed;
         public float zDisplacement;
         public float spellCastFps = 12f;
@@ -60,7 +61,6 @@ namespace Implementations.Techniques
             if (_curState is State.FIRST_ACTIVATION_NOT_READY)
             {
                 countDown.gameObject.SetActive(true);
-                boarder.gameObject.SetActive(false);
                 icon.sprite = notActive;
             }
 
@@ -68,15 +68,12 @@ namespace Implementations.Techniques
             {
                 yield return new WaitUntil(() => _curState is State.FIRST_ACTIVATION_READY);
                 countDown.gameObject.SetActive(false);
-                boarder.gameObject.SetActive(false);
                 icon.sprite = active;
                 yield return new WaitUntil(() => _curState is State.SECOND_ACTIVATION_READY);
                 countDown.gameObject.SetActive(false);
-                boarder.gameObject.SetActive(true);
-                icon.sprite = active;
+                icon.sprite = yelloActive;
                 yield return new WaitUntil(() => _curState is State.FIRST_ACTIVATION_NOT_READY or State.FIRST_ACTIVATION_READY);
                 countDown.gameObject.SetActive(true);
-                boarder.gameObject.SetActive(false);
                 icon.sprite = notActive;
                 yield return new WaitUntil(() => Ready);
                 _curState = State.FIRST_ACTIVATION_READY;

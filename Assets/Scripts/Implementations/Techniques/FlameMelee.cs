@@ -52,6 +52,7 @@ namespace Implementations.Techniques
                 }
 
                 ani.transform.position = parent.transform.position;
+                ani.transform.rotation = parent.transform.rotation;
                 ani.transform.Translate(Vector3.forward * forwardOffset);
                 ani.transform.Translate(Vector3.right * leftOffset);
 

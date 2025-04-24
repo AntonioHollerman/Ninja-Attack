@@ -46,9 +46,9 @@ namespace BaseClasses
         public override void Defeated()
         {
             Hostiles.Remove(this);
-            DropItem();
-            base.Defeated();
+            // DropItem();
             Destroy(healthBar);
+            base.Defeated();
         }
 
         private void DropItem()

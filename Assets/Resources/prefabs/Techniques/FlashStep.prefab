@@ -47,13 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaCost: 0
   coolDown: 1
-  animationBlockDuration: 0
   parent: {fileID: 0}
-  active: {fileID: 1552951868, guid: cc72c327cd5ef3c4cabca6134a9b4a0c, type: 3}
-  notActive: {fileID: 657524681, guid: cc72c327cd5ef3c4cabca6134a9b4a0c, type: 3}
+  active: {fileID: -1427427492, guid: cc72c327cd5ef3c4cabca6134a9b4a0c, type: 3}
+  notActive: {fileID: -1351747221, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
   countDown: {fileID: 0}
   icon: {fileID: 0}
-  boarder: {fileID: 0}
   blueSparkPrefab: {fileID: 8813284758505080134, guid: f3a67a8af9dea524ea296cb881f69bb9, type: 3}
   redSparkPrefab: {fileID: 5727289338512942692, guid: de45eb02bb1c6d6439e47ad1adf0a516, type: 3}
   dashPrefab: {fileID: 2323067174952427558, guid: 7ed16c3a92cbac3418a09b68384d566f, type: 3}

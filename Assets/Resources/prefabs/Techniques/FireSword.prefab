@@ -47,13 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaCost: 0
   coolDown: 1
-  animationBlockDuration: 0
   parent: {fileID: 0}
-  active: {fileID: -1927839504, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
-  notActive: {fileID: -1523329453, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
+  active: {fileID: 1144222396, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
+  notActive: {fileID: -1351747221, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
   countDown: {fileID: 0}
   icon: {fileID: 0}
-  boarder: {fileID: 0}
   meleeAnimationPrefab: {fileID: 1648239436938574504, guid: 1a82e60c67218de46a4ecb84727867a3, type: 3}
   forwardOffset: 2.65
   leftOffset: 1
