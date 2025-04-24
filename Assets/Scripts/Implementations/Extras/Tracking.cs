@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Implementations.Extras
@@ -9,7 +10,10 @@ namespace Implementations.Extras
 
         private void LateUpdate()
         {
-            transform.position = new Vector3(target.transform.position.x, target.transform.position.y, -10);
+            if (target != null)
+            {
+                transform.position = new Vector3(target.transform.position.x, target.transform.position.y, -10);
+            }
         }
     }
 }

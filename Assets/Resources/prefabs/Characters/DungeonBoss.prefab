@@ -95,17 +95,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b012e06e7864b7b89193057366cfc0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnSmokePrefab: {fileID: 0}
+  spawnSmokePrefab: {fileID: 8128153735471901540, guid: 9f83187e67964ef46983d297b9ef6c79, type: 3}
   isLarge: 0
   allies: []
-  rb: {fileID: 0}
+  rb: {fileID: 2693118693662665556}
   lastHit: {fileID: 0}
-  level: 0
-  baseHp: 0
-  baseAtk: 0
-  baseMana: 0
-  speed: 0
-  detectRange: 0
+  body: {fileID: 243036038349385455}
+  level: 3
+  baseHp: 15
+  baseAtk: 5
+  baseMana: 50
+  speed: 2
+  weapon: {fileID: 0}
+  detectRange: 20
+  healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
+  manaPotion: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}
+  hpPotion: {fileID: 4497868298466907819, guid: 4ce88630428cffd42ac3db89f8d340ac, type: 3}
 --- !u!1 &7672845044795290829
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +139,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6269546578871389881}
@@ -180,7 +185,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 19774ce4dad331446b6fbcad6670d6a7, type: 3}
+  m_Sprite: {fileID: 721299370, guid: dced2aed70887b4449068a5de48f969c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,3 +208,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854b4f0699434a96837c5d94817ede69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  body: {fileID: 0}
+  curState: 0
+  hurtPath: sprites/Characters/Hostiles/Villian + Swordhurt
+  spellCastPath: sprites/Characters/Hostiles/Villian + Sword/spellcast
+  slashPath: sprites/Characters/Hostiles/Villian + Swordslash
+  walkPath: sprites/Characters/Hostiles/Villian + Sword/walk
+  idlePath: sprites/Characters/Hostiles/Villian + Sword/combat_idle
+  hurtFps: 10
+  spellCastFps: 12
+  slashFps: 15
+  walkFps: 20
+  idleFps: 5

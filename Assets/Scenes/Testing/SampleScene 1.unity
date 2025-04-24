@@ -212,17 +212,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6027435568826962149, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
   m_PrefabInstance: {fileID: 5449163802549579666}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &245232172 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
+--- !u!212 &245232173 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3812873859059532574, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
   m_PrefabInstance: {fileID: 1506170672}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 854b4f0699434a96837c5d94817ede69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &316141602
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,105 +815,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: hurtFps
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: idleFps
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: walkFps
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: hurtPath
-      value: sprites/Characters/Hostiles/Villian + Swordhurt
-      objectReference: {fileID: 0}
-    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: idlePath
-      value: sprites/Characters/Hostiles/Villian + Sword/combat_idle
-      objectReference: {fileID: 0}
-    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: slashFps
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: walkPath
-      value: sprites/Characters/Hostiles/Villian + Sword/walk
-      objectReference: {fileID: 0}
-    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: slashPath
-      value: sprites/Characters/Hostiles/Villian + Swordslash
-      objectReference: {fileID: 0}
-    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: spellCastFps
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: spellCastPath
-      value: sprites/Characters/Hostiles/Villian + Sword/spellcast
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: rb
-      value: 
-      objectReference: {fileID: 1512775788}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
       propertyPath: body
       value: 
-      objectReference: {fileID: 245232172}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: level
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: baseHp
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: baseAtk
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: baseMana
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: hpPotion
+      objectReference: {fileID: 245232173}
+    - target: {fileID: 243036038349385455, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
+      propertyPath: parent
       value: 
-      objectReference: {fileID: 4497868298466907819, guid: 4ce88630428cffd42ac3db89f8d340ac, type: 3}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: manaPotion
-      value: 
-      objectReference: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: detectRange
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: spawnSmokePrefab
-      value: 
-      objectReference: {fileID: 8128153735471901540, guid: 9f83187e67964ef46983d297b9ef6c79, type: 3}
-    - target: {fileID: 3812873859059532574, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 721299370, guid: dced2aed70887b4449068a5de48f969c, type: 3}
-    - target: {fileID: 3868449719017477100, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3868449719017477100, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1512775787}
     - target: {fileID: 6269546578871389881, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.66
@@ -964,24 +866,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonBoss
       objectReference: {fileID: 0}
-    - target: {fileID: 7219058337297258654, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8952855476805449575, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
---- !u!54 &1512775788 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 2693118693662665556, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
+--- !u!114 &1512775787 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1976861826489589124, guid: 8ab6dc6c73260ea4098628dedf8730a7, type: 3}
   m_PrefabInstance: {fileID: 1506170672}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b012e06e7864b7b89193057366cfc0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2762539558130224023 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 508524731831514782, guid: bb9b34259432cae46b48bee74123bec4, type: 3}
