@@ -6,6 +6,7 @@ using Implementations.Animations.CharacterAnimation;
 using Implementations.Extras;
 using Implementations.Weapons;
 using UnityEngine;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace BaseClasses
 {
@@ -61,15 +62,21 @@ namespace BaseClasses
             {
                 player.AddExp(2 + (int) (10 + Math.Log(level) * Math.Pow(level, 2) / 4));
             }
-            Vector3 pos = transform.position;
-            Destroy(gameObject);
+
+            StartCoroutine(RunHurtAnimation());
+        }
+
+        private IEnumerator RunHurtAnimation()
+        {
+            body.curState = AnimationState.Hurt;
+            yield return new WaitForSeconds(body.GetDuration(AnimationState.Hurt));
             
+            Vector3 pos = transform.position;
             GameObject prefab = Resources.Load<GameObject>(DeathMarkPath);
             LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
             script.StartAnimation();
+            Destroy(gameObject);
         }
-        
-
         
         // Represents an effect applied to a character.
         private class Effect
