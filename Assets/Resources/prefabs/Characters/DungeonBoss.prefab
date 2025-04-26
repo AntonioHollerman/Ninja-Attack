@@ -27,14 +27,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7219058337297258654}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
-  m_LocalPosition: {x: 0.02, y: -1, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 3.66, y: -0.12, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3868449719017477100}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 270, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
 --- !u!65 &8952855476805449575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -208,16 +208,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854b4f0699434a96837c5d94817ede69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  body: {fileID: 0}
+  parent: {fileID: 1976861826489589124}
+  body: {fileID: 3812873859059532574}
   curState: 0
-  hurtPath: sprites/Characters/Hostiles/Villian + Swordhurt
+  hurtPath: sprites/Characters/Hostiles/Villian + Sword/hurt
   spellCastPath: sprites/Characters/Hostiles/Villian + Sword/spellcast
   slashPath: sprites/Characters/Hostiles/Villian + Swordslash
   walkPath: sprites/Characters/Hostiles/Villian + Sword/walk
   idlePath: sprites/Characters/Hostiles/Villian + Sword/combat_idle
   hurtFps: 10
-  spellCastFps: 12
+  spellCastFps: 5
   slashFps: 15
   walkFps: 20
   idleFps: 5
