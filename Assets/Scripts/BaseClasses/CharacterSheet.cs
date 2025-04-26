@@ -204,11 +204,11 @@ namespace BaseClasses
             _equipment.RemoveAll(x => x == armor);
         }
 
-        public void AttackWeapon(float animationDuration)
+        public bool AttackWeapon(float animationDuration)
         {
             if (IsStunned || AnimationBlocked)
             {
-                return;
+                return false;
             }
 
             bool successful = weapon.Attack(animationDuration);
@@ -216,6 +216,8 @@ namespace BaseClasses
             {
                 BlockAnimation(animationDuration);
             }
+
+            return successful;
         }
 
         public virtual void RestoreMana(int mana)
@@ -284,7 +286,7 @@ namespace BaseClasses
         /// </summary>
         protected void UpdateStats()
         {
-            // Calculate current health, mana, attack, and speed based on the character's level
+            // Calculate current health, mana, and attack based on the character's level
             Hp = MaxHp = (int)(1.3f * Math.Log(level) * baseHp) + baseHp;
             Mana = MaxMana = 50 * (int)(Math.Log(level + 0.5) * (100 / (float) baseMana)) + baseMana;
             Atk = (float) Math.Log(level) * baseAtk + baseAtk;
@@ -331,7 +333,6 @@ namespace BaseClasses
         /// </summary>
         protected virtual void AwakeWrapper()
         {
-            rb = GetComponent<Rigidbody>();
             _effects = new List<Effect>();
             _equipment = new List<Armor>();
             
@@ -371,6 +372,7 @@ namespace BaseClasses
             if (IsStunned || UniversalStopCsUpdateLoop)
             {
                 rb.velocity = Vector3.zero;
+                Debug.Log("not very sigma");
             }
         }
         

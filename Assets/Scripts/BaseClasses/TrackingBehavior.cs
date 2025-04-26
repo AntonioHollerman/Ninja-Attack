@@ -15,7 +15,7 @@ namespace BaseClasses
         {
             base.UpdateWrapper();
             
-            if (!IsStunned)
+            if (!IsStunned && !UniversalStopCsUpdateLoop)
             {
                 SetClosestTarget();
                 LookAtTarget();

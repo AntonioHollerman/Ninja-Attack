@@ -13,8 +13,7 @@ namespace Implementations.Weapons
         
         public bool deactivateOnStun;
         public float atkMultiplier;
-
-        public bool stopAttack;
+        
         private readonly Color _activeC = new Color(0.1921568f, 0.792156f, 0);
         private readonly Color _nonactiveC = new Color(1, 0, 0);
 
@@ -30,8 +29,20 @@ namespace Implementations.Weapons
             {
                 sprite.enabled = false;
             }
+            
+        }
 
-            stopAttack = false;
+        protected override void UpdateWrapper()
+        {
+            base.UpdateWrapper();
+            if (Collider.enabled)
+            {
+                sprite.color = _activeC;
+            }
+            else
+            {
+                sprite.color = _nonactiveC;
+            }
         }
 
         protected override void Effect(CharacterSheet cs)
@@ -41,20 +52,8 @@ namespace Implementations.Weapons
 
         public virtual bool Attack(float duration)
         {
-            StartCoroutine(HitBoxListener(duration));
-            return true;
-        }
-
-        private IEnumerator HitBoxListener(float duration)
-        {
             Activate(duration);
-            
-            sprite.color = _activeC;
-            stopAttack = false;
-            yield return new WaitUntil(() => Collider.enabled);
-            yield return new WaitUntil(() => stopAttack || !Collider.enabled);
-            sprite.color = _nonactiveC;
-            stopAttack = false;
+            return true;
         }
     }
 }
