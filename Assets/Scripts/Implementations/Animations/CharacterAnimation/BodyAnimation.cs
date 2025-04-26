@@ -28,6 +28,7 @@ namespace Implementations.Animations.CharacterAnimation
         public float walkFps;
         public float idleFps;
 
+        public int AniIndex { private set; get;}
         private readonly Dictionary<AnimationState, AnimationSet> _animations = new();
         private readonly Dictionary<AnimationState, float> _fps = new();
 
@@ -105,8 +106,8 @@ namespace Implementations.Animations.CharacterAnimation
             int stepSize = frames.Length / 4;
             Sprite[] upSet    = new ArraySegment<Sprite>(frames,           0,stepSize).ToArray();
             Sprite[] leftSet  = new ArraySegment<Sprite>(frames,    stepSize,stepSize).ToArray();
-            Sprite[] downSet = new ArraySegment<Sprite>(frames,2 * stepSize,stepSize).ToArray();
-            Sprite[] rightSet  = new ArraySegment<Sprite>(frames,3 * stepSize,stepSize).ToArray();
+            Sprite[] downSet  = new ArraySegment<Sprite>(frames,2 * stepSize,stepSize).ToArray();
+            Sprite[] rightSet = new ArraySegment<Sprite>(frames,3 * stepSize,stepSize).ToArray();
 
             set = new AnimationSet(upSet, downSet, rightSet, leftSet);
             _animations.Add(targetState, set);
@@ -114,7 +115,7 @@ namespace Implementations.Animations.CharacterAnimation
 
         private IEnumerator StartAnimation()
         {
-            int index = 0;
+            AniIndex = 0;
             AnimationState lastState = curState;
             while (true)
             {
@@ -125,21 +126,21 @@ namespace Implementations.Animations.CharacterAnimation
                 
                 if (lastState != curState)
                 {
-                    index = 0;
+                    AniIndex = 0;
                     lastState = curState;
                 }
 
-                if (index == _animations[curState].Length)
+                if (AniIndex == _animations[curState].Length)
                 {
-                    index = 0;
+                    AniIndex = 0;
                     curState = parent.rb.velocity == Vector3.zero ? AnimationState.Idle : AnimationState.Walk;
                 }
                 Vector3 forward = parent.transform.forward;
                 float degrees = ForwardToDegrees(forward);
                 Direction dir = DegToDir(degrees);
                 
-                body.sprite = _animations[curState].GetFrame(dir, index);
-                index++;
+                body.sprite = _animations[curState].GetFrame(dir, AniIndex);
+                AniIndex++;
                 yield return new WaitForSeconds(GetSecondsBetweenFrames(curState));
                 yield return new WaitUntil(() => !parent.IsStunned && !CharacterSheet.UniversalStopCsUpdateLoop);
             }
