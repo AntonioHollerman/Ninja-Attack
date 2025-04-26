@@ -148,7 +148,7 @@ namespace Implementations.Animations.CharacterAnimation
         {
             _fps[AnimationState.Hurt] = hurtFps;
             _fps[AnimationState.SpellCast] = spellCastFps;
-            _fps[AnimationState.Melee] = slashFps;
+            _fps[AnimationState.Attack] = slashFps;
             _fps[AnimationState.Walk] = walkFps;
             _fps[AnimationState.Idle] = idleFps;
             if (hurtPath != null)
@@ -158,7 +158,7 @@ namespace Implementations.Animations.CharacterAnimation
 
             if (slashPath != null)
             {
-                LoadAnimation(AnimationState.Melee, slashPath);
+                LoadAnimation(AnimationState.Attack, slashPath);
             }
 
             if (spellCastPath != null)

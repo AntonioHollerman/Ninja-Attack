@@ -1085,6 +1085,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7113836605885849239, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: debugModeOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9147837663595110699, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: statsUI
       value: 

@@ -107,8 +107,8 @@ namespace BaseClasses
         {
             if (Input.GetKeyDown(AttackCode))
             {
-                body.curState = AnimationState.Melee;
-                AttackWeapon(body.GetDuration(AnimationState.Melee));
+                body.curState = AnimationState.Attack;
+                AttackWeapon(body.GetDuration(AnimationState.Attack));
             }
         }
 
