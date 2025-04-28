@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using BaseClasses;
 using UnityEngine;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace Implementations.Weapons
 {
@@ -13,6 +15,7 @@ namespace Implementations.Weapons
         
         public bool deactivateOnStun;
         public float atkMultiplier;
+        public int startHitBoxIndex;
         
         private readonly Color _activeC = new Color(0.1921568f, 0.792156f, 0);
         private readonly Color _nonactiveC = new Color(1, 0, 0);
@@ -29,7 +32,24 @@ namespace Implementations.Weapons
             {
                 sprite.enabled = false;
             }
-            
+
+            StartCoroutine(HitBoxListener());
+        }
+
+        private IEnumerator HitBoxListener()
+        {
+            Collider.enabled = false;
+            ActiveIgnore = new List<CharacterSheet>(parent.allies);
+            while (true)
+            {
+                yield return new WaitUntil(() => parent.body.curState == AnimationState.Attack && parent.body.AniIndex < startHitBoxIndex);
+                yield return new WaitUntil(() => parent.body.AniIndex >= startHitBoxIndex);
+                Collider.enabled = true;
+                
+                yield return new WaitUntil(() => parent.body.curState != AnimationState.Attack || parent.body.AniIndex < startHitBoxIndex);
+                Collider.enabled = false;
+                ActiveIgnore = new List<CharacterSheet>(parent.allies);
+            }
         }
 
         protected override void UpdateWrapper()
@@ -50,10 +70,9 @@ namespace Implementations.Weapons
             cs.DealDamage(atkMultiplier * parent.Atk, parent);
         }
 
-        public virtual bool Attack(float duration)
+        public virtual void Attack()
         {
-            Activate(duration);
-            return true;
+            parent.body.curState = AnimationState.Attack;
         }
     }
 }

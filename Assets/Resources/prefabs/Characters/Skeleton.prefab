@@ -223,5 +223,5 @@ MonoBehaviour:
   hurtFps: 10
   spellCastFps: 5
   attackFps: 12
-  walkFps: 20
+  walkFps: 10
   idleFps: 5

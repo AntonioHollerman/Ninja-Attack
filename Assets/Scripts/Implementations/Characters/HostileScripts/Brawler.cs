@@ -20,10 +20,7 @@ namespace Implementations.Characters.HostileScripts
             rb.velocity = transform.forward * speed;
             if (TargetDistance <= atkDistance)
             {
-                if (AttackWeapon(body.GetDuration(AnimationState.Attack)))
-                {
-                    body.curState = AnimationState.Attack;
-                }
+                AttackWeapon(body.GetDuration(AnimationState.Attack));
             }
         }
 

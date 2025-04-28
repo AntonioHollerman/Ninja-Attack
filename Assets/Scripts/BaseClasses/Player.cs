@@ -107,7 +107,6 @@ namespace BaseClasses
         {
             if (Input.GetKeyDown(AttackCode))
             {
-                body.curState = AnimationState.Attack;
                 AttackWeapon(body.GetDuration(AnimationState.Attack));
             }
         }

@@ -175,6 +175,7 @@ MonoBehaviour:
   parent: {fileID: 0}
   destroyOnFinish: 0
   workOnCollider: 1
+  dontWorkOnTimer: 0
   parentTech: {fileID: 0}
   stunDuration: 3
   hitPrefab: {fileID: 3464262347358634055, guid: da7524227292ff74da48a16a9f3eebad, type: 3}

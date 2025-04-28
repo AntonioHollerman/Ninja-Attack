@@ -295,10 +295,12 @@ MonoBehaviour:
   parent: {fileID: 9147837663595110699}
   destroyOnFinish: 0
   workOnCollider: 1
+  dontWorkOnTimer: 1
   sprite: {fileID: 2142078021870444394}
   debugModeOn: 0
   deactivateOnStun: 1
   atkMultiplier: 0.6
+  startHitBoxIndex: 3
 --- !u!212 &2142078021870444394
 SpriteRenderer:
   m_ObjectHideFlags: 0

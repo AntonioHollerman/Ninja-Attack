@@ -183,10 +183,12 @@ MonoBehaviour:
   parent: {fileID: 5488142970894821438}
   destroyOnFinish: 0
   workOnCollider: 1
+  dontWorkOnTimer: 1
   sprite: {fileID: 5913520183821156212}
-  debugModeOn: 0
+  debugModeOn: 1
   deactivateOnStun: 1
   atkMultiplier: 0.6
+  startHitBoxIndex: 4
 --- !u!212 &5913520183821156212
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -347,5 +349,5 @@ MonoBehaviour:
   hurtFps: 10
   spellCastFps: 5
   attackFps: 15
-  walkFps: 20
+  walkFps: 10
   idleFps: 5

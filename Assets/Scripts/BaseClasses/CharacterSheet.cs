@@ -213,13 +213,9 @@ namespace BaseClasses
                 return false;
             }
 
-            bool successful = weapon.Attack(animationDuration);
-            if (successful)
-            {
-                BlockAnimation(animationDuration);
-            }
-
-            return successful;
+            weapon.Attack();
+            BlockAnimation(animationDuration);
+            return true;
         }
 
         public virtual void RestoreMana(int mana)
