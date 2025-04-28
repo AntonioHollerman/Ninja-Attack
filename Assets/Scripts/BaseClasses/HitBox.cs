@@ -10,7 +10,7 @@ namespace BaseClasses
         public CharacterSheet parent;
         public bool destroyOnFinish;
         public bool workOnCollider;
-
+        public bool dontWorkOnTimer;
 
         protected Collider Collider;
         protected List<CharacterSheet> ActiveIgnore;
@@ -91,7 +91,11 @@ namespace BaseClasses
         protected virtual void TriggerStayWrapper(Collider other){}
         protected virtual void AwakeWrapper()
         {
-            StartCoroutine(AliveChecker());
+            if (!dontWorkOnTimer)
+            {
+                StartCoroutine(AliveChecker());
+            }
+            
             if (workOnCollider)
             {
                 Collider = gameObject.GetComponent<Collider>();
