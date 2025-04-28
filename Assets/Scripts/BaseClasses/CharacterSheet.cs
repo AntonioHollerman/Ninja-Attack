@@ -372,7 +372,6 @@ namespace BaseClasses
             if (IsStunned || UniversalStopCsUpdateLoop)
             {
                 rb.velocity = Vector3.zero;
-                Debug.Log("not very sigma");
             }
         }
         

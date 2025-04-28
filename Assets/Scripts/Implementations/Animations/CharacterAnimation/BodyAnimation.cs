@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using BaseClasses;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Implementations.Animations.CharacterAnimation
 {
@@ -17,14 +16,14 @@ namespace Implementations.Animations.CharacterAnimation
         [Header("Animations")]
         public string hurtPath;
         public string spellCastPath;
-        public string slashPath;
+        public string attackPath;
         public string walkPath;
         public string idlePath;
 
         [Header("Animations FPS")] 
         public float hurtFps;
         public float spellCastFps;
-        public float slashFps;
+        public float attackFps;
         public float walkFps;
         public float idleFps;
 
@@ -149,7 +148,7 @@ namespace Implementations.Animations.CharacterAnimation
         {
             _fps[AnimationState.Hurt] = hurtFps;
             _fps[AnimationState.SpellCast] = spellCastFps;
-            _fps[AnimationState.Attack] = slashFps;
+            _fps[AnimationState.Attack] = attackFps;
             _fps[AnimationState.Walk] = walkFps;
             _fps[AnimationState.Idle] = idleFps;
             if (hurtPath != null)
@@ -157,9 +156,9 @@ namespace Implementations.Animations.CharacterAnimation
                 LoadAnimation(AnimationState.Hurt, hurtPath);
             }
 
-            if (slashPath != null)
+            if (attackPath != null)
             {
-                LoadAnimation(AnimationState.Attack, slashPath);
+                LoadAnimation(AnimationState.Attack, attackPath);
             }
 
             if (spellCastPath != null)

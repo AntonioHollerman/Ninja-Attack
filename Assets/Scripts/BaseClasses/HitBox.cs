@@ -25,10 +25,16 @@ namespace BaseClasses
 
         public void Activate(float duration)
         {
-            _aliveTime = duration;
-            ActiveIgnore = new List<CharacterSheet>(parent.allies);
-        }
+            IEnumerator WaitForParent()
+            {
+                yield return new WaitUntil(() => parent != null);
+                _aliveTime = duration;
+                ActiveIgnore = new List<CharacterSheet>(parent.allies);
+            }
 
+            StartCoroutine(WaitForParent());
+        }
+        
         public void Deactivate()
         {
             _aliveTime = 0;
