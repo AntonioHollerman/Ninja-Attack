@@ -56,6 +56,8 @@ namespace BaseClasses
         public bool IsVulnerable => _vulnerableDuration > 0;
         public bool  AnimationBlocked => _animationBlockedDuration > 0;
 
+        private bool _runningDefeated;
+
         public virtual void Defeated()
         {
             if (lastHit is Player player)
@@ -363,9 +365,10 @@ namespace BaseClasses
             _animationBlockedDuration -= AnimationBlocked ? Time.deltaTime : 0f;
             _vulnerableDuration -= IsVulnerable ? Time.deltaTime : 0f;
 
-            if (!IsALive)
+            if (!IsALive && !_runningDefeated)
             {
                 CharacterSheets.Remove(this);
+                _runningDefeated = true;
                 Defeated();
             }
 
