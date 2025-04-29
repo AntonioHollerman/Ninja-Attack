@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Implementations.Animations;
-using Implementations.Animations.CharacterAnimation;
-using Implementations.Extras;
+using Implementations.Managers;
 using Implementations.Weapons;
 using UnityEngine;
 using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
@@ -27,7 +26,7 @@ namespace BaseClasses
         public List<CharacterSheet> allies;
         public Rigidbody            rb;
         public CharacterSheet       lastHit;
-        public BodyAnimation        body;
+        public AnimationManager        body;
 
         [Header("Character Sheet Stats")]
         public int   level;

@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using BaseClasses;
+using Implementations.Animations.CharacterAnimation;
 using UnityEngine;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
-namespace Implementations.Animations.CharacterAnimation
+namespace Implementations.Managers
 {
-    public class BodyAnimation : MonoBehaviour
+    public class AnimationManager : MonoBehaviour
     {
         [Header("Target")] 
         public CharacterSheet parent;
