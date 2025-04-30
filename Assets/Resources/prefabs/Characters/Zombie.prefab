@@ -185,7 +185,7 @@ MonoBehaviour:
   workOnCollider: 1
   dontWorkOnTimer: 1
   sprite: {fileID: 5913520183821156212}
-  debugModeOn: 1
+  debugModeOn: 0
   deactivateOnStun: 1
   atkMultiplier: 0.6
   startHitBoxIndex: 4
