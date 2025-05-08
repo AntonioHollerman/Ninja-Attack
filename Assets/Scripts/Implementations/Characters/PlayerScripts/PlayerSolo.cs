@@ -15,6 +15,7 @@ namespace Implementations.Characters.PlayerScripts
             downCode = KeyCode.S;
             leftCode = KeyCode.A;
             rightCode = KeyCode.D;
+            interactCode = KeyCode.F;
 
             AttackCode = KeyCode.Space;
             FirstTechnique = KeyCode.Q;

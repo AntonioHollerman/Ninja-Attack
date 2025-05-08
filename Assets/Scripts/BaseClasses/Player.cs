@@ -22,11 +22,12 @@ namespace BaseClasses
         public KeyCode downCode;
         public KeyCode leftCode;
         public KeyCode rightCode;
+        public KeyCode interactCode;
 
         protected KeyCode FirstTechnique;
         protected KeyCode SecondTechnique;
-        
 
+        public bool interacting;
         public bool InputBlocked => _blockInput > 0 ;
         private float _blockInput;
 
@@ -47,7 +48,7 @@ namespace BaseClasses
             AttackHandler();
             TechniqueHandler();
         }
-
+        
         protected override void AwakeWrapper()
         {
             base.AwakeWrapper();
@@ -57,8 +58,20 @@ namespace BaseClasses
             ExpNeeded = CalcExpNeeded();
             Exp = 0;
             StartCoroutine(ExpListener());
+            StartCoroutine(InteractListener());
             
             Players.Add(this);
+        }
+        
+        private IEnumerator InteractListener()
+        {
+            while (true)
+            {
+                yield return new WaitUntil(() => Input.GetKeyDown(interactCode));
+                interacting = true;
+                yield return new WaitForSeconds(0.3f);
+                interacting = false;
+            }
         }
 
         private void HandleDirection()

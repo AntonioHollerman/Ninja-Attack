@@ -106,7 +106,7 @@ MonoBehaviour:
   baseHp: 9
   baseAtk: 4
   baseMana: 75
-  speed: 5
+  speed: 1.5
   weapon: {fileID: 7113836605885849239}
   statsUI: {fileID: 0}
   techOne: {fileID: 0}
@@ -115,6 +115,8 @@ MonoBehaviour:
   downCode: 0
   leftCode: 0
   rightCode: 0
+  interactCode: 0
+  interacting: 0
 --- !u!1 &6897646804204809357
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +225,7 @@ MonoBehaviour:
   hurtFps: 10
   spellCastFps: 5
   attackFps: 15
-  walkFps: 20
+  walkFps: 10
   idleFps: 5
 --- !u!1 &7955815892308536104
 GameObject:
