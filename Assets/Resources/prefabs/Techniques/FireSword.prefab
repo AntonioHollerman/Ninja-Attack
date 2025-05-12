@@ -53,8 +53,8 @@ MonoBehaviour:
   countDown: {fileID: 0}
   icon: {fileID: 0}
   meleeAnimationPrefab: {fileID: 1648239436938574504, guid: 1a82e60c67218de46a4ecb84727867a3, type: 3}
-  forwardOffset: 2.65
-  leftOffset: 1
+  forwardOffset: 1.44
+  leftOffset: 0.64
   frameStartHitBox: 8
   fireSwordSound: {fileID: 8300000, guid: 038799bfa15132e4ba2ce63847259277, type: 3}
   hitSound: {fileID: 0}

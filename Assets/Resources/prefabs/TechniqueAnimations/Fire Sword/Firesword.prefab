@@ -113,7 +113,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.8048782, y: 3.8048782, z: 3.8048782}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 491627495884745693}
@@ -192,5 +192,6 @@ MonoBehaviour:
   parent: {fileID: 0}
   destroyOnFinish: 0
   workOnCollider: 1
+  dontWorkOnTimer: 0
   duration: 1.5
   damageSelf: 0
