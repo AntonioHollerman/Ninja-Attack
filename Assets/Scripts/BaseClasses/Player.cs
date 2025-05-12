@@ -72,6 +72,8 @@ namespace BaseClasses
             UpdateMana();
             
             Players.Add(this);
+
+            LoadKeybinds();
         }
 
         private void HandleDirection()
@@ -211,6 +213,22 @@ namespace BaseClasses
                 UpdateHp();
                 UpdateMana();
             }
+        }
+        private void LoadKeybinds()
+        {
+            upCode = GetKeyCode("Key_Up", KeyCode.W);
+            downCode = GetKeyCode("Key_Down", KeyCode.S);
+            leftCode = GetKeyCode("Key_Left", KeyCode.A);
+            rightCode = GetKeyCode("Key_Right", KeyCode.D);
+            AttackCode = GetKeyCode("Key_Attack", KeyCode.Space);
+            FirstTechnique = GetKeyCode("Key_Tech1", KeyCode.Q);
+            SecondTechnique = GetKeyCode("Key_Tech2", KeyCode.E);
+        }
+
+        private KeyCode GetKeyCode(string key, KeyCode defaultKey)
+        {
+            string keyString = PlayerPrefs.GetString(key, defaultKey.ToString());
+            return (KeyCode)Enum.Parse(typeof(KeyCode), keyString);
         }
     }
 }
