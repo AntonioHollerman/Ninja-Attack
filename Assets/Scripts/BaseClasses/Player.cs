@@ -13,6 +13,7 @@ namespace BaseClasses
         public static List<Player> Players = new List<Player>();
         public PlayerUI statsUI;
 
+        public GameObject interactIcon;
         public Technique techOne;
         public Technique techTwo;
 

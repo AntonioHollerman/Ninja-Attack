@@ -41,7 +41,7 @@ namespace Implementations.Managers
         private void Awake()
         {
             c.enabled = true;
-            if (!debugModeOn)
+            if (!debugModeOn && sr != null)
             {
                 sr.enabled = false;
             }

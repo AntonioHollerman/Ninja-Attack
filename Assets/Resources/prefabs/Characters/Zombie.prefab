@@ -106,9 +106,9 @@ MonoBehaviour:
   baseHp: 5
   baseAtk: 3
   baseMana: 0
-  speed: 3
+  speed: 1.2
   weapon: {fileID: 2181398871301834172}
-  detectRange: 20
+  detectRange: 8
   healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
   manaPotion: {fileID: 4497868298466907819, guid: 4ce88630428cffd42ac3db89f8d340ac, type: 3}
   hpPotion: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}

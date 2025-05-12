@@ -21,6 +21,18 @@ namespace Implementations.Extras
         {
             _player = other.gameObject.GetComponent<Player>();
             _ignore = _player == null;
+            if (!_ignore)
+            {
+                _player.interactIcon.SetActive(true);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!_ignore)
+            {
+                _player.interactIcon.SetActive(false);
+            }
         }
 
         private void OnTriggerStay(Collider other)
