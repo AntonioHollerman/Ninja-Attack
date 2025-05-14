@@ -21,12 +21,11 @@ namespace BaseClasses
         public static bool                 UniversalStopCsUpdateLoop;
 
         [Header("Game Object Components")]
-        public GameObject           spawnSmokePrefab;
         public bool                 isLarge;
         public List<CharacterSheet> allies;
         public Rigidbody            rb;
         public CharacterSheet       lastHit;
-        public AnimationManager        body;
+        public AnimationManager     body;
 
         [Header("Character Sheet Stats")]
         public int   level;

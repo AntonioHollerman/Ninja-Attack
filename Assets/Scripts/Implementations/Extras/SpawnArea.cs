@@ -31,7 +31,7 @@ namespace Implementations.Extras
             _hostiles = GameObject.Find("Characters/Hostiles").GetComponent<Transform>();
             _players = GameObject.Find("Characters/Players").GetComponent<Transform>();
             _others = GameObject.Find("Characters/Others").GetComponent<Transform>();
-            _spawnSmokePrefab = toSpawnPrefab.GetComponent<CharacterSheet>().spawnSmokePrefab;
+            // _spawnSmokePrefab = toSpawnPrefab.GetComponent<CharacterSheet>().spawnSmokePrefab;
         }
 
         public void Spawn()

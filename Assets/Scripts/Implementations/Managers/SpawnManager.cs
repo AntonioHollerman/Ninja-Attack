@@ -19,6 +19,7 @@ namespace Implementations.Managers
         public int instances;
         public GameObject[] npcPrefabs;
         public float coolDown;
+        public GameObject spawnSmokePrefab;
         
         private float MinX => transform.position.x - (transform.localScale.x / 2);
         private float MinY => transform.position.y - (transform.localScale.y / 2);

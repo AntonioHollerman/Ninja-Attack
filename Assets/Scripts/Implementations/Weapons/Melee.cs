@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using BaseClasses;
+using Implementations.Animations;
 using UnityEngine;
 using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
@@ -73,6 +74,38 @@ namespace Implementations.Weapons
         public virtual void Attack()
         {
             parent.body.curState = AnimationState.Attack;
+        }
+
+        protected override void TriggerEnterWrapper(Collider other)
+        {
+            // Attempt to get the CharacterSheet component from the collided object
+            CharacterSheet cs = other.gameObject.GetComponent<CharacterSheet>();
+            
+            // If no CharacterSheet component is found, or if the character is in the ignore list, exit the method
+            if (cs == null || ActiveIgnore.Contains(cs))
+            {
+                return;
+            }
+
+            StartCoroutine(SpawnHitMark(other.gameObject));
+        }
+
+        private IEnumerator SpawnHitMark(GameObject target)
+        {
+            GameObject hitMarkPrefab = Resources.Load<GameObject>(CharacterSheet.HitMarkPath);
+            GameObject hitMarkGo = Instantiate(
+                hitMarkPrefab, 
+                target.transform.position, 
+                hitMarkPrefab.transform.rotation
+                );
+            LoopAnimation ani = hitMarkGo.GetComponent<LoopAnimation>();
+            ani.StartAnimation();
+            
+            while (hitMarkGo != null)
+            {
+                hitMarkGo.transform.position = target.transform.position;
+                yield return null;
+            }
         }
     }
 }
