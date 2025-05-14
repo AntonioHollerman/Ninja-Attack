@@ -165,6 +165,14 @@ namespace BaseClasses
             // Apply damage, reducing health based on vulnerability and defense
             Hp -= IsVulnerable ? GetFinalDamage(dmg, 0) : GetFinalDamage(dmg, Def);
             Hp = Hp < 0 ? 0 : Hp;
+            
+            if (!IsALive && !_runningDefeated)
+            {
+                CharacterSheets.Remove(this);
+                _runningDefeated = true;
+                weapon?.gameObject.SetActive(false);
+                Defeated();
+            }
         }
 
         /// <summary>
@@ -360,13 +368,6 @@ namespace BaseClasses
             _animationBlockedDuration -= AnimationBlocked ? Time.deltaTime : 0f;
             _vulnerableDuration -= IsVulnerable ? Time.deltaTime : 0f;
 
-            if (!IsALive && !_runningDefeated)
-            {
-                CharacterSheets.Remove(this);
-                _runningDefeated = true;
-                Defeated();
-            }
-
             if (IsStunned || UniversalStopCsUpdateLoop)
             {
                 rb.velocity = Vector3.zero;
@@ -416,6 +417,14 @@ namespace BaseClasses
             }
 
             return false;
+        }
+
+        private void LateUpdate()
+        {
+            if (!IsALive)
+            {
+                rb.velocity = Vector3.zero;
+            }
         }
 
         public override string ToString()

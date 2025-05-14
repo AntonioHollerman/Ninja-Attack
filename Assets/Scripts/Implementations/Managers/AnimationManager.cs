@@ -143,7 +143,7 @@ namespace Implementations.Managers
                 body.sprite = _animations[curState].GetFrame(dir, AniIndex);
                 AniIndex++;
                 yield return new WaitForSeconds(GetSecondsBetweenFrames(curState));
-                yield return new WaitUntil(() => !parent.IsStunned && !CharacterSheet.UniversalStopCsUpdateLoop);
+                yield return new WaitUntil(() => (!parent.IsStunned && !CharacterSheet.UniversalStopCsUpdateLoop) || curState == AnimationState.Hurt);
             }
         } 
         private void Awake()

@@ -32,10 +32,15 @@ namespace Implementations.Managers
             c.enabled = true;
         }
 
-        private void Spawn(GameObject prefab, float x, float y)
+        private IEnumerator Spawn()
         {
+            float x = Random.Range(MinX, MaxX);
+            float y = Random.Range(MinY, MaxY);
+            GameObject prefab = npcPrefabs[Random.Range(0, npcPrefabs.Length)];
+            
             Vector3 pos = new Vector3(x, y, 0);
             Instantiate(prefab, pos, prefab.transform.rotation);
+            yield return null;
         }
 
         private void Awake()
@@ -67,10 +72,7 @@ namespace Implementations.Managers
 
             for (int i = 0; i < instances; i++)
             {
-                float x = Random.Range(MinX, MaxX);
-                float y = Random.Range(MinY, MaxY);
-                GameObject prefab = npcPrefabs[Random.Range(0, npcPrefabs.Length)];
-                Spawn(prefab, x, y);
+                StartCoroutine(Spawn());
             }
 
             StartCoroutine(GoOnCoolDown());
