@@ -2,6 +2,6 @@
 {
     public enum TechEnum
     {
-        FireSword, FireBall, StaticDischarge, ElectricDash, ElectricWhip, FireRain, FireSummmon
+        FireSword, FireBall, StaticDischarge, ElectricDash, ElectricWhip, FireRain, FireSummon
     }
 }

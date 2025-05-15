@@ -25,7 +25,7 @@ namespace Implementations.Characters.HostileScripts
         {
             yield return new WaitUntil(() => TechniqueManager.Instance != null);
             _tech1 = TechniqueManager.Instance.LoadTechnique(TechEnum.ElectricWhip, this);
-            _tech2 = TechniqueManager.Instance.LoadTechnique(TechEnum.FireSummmon, this);
+            _tech2 = TechniqueManager.Instance.LoadTechnique(TechEnum.FireSummon, this);
             _tech3 = TechniqueManager.Instance.LoadTechnique(TechEnum.FireRain, this);
             if (_tech3 is FireRain fireRain)
             {

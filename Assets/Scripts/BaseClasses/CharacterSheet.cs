@@ -16,11 +16,13 @@ namespace BaseClasses
     {
         public static readonly string DeathMarkPath = "prefabs/Extras/DeathMark";
         public static readonly string HitMarkPath = "prefabs/Extras/HitMark";
+        public static readonly string SpawnSmokePath = "prefabs/Extras/SpawnSmoke";
         
         public static List<CharacterSheet> CharacterSheets = new List<CharacterSheet>();
         public static bool                 UniversalStopCsUpdateLoop;
 
-        [Header("Game Object Components")]
+        [Header("Game Object Components")] 
+        public bool                 disable;
         public bool                 isLarge;
         public List<CharacterSheet> allies;
         public Rigidbody            rb;
@@ -55,6 +57,7 @@ namespace BaseClasses
         public bool  AnimationBlocked => _animationBlockedDuration > 0;
 
         private bool _runningDefeated;
+        private Collider _collider;
 
         public virtual void Defeated()
         {
@@ -317,6 +320,7 @@ namespace BaseClasses
         /// </summary>
         void Awake()
         {
+            _collider = GetComponent<Collider>();
             AwakeWrapper(); // Calls a custom initialization method
         }
 
@@ -325,10 +329,14 @@ namespace BaseClasses
         /// </summary>
         private void Update()
         {
-            if (UniversalStopCsUpdateLoop)
+            if (UniversalStopCsUpdateLoop || disable)
             {
+                _collider.enabled = false;
+                rb.velocity = Vector3.zero;
                 return;
             }
+
+            _collider.enabled = true;
             UpdateWrapper(); // Calls a custom update method each frame
         }
 
@@ -420,7 +428,7 @@ namespace BaseClasses
 
         private void LateUpdate()
         {
-            if (!IsALive)
+            if (!IsALive || disable)
             {
                 rb.velocity = Vector3.zero;
             }

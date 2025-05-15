@@ -112,7 +112,7 @@ namespace Implementations.Managers
                 TechEnum.ElectricDash    => "prefabs/Techniques/FlashStep",
                 TechEnum.ElectricWhip    => "prefabs/Techniques/ElectricWhip",
                 TechEnum.FireRain        => "prefabs/Techniques/FireRain",
-                TechEnum.FireSummmon     => "prefabs/Techniques/FireSummon",
+                TechEnum.FireSummon     => "prefabs/Techniques/FireSummon",
                 _ => "null"
             };
         }
@@ -127,7 +127,7 @@ namespace Implementations.Managers
                 TechEnum.ElectricDash    => "prefabs/PlayerUI/TechniquesIcon/Flash Step",
                 TechEnum.ElectricWhip    => null,
                 TechEnum.FireRain        => null,
-                TechEnum.FireSummmon     => null,
+                TechEnum.FireSummon     => null,
                 _ => "null"
             };
         }

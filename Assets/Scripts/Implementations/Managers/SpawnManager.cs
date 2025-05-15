@@ -19,12 +19,12 @@ namespace Implementations.Managers
         public int instances;
         public GameObject[] npcPrefabs;
         public float coolDown;
-        public GameObject spawnSmokePrefab;
         
         private float MinX => transform.position.x - (transform.localScale.x / 2);
         private float MinY => transform.position.y - (transform.localScale.y / 2);
         private float MaxX => transform.position.x + (transform.localScale.x / 2);
         private float MaxY => transform.position.y + (transform.localScale.y / 2);
+        private GameObject _spawnSmokePrefab;
 
         private IEnumerator GoOnCoolDown()
         {
@@ -40,12 +40,23 @@ namespace Implementations.Managers
             GameObject prefab = npcPrefabs[Random.Range(0, npcPrefabs.Length)];
             
             Vector3 pos = new Vector3(x, y, 0);
-            Instantiate(prefab, pos, prefab.transform.rotation);
-            yield return null;
+            CharacterSheet target = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<CharacterSheet>();
+            target.disable = true;
+            
+            GameObject smokeInstance = Instantiate(
+                _spawnSmokePrefab, 
+                target.transform.position, 
+                _spawnSmokePrefab.transform.rotation);
+            ParticleSystem psInstance = smokeInstance.GetComponent<ParticleSystem>();
+            
+            yield return new WaitUntil(() => !psInstance.isPlaying);
+            target.disable = false;
+            Destroy(smokeInstance.gameObject);
         }
 
         private void Awake()
         {
+            _spawnSmokePrefab = Resources.Load<GameObject>(CharacterSheet.SpawnSmokePath);
             c.enabled = true;
             if (!debugModeOn && sr != null)
             {
