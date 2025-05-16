@@ -1,5 +1,5 @@
 {
-  "exportTimestamp": "2025-05-01T12-30-29",
+  "exportTimestamp": "2025-05-01T12-14-45",
   "bodyType": "male",
   "standardAnimations": {
     "exported": [
@@ -23,7 +23,7 @@
   },
   "customAnimations": {
     "exported": [
-      "walk_128"
+      "slash_oversize"
     ],
     "failed": []
   },
