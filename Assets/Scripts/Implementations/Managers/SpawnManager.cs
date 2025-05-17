@@ -25,7 +25,7 @@ namespace Implementations.Managers
         private float MaxX => transform.position.x + (transform.localScale.x / 2);
         private float MaxY => transform.position.y + (transform.localScale.y / 2);
         private GameObject _spawnSmokePrefab;
-
+        
         private IEnumerator GoOnCoolDown()
         {
             c.enabled = false;
@@ -60,6 +60,7 @@ namespace Implementations.Managers
         private void Awake()
         {
             _spawnSmokePrefab = Resources.Load<GameObject>(CharacterSheet.SpawnSmokePath);
+            c = GetComponent<Collider>();
             c.enabled = true;
             if (!debugModeOn && sr != null)
             {

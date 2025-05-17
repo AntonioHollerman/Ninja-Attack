@@ -7,40 +7,37 @@ namespace Implementations.Extras
     public class TeleportPair : MonoBehaviour
     {
         public TeleportPair otherPair;
-
-        private Player _player;
-        private bool _ignore;
         private float _yOffset;
 
         private void Awake()
         {
-            _player = GameObject.Find("SoloPlayer").GetComponent<Player>();
             _yOffset = 0.2f;
         }
         private void OnTriggerEnter(Collider other)
         {
-            _player = other.gameObject.GetComponent<Player>();
-            _ignore = _player == null;
-            if (!_ignore)
+            Player p = other.GetComponent<Player>();
+            if (p != null)
             {
-                _player.interactIcon.SetActive(true);
+                p.interactIcon.SetActive(true);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (!_ignore)
+            Player p = other.GetComponent<Player>();
+            if (p != null)
             {
-                _player.interactIcon.SetActive(false);
+                p.interactIcon.SetActive(false);
             }
         }
 
         private void OnTriggerStay(Collider other)
         {
-            if (!_ignore && _player.interacting)
+            Player p = other.GetComponent<Player>();
+            if (p != null && p.interacting)
             {
-                _player.interacting = false;
-                _player.pTransform.position = otherPair.transform.position + Vector3.up * _yOffset;
+                p.interacting = false;
+                p.pTransform.position = otherPair.transform.position + Vector3.up * _yOffset;
             }
         }
     }

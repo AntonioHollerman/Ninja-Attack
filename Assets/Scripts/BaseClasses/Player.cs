@@ -220,7 +220,7 @@ namespace BaseClasses
             downCode = GetKeyCode("Key_Down", KeyCode.S);
             leftCode = GetKeyCode("Key_Left", KeyCode.A);
             rightCode = GetKeyCode("Key_Right", KeyCode.D);
-            AttackCode = GetKeyCode("Key_Attack", KeyCode.Space);
+            attackCode = GetKeyCode("Key_Attack", KeyCode.Space);
             FirstTechnique = GetKeyCode("Key_Tech1", KeyCode.Q);
             SecondTechnique = GetKeyCode("Key_Tech2", KeyCode.E);
         }
