@@ -1,4 +1,6 @@
-﻿using BaseClasses;
+﻿using System.Collections;
+using BaseClasses;
+using Implementations.Animations;
 using UnityEngine;
 
 namespace Implementations.Weapons
@@ -15,12 +17,8 @@ namespace Implementations.Weapons
 
         protected override void TriggerEnterWrapper(Collider other)
         {
-            CharacterSheet cs = other.GetComponent<CharacterSheet>();
-
-            if (cs == null)
-            {
-                Destroy(gameObject);
-            }
+            SpawnHitMark(gameObject);
+            Destroy(gameObject);
         }
 
         protected override void AwakeWrapper()
@@ -31,6 +29,18 @@ namespace Implementations.Weapons
         protected override void UpdateWrapper()
         {
             transform.Translate(Time.deltaTime * speed * Vector3.forward);
+        }
+        
+        private void SpawnHitMark(GameObject target)
+        {
+            GameObject hitMarkPrefab = Resources.Load<GameObject>(CharacterSheet.HitMarkPath);
+            GameObject hitMarkGo = Instantiate(
+                hitMarkPrefab, 
+                target.transform.position, 
+                hitMarkPrefab.transform.rotation
+            );
+            LoopAnimation ani = hitMarkGo.GetComponent<LoopAnimation>();
+            ani.StartAnimation();
         }
     }
 }

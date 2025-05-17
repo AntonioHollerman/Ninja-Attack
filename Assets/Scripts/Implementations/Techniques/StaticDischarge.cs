@@ -46,7 +46,7 @@ namespace Implementations.Techniques
                 {
                     break;
                 }
-                ani.transform.position = parent.transform.position;
+                ani.transform.position = parent.pTransform.position;
                 yield return null;
             }
         }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using BaseClasses;
+﻿using BaseClasses;
 using Implementations.Techniques;
 using UnityEngine;
 
@@ -45,12 +43,6 @@ namespace Implementations.HitBoxes
         private void Awake()
         {
             _rb = gameObject.GetComponent<Rigidbody>();
-            Collider thisCollider = GetComponent<Collider>();
-            Transform leftWater = GameObject.Find("Ninja Attack Map").transform.Find("LeftWaterCollider");
-            Transform rightWater = GameObject.Find("Ninja Attack Map").transform.Find("RightWaterCollider");
-            
-            Physics.IgnoreCollision(leftWater.GetComponent<Collider>(), thisCollider, true);
-            Physics.IgnoreCollision(rightWater.GetComponent<Collider>(), thisCollider, true);
         }
     }
 }

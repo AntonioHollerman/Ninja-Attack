@@ -136,7 +136,7 @@ namespace Implementations.Managers
                     AniIndex = 0;
                     curState = parent.rb.velocity == Vector3.zero ? AnimationState.Idle : AnimationState.Walk;
                 }
-                Vector3 forward = parent.transform.forward;
+                Vector3 forward = parent.pTransform.forward;
                 float degrees = ForwardToDegrees(forward);
                 Direction dir = DegToDir(degrees);
                 

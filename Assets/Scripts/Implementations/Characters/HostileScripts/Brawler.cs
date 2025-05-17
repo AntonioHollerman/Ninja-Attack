@@ -17,7 +17,7 @@ namespace Implementations.Characters.HostileScripts
                 return;
             }
             
-            rb.velocity = transform.forward * speed;
+            rb.velocity = pTransform.forward * speed;
             if (TargetDistance <= atkDistance && IsALive)
             {
                 AttackWeapon(body.GetDuration(AnimationState.Attack));

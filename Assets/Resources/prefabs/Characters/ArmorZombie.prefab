@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5361209858095220026}
   - component: {fileID: 323768845866850182}
   - component: {fileID: 4296137107804753132}
+  - component: {fileID: 8026555351845716498}
+  - component: {fileID: 689940600347704405}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -97,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854b4f0699434a96837c5d94817ede69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 7095239112059477991}
+  parent: {fileID: 689940600347704405}
   body: {fileID: 323768845866850182}
   curState: 0
   hurtPath: sprites/Characters/Hostiles/ArmorZombie/hurt
@@ -110,6 +112,58 @@ MonoBehaviour:
   attackFps: 15
   walkFps: 10
   idleFps: 5
+--- !u!65 &8026555351845716498
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90183425785996182}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3233008, y: 0.5206642, z: 0.1}
+  m_Center: {x: -0.0022948242, y: -0.05966811, z: 0.000000014225984}
+--- !u!114 &689940600347704405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90183425785996182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7324319a363c45cf97821bfe5a2e22e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disable: 0
+  isLarge: 0
+  allies: []
+  rb: {fileID: 3099061161512560589}
+  lastHit: {fileID: 0}
+  body: {fileID: 4296137107804753132}
+  pTransform: {fileID: 1166462890042271314}
+  level: 3
+  baseHp: 5
+  baseAtk: 3
+  baseMana: 0
+  def: 0
+  speed: 1.2
+  weapon: {fileID: 4437276503613609263}
+  detectRange: 8
+  healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
+  manaPotion: {fileID: 4497868298466907819, guid: 4ce88630428cffd42ac3db89f8d340ac, type: 3}
+  hpPotion: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}
+  atkDistance: 0.6
 --- !u!1 &422530530192643198
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,9 +173,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1166462890042271314}
-  - component: {fileID: 1197649194178744785}
-  - component: {fileID: 5796401561851842408}
-  - component: {fileID: 7095239112059477991}
+  - component: {fileID: 3099061161512560589}
+  - component: {fileID: 5243251434042802034}
   m_Layer: 0
   m_Name: ArmorZombie
   m_TagString: Untagged
@@ -138,7 +191,7 @@ Transform:
   m_GameObject: {fileID: 422530530192643198}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 1.27, y: 7.04, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -146,28 +199,7 @@ Transform:
   - {fileID: 3336114211786706938}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
---- !u!65 &1197649194178744785
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 422530530192643198}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 1
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.302671, y: 0.302671, z: 0.41895062}
-  m_Center: {x: 0, y: -6.196173e-17, z: -0.058139816}
---- !u!54 &5796401561851842408
+--- !u!54 &3099061161512560589
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,35 +226,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7095239112059477991
-MonoBehaviour:
+--- !u!65 &5243251434042802034
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422530530192643198}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7324319a363c45cf97821bfe5a2e22e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disable: 0
-  isLarge: 0
-  allies: []
-  rb: {fileID: 5796401561851842408}
-  lastHit: {fileID: 0}
-  body: {fileID: 4296137107804753132}
-  level: 3
-  baseHp: 5
-  baseAtk: 3
-  baseMana: 0
-  speed: 1.2
-  weapon: {fileID: 4437276503613609263}
-  detectRange: 8
-  healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
-  manaPotion: {fileID: 4497868298466907819, guid: 4ce88630428cffd42ac3db89f8d340ac, type: 3}
-  hpPotion: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}
-  atkDistance: 0.6
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9190652636189245168
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cad54295eff424989abd5707218ff57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 7095239112059477991}
+  parent: {fileID: 689940600347704405}
   destroyOnFinish: 0
   workOnCollider: 1
   dontWorkOnTimer: 1

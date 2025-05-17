@@ -40,7 +40,10 @@ namespace Implementations.Managers
             GameObject prefab = npcPrefabs[Random.Range(0, npcPrefabs.Length)];
             
             Vector3 pos = new Vector3(x, y, 0);
-            CharacterSheet target = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<CharacterSheet>();
+            CharacterSheet target = Instantiate(prefab, pos, prefab.transform.rotation)
+                .transform
+                .GetChild(0)
+                .GetComponent<CharacterSheet>();
             target.disable = true;
             
             GameObject smokeInstance = Instantiate(

@@ -97,7 +97,7 @@ namespace Implementations.Techniques
 
         private void NormalizeSpriteDirection(Transform sprite, Player playerScript)
         {
-            if (playerScript.transform.forward.x != 0)
+            if (playerScript.pTransform.forward.x != 0)
             {
                 sprite.transform.localRotation = Quaternion.Euler(0, 90, -90);
             }
@@ -117,8 +117,8 @@ namespace Implementations.Techniques
             parent.BlockAnimation(parent.body.GetDuration(AnimationState.SpellCast));
             
             _curFireball = Instantiate(fireballPrefab,
-                parent.transform.position,
-                parent.transform.rotation);
+                parent.pTransform.position,
+                parent.pTransform.rotation);
             _curFireball.transform.Translate(Vector3.forward * zDisplacement);
 
             if (parent is Player playerScript)

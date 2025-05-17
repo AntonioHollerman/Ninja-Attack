@@ -57,7 +57,7 @@ namespace Implementations.Techniques
 
             foreach (T t in targets)
             {
-                float d = Mathf.Abs((transform.position - t.transform.position).magnitude);
+                float d = Mathf.Abs((transform.position - t.pTransform.position).magnitude);
                 if (d < distance)
                 {
                     distance = d;

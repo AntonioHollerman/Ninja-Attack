@@ -83,7 +83,7 @@ namespace BaseClasses
                 return;
             }
             
-            transform.localRotation = Quaternion.LookRotation(GetDirection(), Vector3.forward);
+            pTransform.localRotation = Quaternion.LookRotation(GetDirection(), Vector3.forward);
         }
 
         private void HandleMovement()

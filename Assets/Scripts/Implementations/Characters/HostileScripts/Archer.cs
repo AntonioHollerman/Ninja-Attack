@@ -23,7 +23,7 @@ namespace Implementations.Characters.HostileScripts
 
         private void Shoot()
         {
-            Instantiate(arrowPrefab, transform.position + transform.forward * forwardDisplacement, Quaternion.LookRotation(transform.forward, Vector3.forward))
+            Instantiate(arrowPrefab, pTransform.position + pTransform.forward * forwardDisplacement, Quaternion.LookRotation(pTransform.forward, Vector3.forward))
                 .GetComponent<Arrow>().parent = this;
         }
 
@@ -35,7 +35,7 @@ namespace Implementations.Characters.HostileScripts
                 {
                     if (body.curState != AnimationState.Attack && !disable)
                     {
-                        rb.velocity = speed * transform.forward;
+                        rb.velocity = speed * pTransform.forward;
                     }
                     else
                     {

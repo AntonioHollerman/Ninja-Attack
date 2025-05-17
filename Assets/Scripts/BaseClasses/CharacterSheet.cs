@@ -28,17 +28,18 @@ namespace BaseClasses
         public Rigidbody            rb;
         public CharacterSheet       lastHit;
         public AnimationManager     body;
+        public Transform            pTransform;
 
         [Header("Character Sheet Stats")]
         public int   level;
         public float baseHp;
         public float baseAtk;
         public int   baseMana;
+        public float def;
         public float speed;
         public Melee weapon;
         
         private List<Effect>    _effects;
-        private List<Armor>     _equipment;
         private float           _stunDuration; // Duration of stun
         private float           _animationBlockedDuration; // Duration of animation block
         private float           _vulnerableDuration;
@@ -48,7 +49,6 @@ namespace BaseClasses
         public float Atk { get; private set; }
         public int   Mana{ get; private set; }  // Current mana 
         public float Hp { get; private set; }    // Current health 
-        public float Def { get; private set; }  // Current defence
         
         public bool  IsALive => Hp > 0; // True if the character is, false otherwise
 
@@ -165,7 +165,7 @@ namespace BaseClasses
         {
             lastHit = ownership;
             // Apply damage, reducing health based on vulnerability and defense
-            Hp -= IsVulnerable ? GetFinalDamage(dmg, 0) : GetFinalDamage(dmg, Def);
+            Hp -= IsVulnerable ? GetFinalDamage(dmg, 0) : GetFinalDamage(dmg, def);
             Hp = Hp < 0 ? 0 : Hp;
             
             if (!IsALive && !_runningDefeated)
@@ -186,7 +186,7 @@ namespace BaseClasses
         private float GetFinalDamage(float dmg, float defense)
         {
             // Formula to calculate final damage after defense is applied
-            return (dmg * (1 / (0.01f * defense + 0.8f)));
+            return (dmg * (1 / (0.2f * defense + 0.8f)));
         }
 
         public virtual void RestoreHp(float hp)
@@ -203,16 +203,6 @@ namespace BaseClasses
         public void LoadEffect(StatusEffect se, float duration)
         {
             new Effect(se, duration, this);
-        }
-
-        public void AddEquipment(Armor armor)
-        {
-            _equipment.Add(armor);
-        }
-
-        public void RemoveEquipment(Armor armor)
-        {
-            _equipment.RemoveAll(x => x == armor);
         }
 
         public bool AttackWeapon(float animationDuration)
@@ -297,24 +287,8 @@ namespace BaseClasses
             Hp = MaxHp = (int)(1.3f * Math.Log(level) * baseHp) + baseHp;
             Mana = MaxMana = 50 * (int)(Math.Log(level + 0.5) * (100 / (float) baseMana)) + baseMana;
             Atk = (float) Math.Log(level) * baseAtk + baseAtk;
-            UpdateDefense();
         } 
-
-        /// <summary>
-        /// Updates the character's defense based on equipped armor.
-        /// </summary>
-        private void UpdateDefense()
-        {
-            float newDef = 0; // Temporary variable to accumulate defense
-
-            // Loop through all equipped items and add their defense if they are armor
-            foreach (var armor in _equipment)
-            {
-                newDef += armor.Def;
-            }
-
-            Def = newDef; // Update the character's defense stat
-        }
+        
         /// <summary>
         /// Unity's Start method. Calls the StartWrapper to initialize the character.
         /// </summary>
@@ -346,7 +320,6 @@ namespace BaseClasses
         protected virtual void AwakeWrapper()
         {
             _effects = new List<Effect>();
-            _equipment = new List<Armor>();
             
             allies.Add(this);
             CharacterSheets.Add(this);

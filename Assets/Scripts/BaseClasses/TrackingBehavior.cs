@@ -52,7 +52,7 @@ namespace BaseClasses
             float smallestDistance = detectRange;
             foreach (var t in _targets)
             {
-                float distance = Mathf.Abs((transform.position - t.transform.position).magnitude);
+                float distance = Mathf.Abs((pTransform.position - t.transform.position).magnitude);
                 if (distance <= smallestDistance)
                 {
                     newTarget = t;
@@ -71,7 +71,7 @@ namespace BaseClasses
                 return;
             }
             Vector3 targetVec = Target.transform.position;
-            Vector3 curVec = transform.position;
+            Vector3 curVec = pTransform.position;
             
 
             // Calculate the direction vector
@@ -84,7 +84,7 @@ namespace BaseClasses
                 Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.forward);
 
                 // Apply the rotation globally
-                transform.rotation = targetRotation;
+                pTransform.rotation = targetRotation;
             }
         }
     }

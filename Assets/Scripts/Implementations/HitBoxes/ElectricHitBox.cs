@@ -27,7 +27,7 @@ namespace Implementations.HitBoxes
             {
                 try
                 {
-                    ani.transform.position = cs.transform.position;
+                    ani.transform.position = cs.pTransform.position;
                 }
                 catch (Exception e)
                 {

@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8971567913076865750}
-  - component: {fileID: 290327295878102590}
-  - component: {fileID: 6689112743252847199}
-  - component: {fileID: 4881357274616073939}
+  - component: {fileID: 6175940587968518806}
+  - component: {fileID: 5941113307614467108}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -35,60 +34,7 @@ Transform:
   - {fileID: 8011296784597575898}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
---- !u!114 &290327295878102590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3282015224527537233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43c9cdeb130410aa5145acfd3d5a862, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnSmokePrefab: {fileID: 8128153735471901540, guid: 9f83187e67964ef46983d297b9ef6c79, type: 3}
-  isLarge: 0
-  allies: []
-  rb: {fileID: 4881357274616073939}
-  lastHit: {fileID: 0}
-  body: {fileID: 3180604062823647213}
-  level: 3
-  baseHp: 3
-  baseAtk: 4
-  baseMana: 0
-  speed: 0.5
-  weapon: {fileID: 0}
-  detectRange: 8
-  healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
-  manaPotion: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}
-  hpPotion: {fileID: 4497868298466907819, guid: 4ce88630428cffd42ac3db89f8d340ac, type: 3}
-  fireRate: 4
-  releaseIndex: 10
-  arrowPrefab: {fileID: 3645658548792679990, guid: fef7c5082b290724d8acc7d834c87a10, type: 3}
-  forwardDisplacement: 0.35
---- !u!65 &6689112743252847199
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3282015224527537233}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.3125547, y: 1, z: 0.48441583}
-  m_Center: {x: -0.000000022351742, y: 1.0400442e-16, z: -0.069818646}
---- !u!54 &4881357274616073939
+--- !u!54 &6175940587968518806
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,6 +61,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &5941113307614467108
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282015224527537233}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6875328578920404554
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +93,8 @@ GameObject:
   - component: {fileID: 8011296784597575898}
   - component: {fileID: 6005634727597332176}
   - component: {fileID: 3180604062823647213}
+  - component: {fileID: 794128093145052704}
+  - component: {fileID: 800459237107157545}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -212,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854b4f0699434a96837c5d94817ede69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 290327295878102590}
+  parent: {fileID: 794128093145052704}
   body: {fileID: 6005634727597332176}
   curState: 3
   hurtPath: sprites/Characters/Hostiles/Skeleton + Bow Animations/hurt
@@ -225,3 +194,58 @@ MonoBehaviour:
   attackFps: 12
   walkFps: 10
   idleFps: 5
+--- !u!114 &794128093145052704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6875328578920404554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43c9cdeb130410aa5145acfd3d5a862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disable: 0
+  isLarge: 0
+  allies: []
+  rb: {fileID: 6175940587968518806}
+  lastHit: {fileID: 0}
+  body: {fileID: 3180604062823647213}
+  pTransform: {fileID: 8971567913076865750}
+  level: 3
+  baseHp: 3
+  baseAtk: 4
+  baseMana: 0
+  def: 0
+  speed: 0.5
+  weapon: {fileID: 0}
+  detectRange: 8
+  healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
+  manaPotion: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}
+  hpPotion: {fileID: 4497868298466907819, guid: 4ce88630428cffd42ac3db89f8d340ac, type: 3}
+  fireRate: 4
+  releaseIndex: 10
+  arrowPrefab: {fileID: 3645658548792679990, guid: fef7c5082b290724d8acc7d834c87a10, type: 3}
+  forwardDisplacement: 0.35
+--- !u!65 &800459237107157545
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6875328578920404554}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.31723344, y: 0.51319885, z: 0.1}
+  m_Center: {x: 0.000000007450582, y: -0.06340079, z: 0.000000015115925}

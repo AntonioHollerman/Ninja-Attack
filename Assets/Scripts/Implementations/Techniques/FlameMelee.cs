@@ -43,7 +43,7 @@ namespace Implementations.Techniques
 
         private IEnumerator TrackParent(LoopAnimation ani)
         {
-            ani.transform.rotation = Quaternion.LookRotation(parent.transform.forward, Vector3.forward);
+            ani.transform.rotation = Quaternion.LookRotation(parent.pTransform.forward, Vector3.forward);
             while (true)
             {
                 if (ani == null)
@@ -51,10 +51,9 @@ namespace Implementations.Techniques
                     break;
                 }
 
-                ani.transform.position = parent.transform.position;
-                ani.transform.rotation = parent.transform.rotation;
-                ani.transform.Translate(Vector3.forward * forwardOffset);
-                ani.transform.Translate(Vector3.right * leftOffset);
+                ani.transform.position = parent.pTransform.position;
+                ani.transform.rotation = parent.pTransform.rotation;
+                ani.transform.Translate(Vector3.forward * forwardOffset + Vector3.right * leftOffset);
 
                 yield return null;
             }

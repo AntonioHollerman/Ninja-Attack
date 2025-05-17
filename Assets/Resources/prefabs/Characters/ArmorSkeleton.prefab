@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5854420335824310786}
-  - component: {fileID: 3006449756327466730}
-  - component: {fileID: 8172623362007450251}
-  - component: {fileID: 7926455916467987975}
+  - component: {fileID: 8094798455263655169}
+  - component: {fileID: 2937284351461327453}
   m_Layer: 0
   m_Name: ArmorSkeleton
   m_TagString: Untagged
@@ -28,46 +27,14 @@ Transform:
   m_GameObject: {fileID: 14199410971896965}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0.52241117, y: 7.062393, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4797365795857776654}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
---- !u!114 &3006449756327466730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14199410971896965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43c9cdeb130410aa5145acfd3d5a862, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disable: 0
-  isLarge: 0
-  allies: []
-  rb: {fileID: 7926455916467987975}
-  lastHit: {fileID: 0}
-  body: {fileID: 116455564000112441}
-  level: 3
-  baseHp: 3
-  baseAtk: 4
-  baseMana: 0
-  speed: 0.5
-  weapon: {fileID: 0}
-  detectRange: 8
-  healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
-  manaPotion: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}
-  hpPotion: {fileID: 4497868298466907819, guid: 4ce88630428cffd42ac3db89f8d340ac, type: 3}
-  fireRate: 4
-  releaseIndex: 10
-  arrowPrefab: {fileID: 3645658548792679990, guid: fef7c5082b290724d8acc7d834c87a10, type: 3}
-  forwardDisplacement: 0.35
---- !u!65 &8172623362007450251
+--- !u!65 &8094798455263655169
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,13 +49,13 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3125547, y: 1, z: 0.48441583}
-  m_Center: {x: -0.000000022351742, y: 1.0400442e-16, z: -0.069818646}
---- !u!54 &7926455916467987975
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2937284351461327453
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,6 +93,8 @@ GameObject:
   - component: {fileID: 4797365795857776654}
   - component: {fileID: 9144050845240589828}
   - component: {fileID: 116455564000112441}
+  - component: {fileID: 4055539286382219279}
+  - component: {fileID: 1925482057648386186}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -212,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854b4f0699434a96837c5d94817ede69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 3006449756327466730}
+  parent: {fileID: 1925482057648386186}
   body: {fileID: 9144050845240589828}
   curState: 3
   hurtPath: sprites/Characters/Hostiles/ArmorSkeleton/hurt
@@ -225,3 +194,57 @@ MonoBehaviour:
   attackFps: 12
   walkFps: 10
   idleFps: 5
+--- !u!65 &4055539286382219279
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274361382837223070}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.294567, y: 0.45909393, z: 0.1}
+  m_Center: {x: 0, y: -0.050419796, z: 0.000000012021014}
+--- !u!114 &1925482057648386186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274361382837223070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43c9cdeb130410aa5145acfd3d5a862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disable: 0
+  isLarge: 0
+  allies: []
+  rb: {fileID: 2937284351461327453}
+  lastHit: {fileID: 0}
+  body: {fileID: 116455564000112441}
+  pTransform: {fileID: 5854420335824310786}
+  level: 3
+  baseHp: 3
+  baseAtk: 4
+  baseMana: 0
+  speed: 0.5
+  weapon: {fileID: 0}
+  detectRange: 8
+  healthBar: {fileID: 8885221195409022174, guid: 3657f8c2521b7ae429e439f6e0343126, type: 3}
+  manaPotion: {fileID: 1602763682829131084, guid: 68b24f95988b249469dee6b22514026f, type: 3}
+  hpPotion: {fileID: 4497868298466907819, guid: 4ce88630428cffd42ac3db89f8d340ac, type: 3}
+  fireRate: 4
+  releaseIndex: 10
+  arrowPrefab: {fileID: 3645658548792679990, guid: fef7c5082b290724d8acc7d834c87a10, type: 3}
+  forwardDisplacement: 0.35
