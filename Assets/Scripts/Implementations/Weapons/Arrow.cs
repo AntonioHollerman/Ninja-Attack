@@ -12,13 +12,18 @@ namespace Implementations.Weapons
         protected override void Effect(CharacterSheet cs)
         {
             cs.DealDamage(atkMultiplier * parent.Atk, parent);
+            SpawnHitMark(cs.pTransform.gameObject);
             Destroy(gameObject);
         }
 
         protected override void TriggerEnterWrapper(Collider other)
         {
-            SpawnHitMark(gameObject);
-            Destroy(gameObject);
+            CharacterSheet cs = other.GetComponent<CharacterSheet>();
+            if (cs == null)
+            {
+                SpawnHitMark(gameObject);
+                Destroy(gameObject);
+            }
         }
 
         protected override void AwakeWrapper()

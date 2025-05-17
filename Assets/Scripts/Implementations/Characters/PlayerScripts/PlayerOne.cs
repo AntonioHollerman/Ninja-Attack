@@ -17,7 +17,7 @@ namespace Implementations.Characters.PlayerScripts
             leftCode = KeyCode.A;
             rightCode = KeyCode.D;
 
-            AttackCode = KeyCode.Space;
+            attackCode = KeyCode.Space;
             FirstTechnique = KeyCode.Q;
             SecondTechnique = KeyCode.E;
 

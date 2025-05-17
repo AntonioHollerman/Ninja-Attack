@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Implementations.Animations.CharacterAnimation;
 using Implementations.Extras;
 using UnityEngine;
+using UnityEngine.Serialization;
 using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace BaseClasses
@@ -12,13 +13,14 @@ namespace BaseClasses
     {
         public static List<Player> Players = new List<Player>();
         public PlayerUI statsUI;
-
         public GameObject interactIcon;
+        
+        [Header("Techniques")]
         public Technique techOne;
         public Technique techTwo;
-
-        protected KeyCode AttackCode;
         
+        [Header("Input Keys")]
+        public KeyCode attackCode;
         public KeyCode upCode;
         public KeyCode downCode;
         public KeyCode leftCode;
@@ -119,7 +121,7 @@ namespace BaseClasses
 
         private void AttackHandler()
         {
-            if (Input.GetKeyDown(AttackCode))
+            if (Input.GetKeyDown(attackCode))
             {
                 AttackWeapon(body.GetDuration(AnimationState.Attack));
             }

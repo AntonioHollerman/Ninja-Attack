@@ -40,7 +40,7 @@ namespace Implementations.Extras
             if (!_ignore && _player.interacting)
             {
                 _player.interacting = false;
-                _player.transform.position = otherPair.transform.position + Vector3.up * _yOffset;
+                _player.pTransform.position = otherPair.transform.position + Vector3.up * _yOffset;
             }
         }
     }

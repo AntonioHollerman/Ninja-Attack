@@ -37,6 +37,8 @@ namespace BaseClasses
         public int   baseMana;
         public float def;
         public float speed;
+        
+        [Header("External Objects")]
         public Melee weapon;
         
         private List<Effect>    _effects;
