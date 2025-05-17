@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using BaseClasses;
+using Implementations.Animations;
 using Implementations.Extras;
 using Implementations.HitBoxes;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace Implementations.Techniques
 
         private Collider _parentCollider;
         private float _dashDuration;
+        private float _blockInputDuration;
 
         protected override void StartWrapper()
         {
@@ -30,14 +32,14 @@ namespace Implementations.Techniques
             MultiSpriteAnimation dashAni = Instantiate(dashPrefab).GetComponent<MultiSpriteAnimation>();
             LoopAnimation redSparkAni = Instantiate(redSparkPrefab).GetComponent<LoopAnimation>();
 
-            animationBlockDuration = dashAni.GetDuration() + redSparkAni.GetDuration();
+            _blockInputDuration = dashAni.GetDuration();
             _dashDuration = dashAni.GetDuration();
 
             Destroy(dashAni.gameObject);
             Destroy(redSparkAni.gameObject);
         }
 
-        public override void Execute()
+        protected override void Execute()
         {
             foreach (CharacterSheet cs in CharacterSheet.CharacterSheets)
             {
@@ -74,21 +76,21 @@ namespace Implementations.Techniques
 
         private void RedSparkAnimation()
         {
-            GameObject redSpark = Instantiate(redSparkPrefab, parent.transform.position, parent.transform.rotation);
+            GameObject redSpark = Instantiate(redSparkPrefab, parent.pTransform.position, parent.pTransform.rotation);
             redSpark.transform.Translate(sparkOffset);
             if (parent is Player playerScript)
             {
-                NormalizeSpriteDirection(redSpark.transform, playerScript.transform.forward);
+                NormalizeSpriteDirection(redSpark.transform, playerScript.pTransform.forward);
             }
             redSpark.GetComponent<LoopAnimation>().StartAnimation();
         }
 
         private MultiSpriteAnimation DashAnimation()
         {
-            GameObject dash = Instantiate(dashPrefab, parent.transform.position, parent.transform.rotation);
+            GameObject dash = Instantiate(dashPrefab, parent.pTransform.position, parent.pTransform.rotation);
             if (parent is Player playerScript)
             {
-                NormalizeSpriteDirection(dash.transform, playerScript.transform.forward);
+                NormalizeSpriteDirection(dash.transform, playerScript.pTransform.forward);
             }
 
             return dash.GetComponent<MultiSpriteAnimation>();
@@ -96,8 +98,8 @@ namespace Implementations.Techniques
 
         private void BlueSparkAnimation()
         {
-            Vector3 dirInverse = parent.transform.forward * -1;
-            GameObject blueSpark = Instantiate(blueSparkPrefab, parent.transform.position, blueSparkPrefab.transform.rotation);
+            Vector3 dirInverse = parent.pTransform.forward * -1;
+            GameObject blueSpark = Instantiate(blueSparkPrefab, parent.pTransform.position, blueSparkPrefab.transform.rotation);
             blueSpark.transform.localRotation = Quaternion.LookRotation(dirInverse);
             blueSpark.transform.Translate(sparkOffset);
             if (parent is Player)
@@ -111,7 +113,7 @@ namespace Implementations.Techniques
         {
             if (parent is Player player)
             {
-                player.BlockInput(animationBlockDuration);
+                player.BlockInput(_blockInputDuration);
             }
 
             RedSparkAnimation();
@@ -145,13 +147,13 @@ namespace Implementations.Techniques
 
         private IEnumerator MoveParent(MultiSpriteAnimation dashScript)
         {
-            Vector3 startPos = parent.transform.position;
-            Vector3 maxDistance = startPos + parent.transform.forward * distance;
-            parent.rb.velocity = parent.transform.forward * 20;
-            yield return new WaitUntil(() => Vector3.Distance(startPos, parent.transform.position) > distance || dashScript == null);
-            if (Vector3.Distance(startPos, parent.transform.position) > distance)
+            Vector3 startPos = parent.pTransform.position;
+            Vector3 maxDistance = startPos + parent.pTransform.forward * distance;
+            parent.rb.velocity = parent.pTransform.forward * 20;
+            yield return new WaitUntil(() => Vector3.Distance(startPos, parent.pTransform.position) > distance || dashScript == null);
+            if (Vector3.Distance(startPos, parent.pTransform.position) > distance)
             {
-                parent.transform.position = maxDistance;
+                parent.pTransform.position = maxDistance;
             }
 
             parent.rb.velocity = Vector3.zero;
@@ -161,6 +163,11 @@ namespace Implementations.Techniques
                     continue;
                 Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
             }
+        }
+
+        protected override float GetSpellCastDuration()
+        {
+            return dashPrefab.GetComponent<MultiSpriteAnimation>().GetDuration();
         }
     }
 }

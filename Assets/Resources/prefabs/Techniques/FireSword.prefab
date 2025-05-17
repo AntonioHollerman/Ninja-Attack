@@ -45,17 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e387b0059d418aadb9ac69abc9fb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 50
-  coolDown: 3
-  animationBlockDuration: 0
+  manaCost: 0
+  coolDown: 1
   parent: {fileID: 0}
-  active: {fileID: -1927839504, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
-  notActive: {fileID: -1523329453, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
+  active: {fileID: 1144222396, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
+  notActive: {fileID: -1351747221, guid: 5bde6340252c2844fa382ff6657c56e0, type: 3}
   countDown: {fileID: 0}
   icon: {fileID: 0}
-  boarder: {fileID: 0}
   meleeAnimationPrefab: {fileID: 1648239436938574504, guid: 1a82e60c67218de46a4ecb84727867a3, type: 3}
-  zOffset: 3
+  forwardOffset: 1.44
+  leftOffset: 0.64
   frameStartHitBox: 8
   fireSwordSound: {fileID: 8300000, guid: 038799bfa15132e4ba2ce63847259277, type: 3}
   hitSound: {fileID: 0}

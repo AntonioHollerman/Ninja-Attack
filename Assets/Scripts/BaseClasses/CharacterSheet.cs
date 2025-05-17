@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Implementations.Extras;
+using Implementations.Animations;
+using Implementations.Managers;
+using Implementations.Weapons;
 using UnityEngine;
-using UnityEngine.Serialization;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace BaseClasses
 {
@@ -15,27 +16,32 @@ namespace BaseClasses
     {
         public static readonly string DeathMarkPath = "prefabs/Extras/DeathMark";
         public static readonly string HitMarkPath = "prefabs/Extras/HitMark";
+        public static readonly string SpawnSmokePath = "prefabs/Extras/SpawnSmoke";
         
         public static List<CharacterSheet> CharacterSheets = new List<CharacterSheet>();
         public static bool                 UniversalStopCsUpdateLoop;
 
-        [Header("Game Object Components")]
-        public GameObject           spawnSmokePrefab;
+        [Header("Game Object Components")] 
+        public bool                 disable;
         public bool                 isLarge;
         public List<CharacterSheet> allies;
         public Rigidbody            rb;
-        public CharacterSheet lastHit;
+        public CharacterSheet       lastHit;
+        public AnimationManager     body;
+        public Transform            pTransform;
 
         [Header("Character Sheet Stats")]
         public int   level;
         public float baseHp;
         public float baseAtk;
         public int   baseMana;
+        public float def;
         public float speed;
         
-        private Weapon          _weapon;
+        [Header("External Objects")]
+        public Melee weapon;
+        
         private List<Effect>    _effects;
-        private List<Armor>     _equipment;
         private float           _stunDuration; // Duration of stun
         private float           _animationBlockedDuration; // Duration of animation block
         private float           _vulnerableDuration;
@@ -45,7 +51,6 @@ namespace BaseClasses
         public float Atk { get; private set; }
         public int   Mana{ get; private set; }  // Current mana 
         public float Hp { get; private set; }    // Current health 
-        public float Def { get; private set; }  // Current defence
         
         public bool  IsALive => Hp > 0; // True if the character is, false otherwise
 
@@ -53,17 +58,30 @@ namespace BaseClasses
         public bool IsVulnerable => _vulnerableDuration > 0;
         public bool  AnimationBlocked => _animationBlockedDuration > 0;
 
+        private bool _runningDefeated;
+        private Collider _collider;
+
         public virtual void Defeated()
         {
-            Vector3 pos = transform.position;
-            Destroy(gameObject);
+            if (lastHit is Player player)
+            {
+                player.AddExp(2 + (int) (10 + Math.Log(level) * Math.Pow(level, 2) / 4));
+            }
+
+            StartCoroutine(RunHurtAnimation());
+        }
+
+        private IEnumerator RunHurtAnimation()
+        {
+            body.curState = AnimationState.Hurt;
+            yield return new WaitForSeconds(body.GetDuration(AnimationState.Hurt));
             
+            Vector3 pos = transform.position;
             GameObject prefab = Resources.Load<GameObject>(DeathMarkPath);
             LoopAnimation script = Instantiate(prefab, pos, prefab.transform.rotation).GetComponent<LoopAnimation>();
             script.StartAnimation();
+            Destroy(gameObject);
         }
-        
-
         
         // Represents an effect applied to a character.
         private class Effect
@@ -149,8 +167,16 @@ namespace BaseClasses
         {
             lastHit = ownership;
             // Apply damage, reducing health based on vulnerability and defense
-            Hp -= IsVulnerable ? GetFinalDamage(dmg, 0) : GetFinalDamage(dmg, Def);
+            Hp -= IsVulnerable ? GetFinalDamage(dmg, 0) : GetFinalDamage(dmg, def);
             Hp = Hp < 0 ? 0 : Hp;
+            
+            if (!IsALive && !_runningDefeated)
+            {
+                CharacterSheets.Remove(this);
+                _runningDefeated = true;
+                weapon?.gameObject.SetActive(false);
+                Defeated();
+            }
         }
 
         /// <summary>
@@ -162,7 +188,7 @@ namespace BaseClasses
         private float GetFinalDamage(float dmg, float defense)
         {
             // Formula to calculate final damage after defense is applied
-            return (dmg * (1 / (0.01f * defense + 0.8f)));
+            return (dmg * (1 / (0.2f * defense + 0.8f)));
         }
 
         public virtual void RestoreHp(float hp)
@@ -181,42 +207,16 @@ namespace BaseClasses
             new Effect(se, duration, this);
         }
 
-        public void EquipWeapon(Weapon w)
-        {
-            _weapon = w;
-        }
-
-        public void AddEquipment(Armor armor)
-        {
-            _equipment.Add(armor);
-        }
-
-        public void RemoveEquipment(Armor armor)
-        {
-            _equipment.RemoveAll(x => x == armor);
-        }
-
-        public void AttackWeapon()
+        public bool AttackWeapon(float animationDuration)
         {
             if (IsStunned || AnimationBlocked)
             {
-                return;
+                return false;
             }
 
-            if (_weapon.blocksAnimation)
-            {
-                BlockAnimation(_weapon.GetAnimationBlockDuration());
-            }
-
-            IEnumerator PlayAnimation()
-            {
-                _weapon.gameObject.SetActive(true);
-                _weapon.Attack();
-                yield return new WaitForSeconds(_weapon.AnimationDuration);
-                _weapon.gameObject.SetActive(false);
-            }
-
-            StartCoroutine(PlayAnimation());
+            weapon.Attack();
+            BlockAnimation(animationDuration);
+            return true;
         }
 
         public virtual void RestoreMana(int mana)
@@ -225,23 +225,22 @@ namespace BaseClasses
             Mana = Mana > MaxMana ? MaxMana : Mana;
             if (this is Player player)
             {
-                player.UpdateMana();
+                player.statsUI.UpdateFlagged = true;
             }
         }
 
-        public bool CastTechnique(int manaCost, float animationBlockDuration)
+        public bool CastTechnique(int manaCost)
         {
             if (Mana < manaCost || IsStunned || AnimationBlocked)
             {
                 return false;
             }
-
-            BlockAnimation(animationBlockDuration);
+            
             Mana -= manaCost;
             
             if (this is Player player)
             {
-                player.UpdateMana();
+                player.statsUI.UpdateFlagged = true;
             }
             
             return true;
@@ -256,13 +255,13 @@ namespace BaseClasses
             // Update stun duration to the maximum of the current or new duration
             _stunDuration = duration > _stunDuration ? duration : _stunDuration;
 
-            if (_weapon == null)
+            if (weapon == null)
             {
                 return;
             }
-            if (_weapon.deactivateOnStun)
+            if (weapon.deactivateOnStun)
             {
-                _weapon.Deactivate();
+                weapon.Deactivate();
             }
         }
         
@@ -286,33 +285,18 @@ namespace BaseClasses
         /// </summary>
         protected void UpdateStats()
         {
-            // Calculate current health, mana, attack, and speed based on the character's level
+            // Calculate current health, mana, and attack based on the character's level
             Hp = MaxHp = (int)(1.3f * Math.Log(level) * baseHp) + baseHp;
             Mana = MaxMana = 50 * (int)(Math.Log(level + 0.5) * (100 / (float) baseMana)) + baseMana;
             Atk = (float) Math.Log(level) * baseAtk + baseAtk;
-            UpdateDefense();
         } 
-
-        /// <summary>
-        /// Updates the character's defense based on equipped armor.
-        /// </summary>
-        private void UpdateDefense()
-        {
-            float newDef = 0; // Temporary variable to accumulate defense
-
-            // Loop through all equipped items and add their defense if they are armor
-            foreach (var armor in _equipment)
-            {
-                newDef += armor.Def;
-            }
-
-            Def = newDef; // Update the character's defense stat
-        }
+        
         /// <summary>
         /// Unity's Start method. Calls the StartWrapper to initialize the character.
         /// </summary>
         void Awake()
         {
+            _collider = GetComponent<Collider>();
             AwakeWrapper(); // Calls a custom initialization method
         }
 
@@ -321,10 +305,14 @@ namespace BaseClasses
         /// </summary>
         private void Update()
         {
-            if (UniversalStopCsUpdateLoop)
+            if (UniversalStopCsUpdateLoop || disable)
             {
+                _collider.enabled = false;
+                rb.velocity = Vector3.zero;
                 return;
             }
+
+            _collider.enabled = true;
             UpdateWrapper(); // Calls a custom update method each frame
         }
 
@@ -333,9 +321,7 @@ namespace BaseClasses
         /// </summary>
         protected virtual void AwakeWrapper()
         {
-            rb = GetComponent<Rigidbody>();
             _effects = new List<Effect>();
-            _equipment = new List<Armor>();
             
             allies.Add(this);
             CharacterSheets.Add(this);
@@ -346,9 +332,9 @@ namespace BaseClasses
 
         protected virtual IEnumerator LevelChange()
         {
-            int lastLevel = level;
             while (true)
             {
+                int lastLevel = level;
                 yield return new WaitUntil(() => lastLevel != level);
                 UpdateStats();
             }
@@ -363,12 +349,6 @@ namespace BaseClasses
             _stunDuration -= IsStunned ? Time.deltaTime : 0f;
             _animationBlockedDuration -= AnimationBlocked ? Time.deltaTime : 0f;
             _vulnerableDuration -= IsVulnerable ? Time.deltaTime : 0f;
-
-            if (!IsALive)
-            {
-                CharacterSheets.Remove(this);
-                Defeated();
-            }
 
             if (IsStunned || UniversalStopCsUpdateLoop)
             {
@@ -419,6 +399,14 @@ namespace BaseClasses
             }
 
             return false;
+        }
+
+        private void LateUpdate()
+        {
+            if (!IsALive || disable)
+            {
+                rb.velocity = Vector3.zero;
+            }
         }
 
         public override string ToString()

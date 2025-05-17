@@ -1,4 +1,6 @@
-﻿using BaseClasses;
+﻿using System.Collections;
+using System.Collections.Generic;
+using BaseClasses;
 using Implementations.Managers;
 using UnityEngine;
 
@@ -15,20 +17,26 @@ namespace Implementations.Characters.PlayerScripts
             leftCode = KeyCode.A;
             rightCode = KeyCode.D;
 
-            AttackCode = KeyCode.Space;
+            attackCode = KeyCode.Space;
             FirstTechnique = KeyCode.Q;
             SecondTechnique = KeyCode.E;
 
+            StartCoroutine(WaitTillTechManagerActive());
+        }
+
+        private IEnumerator WaitTillTechManagerActive()
+        {
+            yield return new WaitUntil(() => TechniqueManager.Instance != null);
             techOne = TechniqueManager.Instance.LoadPlayerOneTechnique(
                 TechEnum.ElectricDash, 
                 this, 
                 FirstTechnique,
-           0);
+                0);
             techTwo = TechniqueManager.Instance.LoadPlayerOneTechnique(
                 TechEnum.StaticDischarge,
                 this, 
                 SecondTechnique, 
                 1);
-        }
+        } 
     }
 }

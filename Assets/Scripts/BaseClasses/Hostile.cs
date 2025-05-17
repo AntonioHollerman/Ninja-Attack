@@ -27,7 +27,7 @@ namespace BaseClasses
                 healthBar = Instantiate(healthBar, GameObject.Find("Canvas").transform);
                 _hbScript = healthBar.GetComponent<HealthBar>();
             }
-            _hbScript.target = transform;
+            _hbScript.target = pTransform;
             
             GameObject playerOne = GameObject.Find("PlayerOne");
             GameObject playerTwo = GameObject.Find("PlayerTwo");
@@ -47,8 +47,8 @@ namespace BaseClasses
         {
             Hostiles.Remove(this);
             DropItem();
-            base.Defeated();
             Destroy(healthBar);
+            base.Defeated();
         }
 
         private void DropItem()
@@ -56,22 +56,22 @@ namespace BaseClasses
             float randVal = Random.value;
             if (randVal <= 0.25f)
             {
-                GameObject go = Instantiate(hpPotion, transform.position, hpPotion.transform.rotation);
+                GameObject go = Instantiate(hpPotion, pTransform.position, hpPotion.transform.rotation);
                 go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 0);
             }
 
             if (randVal >= 0.75f)
             {
-                GameObject go = Instantiate(manaPotion, transform.position, manaPotion.transform.rotation);
+                GameObject go = Instantiate(manaPotion, pTransform.position, manaPotion.transform.rotation);
                 go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 0);
             }
         }
 
         protected override IEnumerator LevelChange()
         {
-            int lastLevel = level;
             while (true)
             {
+                int lastLevel = level;
                 yield return new WaitUntil(() => lastLevel != level);
                 UpdateStats();
                 _hbScript.UpdateSlider(Hp / MaxHp);

@@ -4,6 +4,7 @@ using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace BaseClasses
 {
@@ -19,21 +20,20 @@ namespace BaseClasses
         [SerializeField] private int manaCost;
         [SerializeField] private float coolDown;
         
-        public float animationBlockDuration;
         public CharacterSheet parent;
         public Sprite active;
         public Sprite notActive;
 
         public TextMeshProUGUI countDown;
         public SpriteRenderer icon;
-        public SpriteRenderer boarder;
         
         public int ManaCost { get; private set; } // How much implemented technique cost
         public float CoolDown { get; private set; } // How many seconds is the cooldown
         protected float Timer;
         protected bool Ready => parent.Mana >= ManaCost && Timer <= 0;
 
-        public abstract void Execute();
+        protected abstract void Execute();
+        protected abstract float GetSpellCastDuration();
 
         public virtual void ActivateTech()
         {
@@ -46,9 +46,14 @@ namespace BaseClasses
                 return;
             }
             
-            bool successful = parent.CastTechnique(ManaCost, animationBlockDuration);
+            bool successful = parent.CastTechnique(ManaCost);
             if (successful)
             {
+                int n = parent.body.GetAnimationLength(AnimationState.SpellCast);
+                parent.body.spellCastFps = n / GetSpellCastDuration();
+                parent.body.curState = AnimationState.SpellCast;
+                parent.BlockAnimation(parent.body.GetDuration(AnimationState.SpellCast));
+                
                 Timer = CoolDown;
                 Execute();
             }

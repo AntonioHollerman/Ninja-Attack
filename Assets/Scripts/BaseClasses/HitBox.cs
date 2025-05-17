@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Implementations.HitBoxes;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace BaseClasses
 {
@@ -13,9 +10,9 @@ namespace BaseClasses
         public CharacterSheet parent;
         public bool destroyOnFinish;
         public bool workOnCollider;
+        public bool dontWorkOnTimer;
 
-
-        private Collider _collider;
+        protected Collider Collider;
         protected List<CharacterSheet> ActiveIgnore;
         private float _aliveTime;
         private bool IsAlive => _aliveTime > 0;
@@ -28,10 +25,16 @@ namespace BaseClasses
 
         public void Activate(float duration)
         {
-            _aliveTime = duration;
-            ActiveIgnore = new List<CharacterSheet>(parent.allies);
-        }
+            IEnumerator WaitForParent()
+            {
+                yield return new WaitUntil(() => parent != null);
+                _aliveTime = duration;
+                ActiveIgnore = new List<CharacterSheet>(parent.allies);
+            }
 
+            StartCoroutine(WaitForParent());
+        }
+        
         public void Deactivate()
         {
             _aliveTime = 0;
@@ -44,12 +47,12 @@ namespace BaseClasses
                 yield return new WaitUntil(() => IsAlive);
                 if (workOnCollider)
                 {
-                    _collider.enabled = true;
+                    Collider.enabled = true;
                 }
                 yield return new WaitUntil(() => !IsAlive);
                 if (workOnCollider)
                 {
-                    _collider.enabled = false;
+                    Collider.enabled = false;
                 }
                 if (destroyOnFinish)
                 {
@@ -79,14 +82,24 @@ namespace BaseClasses
             ActiveIgnore.Add(cs);
         }
 
-        protected virtual void TriggerEnterWrapper(Collider other){}
+        private void OnTriggerStay(Collider other)
+        {
+            TriggerStayWrapper(other);
+        }
+        
+        protected virtual void TriggerEnterWrapper(Collider other){}   
+        protected virtual void TriggerStayWrapper(Collider other){}
         protected virtual void AwakeWrapper()
         {
-            StartCoroutine(AliveChecker());
+            if (!dontWorkOnTimer)
+            {
+                StartCoroutine(AliveChecker());
+            }
+            
             if (workOnCollider)
             {
-                _collider = gameObject.GetComponent<Collider>();
-                _collider.enabled = false;
+                Collider = gameObject.GetComponent<Collider>();
+                Collider.enabled = false;
             }
         }
 

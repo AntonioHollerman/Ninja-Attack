@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BaseClasses;
+using Implementations.Extras;
 using TMPro;
 using UnityEngine;
 
@@ -47,39 +48,41 @@ namespace Implementations.Managers
             return techScript;
         }
 
-        public Technique LoadPlayerOneTechnique(TechEnum tech, Player player, KeyCode code, int index) 
+        public Technique LoadPlayerOneTechnique(TechEnum tech, Player player, KeyCode code, int index)
         {
+            Vector3 pos = iconPlayerOneStartPos + new Vector3(iconXDisplacement * index, 0, 0);
+            
             GameObject iconPrefab = Resources.Load<GameObject>(GetIconPrefabPath(tech));
             GameObject iconGo = Instantiate(
                 iconPrefab, 
-                iconPlayerOneStartPos + new Vector3(iconXDisplacement * index, 0, 0),
+                Vector3.zero,
                 iconPrefab.transform.rotation,
                 techniquesIcons.transform);
+            iconGo.GetComponent<RectTransform>().anchoredPosition = pos;
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
-            Transform boarder = HasBoarder.Contains(tech) ? iconGo.transform.Find("Boarder") : null;
             keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>().text = code.ToString();
             
             Technique techScript = LoadTechnique(tech, player);
             techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();
             techScript.icon = iconGo.GetComponent<SpriteRenderer>();
-            techScript.boarder = boarder?.gameObject.GetComponent<SpriteRenderer>();
             return techScript;
         }
         
-        public Technique LoadPlayerTwoTechnique(TechEnum tech, Player player, KeyCode code, int index) 
+        public Technique LoadPlayerTwoTechnique(TechEnum tech, Player player, KeyCode code, int index)
         {
+            Vector3 pos = iconPlayerTwoStartPos - new Vector3(iconXDisplacement * index, 0, 0);
             GameObject iconPrefab = Resources.Load<GameObject>(GetIconPrefabPath(tech));
             GameObject iconGo = Instantiate(
                 iconPrefab, 
-                iconPlayerTwoStartPos - new Vector3(iconXDisplacement * index, 0, 0),
+                Vector3.zero,
                 iconPrefab.transform.rotation,
                 techniquesIcons.transform);
+            iconGo.GetComponent<RectTransform>().anchoredPosition = pos;
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
-            Transform boarder = HasBoarder.Contains(tech) ? iconGo.transform.Find("Boarder") : null;
             keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>().text = code.ToString()
                 .Replace("Period", ".")
                 .Replace("Slash", "/");
@@ -87,13 +90,12 @@ namespace Implementations.Managers
             Technique techScript = LoadTechnique(tech, player);
             techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();
             techScript.icon = iconGo.GetComponent<SpriteRenderer>();
-            techScript.boarder = boarder?.gameObject.GetComponent<SpriteRenderer>();
             return techScript;
         }
         
         public void PlayerOneMoveTechniqueIconPosition(GameObject iconGo, int index)
         {
-            iconGo.transform.position = iconPlayerOneStartPos - new Vector3(iconXDisplacement * index, 0, 0);
+            iconGo.transform.position = iconPlayerOneStartPos + new Vector3(iconXDisplacement * index, 0, 0);
         }
         
         public void PlayerTwoMoveTechniqueIconPosition(GameObject iconGo, int index)
@@ -108,6 +110,9 @@ namespace Implementations.Managers
                 TechEnum.FireSword       => "prefabs/Techniques/FireSword",
                 TechEnum.StaticDischarge => "prefabs/Techniques/StaticDischarge",
                 TechEnum.ElectricDash    => "prefabs/Techniques/FlashStep",
+                TechEnum.ElectricWhip    => "prefabs/Techniques/ElectricWhip",
+                TechEnum.FireRain        => "prefabs/Techniques/FireRain",
+                TechEnum.FireSummon     => "prefabs/Techniques/FireSummon",
                 _ => "null"
             };
         }
@@ -120,6 +125,9 @@ namespace Implementations.Managers
                 TechEnum.FireSword       => "prefabs/PlayerUI/TechniquesIcon/FireSword",
                 TechEnum.StaticDischarge => "prefabs/PlayerUI/TechniquesIcon/Static Discharge",
                 TechEnum.ElectricDash    => "prefabs/PlayerUI/TechniquesIcon/Flash Step",
+                TechEnum.ElectricWhip    => null,
+                TechEnum.FireRain        => null,
+                TechEnum.FireSummon     => null,
                 _ => "null"
             };
         }

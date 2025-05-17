@@ -45,15 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65693962ac249bd9134ad28cf9e4925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 50
-  coolDown: 3
-  animationBlockDuration: 0
+  manaCost: 0
+  coolDown: 1
   parent: {fileID: 0}
-  active: {fileID: 1552951868, guid: cc72c327cd5ef3c4cabca6134a9b4a0c, type: 3}
-  notActive: {fileID: 657524681, guid: cc72c327cd5ef3c4cabca6134a9b4a0c, type: 3}
+  active: {fileID: -1427427492, guid: cc72c327cd5ef3c4cabca6134a9b4a0c, type: 3}
+  notActive: {fileID: 1677882450, guid: cc72c327cd5ef3c4cabca6134a9b4a0c, type: 3}
   countDown: {fileID: 0}
   icon: {fileID: 0}
-  boarder: {fileID: 0}
   blueSparkPrefab: {fileID: 8813284758505080134, guid: f3a67a8af9dea524ea296cb881f69bb9, type: 3}
   redSparkPrefab: {fileID: 5727289338512942692, guid: de45eb02bb1c6d6439e47ad1adf0a516, type: 3}
   dashPrefab: {fileID: 2323067174952427558, guid: 7ed16c3a92cbac3418a09b68384d566f, type: 3}

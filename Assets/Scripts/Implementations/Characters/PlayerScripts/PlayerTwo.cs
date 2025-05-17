@@ -15,7 +15,7 @@ namespace Implementations.Characters.PlayerScripts
             leftCode = KeyCode.LeftArrow;
             rightCode = KeyCode.RightArrow;
 
-            AttackCode = KeyCode.RightShift;
+            attackCode = KeyCode.RightShift;
             FirstTechnique = KeyCode.Period;
             SecondTechnique = KeyCode.Slash;
 

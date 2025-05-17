@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using BaseClasses;
+using Implementations.Animations;
 using Implementations.Extras;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ namespace Implementations.HitBoxes
             {
                 try
                 {
-                    ani.transform.position = cs.transform.position;
+                    ani.transform.position = cs.pTransform.position;
                 }
                 catch (Exception e)
                 {

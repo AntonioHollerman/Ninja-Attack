@@ -1,52 +1,96 @@
-﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using BaseClasses;
-using Implementations.Extras;
 using UnityEngine;
-using System.Linq;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 namespace Implementations.Managers
 {
     public class SpawnManager : MonoBehaviour
     {
-        public float delayBetweenSpawn;
-        public float lastSpawnDelay;
-        public static SpawnManager Instance { get; private set; }
-        private void Awake()
+        private readonly Color _activeC = new Color(0.1921568f, 0.792156f, 0);
+        private readonly Color _nonactiveC = new Color(1, 0, 0);
+        
+        [Header("Debug Handler")]
+        public bool debugModeOn;
+        public SpriteRenderer sr;
+
+        [Header("Spawner Parameters")] 
+        public Collider c;
+        public int instances;
+        public GameObject[] npcPrefabs;
+        public float coolDown;
+        
+        private float MinX => transform.position.x - (transform.localScale.x / 2);
+        private float MinY => transform.position.y - (transform.localScale.y / 2);
+        private float MaxX => transform.position.x + (transform.localScale.x / 2);
+        private float MaxY => transform.position.y + (transform.localScale.y / 2);
+        private GameObject _spawnSmokePrefab;
+
+        private IEnumerator GoOnCoolDown()
         {
-            Instance = this;
-            SpawnPos.Spawns.RemoveAll(spawn => spawn == null);
-            Player.Players.RemoveAll(player => player == null);
-            Hostile.Hostiles.RemoveAll(hostile => hostile == null);
-            CharacterSheet.CharacterSheets.RemoveAll(sheet => sheet == null);
+            c.enabled = false;
+            yield return new WaitForSeconds(coolDown);
+            c.enabled = true;
         }
 
-        public IEnumerator SpawnEnemies(int level, int round)
+        private IEnumerator Spawn()
         {
-            CharacterSheet.UniversalStopCsUpdateLoop = true;
+            float x = Random.Range(MinX, MaxX);
+            float y = Random.Range(MinY, MaxY);
+            GameObject prefab = npcPrefabs[Random.Range(0, npcPrefabs.Length)];
             
-            foreach (Hostile hostile in Hostile.Hostiles)
-            {
-                hostile.DealDamage(hostile.Hp, null);
-            }
-            Hostile.Hostiles = new List<Hostile>();
+            Vector3 pos = new Vector3(x, y, 0);
+            CharacterSheet target = Instantiate(prefab, pos, prefab.transform.rotation)
+                .transform
+                .GetChild(0)
+                .GetComponent<CharacterSheet>();
+            target.disable = true;
+            
+            GameObject smokeInstance = Instantiate(
+                _spawnSmokePrefab, 
+                target.transform.position, 
+                _spawnSmokePrefab.transform.rotation);
+            ParticleSystem psInstance = smokeInstance.GetComponent<ParticleSystem>();
+            
+            yield return new WaitUntil(() => !psInstance.isPlaying);
+            target.disable = false;
+            Destroy(smokeInstance.gameObject);
+        }
 
-            
-            Random rnd = new Random();
-            List<SpawnPos> positions = new List<SpawnPos>(SpawnPos.Spawns
-                .FindAll(p => p.level == level && p.round == round)
-                .OrderBy(p => rnd.Next()));
-            
-            foreach (var pos in positions)
+        private void Awake()
+        {
+            _spawnSmokePrefab = Resources.Load<GameObject>(CharacterSheet.SpawnSmokePath);
+            c.enabled = true;
+            if (!debugModeOn && sr != null)
             {
-                pos.Spawn();
-                yield return new WaitForSeconds(delayBetweenSpawn);
+                sr.enabled = false;
+            }
+        }
+
+        private void Update()
+        {
+            if (!debugModeOn)
+            {
+                return;
             }
 
-            yield return new WaitForSeconds(lastSpawnDelay);
-            CharacterSheet.UniversalStopCsUpdateLoop = false;
+            sr.color = c.enabled ? _activeC : _nonactiveC;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Player p = other.GetComponent<Player>();
+            if (p == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < instances; i++)
+            {
+                StartCoroutine(Spawn());
+            }
+
+            StartCoroutine(GoOnCoolDown());
         }
     }
 }

@@ -15,24 +15,10 @@ namespace BaseClasses
         {
             base.UpdateWrapper();
             
-            if (!IsStunned)
+            if (!IsStunned && !UniversalStopCsUpdateLoop)
             {
                 SetClosestTarget();
                 LookAtTarget();
-            }
-            
-            if (Target == null)
-            {
-                return;
-            }
-
-            if (Mathf.Approximately(transform.position.y, Target.transform.position.y))
-            {
-                transform.position += Vector3.up * 0.01f;
-            }
-            if (Mathf.Approximately(transform.position.x, Target.transform.position.x))
-            {
-                transform.position += Vector3.right * 0.01f;
             }
         }
 
@@ -66,7 +52,7 @@ namespace BaseClasses
             float smallestDistance = detectRange;
             foreach (var t in _targets)
             {
-                float distance = Mathf.Abs((transform.position - t.transform.position).magnitude);
+                float distance = Mathf.Abs((pTransform.position - t.transform.position).magnitude);
                 if (distance <= smallestDistance)
                 {
                     newTarget = t;
@@ -85,7 +71,7 @@ namespace BaseClasses
                 return;
             }
             Vector3 targetVec = Target.transform.position;
-            Vector3 curVec = transform.position;
+            Vector3 curVec = pTransform.position;
             
 
             // Calculate the direction vector
@@ -95,10 +81,10 @@ namespace BaseClasses
             if (direction != Vector3.zero)
             {
                 // Calculate the rotation to face the target
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.forward);
 
                 // Apply the rotation globally
-                transform.rotation = targetRotation;
+                pTransform.rotation = targetRotation;
             }
         }
     }

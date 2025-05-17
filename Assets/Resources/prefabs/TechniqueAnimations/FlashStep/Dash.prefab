@@ -175,8 +175,8 @@ MonoBehaviour:
   parent: {fileID: 0}
   destroyOnFinish: 0
   workOnCollider: 1
+  dontWorkOnTimer: 0
   parentTech: {fileID: 0}
-  damage: 5
   stunDuration: 3
   hitPrefab: {fileID: 3464262347358634055, guid: da7524227292ff74da48a16a9f3eebad, type: 3}
   stunPrefab: {fileID: 4553206577251356814, guid: e08d1ce3f8286a541be78be0ba6686bf, type: 3}
@@ -230,6 +230,7 @@ MonoBehaviour:
   frames: []
   framesPerSecond: 120
   loopOnce: 0
+  startAtRuntime: 0
 --- !u!1 &3222087449975154125
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +281,7 @@ MonoBehaviour:
   frames: []
   framesPerSecond: 120
   loopOnce: 0
+  startAtRuntime: 0
 --- !u!1 &4967143048475529560
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,3 +500,4 @@ MonoBehaviour:
   frames: []
   framesPerSecond: 120
   loopOnce: 0
+  startAtRuntime: 0

@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31a2b9cc9de3e7a458e49e6aab0f2b99
-      internalID: 1665446925
+      spriteID: 9746420a68d2556489f6b9bcd4ecaaa4
+      internalID: 343990942
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6865d6302ba43fe4d8cffb72227a362b
-      internalID: 1558847855
+      spriteID: b8aec3b9d4ee1f84c9a1b45fb8a288c6
+      internalID: -1115308283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireballIcon_2
+      rect:
+        serializedVersion: 2
+        x: 3210
+        y: 0
+        width: 1605
+        height: 1605
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6672903a043a9c4ca652f16e9a986c7
+      internalID: 890661086
       vertices: []
       indices: 
       edges: []
@@ -167,7 +188,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d7bcf4a1c39ea004887b1952ff35db3c
+    spriteID: e2df4fb312cbd0f45ab64b5f29571c6e
     internalID: 0
     vertices: []
     indices: 
@@ -175,8 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FireballIcon_0: 1665446925
-      FireballIcon_1: 1558847855
+      FireballIcon_0: 343990942
+      FireballIcon_1: -1115308283
+      FireballIcon_2: 890661086
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

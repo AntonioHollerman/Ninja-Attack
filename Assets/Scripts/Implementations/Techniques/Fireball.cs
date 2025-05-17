@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using BaseClasses;
+using Implementations.Animations;
 using Implementations.Extras;
 using Implementations.HitBoxes;
 using UnityEngine;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace Implementations.Techniques
 {
@@ -15,8 +17,10 @@ namespace Implementations.Techniques
         
         public GameObject explosionPrefab;
         public GameObject fireballPrefab;
+        public Sprite yelloActive;
         public float flySpeed;
         public float zDisplacement;
+        public float spellCastFps = 12f;
 
         public AudioClip fireballSound; // Sound effect for the fireball flying
         public AudioClip explosionSound; // Sound effect for the explosion
@@ -26,7 +30,7 @@ namespace Implementations.Techniques
         private GameObject _curFireball;
         private bool _activationBeingProcessed;
         
-        public override void Execute()
+        protected override void Execute()
         {
             throw new System.NotImplementedException();
         }
@@ -57,7 +61,6 @@ namespace Implementations.Techniques
             if (_curState is State.FIRST_ACTIVATION_NOT_READY)
             {
                 countDown.gameObject.SetActive(true);
-                boarder.gameObject.SetActive(false);
                 icon.sprite = notActive;
             }
 
@@ -65,15 +68,12 @@ namespace Implementations.Techniques
             {
                 yield return new WaitUntil(() => _curState is State.FIRST_ACTIVATION_READY);
                 countDown.gameObject.SetActive(false);
-                boarder.gameObject.SetActive(false);
                 icon.sprite = active;
                 yield return new WaitUntil(() => _curState is State.SECOND_ACTIVATION_READY);
                 countDown.gameObject.SetActive(false);
-                boarder.gameObject.SetActive(true);
-                icon.sprite = active;
+                icon.sprite = yelloActive;
                 yield return new WaitUntil(() => _curState is State.FIRST_ACTIVATION_NOT_READY or State.FIRST_ACTIVATION_READY);
                 countDown.gameObject.SetActive(true);
-                boarder.gameObject.SetActive(false);
                 icon.sprite = notActive;
                 yield return new WaitUntil(() => Ready);
                 _curState = State.FIRST_ACTIVATION_READY;
@@ -91,13 +91,13 @@ namespace Implementations.Techniques
                 return false;
             }
 
-            bool successful = parent.CastTechnique(ManaCost, animationBlockDuration);
+            bool successful = parent.CastTechnique(ManaCost);
             return successful;
         }
 
         private void NormalizeSpriteDirection(Transform sprite, Player playerScript)
         {
-            if (playerScript.transform.forward.x != 0)
+            if (playerScript.pTransform.forward.x != 0)
             {
                 sprite.transform.localRotation = Quaternion.Euler(0, 90, -90);
             }
@@ -110,10 +110,15 @@ namespace Implementations.Techniques
             {
                 return;
             }
-
+            
+            int n = parent.body.GetAnimationLength(AnimationState.SpellCast);
+            parent.body.spellCastFps = n / GetSpellCastDuration();
+            parent.body.curState = AnimationState.SpellCast;
+            parent.BlockAnimation(parent.body.GetDuration(AnimationState.SpellCast));
+            
             _curFireball = Instantiate(fireballPrefab,
-                parent.transform.position,
-                parent.transform.rotation);
+                parent.pTransform.position,
+                parent.pTransform.rotation);
             _curFireball.transform.Translate(Vector3.forward * zDisplacement);
 
             if (parent is Player playerScript)
@@ -170,6 +175,11 @@ namespace Implementations.Techniques
             {
                 audioSource.PlayOneShot(explosionSound); // Play the explosion sound
             }
+        }
+        
+        protected override float GetSpellCastDuration()
+        {
+            return parent.body.GetAnimationLength(AnimationState.SpellCast) * spellCastFps;
         }
     }
 }

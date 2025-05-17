@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using BaseClasses;
+using Implementations.Animations;
+using Implementations.Animations.UniqueAnimation;
 using Implementations.Extras;
-using Implementations.Extras.UniqueAnimation;
 using Implementations.HitBoxes;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace Implementations.Techniques
         public AudioClip dischargeSound; // Sound effect for the static discharge
         private AudioSource audioSource; // Reference to the AudioSource component
 
-        public override void Execute()
+        protected override void Execute()
         {
             GameObject techGo = Instantiate(dischargeAnimationPrefab);
             StaticDischargeAnimation animationScript = techGo.GetComponent<StaticDischargeAnimation>();
@@ -45,7 +46,7 @@ namespace Implementations.Techniques
                 {
                     break;
                 }
-                ani.transform.position = parent.transform.position;
+                ani.transform.position = parent.pTransform.position;
                 yield return null;
             }
         }
@@ -55,7 +56,6 @@ namespace Implementations.Techniques
             base.StartWrapper();
             audioSource = GetComponent<AudioSource>();
             LoopAnimation animationScript = Instantiate(dischargeAnimationPrefab).GetComponent<LoopAnimation>();
-            animationBlockDuration = animationScript.GetAnimationDuration();
             Destroy(animationScript.gameObject);
         }
 
@@ -65,6 +65,11 @@ namespace Implementations.Techniques
             {
                 audioSource.PlayOneShot(dischargeSound); // Play the discharge sound
             }
+        }
+
+        protected override float GetSpellCastDuration()
+        {
+            return dischargeAnimationPrefab.GetComponent<LoopAnimation>().GetAnimationDuration();
         }
     }
 }

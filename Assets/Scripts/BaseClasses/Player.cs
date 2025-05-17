@@ -1,52 +1,48 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using Implementations.Animations.CharacterAnimation;
+using Implementations.Extras;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace BaseClasses
 {
     public abstract class Player : CharacterSheet
     {
         public static List<Player> Players = new List<Player>();
-        public GameObject body;
-        public GameObject weaponGo;
+        public PlayerUI statsUI;
+        public GameObject interactIcon;
         
-        public GameObject hpSliderGo;
-        public GameObject hpTextGo;
-        
-        public GameObject manaSliderGo;
-        public GameObject manaTextGo;
-
+        [Header("Techniques")]
         public Technique techOne;
         public Technique techTwo;
-
-        protected KeyCode AttackCode;
         
+        [Header("Input Keys")]
+        public KeyCode attackCode;
         public KeyCode upCode;
         public KeyCode downCode;
         public KeyCode leftCode;
         public KeyCode rightCode;
+        public KeyCode interactCode;
 
         protected KeyCode FirstTechnique;
         protected KeyCode SecondTechnique;
-        
-        private Image _hpSlider;
-        private TextMeshProUGUI _hpText;
 
-        private Image _manaSlider;
-        private TextMeshProUGUI _manaText;
-
+        public bool interacting;
         public bool InputBlocked => _blockInput > 0 ;
         private float _blockInput;
+
+        public int ExpNeeded {get; private set; }
+        public int Exp { get; private set; }
 
         
         protected override void UpdateWrapper()
         {
             base.UpdateWrapper();
             _blockInput -= _blockInput < 0 ? _blockInput : Time.deltaTime;
-            if (InputBlocked)
+            if (InputBlocked || IsStunned)
             {
                 return;
             }
@@ -55,25 +51,32 @@ namespace BaseClasses
             AttackHandler();
             TechniqueHandler();
         }
-
+        
         protected override void AwakeWrapper()
         {
             base.AwakeWrapper();
-            
-            _hpSlider = hpSliderGo.GetComponent<Image>();
-            _hpText = hpTextGo.GetComponent<TextMeshProUGUI>();
 
-            _manaSlider = manaSliderGo.GetComponent<Image>();
-            _manaText = manaTextGo.GetComponent<TextMeshProUGUI>();
-            
-            EquipWeapon(weaponGo.GetComponent<Weapon>());
-            
-            UpdateHp();
-            UpdateMana();
+            statsUI.UpdateFlagged = true;
+
+            ExpNeeded = CalcExpNeeded();
+            Exp = 0;
+            StartCoroutine(ExpListener());
+            StartCoroutine(InteractListener());
             
             Players.Add(this);
 
             LoadKeybinds();
+        }
+        
+        private IEnumerator InteractListener()
+        {
+            while (true)
+            {
+                yield return new WaitUntil(() => Input.GetKeyDown(interactCode));
+                interacting = true;
+                yield return new WaitForSeconds(0.3f);
+                interacting = false;
+            }
         }
 
         private void HandleDirection()
@@ -84,20 +87,7 @@ namespace BaseClasses
                 return;
             }
             
-            transform.localRotation = Quaternion.LookRotation(GetDirection());
-            
-            if (Input.GetKey(leftCode) || Input.GetKey(rightCode))
-            {
-                body.transform.localRotation = Quaternion.Euler(0, -90, -90);
-                weaponGo.transform.localRotation = Quaternion.Euler(0, 0, 90);
-                return;
-            }
-
-            if (Input.GetKey(upCode) || Input.GetKey(downCode))
-            {
-                body.transform.localRotation = Quaternion.Euler(90, -90, -90);
-                weaponGo.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
+            pTransform.localRotation = Quaternion.LookRotation(GetDirection(), Vector3.forward);
         }
 
         private void HandleMovement()
@@ -133,9 +123,9 @@ namespace BaseClasses
 
         private void AttackHandler()
         {
-            if (Input.GetKeyDown(AttackCode))
+            if (Input.GetKeyDown(attackCode))
             {
-                AttackWeapon();
+                AttackWeapon(body.GetDuration(AnimationState.Attack));
             }
         }
 
@@ -144,44 +134,32 @@ namespace BaseClasses
             if (Input.GetKeyDown(FirstTechnique))
             {
                 techOne.ActivateTech();
-                UpdateMana();
+                statsUI.UpdateFlagged = true;
             }
 
             if (Input.GetKeyDown(SecondTechnique))
             {
                 techTwo.ActivateTech();
-                UpdateMana();
+                statsUI.UpdateFlagged = true;
             }
-        }
-
-        public void UpdateHp()
-        {
-            _hpSlider.fillAmount = Hp /  MaxHp;
-            _hpText.text = $"{Math.Floor(Hp)} / {MaxHp}";
-        }
-
-        public void UpdateMana()
-        {
-            _manaSlider.fillAmount = (float) Mana / MaxMana;
-            _manaText.text = $"{Mana} / {MaxMana}";
         }
 
         public override void DealDamage(float dmg, CharacterSheet ownership)
         {
             base.DealDamage(dmg, ownership);
-            UpdateHp();
+            statsUI.UpdateFlagged = true;
         }
 
         public override void RestoreHp(float hp)
         {
             base.RestoreHp(hp);
-            UpdateHp();
+            statsUI.UpdateFlagged = true;
         }
 
         public override void RestoreMana(int mana)
         {
             base.RestoreMana(mana);
-            UpdateMana();
+            statsUI.UpdateFlagged = true;
         }
 
         public override void Defeated()
@@ -203,15 +181,37 @@ namespace BaseClasses
             rb.velocity = Vector3.zero;
         }
 
+        private int CalcExpNeeded()
+        {
+            return (int) (10 + Math.Log(level) * Math.Pow(level, 2));
+        }
+
+        public void AddExp(int exp)
+        {
+            Exp += exp;
+            statsUI.UpdateFlagged = true;
+        }
         protected override IEnumerator LevelChange()
         {
-            int lastLevel = level;
             while (true)
             {
+                int lastLevel = level;
                 yield return new WaitUntil(() => lastLevel != level);
                 UpdateStats();
-                UpdateHp();
-                UpdateMana();
+                statsUI.UpdateFlagged = true;
+            }
+        }
+
+        private IEnumerator ExpListener()
+        {
+            while (true)
+            {
+                int tempExpNeeded = ExpNeeded;
+                yield return new WaitUntil(() => Exp >= ExpNeeded);
+                Exp -= tempExpNeeded;
+                level++;
+                ExpNeeded = CalcExpNeeded();
+                statsUI.UpdateFlagged = true;
             }
         }
         private void LoadKeybinds()

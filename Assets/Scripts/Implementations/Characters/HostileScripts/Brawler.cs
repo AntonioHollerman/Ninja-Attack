@@ -1,47 +1,33 @@
 ﻿using System.Collections;
 using BaseClasses;
-using Implementations.Weapons;
 using UnityEngine;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace Implementations.Characters.HostileScripts
 {
     public class Brawler : Hostile
     {
-        public GameObject meleeGo;
-        public float attackDelay;
-        public float attackRange;
-        
-        private float _attackTimer;
-        private bool InAttackRange => TargetDistance <= attackRange;
-        private bool AttackReady => _attackTimer <= 0;
-        private BasicMelee _meleeScript;
-        protected override void AwakeWrapper()
-        {
-            base.AwakeWrapper();
-            _meleeScript = meleeGo.GetComponent<BasicMelee>();
-        }
+        public float atkDistance;
 
         protected override void UpdateWrapper()
         {
             base.UpdateWrapper();
-            FollowTarget();
-        }
-        
-        
-        private IEnumerator AttackTarget()
-        {
-            while (true)
+            if (IsStunned || UniversalStopCsUpdateLoop)
             {
-                yield return new WaitUntil(() => InAttackRange && AttackReady);
-                _meleeScript.Attack();
-                _attackTimer = attackDelay;
+                return;
+            }
+            
+            rb.velocity = pTransform.forward * speed;
+            if (TargetDistance <= atkDistance && IsALive)
+            {
+                AttackWeapon(body.GetDuration(AnimationState.Attack));
             }
         }
-        
-        private void FollowTarget()
+
+        protected override void AwakeWrapper()
         {
-            Vector3 direction = (Target.transform.position - transform.position).normalized;
-            transform.position +=  speed * Time.deltaTime * direction;
+            base.AwakeWrapper();
+            AddTarget(GameObject.Find("SoloPlayer"));
         }
     }
 }

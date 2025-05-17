@@ -2,44 +2,59 @@
 using BaseClasses;
 using Implementations.Weapons;
 using UnityEngine;
+using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
 
 namespace Implementations.Characters.HostileScripts
 {
     public class Archer : Hostile
     {
+        public float fireRate;
+        public int releaseIndex;
         public GameObject arrowPrefab;
-        public float atkSpeed;
-        public float arrowDisplacement;
+        public float forwardDisplacement;
 
         protected override void AwakeWrapper()
         {
             base.AwakeWrapper();
-            StartCoroutine(StartAttacking());
+            AddTarget(GameObject.Find("SoloPlayer"));
+            StartCoroutine(AnimationListener());
+            StartCoroutine(FireListener());
         }
 
-        private void Attack()
+        private void Shoot()
         {
-            Vector3 pos = transform.position + arrowDisplacement * transform.forward;
-            GameObject arrow = Instantiate(arrowPrefab, 
-                pos, 
-                transform.rotation);
-
-            BasicArrow script = arrow.GetComponent<BasicArrow>();
-            allies = GetAllies();
-            script.parent = this;
-            script.destroyOnFinish = true;
-            script.Attack();
+            Instantiate(arrowPrefab, pTransform.position + pTransform.forward * forwardDisplacement, Quaternion.LookRotation(pTransform.forward, Vector3.forward))
+                .GetComponent<Arrow>().parent = this;
         }
 
-        private IEnumerator StartAttacking()
+        private IEnumerator FireListener()
         {
             while (true)
             {
-                yield return new WaitForSeconds(atkSpeed);
-                if (!IsStunned && !CharacterSheet.UniversalStopCsUpdateLoop)
+                while (body.AniIndex < releaseIndex || body.curState != AnimationState.Attack)
                 {
-                    Attack();
+                    if (body.curState != AnimationState.Attack && !disable)
+                    {
+                        rb.velocity = speed * pTransform.forward;
+                    }
+                    else
+                    {
+                        rb.velocity = Vector3.zero;
+                    }
+                    yield return null;
                 }
+                
+                Shoot();
+                yield return new WaitUntil(() => body.curState != AnimationState.Attack);
+            }
+        }
+
+        private IEnumerator AnimationListener()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(fireRate);
+                body.curState = AnimationState.Attack;
             }
         }
     }

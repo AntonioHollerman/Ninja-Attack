@@ -3,6 +3,7 @@ using Implementations.Extras;
 using Implementations.HitBoxes;
 using System;
 using System.Collections;
+using Implementations.Animations;
 using UnityEngine;
 
 namespace Implementations.Techniques
@@ -10,14 +11,15 @@ namespace Implementations.Techniques
     public class FlameMelee : Technique
     {
         public GameObject meleeAnimationPrefab;
-        public float zOffset;
+        public float forwardOffset; // 2.65
+        public float leftOffset; // 1
         public int frameStartHitBox;
 
         public AudioClip fireSwordSound; // Sound effect for the fire sword
         public AudioClip hitSound; // Sound effect for when the melee hits a target
         private AudioSource audioSource; // Reference to the AudioSource component
 
-        public override void Execute()
+        protected override void Execute()
         {
             GameObject techGo = Instantiate(meleeAnimationPrefab);
             LoopAnimation animationScript = techGo.GetComponent<LoopAnimation>();
@@ -39,41 +41,9 @@ namespace Implementations.Techniques
             hitBox.Activate(framesLeft * ani.SecondsBetweenFrame);
         }
 
-        private void NormalizeSpriteDirection(Transform sprite, Player playerScript)
-        {
-            if (playerScript.transform.forward == Vector3.right || playerScript.transform.forward == Vector3.left)
-            {
-                try
-                {
-                    sprite.localRotation = Quaternion.Euler(0, 90, 90);
-                }
-                catch (Exception ignore)
-                {
-                    // ignored
-                }
-                return;
-            }
-            if (playerScript.transform.forward == Vector3.up || playerScript.transform.forward == Vector3.down)
-            {
-                try
-                {
-                    sprite.localRotation = Quaternion.Euler(270, 90, 90);
-                }
-                catch (Exception ignore)
-                {
-                    // ignored
-                }
-            }
-        }
-
         private IEnumerator TrackParent(LoopAnimation ani)
         {
-            if (parent is Player playerScript)
-            {
-                Transform sprite = ani.transform.Find("sprite");
-                NormalizeSpriteDirection(sprite, playerScript);
-            }
-            ani.transform.rotation = parent.transform.rotation;
+            ani.transform.rotation = Quaternion.LookRotation(parent.pTransform.forward, Vector3.forward);
             while (true)
             {
                 if (ani == null)
@@ -81,8 +51,9 @@ namespace Implementations.Techniques
                     break;
                 }
 
-                ani.transform.position = parent.transform.position;
-                ani.transform.Translate(Vector3.forward * zOffset);
+                ani.transform.position = parent.pTransform.position;
+                ani.transform.rotation = parent.pTransform.rotation;
+                ani.transform.Translate(Vector3.forward * forwardOffset + Vector3.right * leftOffset);
 
                 yield return null;
             }
@@ -93,7 +64,6 @@ namespace Implementations.Techniques
             base.StartWrapper();
             audioSource = GetComponent<AudioSource>();
             LoopAnimation animationScript = Instantiate(meleeAnimationPrefab).GetComponent<LoopAnimation>();
-            animationBlockDuration = animationScript.GetAnimationDuration();
             Destroy(animationScript.gameObject);
         }
 
@@ -111,7 +81,11 @@ namespace Implementations.Techniques
             {
                 audioSource.PlayOneShot(hitSound); // Play the hit sound
             }
+        }
 
-    }
+        protected override float GetSpellCastDuration()
+        {
+            return meleeAnimationPrefab.GetComponent<LoopAnimation>().GetDuration();
+        }
     }
 }
