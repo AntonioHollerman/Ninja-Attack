@@ -51,6 +51,7 @@ namespace Implementations.Extras
             Player p = other.GetComponent<Player>();
             if (p != null && p.interacting)
             {
+                p.interactIcon.SetActive(false);
                 sr.sprite = chestOpen;
                 p.AddExp(20);
                 

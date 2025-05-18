@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4268309601548778867
 Transform:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 966aa1ed0cf16cf44849ae63d32f82ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -190,7 +190,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &3409015363804978712
 MonoBehaviour:
@@ -397,7 +397,7 @@ Transform:
   m_GameObject: {fileID: 6897646804204809357}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -443,7 +443,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -615359779, guid: d5281af2d6c6a6647b503f133529fdaa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -477,7 +477,7 @@ MonoBehaviour:
   idlePath: sprites/Characters/Players/Main Character + Katana Animations/combat_idle
   hurtFps: 10
   spellCastFps: 5
-  attackFps: 15
+  attackFps: 10
   walkFps: 10
   idleFps: 5
 --- !u!65 &2214039291818536017
@@ -531,6 +531,8 @@ MonoBehaviour:
   interactIcon: {fileID: 1501011938275178440}
   techOne: {fileID: 0}
   techTwo: {fileID: 0}
+  inventory: []
+  attackCode: 0
   upCode: 0
   downCode: 0
   leftCode: 0
