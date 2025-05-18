@@ -234,7 +234,7 @@ MonoBehaviour:
   lastHit: {fileID: 0}
   body: {fileID: 243036038349385455}
   pTransform: {fileID: 6269546578871389881}
-  level: 3
+  level: 20
   baseHp: 15
   baseAtk: 5
   baseMana: 50

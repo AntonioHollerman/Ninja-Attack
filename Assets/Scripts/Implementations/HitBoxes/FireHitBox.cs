@@ -13,7 +13,7 @@ namespace Implementations.HitBoxes
         public bool damageSelf;
         protected override void Effect(CharacterSheet cs)
         {
-            float baseDamage = 1.5f * parent.Atk;
+            float baseDamage = 1.15f * parent.Atk;
             float burnEffectDps = 0.2f * parent.Atk;
             cs.DealDamage(baseDamage, parent);
             cs.LoadEffect(((sheet, deltaTime) => sheet.DealDamage(deltaTime * burnEffectDps, parent)), duration);

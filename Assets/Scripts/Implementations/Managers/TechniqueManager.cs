@@ -9,7 +9,6 @@ namespace Implementations.Managers
     public class TechniqueManager : MonoBehaviour
     {
         public static TechniqueManager Instance { private set; get; }
-        public static List<TechEnum> HasBoarder = new() { TechEnum.FireBall };
 
         public GameObject statsUiCanvas;
         public GameObject techniquesIcons;
@@ -29,9 +28,6 @@ namespace Implementations.Managers
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(statsUiCanvas);
-            DontDestroyOnLoad(activeTechniques);
         }
         public Technique LoadTechnique(TechEnum tech, CharacterSheet cs)
         {

@@ -33,7 +33,7 @@ namespace Implementations.Characters.HostileScripts
             {
                 while (body.AniIndex < releaseIndex || body.curState != AnimationState.Attack)
                 {
-                    if (body.curState != AnimationState.Attack && !disable)
+                    if (body.curState != AnimationState.Attack && !disable && !IsStunned && !UniversalStopCsUpdateLoop)
                     {
                         rb.velocity = speed * pTransform.forward;
                     }

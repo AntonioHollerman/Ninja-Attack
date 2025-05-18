@@ -13,7 +13,7 @@ namespace BaseClasses
         public bool dontWorkOnTimer;
 
         protected Collider Collider;
-        protected List<CharacterSheet> ActiveIgnore;
+        protected List<CharacterSheet> ActiveIgnore = new List<CharacterSheet>();
         private float _aliveTime;
         private bool IsAlive => _aliveTime > 0;
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Implementations.Animations.CharacterAnimation;
 using Implementations.Extras;
+using Implementations.Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
@@ -166,6 +167,7 @@ namespace BaseClasses
 
         public override void Defeated()
         {
+            PanelManager.Instance.SwapPanel(Panel.GameOver);
             foreach (Hostile enemy in Hostile.Hostiles)
             {
                 GameObject go = enemy.gameObject;
