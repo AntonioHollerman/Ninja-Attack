@@ -57,7 +57,7 @@ MonoBehaviour:
   dashPrefab: {fileID: 2323067174952427558, guid: 7ed16c3a92cbac3418a09b68384d566f, type: 3}
   sparkOffset: {x: 0.05, y: 0, z: -0.9}
   distance: 2
-  dashSound: {fileID: 0}
+  dashSound: {fileID: 8300000, guid: b80d70417d1e6304c9654298aedc9941, type: 3}
 --- !u!82 &6088557815112500953
 AudioSource:
   m_ObjectHideFlags: 0
