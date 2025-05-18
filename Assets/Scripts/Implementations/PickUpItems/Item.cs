@@ -9,7 +9,7 @@ namespace Implementations.PickUpItems
         public override void Effect(Player cs)
         {
             cs.inventory.Add(itemName);
-            EventDisplayManager.Instance.toDisplay.Add($"\"{itemName}\" has been added to inventory ");
+            EventDisplayManager.Instance.AddMessage($"\"{itemName}\" has been added to inventory ");
         }
     }
 }

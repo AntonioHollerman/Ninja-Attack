@@ -65,5 +65,11 @@ namespace Implementations.Characters.HostileScripts
                 yield return new WaitForSeconds(3);
             }
         }
+
+        public override void Defeated()
+        {
+            GameObject.Find("SoloPlayer").GetComponent<Player>().defeatedBoss = true;
+            base.Defeated();
+        }
     }
 }

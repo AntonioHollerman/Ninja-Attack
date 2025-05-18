@@ -32,6 +32,7 @@ namespace BaseClasses
         protected KeyCode SecondTechnique;
 
         public bool interacting;
+        public bool defeatedBoss;
         public bool InputBlocked => _blockInput > 0 ;
         private float _blockInput;
 

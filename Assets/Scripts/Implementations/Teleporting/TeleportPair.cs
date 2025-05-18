@@ -2,7 +2,7 @@ using System;
 using BaseClasses;
 using UnityEngine;
 
-namespace Implementations.Extras
+namespace Implementations.Teleporting
 {
     public class TeleportPair : MonoBehaviour
     {
@@ -34,11 +34,16 @@ namespace Implementations.Extras
         private void OnTriggerStay(Collider other)
         {
             Player p = other.GetComponent<Player>();
-            if (p != null && p.interacting)
+            if (p != null && p.interacting && ConditionMet(p))
             {
                 p.interacting = false;
                 p.pTransform.position = otherPair.transform.position + Vector3.up * _yOffset;
             }
+        }
+
+        public virtual bool ConditionMet(Player player)
+        {
+            return true;
         }
     }
 }

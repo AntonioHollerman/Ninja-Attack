@@ -13,7 +13,7 @@ namespace Implementations.Managers
         public TextMeshPro text;
         public float changePerSecond;
 
-        public List<string> toDisplay = new List<string>(); 
+        private List<string> _toDisplay = new List<string>(); 
         private void Awake()
         {
             Instance = this;
@@ -33,14 +33,20 @@ namespace Implementations.Managers
             StartCoroutine(DisplayListener());
         }
 
+        public void AddMessage(string message)
+        {
+            if (!_toDisplay.Contains(message))
+            {
+                _toDisplay.Add(message);
+            }
+        }
         private IEnumerator DisplayListener()
         {
             while (true)
             {
-                yield return new WaitUntil(() => toDisplay.Count > 0);
+                yield return new WaitUntil(() => _toDisplay.Count > 0);
 
-                text.text = toDisplay[0];
-                toDisplay.RemoveAt(0);
+                text.text = _toDisplay[0];
                 
                 // Fade in
                 float a = 0.0f;
@@ -86,6 +92,7 @@ namespace Implementations.Managers
                 
                     yield return null;
                 }
+                _toDisplay.RemoveAt(0);
             }
         }
     }
