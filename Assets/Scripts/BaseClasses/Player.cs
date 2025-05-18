@@ -170,6 +170,10 @@ namespace BaseClasses
             PanelManager.Instance.SwapPanel(Panel.GameOver);
             foreach (Hostile enemy in Hostile.Hostiles)
             {
+                if (enemy == null)
+                {
+                    continue;
+                }
                 GameObject go = enemy.gameObject;
                 TrackingBehavior script = go.GetComponent<TrackingBehavior>();
                 script?.RemoveTarget(gameObject);

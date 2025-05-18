@@ -43,7 +43,7 @@ namespace Implementations.Techniques
         {
             foreach (CharacterSheet cs in CharacterSheet.CharacterSheets)
             {
-                if (cs == parent)
+                if (cs == parent || cs == null)
                 {
                     continue;
                 }
@@ -159,8 +159,11 @@ namespace Implementations.Techniques
             parent.rb.velocity = Vector3.zero;
             foreach (CharacterSheet cs in CharacterSheet.CharacterSheets)
             {
-                if (cs == parent)
+                if (cs == parent || cs == null)
+                {
                     continue;
+                }
+                
                 Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
             }
         }
