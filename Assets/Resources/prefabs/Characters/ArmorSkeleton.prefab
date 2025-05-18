@@ -157,7 +157,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1609478669, guid: cdd36f7eac63abe48b20daf3d6f75ef6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -234,10 +234,11 @@ MonoBehaviour:
   lastHit: {fileID: 0}
   body: {fileID: 116455564000112441}
   pTransform: {fileID: 5854420335824310786}
-  level: 3
+  level: 12
   baseHp: 3
   baseAtk: 4
   baseMana: 0
+  def: 0
   speed: 0.5
   weapon: {fileID: 0}
   detectRange: 8

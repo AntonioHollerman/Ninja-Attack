@@ -76,7 +76,7 @@ namespace Implementations.Animations
                 {
                     Destroy(gameObject);
                 }
-                if (FrameIndex == frames.Length)
+                if (FrameIndex >= frames.Length)
                 {
                     FrameIndex = 0;
                 }

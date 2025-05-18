@@ -15,15 +15,15 @@ namespace Implementations.Managers
         public SpriteRenderer sr;
 
         [Header("Spawner Parameters")] 
-        public Collider c;
+        public BoxCollider c;
         public int instances;
         public GameObject[] npcPrefabs;
         public float coolDown;
         
-        private float MinX => transform.position.x - (transform.localScale.x / 2);
-        private float MinY => transform.position.y - (transform.localScale.y / 2);
-        private float MaxX => transform.position.x + (transform.localScale.x / 2);
-        private float MaxY => transform.position.y + (transform.localScale.y / 2);
+        private float MinX => transform.position.x + c.center.x - (c.size.x / 2);
+        private float MinY => transform.position.y + c.center.y - (c.size.y / 2);
+        private float MaxX => transform.position.x + c.center.x + (c.size.x / 2);
+        private float MaxY => transform.position.y + c.center.y + (c.size.y / 2);
         private GameObject _spawnSmokePrefab;
         
         private IEnumerator GoOnCoolDown()
@@ -60,7 +60,7 @@ namespace Implementations.Managers
         private void Awake()
         {
             _spawnSmokePrefab = Resources.Load<GameObject>(CharacterSheet.SpawnSmokePath);
-            c = GetComponent<Collider>();
+            c = GetComponent<BoxCollider>();
             c.enabled = true;
             if (!debugModeOn && sr != null)
             {

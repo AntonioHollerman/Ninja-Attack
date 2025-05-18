@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Implementations.Animations.CharacterAnimation;
 using Implementations.Extras;
+using Implementations.Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
@@ -18,6 +19,7 @@ namespace BaseClasses
         [Header("Techniques")]
         public Technique techOne;
         public Technique techTwo;
+        public List<string> inventory;
         
         [Header("Input Keys")]
         public KeyCode attackCode;
@@ -31,6 +33,7 @@ namespace BaseClasses
         protected KeyCode SecondTechnique;
 
         public bool interacting;
+        public bool defeatedBoss;
         public bool InputBlocked => _blockInput > 0 ;
         private float _blockInput;
 
@@ -164,6 +167,7 @@ namespace BaseClasses
 
         public override void Defeated()
         {
+            PanelManager.Instance.SwapPanel(Panel.GameOver);
             foreach (Hostile enemy in Hostile.Hostiles)
             {
                 GameObject go = enemy.gameObject;
@@ -183,7 +187,7 @@ namespace BaseClasses
 
         private int CalcExpNeeded()
         {
-            return (int) (10 + Math.Log(level) * Math.Pow(level, 2));
+            return (int) (10 + Math.Log(level) * Math.Pow(level, 2) * 1.5);
         }
 
         public void AddExp(int exp)
