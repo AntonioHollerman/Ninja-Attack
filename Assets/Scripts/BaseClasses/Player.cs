@@ -18,6 +18,7 @@ namespace BaseClasses
         [Header("Techniques")]
         public Technique techOne;
         public Technique techTwo;
+        public List<string> inventory;
         
         [Header("Input Keys")]
         public KeyCode attackCode;
@@ -183,7 +184,7 @@ namespace BaseClasses
 
         private int CalcExpNeeded()
         {
-            return (int) (10 + Math.Log(level) * Math.Pow(level, 2));
+            return (int) (10 + Math.Log(level) * Math.Pow(level, 2) * 1.5);
         }
 
         public void AddExp(int exp)

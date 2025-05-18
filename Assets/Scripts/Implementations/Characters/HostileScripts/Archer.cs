@@ -54,6 +54,7 @@ namespace Implementations.Characters.HostileScripts
             while (true)
             {
                 yield return new WaitForSeconds(fireRate);
+                yield return new WaitUntil(() => !disable && !IsStunned && !UniversalStopCsUpdateLoop);
                 body.curState = AnimationState.Attack;
             }
         }

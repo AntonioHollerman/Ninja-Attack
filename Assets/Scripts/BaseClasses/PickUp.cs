@@ -1,15 +1,17 @@
 using System;
+using Implementations.Animations;
+using Implementations.Animations.UniqueAnimation;
 using UnityEngine;
 
 namespace BaseClasses
 {
     public abstract class PickUp : MonoBehaviour
     {
-        public abstract void Effect(CharacterSheet cs);
+        public abstract void Effect(Player cs);
 
         private void OnTriggerEnter(Collider other)
         {
-            CharacterSheet cs = other.GetComponent<Player>();
+            Player cs = other.GetComponent<Player>();
             if (cs != null)
             {
                 Effect(cs);
