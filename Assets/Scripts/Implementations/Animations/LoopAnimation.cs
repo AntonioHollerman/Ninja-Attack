@@ -87,11 +87,10 @@ namespace Implementations.Animations
         public float GetAnimationDuration()
         {
             GetFrames();
-            return frames.Length * SecondsBetweenFrame;
-        }
-
-        public float GetDuration()
-        {
+            SecondsBetweenFrame = 1 / framesPerSecond;
+            
+            Debug.Log(frames.Length);
+            Debug.Log(SecondsBetweenFrame);
             return frames.Length * SecondsBetweenFrame;
         }
     }

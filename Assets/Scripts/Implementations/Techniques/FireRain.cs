@@ -66,10 +66,5 @@ namespace Implementations.Techniques
             }
             return target;
         }
-
-        protected override float GetSpellCastDuration()
-        {
-            return parent.body.GetAnimationLength(AnimationState.SpellCast) * spellCastFps;
-        }
     }
 }

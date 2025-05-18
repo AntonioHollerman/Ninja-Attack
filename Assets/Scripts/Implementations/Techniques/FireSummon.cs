@@ -60,10 +60,5 @@ namespace Implementations.Techniques
             }
             return target;
         }
-
-        protected override float GetSpellCastDuration()
-        {
-            return summonPrefab.GetComponent<LoopAnimation>().GetDuration();
-        }
     }
 }

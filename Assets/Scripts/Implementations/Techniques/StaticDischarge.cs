@@ -66,10 +66,5 @@ namespace Implementations.Techniques
                 audioSource.PlayOneShot(dischargeSound); // Play the discharge sound
             }
         }
-
-        protected override float GetSpellCastDuration()
-        {
-            return dischargeAnimationPrefab.GetComponent<LoopAnimation>().GetAnimationDuration();
-        }
     }
 }

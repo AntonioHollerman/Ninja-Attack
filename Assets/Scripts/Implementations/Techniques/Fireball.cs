@@ -111,8 +111,6 @@ namespace Implementations.Techniques
                 return;
             }
             
-            int n = parent.body.GetAnimationLength(AnimationState.SpellCast);
-            parent.body.spellCastFps = n / GetSpellCastDuration();
             parent.body.curState = AnimationState.SpellCast;
             parent.BlockAnimation(parent.body.GetDuration(AnimationState.SpellCast));
             
@@ -175,11 +173,6 @@ namespace Implementations.Techniques
             {
                 audioSource.PlayOneShot(explosionSound); // Play the explosion sound
             }
-        }
-        
-        protected override float GetSpellCastDuration()
-        {
-            return parent.body.GetAnimationLength(AnimationState.SpellCast) * spellCastFps;
         }
     }
 }

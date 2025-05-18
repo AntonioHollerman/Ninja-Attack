@@ -82,10 +82,5 @@ namespace Implementations.Techniques
                 audioSource.PlayOneShot(hitSound); // Play the hit sound
             }
         }
-
-        protected override float GetSpellCastDuration()
-        {
-            return meleeAnimationPrefab.GetComponent<LoopAnimation>().GetDuration();
-        }
     }
 }

@@ -167,10 +167,5 @@ namespace Implementations.Techniques
                 Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
             }
         }
-
-        protected override float GetSpellCastDuration()
-        {
-            return dashPrefab.GetComponent<MultiSpriteAnimation>().GetDuration();
-        }
     }
 }

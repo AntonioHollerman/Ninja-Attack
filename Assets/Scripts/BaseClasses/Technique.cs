@@ -33,7 +33,6 @@ namespace BaseClasses
         protected bool Ready => parent.Mana >= ManaCost && Timer <= 0;
 
         protected abstract void Execute();
-        protected abstract float GetSpellCastDuration();
 
         public virtual void ActivateTech()
         {
@@ -49,8 +48,6 @@ namespace BaseClasses
             bool successful = parent.CastTechnique(ManaCost);
             if (successful)
             {
-                int n = parent.body.GetAnimationLength(AnimationState.SpellCast);
-                parent.body.spellCastFps = n / GetSpellCastDuration();
                 parent.body.curState = AnimationState.SpellCast;
                 parent.BlockAnimation(parent.body.GetDuration(AnimationState.SpellCast));
                 

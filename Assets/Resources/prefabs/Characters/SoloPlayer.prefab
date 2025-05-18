@@ -476,7 +476,7 @@ MonoBehaviour:
   walkPath: sprites/Characters/Players/Main Character + Katana Animations/walk_128
   idlePath: sprites/Characters/Players/Main Character + Katana Animations/combat_idle
   hurtFps: 10
-  spellCastFps: 5
+  spellCastFps: 12
   attackFps: 10
   walkFps: 10
   idleFps: 5
