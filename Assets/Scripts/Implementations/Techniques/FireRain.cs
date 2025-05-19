@@ -15,7 +15,6 @@ namespace Implementations.Techniques
         public float detectDistance = 20;
         public int frameStartHitBox;
         public float secondsLooped;
-        public float spellCastFps = 12f;
         protected override void Execute()
         {
             GameObject target;
@@ -24,12 +23,12 @@ namespace Implementations.Techniques
                 target = GetClosestTarget(Hostile.Hostiles);
             } else 
             {
-                target = GetClosestTarget(Player.Players); 
+                target = GameObject.Find("SoloPlayer"); 
             }
             
             GameObject techGo = Instantiate(
                 fireRainPrefab, 
-                target.transform.position + Vector3.forward, 
+                target.transform.position + Vector3.up * 0.2f, 
                 fireRainPrefab.transform.rotation
             );
             FireRainAnimation animationScript = techGo.GetComponent<FireRainAnimation>();
@@ -37,18 +36,11 @@ namespace Implementations.Techniques
 
             animationScript.secondsLooped = secondsLooped;
             hitBoxScript.parent = parent;
-
-            StartCoroutine(FramesListener(animationScript, hitBoxScript));
+            
             animationScript.GetFrames();
             animationScript.StartAnimation();
         }
         
-        private IEnumerator FramesListener(FireRainAnimation ani, LingeringFireHitBox hitBox)
-        {
-            yield return new WaitUntil(() => ani.FrameIndex >= frameStartHitBox);
-            int framesLeft = ani.frames.Length - 17;
-            hitBox.Activate(framesLeft * ani.SecondsBetweenFrame);
-        }
 
         private GameObject GetClosestTarget<T>(List<T> targets) where T : CharacterSheet
         {

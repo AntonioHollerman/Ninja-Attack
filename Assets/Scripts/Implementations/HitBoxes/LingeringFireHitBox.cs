@@ -4,29 +4,15 @@ using UnityEngine;
 
 namespace Implementations.HitBoxes
 {
-    public class LingeringFireHitBox : HitBox
+    public class LingeringFireHitBox : MonoBehaviour
     {
-        public bool damageSelf;
-        private List<CharacterSheet> _ignore;
-        protected override void Effect(CharacterSheet cs)
-        {
-            
-        }
+        public CharacterSheet parent;
 
-        protected override void TriggerEnterWrapper(Collider other)
-        {
-            if (damageSelf)
-            {
-                ActiveIgnore.Remove(parent);
-            }
-            _ignore = new List<CharacterSheet>(ActiveIgnore);
-        }
-
-        protected override void TriggerStayWrapper(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             float burnEffectDps = 0.4f * parent.Atk;
             CharacterSheet cs = other.gameObject.GetComponent<CharacterSheet>();
-            if (cs == null || _ignore.Contains(cs))
+            if (cs == null)
             {
                 return;
             }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using BaseClasses;
 using UnityEngine;
 
 namespace Implementations.Managers
@@ -8,20 +10,23 @@ namespace Implementations.Managers
         public static PanelManager Instance { private set; get; }
 
         public GameObject credits;
-        public GameObject gameOver;
+        public GameObject gameWon;
+        public GameObject gameLost;
         public GameObject pauseGame;
         public GameObject settings;
         public GameObject techniques;
-        
+
         private void Awake()
         {
             Instance = this;
         }
+        
 
         public void CloseAllPanels()
         {
             credits.SetActive(false);
-            gameOver.SetActive(false);
+            gameWon.SetActive(false);
+            gameLost.SetActive(false);
             pauseGame.SetActive(false);
             settings.SetActive(false);
             techniques.SetActive(false);
@@ -35,8 +40,11 @@ namespace Implementations.Managers
                 case Panel.Credits:
                     credits.SetActive(true);
                     break;
-                case Panel.GameOver:
-                    gameOver.SetActive(true);
+                case Panel.GameLost:
+                    gameLost.SetActive(true);
+                    break;
+                case Panel.GameWon:
+                    gameWon.SetActive(true);
                     break;
                 case Panel.PauseGame:
                     pauseGame.SetActive(true);

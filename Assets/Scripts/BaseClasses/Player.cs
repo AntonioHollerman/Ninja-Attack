@@ -167,7 +167,7 @@ namespace BaseClasses
 
         public override void Defeated()
         {
-            PanelManager.Instance.SwapPanel(Panel.GameOver);
+            PanelManager.Instance.SwapPanel(Panel.GameLost);
             foreach (Hostile enemy in Hostile.Hostiles)
             {
                 if (enemy == null)

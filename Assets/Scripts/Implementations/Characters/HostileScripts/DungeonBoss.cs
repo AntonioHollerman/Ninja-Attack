@@ -15,6 +15,7 @@ namespace Implementations.Characters.HostileScripts
 
         protected override void AwakeWrapper()
         {
+            disable = true;
             base.AwakeWrapper();
             AddTarget(GameObject.Find("SoloPlayer"));
 
@@ -43,6 +44,7 @@ namespace Implementations.Characters.HostileScripts
             while (true)
             {
                 yield return new WaitForSeconds(3);
+                yield return new WaitUntil(() => !disable && !IsStunned && !UniversalStopCsUpdateLoop);
                 _tech1.ActivateTech();
             }
         }
@@ -52,6 +54,7 @@ namespace Implementations.Characters.HostileScripts
             while (true)
             {
                 yield return new WaitForSeconds(5);
+                yield return new WaitUntil(() => !disable && !IsStunned && !UniversalStopCsUpdateLoop);
                 _tech2.ActivateTech();
             }
         }
@@ -61,6 +64,7 @@ namespace Implementations.Characters.HostileScripts
             while (true)
             {
                 yield return new WaitForSeconds(2);
+                yield return new WaitUntil(() => !disable && !IsStunned && !UniversalStopCsUpdateLoop);
                 _tech3.ActivateTech();
                 yield return new WaitForSeconds(3);
             }
@@ -69,6 +73,7 @@ namespace Implementations.Characters.HostileScripts
         public override void Defeated()
         {
             GameObject.Find("SoloPlayer").GetComponent<Player>().defeatedBoss = true;
+            PanelManager.Instance.SwapPanel(Panel.GameWon);
             base.Defeated();
         }
     }

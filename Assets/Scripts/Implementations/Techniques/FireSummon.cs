@@ -21,7 +21,7 @@ namespace Implementations.Techniques
                 target = GetClosestTarget(Hostile.Hostiles);
             } else 
             {
-                target = GetClosestTarget(Player.Players); 
+                target = GameObject.Find("SoloPlayer");
             }
             
             GameObject techGo = Instantiate(
