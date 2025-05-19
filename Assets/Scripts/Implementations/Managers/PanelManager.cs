@@ -16,6 +16,8 @@ namespace Implementations.Managers
         public GameObject settings;
         public GameObject techniques;
 
+        public Panel activePanel;
+
         private void Awake()
         {
             Instance = this;
@@ -30,6 +32,7 @@ namespace Implementations.Managers
             pauseGame.SetActive(false);
             settings.SetActive(false);
             techniques.SetActive(false);
+            activePanel = Panel.None;
         }
 
         public void SwapPanel(Panel target)
@@ -56,6 +59,8 @@ namespace Implementations.Managers
                     techniques.SetActive(true);
                     break;
             }
+
+            activePanel = target;
         }
     }
 }

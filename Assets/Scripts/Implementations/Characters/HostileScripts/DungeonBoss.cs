@@ -72,7 +72,10 @@ namespace Implementations.Characters.HostileScripts
 
         public override void Defeated()
         {
-            GameObject.Find("SoloPlayer").GetComponent<Player>().defeatedBoss = true;
+            GameObject.Find("SoloPlayer")
+                .transform
+                .GetChild(0)
+                .GetComponent<Player>().defeatedBoss = true;
             PanelManager.Instance.SwapPanel(Panel.GameWon);
             base.Defeated();
         }

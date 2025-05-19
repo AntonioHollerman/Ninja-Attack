@@ -2,6 +2,6 @@
 {
     public enum Panel
     {
-        Credits, GameLost, GameWon, PauseGame, Settings, Techniques
+        Credits, GameLost, GameWon, PauseGame, Settings, Techniques, None
     }
 }
