@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Implementations.Animations.CharacterAnimation;
 using Implementations.Extras;
 using Implementations.Managers;
+using Implementations.Panels;
 using UnityEngine;
 using UnityEngine.Serialization;
 using AnimationState = Implementations.Animations.CharacterAnimation.AnimationState;
@@ -29,8 +30,8 @@ namespace BaseClasses
         public KeyCode rightCode;
         public KeyCode interactCode;
 
-        protected KeyCode FirstTechnique;
-        protected KeyCode SecondTechnique;
+        public KeyCode firstTechniqueCode;
+        public KeyCode secondTechniqueCode;
 
         public bool interacting;
         public bool defeatedBoss;
@@ -134,13 +135,13 @@ namespace BaseClasses
 
         private void TechniqueHandler()
         {
-            if (Input.GetKeyDown(FirstTechnique))
+            if (Input.GetKeyDown(firstTechniqueCode))
             {
                 techOne.ActivateTech();
                 statsUI.UpdateFlagged = true;
             }
 
-            if (Input.GetKeyDown(SecondTechnique))
+            if (Input.GetKeyDown(secondTechniqueCode))
             {
                 techTwo.ActivateTech();
                 statsUI.UpdateFlagged = true;
@@ -232,14 +233,61 @@ namespace BaseClasses
             leftCode = GetKeyCode("Key_Left", KeyCode.A);
             rightCode = GetKeyCode("Key_Right", KeyCode.D);
             attackCode = GetKeyCode("Key_Attack", KeyCode.Space);
-            FirstTechnique = GetKeyCode("Key_Tech1", KeyCode.Q);
-            SecondTechnique = GetKeyCode("Key_Tech2", KeyCode.E);
+            firstTechniqueCode = GetKeyCode("Key_Tech1", KeyCode.Q);
+            secondTechniqueCode = GetKeyCode("Key_Tech2", KeyCode.E);
         }
 
         private KeyCode GetKeyCode(string key, KeyCode defaultKey)
         {
             string keyString = PlayerPrefs.GetString(key, defaultKey.ToString());
             return (KeyCode)Enum.Parse(typeof(KeyCode), keyString);
+        }
+
+        public void SetKeyCode(Code target, KeyCode newKey)
+        {
+            switch (target)
+            {
+                case Code.Up:
+                    upCode = newKey;
+                    break;
+                case Code.Down:
+                    downCode = newKey;
+                    break;
+                case Code.Right:
+                    rightCode = newKey;
+                    break;
+                case Code.Left:
+                    leftCode = newKey;
+                    break;
+                case Code.Atk:
+                    attackCode = newKey;
+                    break;
+                case Code.TechOne:
+                    firstTechniqueCode = newKey;
+                    break;
+                case Code.TechTwo:
+                    secondTechniqueCode = newKey;
+                    break;
+                case Code.Interact:
+                    interactCode = newKey;
+                    break;
+            }
+        }
+
+        public KeyCode GetKeyCode(Code target)
+        {
+            return target switch
+            {
+            Code.Up      => upCode,
+            Code.Down    => downCode,
+            Code.Right   => rightCode,
+            Code.Left    => leftCode,
+            Code.Atk     => attackCode,
+            Code.TechOne => firstTechniqueCode,
+            Code.TechTwo => secondTechniqueCode,
+            Code.Interact => interactCode,
+            _ => throw new ArgumentOutOfRangeException(nameof(target), target, null)
+            };
         }
     }
 }

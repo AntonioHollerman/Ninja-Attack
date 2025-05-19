@@ -10,17 +10,24 @@ namespace Implementations.Extras
     {
         public bool UpdateFlagged;
         
+        [Header("Target")]
         public Player player;
         
+        [Header("Sliders")]
         public Image hpSlider;
         public Image manaSlider;
         public Image expSlider;
 
         
+        [Header("Stat Text")]
         public TextMeshProUGUI lvlText;
         public TextMeshProUGUI hpText;
         public TextMeshProUGUI manaText;
         public TextMeshProUGUI expText;
+
+        [Header("Key Bind Text")] 
+        public TextMeshPro atkKeyBind;
+        
 
         private void Update()
         {
@@ -41,6 +48,8 @@ namespace Implementations.Extras
             hpText.text = $"{(int) player.Hp} / {(int) player.MaxHp}";
             manaText.text = $"{player.Mana} / {player.MaxMana}";
             expText.text = $"{player.Exp} / {player.ExpNeeded}";
+
+            atkKeyBind.text = player.attackCode + "";
         }
     }
 }
