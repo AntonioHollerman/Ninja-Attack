@@ -28,7 +28,7 @@ namespace Implementations.Characters.PlayerScripts
         {
             yield return new WaitUntil(() => TechniqueManager.Instance != null);
             techOne = TechniqueManager.Instance.LoadPlayerOneTechnique(
-                TechEnum.ElectricDash, 
+                TechEnum.FlashStep, 
                 this, 
                 0);
             techTwo = TechniqueManager.Instance.LoadPlayerOneTechnique(

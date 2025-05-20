@@ -58,5 +58,10 @@ namespace Implementations.Techniques
             }
             return target;
         }
+        
+        public override TechEnum GetTechEnum()
+        {
+            return TechEnum.FireRain;
+        }
     }
 }

@@ -72,6 +72,7 @@ namespace Implementations.Managers
             Technique techScript = LoadTechnique(tech, player);
             techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();
             techScript.icon = iconGo.GetComponent<SpriteRenderer>();
+            player.techDict[tech] = techScript;
             return techScript;
         }
         
@@ -114,11 +115,11 @@ namespace Implementations.Managers
                 TechEnum.FireBall        => "prefabs/Techniques/FireBall",
                 TechEnum.FireSword       => "prefabs/Techniques/FireSword",
                 TechEnum.StaticDischarge => "prefabs/Techniques/StaticDischarge",
-                TechEnum.ElectricDash    => "prefabs/Techniques/FlashStep",
+                TechEnum.FlashStep    => "prefabs/Techniques/FlashStep",
                 TechEnum.ElectricWhip    => "prefabs/Techniques/ElectricWhip",
                 TechEnum.FireRain        => "prefabs/Techniques/FireRain",
                 TechEnum.FireSummon     => "prefabs/Techniques/FireSummon",
-                _ => "null"
+                _ => null
             };
         }
 
@@ -129,11 +130,28 @@ namespace Implementations.Managers
                 TechEnum.FireBall        => "prefabs/PlayerUI/TechniquesIcon/FireBall",
                 TechEnum.FireSword       => "prefabs/PlayerUI/TechniquesIcon/FireSword",
                 TechEnum.StaticDischarge => "prefabs/PlayerUI/TechniquesIcon/Static Discharge",
-                TechEnum.ElectricDash    => "prefabs/PlayerUI/TechniquesIcon/Flash Step",
+                TechEnum.FlashStep    => "prefabs/PlayerUI/TechniquesIcon/Flash Step",
+                TechEnum.IceShield       => null,
                 TechEnum.ElectricWhip    => null,
                 TechEnum.FireRain        => null,
-                TechEnum.FireSummon     => null,
-                _ => "null"
+                TechEnum.FireSummon      => null,
+                _ => null
+            };
+        }
+
+        public static Sprite[] GetSprites(TechEnum tech)
+        {
+            return tech switch
+            {
+                TechEnum.FireBall        => Resources.LoadAll<Sprite>("sprites/ui/FireballIcon"),
+                TechEnum.FireSword       => Resources.LoadAll<Sprite>("sprites/ui/FireSwordIcon"),
+                TechEnum.StaticDischarge => Resources.LoadAll<Sprite>("sprites/ui/StaticDischargeIcon"),
+                TechEnum.FlashStep    => Resources.LoadAll<Sprite>("sprites/ui/FlashStepIcon"),
+                TechEnum.IceShield       => Resources.LoadAll<Sprite>("sprites/ui/ShieldIcon"),
+                TechEnum.ElectricWhip    => null,
+                TechEnum.FireRain        => null,
+                TechEnum.FireSummon      => null,
+                _ => null
             };
         }
     }

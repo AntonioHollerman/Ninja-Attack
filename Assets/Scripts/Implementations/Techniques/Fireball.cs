@@ -174,5 +174,10 @@ namespace Implementations.Techniques
                 audioSource.PlayOneShot(explosionSound); // Play the explosion sound
             }
         }
+        
+        public override TechEnum GetTechEnum()
+        {
+            return TechEnum.FireBall;
+        }
     }
 }

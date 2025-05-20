@@ -33,6 +33,7 @@ namespace BaseClasses
         protected bool Ready => parent.Mana >= ManaCost && Timer <= 0;
 
         protected abstract void Execute();
+        public abstract TechEnum GetTechEnum();
 
         public virtual void ActivateTech()
         {

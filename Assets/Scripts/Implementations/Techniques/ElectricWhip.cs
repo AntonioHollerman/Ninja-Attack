@@ -52,5 +52,10 @@ namespace Implementations.Techniques
                 yield return null;
             }
         }
+
+        public override TechEnum GetTechEnum()
+        {
+            return TechEnum.ElectricWhip;
+        }
     }
 }
