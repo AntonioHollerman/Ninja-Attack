@@ -12316,10 +12316,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1687015946921620352, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687015946921620352, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3804134655937570654, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
       propertyPath: m_Name
       value: MusicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7092804097510406971, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
+      propertyPath: level3Music
+      value: 
+      objectReference: {fileID: 8300000, guid: c11711632a63ffd41987619346c6f2b6, type: 3}
+    - target: {fileID: 7092804097510406971, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
+      propertyPath: bossRoomMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: c11711632a63ffd41987619346c6f2b6, type: 3}
     - target: {fileID: 7369187198170295206, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2430382

@@ -54,7 +54,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   dischargeAnimationPrefab: {fileID: 6345832872046445668, guid: 084d869a805864841be0b449f337e67f, type: 3}
   frameStartHitBox: 17
-  dischargeSound: {fileID: 8300000, guid: f909fb22039368948831ba5904b29d67, type: 3}
+  dischargeSound: {fileID: 8300000, guid: e01ddf8f00cf9a441857b9cc04ad2183, type: 3}
 --- !u!82 &7193724407202736181
 AudioSource:
   m_ObjectHideFlags: 0
