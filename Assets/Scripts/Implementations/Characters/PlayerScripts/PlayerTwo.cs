@@ -16,18 +16,18 @@ namespace Implementations.Characters.PlayerScripts
             rightCode = KeyCode.RightArrow;
 
             attackCode = KeyCode.RightShift;
-            FirstTechnique = KeyCode.Period;
-            SecondTechnique = KeyCode.Slash;
+            firstTechniqueCode = KeyCode.Period;
+            secondTechniqueCode = KeyCode.Slash;
 
             techOne = TechniqueManager.Instance.LoadPlayerTwoTechnique(
                 TechEnum.FireBall,
                 this, 
-                FirstTechnique,
+                firstTechniqueCode,
                 0);
             techTwo = TechniqueManager.Instance.LoadPlayerTwoTechnique(
                 TechEnum.FireSword, 
                 this, 
-                SecondTechnique,
+                secondTechniqueCode,
                 1);
         }
     }

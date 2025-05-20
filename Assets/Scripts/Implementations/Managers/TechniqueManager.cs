@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using BaseClasses;
 using Implementations.Extras;
@@ -44,7 +45,15 @@ namespace Implementations.Managers
             return techScript;
         }
 
-        public Technique LoadPlayerOneTechnique(TechEnum tech, Player player, KeyCode code, int index)
+        private IEnumerator KeyBindListener(TextMeshProUGUI text, Player player, int index)
+        {
+            while (text != null && player != null)
+            {
+                text.text = index == 0 ? player.firstTechniqueCode + "" : player.secondTechniqueCode + "" ; 
+                yield return null;
+            }
+        }
+        public Technique LoadPlayerOneTechnique(TechEnum tech, Player player, int index)
         {
             Vector3 pos = iconPlayerOneStartPos + new Vector3(iconXDisplacement * index, 0, 0);
             
@@ -58,7 +67,7 @@ namespace Implementations.Managers
             
             Transform keyBindTrans = iconGo.transform.Find("Keybind");
             Transform countDownTrans = iconGo.transform.Find("CountDown");
-            keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>().text = code.ToString();
+            StartCoroutine(KeyBindListener(keyBindTrans.gameObject.GetComponent<TextMeshProUGUI>(), player, index));
             
             Technique techScript = LoadTechnique(tech, player);
             techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();

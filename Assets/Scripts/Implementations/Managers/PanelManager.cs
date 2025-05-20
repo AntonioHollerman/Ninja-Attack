@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using BaseClasses;
 using UnityEngine;
 
@@ -17,12 +18,33 @@ namespace Implementations.Managers
         public GameObject techniques;
 
         public Panel activePanel;
+        public bool Active => activePanel != Panel.None;
 
+        private List<Panel> _ignorePausePanels = new() { Panel.GameWon, Panel.GameLost, Panel.Credits };
         private void Awake()
         {
             Instance = this;
+            CloseAllPanels();
         }
-        
+
+        private void Update()
+        {
+            CharacterSheet.UniversalStopCsUpdateLoop = Active;
+            
+            if (!Input.GetKeyDown(KeyCode.Escape) || _ignorePausePanels.Contains(activePanel))
+            {
+                return;
+            }
+            
+            if (Active)
+            {
+                CloseAllPanels();
+            }
+            else
+            {
+                SwapPanel(Panel.PauseGame);
+            }
+        }
 
         public void CloseAllPanels()
         {

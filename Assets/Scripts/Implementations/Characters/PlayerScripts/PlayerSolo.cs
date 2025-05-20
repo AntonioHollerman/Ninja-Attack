@@ -18,8 +18,8 @@ namespace Implementations.Characters.PlayerScripts
             interactCode = KeyCode.F;
 
             attackCode = KeyCode.Space;
-            FirstTechnique = KeyCode.Q;
-            SecondTechnique = KeyCode.E;
+            firstTechniqueCode = KeyCode.Q;
+            secondTechniqueCode = KeyCode.E;
             
             StartCoroutine(WaitTillTechManagerActive());
         }
@@ -30,12 +30,10 @@ namespace Implementations.Characters.PlayerScripts
             techOne = TechniqueManager.Instance.LoadPlayerOneTechnique(
                 TechEnum.ElectricDash, 
                 this, 
-                FirstTechnique,
                 0);
             techTwo = TechniqueManager.Instance.LoadPlayerOneTechnique(
                 TechEnum.FireSword,
                 this, 
-                SecondTechnique, 
                 1);
         } 
     }
