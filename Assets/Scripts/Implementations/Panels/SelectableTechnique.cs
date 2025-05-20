@@ -45,6 +45,12 @@ namespace Implementations.Panels
 
         public void Click()
         {
+            if (master.selectedTechnique == this)
+            {
+                master.selectedTechnique = null;
+                outlineImage.color = master.basicOutlineColor;
+            }
+            
             if (_player.level < levelUnlock)
             {
                 EventDisplayManager.Instance.AddMessage($"To use '{tech}' you need to be level {levelUnlock}");

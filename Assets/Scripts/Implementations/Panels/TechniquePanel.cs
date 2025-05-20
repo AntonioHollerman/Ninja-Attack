@@ -26,6 +26,25 @@ namespace Implementations.Panels
             selectedTechnique = null;
         }
 
+        private void Update()
+        {
+            if (PanelManager.Instance.activePanel != Panel.Techniques)
+            {
+                if (workingSlot != null)
+                {
+                    workingSlot.outlineImage.color = basicOutlineColor;
+                }
+
+                if (selectedTechnique != null)
+                {
+                    selectedTechnique.outlineImage.color = basicOutlineColor;
+                }
+
+                workingSlot = null;
+                selectedTechnique = null;
+            }
+        }
+
         public void BackButton()
         {
             PanelManager.Instance.SwapPanel(Panel.PauseGame);

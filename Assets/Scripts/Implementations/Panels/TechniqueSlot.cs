@@ -39,6 +39,12 @@ namespace Implementations.Panels
 
         public void Click()
         {
+            if (master.workingSlot == this)
+            {
+                master.workingSlot = null;
+                outlineImage.color = master.basicOutlineColor;
+            }
+            
             if (master.workingSlot != null)
             {
                 master.workingSlot.outlineImage.color = master.basicOutlineColor;
