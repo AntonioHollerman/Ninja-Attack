@@ -73,6 +73,7 @@ namespace Implementations.Managers
             techScript.countDown = countDownTrans.gameObject.GetComponent<TextMeshProUGUI>();
             techScript.icon = iconGo.GetComponent<SpriteRenderer>();
             player.techDict[tech] = techScript;
+            techScript.iconGo = iconGo;
             return techScript;
         }
         

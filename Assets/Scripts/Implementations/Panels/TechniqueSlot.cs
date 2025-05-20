@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using BaseClasses;
 using Implementations.Managers;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Implementations.Panels
     {
         public TechniquePanel master;
         public Image outlineImage;
-        public SpriteRenderer sr;
+        public Image iconImage;
         public int techniqueSlot;
 
         private Player _player;
@@ -21,14 +22,18 @@ namespace Implementations.Panels
                 .transform
                 .GetChild(0)
                 .GetComponent<Player>();
+        }
 
+        private IEnumerator WaitForTechToLoad()
+        {
+            yield return new WaitUntil(() => _player.techOne != null);
             if (techniqueSlot == 1)
             {
-                sr.sprite = TechniqueManager.GetSprites(_player.techOne.GetTechEnum())[0];
+                iconImage.sprite = TechniqueManager.GetSprites(_player.techOne.GetTechEnum())[0];
             }
             else
             {
-                sr.sprite = TechniqueManager.GetSprites(_player.techOne.GetTechEnum())[1];
+                iconImage.sprite = TechniqueManager.GetSprites(_player.techOne.GetTechEnum())[1];
             }
         }
 

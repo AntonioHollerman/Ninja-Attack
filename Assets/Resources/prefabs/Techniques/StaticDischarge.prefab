@@ -45,13 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2789701398b9447e89eb8beeaf850efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 0
-  coolDown: 1
+  manaCost: 80
+  coolDown: 7
   parent: {fileID: 0}
   active: {fileID: 1320086062, guid: ba13e5729f57cdd4d853b67b5e5b356a, type: 3}
   notActive: {fileID: -585261997, guid: ba13e5729f57cdd4d853b67b5e5b356a, type: 3}
   countDown: {fileID: 0}
   icon: {fileID: 0}
+  iconGo: {fileID: 0}
   dischargeAnimationPrefab: {fileID: 6345832872046445668, guid: 084d869a805864841be0b449f337e67f, type: 3}
   frameStartHitBox: 17
   dischargeSound: {fileID: 8300000, guid: f909fb22039368948831ba5904b29d67, type: 3}

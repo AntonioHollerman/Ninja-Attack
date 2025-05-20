@@ -24,7 +24,6 @@ namespace Implementations.Panels
             
             workingSlot = null;
             selectedTechnique = null;
-            StartCoroutine(SelectListener());
         }
 
         public void BackButton()
@@ -37,39 +36,72 @@ namespace Implementations.Panels
             PanelManager.Instance.CloseAllPanels();    
         }
 
-        private IEnumerator SelectListener()
+        private void UpdateIconLoc()
         {
-            while (true)
+            foreach (var key in _player.techDict.Keys)
             {
-                yield return new WaitUntil(() => workingSlot != null && selectedTechnique != null);
-                if (selectedTechnique.tech == _player.techOne.GetTechEnum() || selectedTechnique.tech == _player.techTwo.GetTechEnum())
-                {
-                    workingSlot.outlineImage.color = basicOutlineColor;
-                    selectedTechnique.outlineImage.color = basicOutlineColor;
-                    
-                    workingSlot = null;
-                    selectedTechnique = null;
-                    continue;
-                }
-                
-                workingSlot.sr.sprite = TechniqueManager.GetSprites(selectedTechnique.tech)[0];
-                if (_player.techDict.ContainsKey(selectedTechnique.tech))
-                {
-                    if (workingSlot.techniqueSlot == 1)
-                    {
-                        _player.techOne = _player.techDict[selectedTechnique.tech];
-                    }
-                    else
-                    {
-                        _player.techTwo = _player.techDict[selectedTechnique.tech];
-                    }
-                    
-                    workingSlot = null;
-                    selectedTechnique = null;
-                    continue;
-                }
-                
+                _player.techDict[key].iconGo.SetActive(false);
             }
+            
+            _player.techOne.iconGo.SetActive(true);
+            _player.techTwo.iconGo.SetActive(true);
+            
+            TechniqueManager.Instance.PlayerOneMoveTechniqueIconPosition(_player.techOne.iconGo, 0);
+            TechniqueManager.Instance.PlayerOneMoveTechniqueIconPosition(_player.techTwo.iconGo, 1);
+        }
+
+        public void CheckForTechSwap()
+        {
+            if (selectedTechnique == null || workingSlot == null)
+            {
+                return;
+            }
+            Debug.Log("MADE IT!");
+            if (selectedTechnique.tech == _player.techOne.GetTechEnum() || selectedTechnique.tech == _player.techTwo.GetTechEnum())
+            {
+                workingSlot.outlineImage.color = basicOutlineColor;
+                selectedTechnique.outlineImage.color = basicOutlineColor;
+                    
+                workingSlot = null;
+                selectedTechnique = null;
+                return;
+            }
+            
+            workingSlot.iconImage.sprite = TechniqueManager.GetSprites(selectedTechnique.tech)[0];
+            if (_player.techDict.ContainsKey(selectedTechnique.tech))
+            {
+                if (workingSlot.techniqueSlot == 1)
+                {
+                    _player.techOne = _player.techDict[selectedTechnique.tech];
+                }
+                else
+                {
+                    _player.techTwo = _player.techDict[selectedTechnique.tech];
+                }
+            }
+            else
+            {
+                if (workingSlot.techniqueSlot == 1)
+                {
+                    _player.techOne = TechniqueManager.Instance.LoadPlayerOneTechnique(
+                        selectedTechnique.tech, 
+                        _player, 
+                        0);
+                }
+                else
+                {
+                    _player.techTwo = TechniqueManager.Instance.LoadPlayerOneTechnique(
+                        selectedTechnique.tech, 
+                        _player, 
+                        1);
+                }
+            }
+            
+            workingSlot.outlineImage.color = basicOutlineColor;
+            selectedTechnique.outlineImage.color = basicOutlineColor;
+            workingSlot = null;
+            selectedTechnique = null;
+            UpdateIconLoc();
         }
     }
 }

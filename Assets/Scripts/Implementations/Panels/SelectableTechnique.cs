@@ -13,9 +13,9 @@ namespace Implementations.Panels
         public Image outlineImage;
 
         public GameObject lockedGo;
-        public SpriteRenderer sr;
-        public Sprite active;
-        public Sprite notActive;
+        public Image iconImage;
+        private Sprite _active;
+        private Sprite _notActive;
         
         public int levelUnlock;
         public TechEnum tech;
@@ -28,16 +28,18 @@ namespace Implementations.Panels
                 .transform
                 .GetChild(0)
                 .GetComponent<Player>();
-            
+
+            _active = TechniqueManager.GetSprites(tech)[0];
+            _notActive = TechniqueManager.GetSprites(tech)[1];
             if (_player.level < levelUnlock || tech == TechEnum.IceShield)
             {
                 lockedGo.SetActive(true);
-                sr.sprite = notActive;
+                iconImage.sprite = _notActive;
             }
             else
             {
                 lockedGo.SetActive(false);
-                sr.sprite = active;
+                iconImage.sprite = _active;
             }
         }
 

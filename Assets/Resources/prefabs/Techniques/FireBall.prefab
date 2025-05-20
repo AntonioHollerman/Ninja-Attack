@@ -45,13 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ef6cba0f9f43f993a7e34c594bdc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 0
-  coolDown: 1
+  manaCost: 60
+  coolDown: 7
   parent: {fileID: 0}
   active: {fileID: 343990942, guid: 19c08825398e41f41a57f20c75e28965, type: 3}
   notActive: {fileID: -1115308283, guid: 19c08825398e41f41a57f20c75e28965, type: 3}
   countDown: {fileID: 0}
   icon: {fileID: 0}
+  iconGo: {fileID: 0}
   explosionPrefab: {fileID: 948455010175075534, guid: bbf7e072d13f6a34797ff011e8069174, type: 3}
   fireballPrefab: {fileID: 7133896301033899153, guid: eb59a705773c0274183253fa2798ea39, type: 3}
   yelloActive: {fileID: 890661086, guid: 19c08825398e41f41a57f20c75e28965, type: 3}
