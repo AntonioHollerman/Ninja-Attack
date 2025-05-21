@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9159287446009206873}
   - component: {fileID: 5435357905304151229}
   m_Layer: 0
-  m_Name: Ice Shield
+  m_Name: IceShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

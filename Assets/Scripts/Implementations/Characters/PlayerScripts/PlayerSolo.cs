@@ -28,13 +28,17 @@ namespace Implementations.Characters.PlayerScripts
         {
             yield return new WaitUntil(() => TechniqueManager.Instance != null);
             techOne = TechniqueManager.Instance.LoadPlayerOneTechnique(
-                TechEnum.FlashStep, 
+                TechEnum.IceShield, 
                 this, 
                 0);
-            techTwo = TechniqueManager.Instance.LoadPlayerOneTechnique(
-                TechEnum.FireSword,
-                this, 
-                1);
+            // techOne = TechniqueManager.Instance.LoadPlayerOneTechnique(
+            //     TechEnum.FlashStep, 
+            //     this, 
+            //     0);
+            // techTwo = TechniqueManager.Instance.LoadPlayerOneTechnique(
+            //     TechEnum.FireSword,
+            //     this, 
+            //     1);
         } 
     }
 }
