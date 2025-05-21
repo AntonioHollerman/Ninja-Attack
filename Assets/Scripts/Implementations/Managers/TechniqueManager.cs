@@ -116,10 +116,11 @@ namespace Implementations.Managers
                 TechEnum.FireBall        => "prefabs/Techniques/FireBall",
                 TechEnum.FireSword       => "prefabs/Techniques/FireSword",
                 TechEnum.StaticDischarge => "prefabs/Techniques/StaticDischarge",
-                TechEnum.FlashStep    => "prefabs/Techniques/FlashStep",
+                TechEnum.FlashStep       => "prefabs/Techniques/FlashStep",
                 TechEnum.ElectricWhip    => "prefabs/Techniques/ElectricWhip",
                 TechEnum.FireRain        => "prefabs/Techniques/FireRain",
-                TechEnum.FireSummon     => "prefabs/Techniques/FireSummon",
+                TechEnum.FireSummon      => "prefabs/Techniques/FireSummon",
+                TechEnum.IceShield       => "prefabs/Techniques/IceShield",
                 _ => null
             };
         }
@@ -131,8 +132,8 @@ namespace Implementations.Managers
                 TechEnum.FireBall        => "prefabs/PlayerUI/TechniquesIcon/FireBall",
                 TechEnum.FireSword       => "prefabs/PlayerUI/TechniquesIcon/FireSword",
                 TechEnum.StaticDischarge => "prefabs/PlayerUI/TechniquesIcon/Static Discharge",
-                TechEnum.FlashStep    => "prefabs/PlayerUI/TechniquesIcon/Flash Step",
-                TechEnum.IceShield       => null,
+                TechEnum.FlashStep       => "prefabs/PlayerUI/TechniquesIcon/Flash Step",
+                TechEnum.IceShield       => "prefabs/PlayerUI/TechniquesIcon/Ice Shield",
                 TechEnum.ElectricWhip    => null,
                 TechEnum.FireRain        => null,
                 TechEnum.FireSummon      => null,
@@ -147,7 +148,7 @@ namespace Implementations.Managers
                 TechEnum.FireBall        => Resources.LoadAll<Sprite>("sprites/ui/FireballIcon"),
                 TechEnum.FireSword       => Resources.LoadAll<Sprite>("sprites/ui/FireSwordIcon"),
                 TechEnum.StaticDischarge => Resources.LoadAll<Sprite>("sprites/ui/StaticDischargeIcon"),
-                TechEnum.FlashStep    => Resources.LoadAll<Sprite>("sprites/ui/FlashStepIcon"),
+                TechEnum.FlashStep       => Resources.LoadAll<Sprite>("sprites/ui/FlashStepIcon"),
                 TechEnum.IceShield       => Resources.LoadAll<Sprite>("sprites/ui/ShieldIcon"),
                 TechEnum.ElectricWhip    => null,
                 TechEnum.FireRain        => null,
