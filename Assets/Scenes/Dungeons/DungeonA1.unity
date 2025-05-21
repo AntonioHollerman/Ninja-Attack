@@ -2747,7 +2747,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherPair: {fileID: 803814791}
-  destinationLevelType: 0
 --- !u!1 &286783873
 GameObject:
   m_ObjectHideFlags: 0
@@ -9443,6 +9442,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2134914456}
     m_Modifications:
+    - target: {fileID: -3583327510940569621, guid: ae321ed4c15d63f43b0e5123046e789a, type: 3}
+      propertyPath: gameOverMusic
+      value: 
+      objectReference: {fileID: 836785506}
     - target: {fileID: 183556400126484552, guid: ae321ed4c15d63f43b0e5123046e789a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -9608,6 +9611,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8b6c48a55e40d48da000a08bdf050a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &836785506 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3649723956165121398, guid: ae321ed4c15d63f43b0e5123046e789a, type: 3}
+  m_PrefabInstance: {fileID: 836785503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &850938317
 GameObject:
   m_ObjectHideFlags: 0
@@ -10732,7 +10740,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherPair: {fileID: 1726786983}
-  destinationLevelType: 0
 --- !u!1001 &949384858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11161,7 +11168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherPair: {fileID: 2079152260}
-  destinationLevelType: 0
 --- !u!1 &990337878
 GameObject:
   m_ObjectHideFlags: 0
@@ -12733,7 +12739,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherPair: {fileID: 1528529943}
-  destinationLevelType: 0
 --- !u!1001 &1168207561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17853,6 +17858,10 @@ PrefabInstance:
     - target: {fileID: 1687015946921620352, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
       propertyPath: m_audioClip
       value: 
+      objectReference: {fileID: 8300000, guid: 7b91f10924e412647a46a8a9c7beb6ab, type: 3}
+    - target: {fileID: 1687015946921620352, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3804134655937570654, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
       propertyPath: m_Name
@@ -17861,11 +17870,19 @@ PrefabInstance:
     - target: {fileID: 7092804097510406971, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
       propertyPath: level3Music
       value: 
-      objectReference: {fileID: 8300000, guid: c11711632a63ffd41987619346c6f2b6, type: 3}
+      objectReference: {fileID: 8300000, guid: 7b91f10924e412647a46a8a9c7beb6ab, type: 3}
     - target: {fileID: 7092804097510406971, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
       propertyPath: bossRoomMusic
       value: 
-      objectReference: {fileID: 8300000, guid: c11711632a63ffd41987619346c6f2b6, type: 3}
+      objectReference: {fileID: 8300000, guid: 7b91f10924e412647a46a8a9c7beb6ab, type: 3}
+    - target: {fileID: 7092804097510406971, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
+      propertyPath: level1_2Music
+      value: 
+      objectReference: {fileID: 8300000, guid: 7b91f10924e412647a46a8a9c7beb6ab, type: 3}
+    - target: {fileID: 7092804097510406971, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 1962679644}
     - target: {fileID: 7369187198170295206, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2430382
@@ -19233,6 +19250,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2134914456}
     m_Modifications:
+    - target: {fileID: -3583327510940569621, guid: ae321ed4c15d63f43b0e5123046e789a, type: 3}
+      propertyPath: gameOverMusic
+      value: 
+      objectReference: {fileID: 1676634190}
     - target: {fileID: 183556400126484552, guid: ae321ed4c15d63f43b0e5123046e789a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -19403,6 +19424,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8b6c48a55e40d48da000a08bdf050a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1676634190 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3649723956165121398, guid: ae321ed4c15d63f43b0e5123046e789a, type: 3}
+  m_PrefabInstance: {fileID: 1676634186}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1691811791
 GameObject:
   m_ObjectHideFlags: 0
@@ -19902,7 +19928,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherPair: {fileID: 946474081}
-  destinationLevelType: 0
 --- !u!1001 &1728521284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22800,6 +22825,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.979419, y: 0.445937, z: 1}
   m_Center: {x: -1.028097, y: 0, z: 0}
+--- !u!82 &1962679644 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1687015946921620352, guid: 6d905a6a0b5975742b8822c596c87ae7, type: 3}
+  m_PrefabInstance: {fileID: 1621124641}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1964345831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 379669324016341581, guid: b96dcc9ab8074e143ba9f578e19064ae, type: 3}
@@ -24136,7 +24166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherPair: {fileID: 988579489}
-  destinationLevelType: 0
 --- !u!1 &2096631901
 GameObject:
   m_ObjectHideFlags: 0

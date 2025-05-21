@@ -10,8 +10,7 @@ namespace Implementations.Teleporting
         public TeleportPair otherPair;
         private float _yOffset;
 
-        // New public field to specify destination type for music
-        public DungeonLevelType destinationLevelType;
+        // New public field to specify destination type for musi
 
         private void Awake()
         {
@@ -44,11 +43,7 @@ namespace Implementations.Teleporting
                 p.interacting = false;
                 p.pTransform.position = otherPair.transform.position + Vector3.up * _yOffset;
 
-                // Change music according to destination level type
-                if (MusicManager.Instance != null)
-                {
-                    MusicManager.Instance.ChangeMusic(otherPair.destinationLevelType);
-                }
+             
             }
         }
 

@@ -1,29 +1,18 @@
 using UnityEngine;
 
-public enum DungeonLevelType
-{
-    Level1_2,
-    Level3,
-    BossRoom
-}
-
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;
 
-    public AudioClip level1_2Music;
-    public AudioClip level3Music;
-    public AudioClip bossRoomMusic;
+    public AudioSource backgroundMusic;
 
-    private AudioSource audioSource;
-
-    private void Awake()
+    void Awake()
     {
+        // Singleton pattern to easily access this instance
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-            audioSource = GetComponent<AudioSource>();
+            DontDestroyOnLoad(gameObject); // Persist between scenes if needed
         }
         else
         {
@@ -31,27 +20,24 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    public void ChangeMusic(DungeonLevelType levelType)
+    void Start()
     {
-        AudioClip clipToPlay = null;
-        switch (levelType)
-        {
-            case DungeonLevelType.Level1_2:
-                clipToPlay = level1_2Music;
-                break;
-            case DungeonLevelType.Level3:
-                clipToPlay = level3Music;
-                break;
-            case DungeonLevelType.BossRoom:
-                clipToPlay = bossRoomMusic;
-                break;
-        }
+        PlayBackgroundMusic();
+    }
 
-        if (clipToPlay != null && audioSource.clip != clipToPlay)
+    public void PlayBackgroundMusic()
+    {
+        if (backgroundMusic != null && !backgroundMusic.isPlaying)
         {
-            audioSource.Stop();
-            audioSource.clip = clipToPlay;
-            audioSource.Play();
+            backgroundMusic.Play();
+        }
+    }
+
+    public void StopBackgroundMusic()
+    {
+        if (backgroundMusic != null && backgroundMusic.isPlaying)
+        {
+            backgroundMusic.Stop();
         }
     }
 }
