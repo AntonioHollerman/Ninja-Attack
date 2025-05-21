@@ -65,7 +65,7 @@ namespace BaseClasses
         {
             if (lastHit is Player player)
             {
-                player.AddExp(2 + (int) (10 + Math.Log(level) * Math.Pow(level, 2) / 4));
+                player.AddExp(2 + (int) (10 + Math.Log(level) * Math.Pow(level, 2) / 3));
             }
 
             StartCoroutine(RunHurtAnimation());

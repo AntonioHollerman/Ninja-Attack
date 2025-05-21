@@ -196,7 +196,7 @@ namespace BaseClasses
 
         private int CalcExpNeeded()
         {
-            return (int) (10 + Math.Log(level) * Math.Pow(level, 2) * 1.5);
+            return (int) (10 + Math.Log(level) * Math.Pow(level, 2));
         }
 
         public void AddExp(int exp)
