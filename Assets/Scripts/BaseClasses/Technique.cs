@@ -26,6 +26,7 @@ namespace BaseClasses
 
         public TextMeshProUGUI countDown;
         public SpriteRenderer icon;
+        public GameObject iconGo;
         
         public int ManaCost { get; private set; } // How much implemented technique cost
         public float CoolDown { get; private set; } // How many seconds is the cooldown
@@ -33,6 +34,7 @@ namespace BaseClasses
         protected bool Ready => parent.Mana >= ManaCost && Timer <= 0;
 
         protected abstract void Execute();
+        public abstract TechEnum GetTechEnum();
 
         public virtual void ActivateTech()
         {

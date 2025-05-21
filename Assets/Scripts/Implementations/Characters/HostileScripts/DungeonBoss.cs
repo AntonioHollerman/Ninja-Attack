@@ -43,8 +43,8 @@ namespace Implementations.Characters.HostileScripts
         {
             while (true)
             {
-                yield return new WaitForSeconds(3);
                 yield return new WaitUntil(() => !disable && !IsStunned && !UniversalStopCsUpdateLoop);
+                yield return new WaitForSeconds(3);
                 _tech1.ActivateTech();
             }
         }
@@ -53,8 +53,8 @@ namespace Implementations.Characters.HostileScripts
         {
             while (true)
             {
-                yield return new WaitForSeconds(5);
                 yield return new WaitUntil(() => !disable && !IsStunned && !UniversalStopCsUpdateLoop);
+                yield return new WaitForSeconds(5);
                 _tech2.ActivateTech();
             }
         }
@@ -63,8 +63,8 @@ namespace Implementations.Characters.HostileScripts
         {
             while (true)
             {
-                yield return new WaitForSeconds(2);
                 yield return new WaitUntil(() => !disable && !IsStunned && !UniversalStopCsUpdateLoop);
+                yield return new WaitForSeconds(2);
                 _tech3.ActivateTech();
                 yield return new WaitForSeconds(3);
             }

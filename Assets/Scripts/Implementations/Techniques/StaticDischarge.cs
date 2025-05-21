@@ -66,5 +66,10 @@ namespace Implementations.Techniques
                 audioSource.PlayOneShot(dischargeSound); // Play the discharge sound
             }
         }
+        
+        public override TechEnum GetTechEnum()
+        {
+            return TechEnum.StaticDischarge;
+        }
     }
 }

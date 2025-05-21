@@ -41,6 +41,7 @@ namespace BaseClasses
         public int ExpNeeded {get; private set; }
         public int Exp { get; private set; }
 
+        public Dictionary<TechEnum, Technique> techDict = new Dictionary<TechEnum, Technique>();
         
         protected override void UpdateWrapper()
         {

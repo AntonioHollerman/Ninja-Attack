@@ -159,6 +159,8 @@ MonoBehaviour:
   deactivateOnStun: 1
   atkMultiplier: 0.6
   startHitBoxIndex: 4
+  swingSound: {fileID: 0}
+  hitSound: {fileID: 0}
 --- !u!212 &5913520183821156212
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -317,7 +319,18 @@ MonoBehaviour:
   spellCastPath: 
   attackPath: sprites/Characters/Hostiles/Zombie + Sword Animations/slash_oversize
   walkPath: sprites/Characters/Hostiles/Zombie + Sword Animations/walk
-  idlePath: sprites/Characters/Hostiles/Zombie + Sword Animations/idle
+  leftSet:
+  - {fileID: 1852069284, guid: 73fa3cb010a7d544385565dc4c81c84f, type: 3}
+  - {fileID: 1435082245, guid: 73fa3cb010a7d544385565dc4c81c84f, type: 3}
+  downSet:
+  - {fileID: 1155951090, guid: 73fa3cb010a7d544385565dc4c81c84f, type: 3}
+  - {fileID: 785344128, guid: 73fa3cb010a7d544385565dc4c81c84f, type: 3}
+  rightSet:
+  - {fileID: -458728704, guid: 73fa3cb010a7d544385565dc4c81c84f, type: 3}
+  - {fileID: -2057027103, guid: 73fa3cb010a7d544385565dc4c81c84f, type: 3}
+  upSet:
+  - {fileID: 781500951, guid: 73fa3cb010a7d544385565dc4c81c84f, type: 3}
+  - {fileID: -1598988201, guid: 73fa3cb010a7d544385565dc4c81c84f, type: 3}
   hurtFps: 10
   spellCastFps: 5
   attackFps: 15

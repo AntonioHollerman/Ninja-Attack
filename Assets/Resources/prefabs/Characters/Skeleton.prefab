@@ -188,7 +188,18 @@ MonoBehaviour:
   spellCastPath: 
   attackPath: sprites/Characters/Hostiles/Skeleton + Bow Animations/shoot
   walkPath: sprites/Characters/Hostiles/Skeleton + Bow Animations/walk_128
-  idlePath: sprites/Characters/Hostiles/Skeleton + Bow Animations/idle
+  leftSet:
+  - {fileID: 1492070674, guid: 7e8c1793023702c408d93732e56c07bf, type: 3}
+  - {fileID: -698542283, guid: 7e8c1793023702c408d93732e56c07bf, type: 3}
+  downSet:
+  - {fileID: -991530838, guid: 7e8c1793023702c408d93732e56c07bf, type: 3}
+  - {fileID: -1410981728, guid: 7e8c1793023702c408d93732e56c07bf, type: 3}
+  rightSet:
+  - {fileID: -258405567, guid: 7e8c1793023702c408d93732e56c07bf, type: 3}
+  - {fileID: 579379751, guid: 7e8c1793023702c408d93732e56c07bf, type: 3}
+  upSet:
+  - {fileID: -1632555301, guid: 7e8c1793023702c408d93732e56c07bf, type: 3}
+  - {fileID: -385083154, guid: 7e8c1793023702c408d93732e56c07bf, type: 3}
   hurtFps: 10
   spellCastFps: 5
   attackFps: 12

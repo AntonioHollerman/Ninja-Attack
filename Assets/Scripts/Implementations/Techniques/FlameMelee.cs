@@ -82,5 +82,10 @@ namespace Implementations.Techniques
                 audioSource.PlayOneShot(hitSound); // Play the hit sound
             }
         }
+        
+        public override TechEnum GetTechEnum()
+        {
+            return TechEnum.FireSword;
+        }
     }
 }

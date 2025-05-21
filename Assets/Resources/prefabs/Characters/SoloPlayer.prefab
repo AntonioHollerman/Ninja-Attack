@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4268309601548778867}
   - component: {fileID: 7386521798799422495}
-  - component: {fileID: 2130497802505760087}
   - component: {fileID: 5941878831985922089}
   m_Layer: 0
   m_Name: InteractBubble
@@ -47,20 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6dbef8b80e0401d84174f6c9450fc09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 6027435568826962149}
---- !u!114 &2130497802505760087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501011938275178440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6dbef8b80e0401d84174f6c9450fc09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 6027435568826962149}
+  target: {fileID: 5636730643232920121}
+  interactText: {fileID: 3409015363804978712}
 --- !u!212 &5941878831985922089
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -474,7 +461,18 @@ MonoBehaviour:
   spellCastPath: sprites/Characters/Players/Main Character + Katana Animations/spellcast
   attackPath: sprites/Characters/Players/Main Character + Katana Animations/slash_128
   walkPath: sprites/Characters/Players/Main Character + Katana Animations/walk_128
-  idlePath: sprites/Characters/Players/Main Character + Katana Animations/combat_idle
+  leftSet:
+  - {fileID: -635571222, guid: 03e2338327cf004469d78e1805738a45, type: 3}
+  - {fileID: -1022220923, guid: 03e2338327cf004469d78e1805738a45, type: 3}
+  downSet:
+  - {fileID: -1184774118, guid: 03e2338327cf004469d78e1805738a45, type: 3}
+  - {fileID: 802770850, guid: 03e2338327cf004469d78e1805738a45, type: 3}
+  rightSet:
+  - {fileID: -1112484377, guid: 03e2338327cf004469d78e1805738a45, type: 3}
+  - {fileID: 1163703765, guid: 03e2338327cf004469d78e1805738a45, type: 3}
+  upSet:
+  - {fileID: 1394541412, guid: 03e2338327cf004469d78e1805738a45, type: 3}
+  - {fileID: 852906536, guid: 03e2338327cf004469d78e1805738a45, type: 3}
   hurtFps: 10
   spellCastFps: 12
   attackFps: 10
@@ -520,7 +518,7 @@ MonoBehaviour:
   lastHit: {fileID: 0}
   body: {fileID: 328391010336356674}
   pTransform: {fileID: 2584723929660046766}
-  level: 3
+  level: 20
   baseHp: 9
   baseAtk: 4
   baseMana: 75
@@ -538,6 +536,8 @@ MonoBehaviour:
   leftCode: 0
   rightCode: 0
   interactCode: 0
+  firstTechniqueCode: 0
+  secondTechniqueCode: 0
   interacting: 0
   defeatedBoss: 0
 --- !u!1 &7955815892308536104

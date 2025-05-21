@@ -106,7 +106,18 @@ MonoBehaviour:
   spellCastPath: 
   attackPath: sprites/Characters/Hostiles/ArmorZombie/slash_oversize
   walkPath: sprites/Characters/Hostiles/ArmorZombie/walk
-  idlePath: sprites/Characters/Hostiles/ArmorZombie/combat_idle
+  leftSet:
+  - {fileID: 1587819841, guid: 289f48a6e4a1eb543be6d1e1eecf0c87, type: 3}
+  - {fileID: 1858782308, guid: 289f48a6e4a1eb543be6d1e1eecf0c87, type: 3}
+  downSet:
+  - {fileID: -1547293268, guid: 289f48a6e4a1eb543be6d1e1eecf0c87, type: 3}
+  - {fileID: 321269158, guid: 289f48a6e4a1eb543be6d1e1eecf0c87, type: 3}
+  rightSet:
+  - {fileID: -1795282292, guid: 289f48a6e4a1eb543be6d1e1eecf0c87, type: 3}
+  - {fileID: 794822217, guid: 289f48a6e4a1eb543be6d1e1eecf0c87, type: 3}
+  upSet:
+  - {fileID: 1312920815, guid: 289f48a6e4a1eb543be6d1e1eecf0c87, type: 3}
+  - {fileID: -2051312991, guid: 289f48a6e4a1eb543be6d1e1eecf0c87, type: 3}
   hurtFps: 10
   spellCastFps: 5
   attackFps: 15
@@ -323,6 +334,8 @@ MonoBehaviour:
   deactivateOnStun: 1
   atkMultiplier: 0.6
   startHitBoxIndex: 4
+  swingSound: {fileID: 0}
+  hitSound: {fileID: 0}
 --- !u!212 &3902510357545478212
 SpriteRenderer:
   m_ObjectHideFlags: 0

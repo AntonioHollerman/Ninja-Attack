@@ -167,5 +167,10 @@ namespace Implementations.Techniques
                 Physics.IgnoreCollision(_parentCollider, cs.gameObject.GetComponent<Collider>(), false);
             }
         }
+        
+        public override TechEnum GetTechEnum()
+        {
+            return TechEnum.FlashStep;
+        }
     }
 }

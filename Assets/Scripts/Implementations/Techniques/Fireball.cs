@@ -20,7 +20,6 @@ namespace Implementations.Techniques
         public Sprite yelloActive;
         public float flySpeed;
         public float zDisplacement;
-        public float spellCastFps = 12f;
 
         public AudioClip fireballSound; // Sound effect for the fireball flying
         public AudioClip explosionSound; // Sound effect for the explosion
@@ -95,14 +94,6 @@ namespace Implementations.Techniques
             return successful;
         }
 
-        private void NormalizeSpriteDirection(Transform sprite, Player playerScript)
-        {
-            if (playerScript.pTransform.forward.x != 0)
-            {
-                sprite.transform.localRotation = Quaternion.Euler(0, 90, -90);
-            }
-        }
-
         private void FirstActivation()
         {
             audioSource = GetComponent<AudioSource>();
@@ -118,12 +109,7 @@ namespace Implementations.Techniques
                 parent.pTransform.position,
                 parent.pTransform.rotation);
             _curFireball.transform.Translate(Vector3.forward * zDisplacement);
-
-            if (parent is Player playerScript)
-            {
-                Transform sprite = _curFireball.transform.Find("sprite");
-                NormalizeSpriteDirection(sprite, playerScript);
-            }
+            
 
             FireballCollider ballCollider = _curFireball.GetComponent<FireballCollider>();
             ballCollider.parentTech = this;
@@ -173,6 +159,11 @@ namespace Implementations.Techniques
             {
                 audioSource.PlayOneShot(explosionSound); // Play the explosion sound
             }
+        }
+        
+        public override TechEnum GetTechEnum()
+        {
+            return TechEnum.FireBall;
         }
     }
 }
