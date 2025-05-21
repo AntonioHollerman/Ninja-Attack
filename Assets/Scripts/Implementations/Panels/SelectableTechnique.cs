@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using BaseClasses;
 using Implementations.Managers;
 using TMPro;
@@ -41,8 +42,16 @@ namespace Implementations.Panels
                 lockedGo.SetActive(false);
                 iconImage.sprite = _active;
             }
+
+            StartCoroutine(WaitForLevel());
         }
 
+        private IEnumerator WaitForLevel()
+        {
+            yield return new WaitUntil(() => _player.level >= levelUnlock);
+            lockedGo.SetActive(false);
+            iconImage.sprite = _active;
+        }
         public void Click()
         {
             if (master.selectedTechnique == this)

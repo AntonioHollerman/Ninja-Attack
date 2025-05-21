@@ -24,16 +24,15 @@ namespace Implementations.Panels
                 .GetComponent<Player>();
         }
 
-        private IEnumerator WaitForTechToLoad()
+        public void LoadTech()
         {
-            yield return new WaitUntil(() => _player.techOne != null);
             if (techniqueSlot == 1)
             {
                 iconImage.sprite = TechniqueManager.GetSprites(_player.techOne.GetTechEnum())[0];
             }
             else
             {
-                iconImage.sprite = TechniqueManager.GetSprites(_player.techOne.GetTechEnum())[1];
+                iconImage.sprite = TechniqueManager.GetSprites(_player.techTwo.GetTechEnum())[0];
             }
         }
 

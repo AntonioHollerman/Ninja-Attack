@@ -75,7 +75,7 @@ namespace Implementations.Panels
             {
                 return;
             }
-            Debug.Log("MADE IT!");
+
             if (selectedTechnique.tech == _player.techOne.GetTechEnum() || selectedTechnique.tech == _player.techTwo.GetTechEnum())
             {
                 workingSlot.outlineImage.color = basicOutlineColor;

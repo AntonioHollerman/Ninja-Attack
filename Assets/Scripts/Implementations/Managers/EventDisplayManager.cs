@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using BaseClasses;
 using TMPro;
 using UnityEngine;
 
@@ -13,9 +14,17 @@ namespace Implementations.Managers
         public TextMeshPro text;
         public float changePerSecond;
 
+        private Player _player;
+        private float _duration;
+        
         private List<string> _toDisplay = new List<string>(); 
         private void Awake()
         {
+            _player = GameObject.Find("SoloPlayer")
+                .transform
+                .GetChild(0)
+                .GetComponent<Player>();
+            
             Instance = this;
             text.color = new Color(
                 text.color.r,
@@ -31,12 +40,23 @@ namespace Implementations.Managers
             
             
             StartCoroutine(DisplayListener());
+            StartCoroutine(WaitForLevel());
         }
 
-        public void AddMessage(string message)
+        private IEnumerator WaitForLevel()
+        {
+            yield return new WaitUntil(() => _player.level >= 8);
+            Instance.AddMessage("Fire ball unlocked! Open 'technique' in pause menu to equip it!", 5);
+
+            yield return new WaitUntil(() => _player.level >= 10);
+            Instance.AddMessage("Static unlocked! Open 'technique' in pause menu to equip it!", 5);
+        }
+
+        public void AddMessage(string message, float duration = 2.5f)
         {
             if (!_toDisplay.Contains(message))
             {
+                _duration = duration;
                 _toDisplay.Add(message);
             }
         }
@@ -69,7 +89,7 @@ namespace Implementations.Managers
                     yield return null;
                 }
 
-                yield return new WaitForSeconds(2.5f);
+                yield return new WaitForSeconds(_duration);
                 
                 // Fade out
                 a = 1f;
