@@ -56,9 +56,8 @@ MonoBehaviour:
   explosionPrefab: {fileID: 948455010175075534, guid: bbf7e072d13f6a34797ff011e8069174, type: 3}
   fireballPrefab: {fileID: 7133896301033899153, guid: eb59a705773c0274183253fa2798ea39, type: 3}
   yelloActive: {fileID: 890661086, guid: 19c08825398e41f41a57f20c75e28965, type: 3}
-  flySpeed: 3
+  flySpeed: 1.7
   zDisplacement: 0.5
-  spellCastFps: 12
   fireballSound: {fileID: 8300000, guid: bc593de66c2581d4f9c5629be0f40a03, type: 3}
   explosionSound: {fileID: 8300000, guid: 021142d24bf7f9940875d08276a24768, type: 3}
 --- !u!82 &4337399520701814701
