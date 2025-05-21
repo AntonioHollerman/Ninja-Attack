@@ -20,7 +20,13 @@ namespace Implementations.Managers
         public string spellCastPath;
         public string attackPath;
         public string walkPath;
-        public string idlePath;
+
+        [Header("Idle Animation Set")] 
+        public Sprite[] leftSet;
+        public Sprite[] downSet;
+        public Sprite[] rightSet;
+        public Sprite[] upSet;
+        
 
         [Header("Animations FPS")] 
         public float hurtFps;
@@ -173,10 +179,7 @@ namespace Implementations.Managers
                 LoadAnimation(AnimationState.Walk, walkPath);
             }
 
-            if (idlePath != null)
-            {
-                LoadAnimation(AnimationState.Idle, idlePath);
-            }
+            _animations[AnimationState.Idle] = new AnimationSet(upSet, downSet, rightSet, leftSet);
             
             curState = AnimationState.Walk;
             StartCoroutine(StartAnimation());

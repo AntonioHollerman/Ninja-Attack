@@ -188,7 +188,18 @@ MonoBehaviour:
   spellCastPath: 
   attackPath: sprites/Characters/Hostiles/ArmorSkeleton/shoot
   walkPath: sprites/Characters/Hostiles/ArmorSkeleton/walk_128
-  idlePath: sprites/Characters/Hostiles/ArmorSkeleton/idle
+  leftSet:
+  - {fileID: 1243621732, guid: 471edd2bbe29d7e4f95f269c22006d53, type: 3}
+  - {fileID: 1880140837, guid: 471edd2bbe29d7e4f95f269c22006d53, type: 3}
+  downSet:
+  - {fileID: 1612466656, guid: 471edd2bbe29d7e4f95f269c22006d53, type: 3}
+  - {fileID: -909827927, guid: 471edd2bbe29d7e4f95f269c22006d53, type: 3}
+  rightSet:
+  - {fileID: 634102959, guid: 471edd2bbe29d7e4f95f269c22006d53, type: 3}
+  - {fileID: -974008825, guid: 471edd2bbe29d7e4f95f269c22006d53, type: 3}
+  upSet:
+  - {fileID: 1137062620, guid: 471edd2bbe29d7e4f95f269c22006d53, type: 3}
+  - {fileID: -1124030041, guid: 471edd2bbe29d7e4f95f269c22006d53, type: 3}
   hurtFps: 10
   spellCastFps: 5
   attackFps: 12

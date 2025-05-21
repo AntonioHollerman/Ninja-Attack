@@ -188,7 +188,18 @@ MonoBehaviour:
   spellCastPath: sprites/Characters/Hostiles/Villian + Sword/spellcast
   attackPath: sprites/Characters/Hostiles/Villian + Sword/slash
   walkPath: sprites/Characters/Hostiles/Villian + Sword/walk
-  idlePath: sprites/Characters/Hostiles/Villian + Sword/combat_idle
+  leftSet:
+  - {fileID: -1255707282, guid: dced2aed70887b4449068a5de48f969c, type: 3}
+  - {fileID: 1719944970, guid: dced2aed70887b4449068a5de48f969c, type: 3}
+  downSet:
+  - {fileID: 1288591622, guid: dced2aed70887b4449068a5de48f969c, type: 3}
+  - {fileID: -1846138866, guid: dced2aed70887b4449068a5de48f969c, type: 3}
+  rightSet:
+  - {fileID: 2020219835, guid: dced2aed70887b4449068a5de48f969c, type: 3}
+  - {fileID: 2138627159, guid: dced2aed70887b4449068a5de48f969c, type: 3}
+  upSet:
+  - {fileID: 721299370, guid: dced2aed70887b4449068a5de48f969c, type: 3}
+  - {fileID: 213961641, guid: dced2aed70887b4449068a5de48f969c, type: 3}
   hurtFps: 10
   spellCastFps: 5
   attackFps: 15
