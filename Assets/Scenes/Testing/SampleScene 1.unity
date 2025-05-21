@@ -1031,11 +1031,73 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5149400739302457942, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+--- !u!1001 &5465776794132048591
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5304866387081503405, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_Name
+      value: Ice Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 5435357905304151229, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: active
+      value: 
+      objectReference: {fileID: -181014432, guid: fc8e111899aa191439762e6aefa87c33, type: 3}
+    - target: {fileID: 5435357905304151229, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: notActive
+      value: 
+      objectReference: {fileID: 643721704, guid: fc8e111899aa191439762e6aefa87c33, type: 3}
+    - target: {fileID: 9159287446009206873, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.7963684
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159287446009206873, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.519923
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159287446009206873, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159287446009206873, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159287446009206873, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159287446009206873, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159287446009206873, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159287446009206873, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159287446009206873, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159287446009206873, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab16f6b3e1aa21c4ebf72fa708aa67a9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1048,3 +1110,4 @@ SceneRoots:
   - {fileID: 903010291}
   - {fileID: 89476019}
   - {fileID: 5449163802549579666}
+  - {fileID: 5465776794132048591}

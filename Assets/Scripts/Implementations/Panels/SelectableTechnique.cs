@@ -22,6 +22,20 @@ namespace Implementations.Panels
         
         private Player _player;
 
+        private void OnEnable()
+        {
+            if (_player.level < levelUnlock || tech == TechEnum.IceShield)
+            {
+                lockedGo.SetActive(true);
+                iconImage.sprite = _notActive;
+            }
+            else
+            {
+                lockedGo.SetActive(false);
+                iconImage.sprite = _active;
+            }
+        }
+
         private void Awake()
         {
             _player = GameObject.Find("SoloPlayer")
