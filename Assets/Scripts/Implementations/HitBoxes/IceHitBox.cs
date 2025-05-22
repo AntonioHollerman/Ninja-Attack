@@ -13,18 +13,18 @@ namespace Implementations.HitBoxes
         {
             cs.DealDamage(absorbedDmg, parent);
             parent.StartCoroutine(cs.SlowDown(effectDuration));
-            parent.StartCoroutine(SpawnEffect(cs.transform.parent));
+            parent.StartCoroutine(SpawnEffect(cs));
             cs.Vulnerable(effectDuration);
-            
         }
 
-        private IEnumerator SpawnEffect(Transform target)
+        private IEnumerator SpawnEffect(CharacterSheet target)
         {
-            GameObject effect = Instantiate(iceHitMark, target.position, iceHitMark.transform.rotation);
+            Transform tarTransform = target.transform.parent;
+            GameObject effect = Instantiate(iceHitMark, tarTransform.position, iceHitMark.transform.rotation);
             float time = 0;
-            while (time < effectDuration)
+            while (time < effectDuration && target.IsALive)
             {
-                effect.transform.position = target.transform.position;
+                effect.transform.position = tarTransform.transform.position;
                 time += Time.deltaTime;
                 yield return null;
             }

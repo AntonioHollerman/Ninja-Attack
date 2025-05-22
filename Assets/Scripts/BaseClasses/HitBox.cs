@@ -29,9 +29,9 @@ namespace BaseClasses
             {
                 yield return new WaitUntil(() => parent != null);
                 _aliveTime = duration;
-                ActiveIgnore = new List<CharacterSheet>(parent.allies);
             }
 
+            ActiveIgnore = parent.GetAllies();
             StartCoroutine(WaitForParent());
         }
         

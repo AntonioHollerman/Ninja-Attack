@@ -24,7 +24,6 @@ namespace BaseClasses
         [Header("Game Object Components")] 
         public bool                 disable;
         public bool                 isLarge;
-        public List<CharacterSheet> allies;
         public Rigidbody            rb;
         public CharacterSheet       lastHit;
         public AnimationManager     body;
@@ -64,6 +63,8 @@ namespace BaseClasses
         private float  _unmodifiedDef;
         private bool   _storingDamage;
         private float  _storedDamage;
+
+        public abstract List<CharacterSheet> GetAllies();
 
         public void StartAbsorbingDamage(int newDef)
         {
@@ -354,7 +355,6 @@ namespace BaseClasses
         {
             _effects = new List<Effect>();
             
-            allies.Add(this);
             CharacterSheets.Add(this);
             
             UpdateStats();

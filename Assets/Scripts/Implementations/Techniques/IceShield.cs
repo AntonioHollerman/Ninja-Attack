@@ -26,7 +26,7 @@ namespace Implementations.Techniques
             ani.GetFrames();
             ani.StartAnimation();
             
-            parent.StartAbsorbingDamage(12);
+            parent.StartAbsorbingDamage(25);
             while (_shieldInstance != null)
             {
                 _shieldInstance.transform.position = parent.transform.parent.position;
@@ -39,6 +39,7 @@ namespace Implementations.Techniques
             hitBox.effectDuration = effectDuration;
             hitBox.parent = parent;
             hitBox.absorbedDmg = parent.StopAbsorbingDamage();
+            hitBox.Activate(1);
 
             while (explosionInstance != null)
             {

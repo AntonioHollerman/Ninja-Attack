@@ -13,7 +13,7 @@ namespace BaseClasses
 {
     public abstract class Player : CharacterSheet
     {
-        public static List<Player> Players = new List<Player>();
+        public static List<CharacterSheet> Players = new List<CharacterSheet>();
         public PlayerUI statsUI;
         public GameObject interactIcon;
         
@@ -42,7 +42,12 @@ namespace BaseClasses
         public int Exp { get; private set; }
 
         public Dictionary<TechEnum, Technique> techDict = new Dictionary<TechEnum, Technique>();
-        
+
+        public override List<CharacterSheet> GetAllies()
+        {
+            return new List<CharacterSheet>(Players);
+        }
+
         protected override void UpdateWrapper()
         {
             base.UpdateWrapper();
