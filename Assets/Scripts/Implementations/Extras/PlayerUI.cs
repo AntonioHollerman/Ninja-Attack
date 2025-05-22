@@ -45,7 +45,7 @@ namespace Implementations.Extras
             expSlider.fillAmount = (float)player.Exp / player.ExpNeeded;
 
             lvlText.text = $"LvL\n{player.level}";
-            hpText.text = $"{(int) player.Hp} / {(int) player.MaxHp}";
+            hpText.text = $"{Mathf.Ceil(player.Hp)} / {(int) player.MaxHp}";
             manaText.text = $"{player.Mana} / {player.MaxMana}";
             expText.text = $"{player.Exp} / {player.ExpNeeded}";
 
