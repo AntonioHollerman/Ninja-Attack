@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Implementations.Animations
@@ -92,6 +93,16 @@ namespace Implementations.Animations
             Debug.Log(frames.Length);
             Debug.Log(SecondsBetweenFrame);
             return frames.Length * SecondsBetweenFrame;
+        }
+
+        protected virtual void UpdateWrapper()
+        {
+            
+        }
+
+        private void Update()
+        {
+            UpdateWrapper();
         }
     }
 }

@@ -60,7 +60,25 @@ namespace BaseClasses
 
         private bool _runningDefeated;
         private Collider _collider;
+        
+        private float  _unmodifiedDef;
+        private bool   _storingDamage;
+        private float  _storedDamage;
 
+        public void StartAbsorbingDamage(int newDef)
+        {
+            _storedDamage = 0;
+            _unmodifiedDef = def;
+            def = newDef;
+            _storingDamage = true;
+        }
+
+        public float StopAbsorbingDamage()
+        {
+            _storingDamage = false;
+            def = _unmodifiedDef;
+            return _storedDamage;
+        }
         public virtual void Defeated()
         {
             if (lastHit is Player player)
@@ -169,6 +187,11 @@ namespace BaseClasses
             // Apply damage, reducing health based on vulnerability and defense
             Hp -= IsVulnerable ? GetFinalDamage(dmg, 0) : GetFinalDamage(dmg, def);
             Hp = Hp < 0 ? 0 : Hp;
+
+            if (_storingDamage)
+            {
+                _storedDamage += GetFinalDamage(dmg, _unmodifiedDef) / 2.0f;
+            }
             
             if (!IsALive && !_runningDefeated)
             {

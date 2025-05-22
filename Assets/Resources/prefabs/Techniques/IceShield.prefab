@@ -44,11 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776696585aa54774a1de4f6758dd2700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 0
-  coolDown: 0
+  manaCost: 100
+  coolDown: 8
   parent: {fileID: 0}
-  active: {fileID: 0}
-  notActive: {fileID: 0}
+  active: {fileID: -181014432, guid: fc8e111899aa191439762e6aefa87c33, type: 3}
+  notActive: {fileID: 643721704, guid: fc8e111899aa191439762e6aefa87c33, type: 3}
   countDown: {fileID: 0}
   icon: {fileID: 0}
   iconGo: {fileID: 0}
+  shieldDuration: 0
+  shieldPrefab: {fileID: 4659196169189822732, guid: bd0d74a26d73a5c43acb6efefa3a87de, type: 3}
+  explosionPrefab: {fileID: 209376339025546103, guid: 4ab468299ba8a4e41b5dff1572609919, type: 3}

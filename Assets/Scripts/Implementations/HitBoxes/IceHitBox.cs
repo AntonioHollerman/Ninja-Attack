@@ -8,7 +8,7 @@ namespace Implementations.HitBoxes
         public GameObject iceHitMark;
         protected override void Effect(CharacterSheet cs)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

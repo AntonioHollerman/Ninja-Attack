@@ -20,12 +20,7 @@ namespace Implementations.Techniques
         {
             return TechEnum.IceShield;
         }
-
-        private IEnumerator Explode()
-        {
-            yield return null;
-        }
-
+        
         protected override void StartWrapper()
         {
             base.StartWrapper();
