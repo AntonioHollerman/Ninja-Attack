@@ -7,7 +7,7 @@ namespace Implementations.PickUpItems
         public int restore;
         public override void Effect(Player cs)
         {
-            cs.RestoreMana(restore);
+            cs.RestoreMana(restore / 2);
         }
     }
 }
