@@ -144,3 +144,5 @@ MonoBehaviour:
   workOnCollider: 1
   dontWorkOnTimer: 0
   iceHitMark: {fileID: 6369821785528608802, guid: b16938451820c204a980ea06e0f67fc6, type: 3}
+  effectDuration: 0
+  absorbedDmg: 0

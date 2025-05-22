@@ -79,6 +79,14 @@ namespace BaseClasses
             def = _unmodifiedDef;
             return _storedDamage;
         }
+
+        public IEnumerator SlowDown(float duration)
+        {
+            float oldSpeed = speed;
+            speed /= 3;
+            yield return new WaitForSeconds(duration);
+            speed = oldSpeed;
+        }
         public virtual void Defeated()
         {
             if (lastHit is Player player)

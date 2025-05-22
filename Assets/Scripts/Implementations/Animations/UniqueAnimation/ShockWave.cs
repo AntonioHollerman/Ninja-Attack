@@ -21,11 +21,6 @@ namespace Implementations.Animations.UniqueAnimation
             }
 
             transform.localScale *= Mathf.Pow(growthRate, Time.deltaTime);
-            if (FrameIndex == frames.Length - 1)
-            {
-                Debug.Log(frames.Length * SecondsBetweenFrame);
-                Debug.Log(Mathf.Pow(growthRate, frames.Length * SecondsBetweenFrame));
-            }
         }
     }
 }

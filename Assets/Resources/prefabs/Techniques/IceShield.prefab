@@ -52,6 +52,7 @@ MonoBehaviour:
   countDown: {fileID: 0}
   icon: {fileID: 0}
   iconGo: {fileID: 0}
-  shieldDuration: 0
+  shieldDuration: 2.5
+  effectDuration: 3
   shieldPrefab: {fileID: 4659196169189822732, guid: bd0d74a26d73a5c43acb6efefa3a87de, type: 3}
   explosionPrefab: {fileID: 209376339025546103, guid: 4ab468299ba8a4e41b5dff1572609919, type: 3}
