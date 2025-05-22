@@ -45,6 +45,9 @@ namespace Implementations.Managers
 
         private IEnumerator WaitForLevel()
         {
+            yield return new WaitUntil(() => _player.level >= 5);
+            Instance.AddMessage("Ice Shield unlocked! Open 'technique' in pause menu to equip it!", 5);
+            
             yield return new WaitUntil(() => _player.level >= 8);
             Instance.AddMessage("Fire ball unlocked! Open 'technique' in pause menu to equip it!", 5);
 

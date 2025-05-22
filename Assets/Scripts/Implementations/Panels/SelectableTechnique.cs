@@ -25,7 +25,7 @@ namespace Implementations.Panels
 
         private void OnEnable()
         {
-            if (_player.level < levelUnlock || tech == TechEnum.IceShield)
+            if (_player.level < levelUnlock)
             {
                 lockedGo.SetActive(true);
                 iconImage.sprite = _notActive;
@@ -46,7 +46,7 @@ namespace Implementations.Panels
 
             _active = TechniqueManager.GetSprites(tech)[0];
             _notActive = TechniqueManager.GetSprites(tech)[1];
-            if (_player.level < levelUnlock || tech == TechEnum.IceShield)
+            if (_player.level < levelUnlock)
             {
                 lockedGo.SetActive(true);
                 iconImage.sprite = _notActive;
@@ -79,12 +79,7 @@ namespace Implementations.Panels
                 EventDisplayManager.Instance.AddMessage($"To use '{tech}' you need to be level {levelUnlock}");
                 return;
             }
-
-            if (tech == TechEnum.IceShield)
-            {
-                EventDisplayManager.Instance.AddMessage("Ice Shield is not currently implemented");
-                return;
-            }
+            
             if (master.selectedTechnique != null)
             {
                 master.selectedTechnique.outlineImage.color = master.basicOutlineColor;
