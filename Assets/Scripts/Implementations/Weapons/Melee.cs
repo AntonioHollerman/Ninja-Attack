@@ -50,7 +50,7 @@ namespace Implementations.Weapons
         private IEnumerator HitBoxListener()
         {
             Collider.enabled = false;
-            ActiveIgnore = new List<CharacterSheet>(parent.allies);
+            ActiveIgnore = parent.GetAllies();
             while (true)
             {
                 yield return new WaitUntil(() => parent.body.curState == AnimationState.Attack && parent.body.AniIndex < startHitBoxIndex);
@@ -59,11 +59,11 @@ namespace Implementations.Weapons
                 // Play swing sound right when the hitbox becomes active (the sword swings)
                 PlaySwingSound();
 
+                ActiveIgnore = parent.GetAllies();
                 Collider.enabled = true;
 
                 yield return new WaitUntil(() => parent.body.curState != AnimationState.Attack || parent.body.AniIndex < startHitBoxIndex);
                 Collider.enabled = false;
-                ActiveIgnore = new List<CharacterSheet>(parent.allies);
             }
         }
 

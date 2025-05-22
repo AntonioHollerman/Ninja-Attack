@@ -24,7 +24,6 @@ namespace BaseClasses
         [Header("Game Object Components")] 
         public bool                 disable;
         public bool                 isLarge;
-        public List<CharacterSheet> allies;
         public Rigidbody            rb;
         public CharacterSheet       lastHit;
         public AnimationManager     body;
@@ -60,7 +59,35 @@ namespace BaseClasses
 
         private bool _runningDefeated;
         private Collider _collider;
+        
+        private float  _unmodifiedDef;
+        private bool   _storingDamage;
+        private float  _storedDamage;
 
+        public abstract List<CharacterSheet> GetAllies();
+
+        public void StartAbsorbingDamage(int newDef)
+        {
+            _storedDamage = 0;
+            _unmodifiedDef = def;
+            def = newDef;
+            _storingDamage = true;
+        }
+
+        public float StopAbsorbingDamage()
+        {
+            _storingDamage = false;
+            def = _unmodifiedDef;
+            return _storedDamage;
+        }
+
+        public IEnumerator SlowDown(float duration)
+        {
+            float oldSpeed = speed;
+            speed /= 3;
+            yield return new WaitForSeconds(duration);
+            speed = oldSpeed;
+        }
         public virtual void Defeated()
         {
             if (lastHit is Player player)
@@ -169,6 +196,11 @@ namespace BaseClasses
             // Apply damage, reducing health based on vulnerability and defense
             Hp -= IsVulnerable ? GetFinalDamage(dmg, 0) : GetFinalDamage(dmg, def);
             Hp = Hp < 0 ? 0 : Hp;
+
+            if (_storingDamage)
+            {
+                _storedDamage += GetFinalDamage(dmg, _unmodifiedDef) / 2.0f;
+            }
             
             if (!IsALive && !_runningDefeated)
             {
@@ -323,7 +355,6 @@ namespace BaseClasses
         {
             _effects = new List<Effect>();
             
-            allies.Add(this);
             CharacterSheets.Add(this);
             
             UpdateStats();

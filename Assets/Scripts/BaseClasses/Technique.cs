@@ -29,9 +29,9 @@ namespace BaseClasses
         public GameObject iconGo;
         
         public int ManaCost { get; private set; } // How much implemented technique cost
-        public float CoolDown { get; private set; } // How many seconds is the cooldown
+        public float CoolDown { get; protected set; } // How many seconds is the cooldown
         protected float Timer;
-        protected bool Ready => parent.Mana >= ManaCost && Timer <= 0;
+        protected bool Ready => parent != null && parent.Mana >= ManaCost && Timer <= 0;
 
         protected abstract void Execute();
         public abstract TechEnum GetTechEnum();
