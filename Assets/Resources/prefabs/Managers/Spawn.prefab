@@ -72,4 +72,5 @@ MonoBehaviour:
   instances: 1
   npcPrefabs:
   - {fileID: 3248118686423686427, guid: 8542211fb289dfc40b4fa09a4bd1d17d, type: 3}
+  - {fileID: 3282015224527537233, guid: 9a026af91485b0d4786e39b786d3016d, type: 3}
   coolDown: 75
