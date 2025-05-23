@@ -245,10 +245,10 @@ MonoBehaviour:
   body: {fileID: 243036038349385455}
   pTransform: {fileID: 6269546578871389881}
   level: 20
-  baseHp: 25
+  baseHp: 15
   baseAtk: 3
   baseMana: 50
-  def: 1
+  def: 5
   speed: 2
   weapon: {fileID: 0}
   detectRange: 20

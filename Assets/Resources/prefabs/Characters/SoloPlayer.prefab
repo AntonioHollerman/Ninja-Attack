@@ -519,9 +519,9 @@ MonoBehaviour:
   pTransform: {fileID: 2584723929660046766}
   level: 20
   baseHp: 9
-  baseAtk: 4
+  baseAtk: 6
   baseMana: 75
-  def: 0
+  def: 3
   speed: 1.5
   weapon: {fileID: 7113836605885849239}
   statsUI: {fileID: 0}

@@ -227,7 +227,7 @@ MonoBehaviour:
   baseHp: 3
   baseAtk: 4
   baseMana: 0
-  def: 0
+  def: 3
   speed: 0.5
   weapon: {fileID: 0}
   detectRange: 8

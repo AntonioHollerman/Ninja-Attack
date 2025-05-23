@@ -915,6 +915,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1302508763967049866, guid: 8542211fb289dfc40b4fa09a4bd1d17d, type: 3}
+      propertyPath: def
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3248118686423686427, guid: 8542211fb289dfc40b4fa09a4bd1d17d, type: 3}
       propertyPath: m_Name
       value: Zombie
@@ -1144,6 +1148,10 @@ PrefabInstance:
     - target: {fileID: 2584723929660046766, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636730643232920121, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
+      propertyPath: level
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5636730643232920121, guid: 7950ae5ef9d308649ae2de213d9eea3e, type: 3}
       propertyPath: statsUI
