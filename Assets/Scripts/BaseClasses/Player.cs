@@ -13,7 +13,7 @@ namespace BaseClasses
 {
     public abstract class Player : CharacterSheet
     {
-        public static List<CharacterSheet> Players = new List<CharacterSheet>();
+        public static List<Player> Players = new List<Player>();
         public PlayerUI statsUI;
         public GameObject interactIcon;
         

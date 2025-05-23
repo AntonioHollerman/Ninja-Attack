@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2937284351461327453}
   m_Layer: 0
   m_Name: ArmorSkeleton
-  m_TagString: Untagged
+  m_TagString: CharacterSheet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,7 +240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disable: 0
   isLarge: 0
-  allies: []
   rb: {fileID: 2937284351461327453}
   lastHit: {fileID: 0}
   body: {fileID: 116455564000112441}

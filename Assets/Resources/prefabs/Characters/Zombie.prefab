@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6072635914802790540}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: CharacterSheet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,7 +350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disable: 0
   isLarge: 0
-  allies: []
   rb: {fileID: 6072635914802790540}
   lastHit: {fileID: 0}
   body: {fileID: 6232833080271432251}

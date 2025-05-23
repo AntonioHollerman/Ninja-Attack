@@ -19,7 +19,7 @@ namespace Implementations.Weapons
         protected override void TriggerEnterWrapper(Collider other)
         {
             CharacterSheet cs = other.GetComponent<CharacterSheet>();
-            if (cs == null)
+            if (cs == null && !other.CompareTag("CharacterSheet"))
             {
                 SpawnHitMark(gameObject);
                 Destroy(gameObject);

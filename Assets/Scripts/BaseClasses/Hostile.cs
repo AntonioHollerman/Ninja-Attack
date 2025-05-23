@@ -7,7 +7,7 @@ namespace BaseClasses
 {
     public abstract class Hostile : TrackingBehavior
     {
-        public static List<CharacterSheet> Hostiles = new List<CharacterSheet>();
+        public static List<Hostile> Hostiles = new List<Hostile>();
         
         public GameObject healthBar;
         public GameObject manaPotion;

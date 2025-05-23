@@ -158,7 +158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disable: 0
   isLarge: 0
-  allies: []
   rb: {fileID: 3099061161512560589}
   lastHit: {fileID: 0}
   body: {fileID: 4296137107804753132}
@@ -188,7 +187,7 @@ GameObject:
   - component: {fileID: 5243251434042802034}
   m_Layer: 0
   m_Name: ArmorZombie
-  m_TagString: Untagged
+  m_TagString: CharacterSheet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
